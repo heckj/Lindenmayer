@@ -14,7 +14,7 @@ jobs:
       matrix:
         run-config:
           - { scheme: 'Lindenmayer-Package', destination: 'platform=iOS Simulator,OS=15.0,name=iPhone 8' }
-          - { scheme: 'Lindenmayer', destination: 'platform=macOS,arch=x86_64' }
+          - { scheme: 'Lindenmayer-Package', destination: 'platform=macOS,arch=x86_64' }
           #- { scheme: 'LindenmayerViews', destination: 'platform=iOS Simulator,OS=15.0,name=iPhone 8' }
 # sdk: -sdk iphonesimulator15.0, -sdk macosx12.0, -sdk appletvsimulator15.0
     steps:
