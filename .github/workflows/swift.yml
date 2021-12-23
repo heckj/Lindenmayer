@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         run-config:
-          - { scheme: 'Lindenmayer', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 8' }
-          - { scheme: 'LindenmayerViews', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 8' }
-          # there's also a scheme: Lindenmayer-Package
+          - { scheme: 'Lindenmayer-Package', destination: 'platform=iOS Simulator,OS=15.0,name=iPhone 8' }
+          - { scheme: 'Lindenmayer', destination: 'platform=macOS,arch=x86_64' }
+          #- { scheme: 'LindenmayerViews', destination: 'platform=iOS Simulator,OS=15.0,name=iPhone 8' }
 
     steps:
     - uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
     - name: Show Build SDK
       run: xcodebuild -showsdks
 
-    - name: Show Build SDK
+    - name: List available schemes
       run: xcodebuild -list
 
     - name: Show Build Settings

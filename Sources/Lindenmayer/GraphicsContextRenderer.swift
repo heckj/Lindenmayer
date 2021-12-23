@@ -6,7 +6,9 @@
 //
 
 import CoreGraphics
+#if canImport(SwiftUI)
 import SwiftUI
+#endif
 
 struct PathState {
     var angle: Double
@@ -42,6 +44,7 @@ public struct GraphicsContextRenderer {
         self.unitLength = unitLength
     }
     
+#if canImport(SwiftUI)
     /// Draws the L-System into the provided GraphicsContext.
     ///
     /// - Parameters:
@@ -98,6 +101,7 @@ public struct GraphicsContextRenderer {
             }
         }
     }
+#endif
     
     /// Returns a Core Graphics rectangle after processing the L-System you provide to identify the boundaries of the 2D rendering.
     /// - Parameter system: The L-System to process.
