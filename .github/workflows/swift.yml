@@ -17,7 +17,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      - name: Show Build Settings
+    - name: Show Build Settings
       run: xcodebuild -showBuildSettings
 
     - name: Show Build SDK
