@@ -24,5 +24,5 @@ The features that I was most interested in leveraging:
 - Parameters within an L-system's modules and exposing them to grammar evaluation and production choices (parametric L-systems).
 - The introduction of random values with those parameters (stochastic grammars).
 
-While this project can be implemented using an interpretter, I wanted to see how far I could leverage the Swift language.
+While this project can be implemented using an interpreter, I wanted to see how far I could leverage the Swift language.
 This project attempts to follow in the conceptual footsteps of the L+C language to create a mechanism to create L-systems that compile down to machine code for efficiency of execution.
