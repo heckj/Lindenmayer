@@ -10,10 +10,21 @@ jobs:
   build:
 
     runs-on: macos-11
+    strategy:
+      matrix:
+        run-config:
+          - { scheme: 'Lindenmayer', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 8' }
 
     steps:
     - uses: actions/checkout@v2
+      - name: Show Build Settings
+      run: xcodebuild -showBuildSettings
+
+    - name: Show Build SDK
+      run: xcodebuild -showsdks
+
+    - name: Show Available Destinations
+      run: xcodebuild -scheme '${{ matrix.run-config['scheme'] }}' -showdestinations
+
     - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+      run: xcodebuild clean test -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}' -showBuildTimingSumary
