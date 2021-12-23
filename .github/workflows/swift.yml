@@ -14,14 +14,20 @@ jobs:
       matrix:
         run-config:
           - { scheme: 'Lindenmayer', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 8' }
+          - { scheme: 'LindenmayerViews', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 8' }
+          # there's also a scheme: Lindenmayer-Package
 
     steps:
     - uses: actions/checkout@v2
-    - name: Show Build Settings
-      run: xcodebuild -showBuildSettings
 
     - name: Show Build SDK
       run: xcodebuild -showsdks
+
+    - name: Show Build SDK
+      run: xcodebuild -list
+
+    - name: Show Build Settings
+      run: xcodebuild -scheme '${{ matrix.run-config['scheme'] }}' -showBuildSettings
 
     - name: Show Available Destinations
       run: xcodebuild -scheme '${{ matrix.run-config['scheme'] }}' -showdestinations
