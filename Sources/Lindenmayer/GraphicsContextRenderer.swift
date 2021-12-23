@@ -6,9 +6,7 @@
 //
 
 import CoreGraphics
-#if canImport(SwiftUI)
 import SwiftUI
-#endif
 
 struct PathState {
     var angle: Double
@@ -44,13 +42,13 @@ public struct GraphicsContextRenderer {
         self.unitLength = unitLength
     }
     
-#if canImport(SwiftUI)
     /// Draws the L-System into the provided GraphicsContext.
     ///
     /// - Parameters:
     ///   - lsystem: The L-System to draw.
     ///   - context: The SwiftUI graphics context into which to draw.
     ///   - size: The optional size of the available graphics context. If provided, the function pre-calculates the size of the rendered L-system and adjusts the drawing to fill the space available.
+    @available(macOS 12.0, *)
     public func draw(_ lsystem: LSystem, into context: inout GraphicsContext, ofSize size: CGSize? = nil) {
         if let size = size {
             // This is less pretty, because we have to process the whole damn thing to figure out the end-result
@@ -101,8 +99,7 @@ public struct GraphicsContextRenderer {
             }
         }
     }
-#endif
-    
+
     /// Returns a Core Graphics rectangle after processing the L-System you provide to identify the boundaries of the 2D rendering.
     /// - Parameter system: The L-System to process.
     /// - Returns: The CGRect that represents the boundaries of the draw commands.
