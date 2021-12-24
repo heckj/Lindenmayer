@@ -34,3 +34,6 @@ jobs:
 
     - name: Build
       run: xcodebuild clean test -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}' -showBuildTimingSummary
+
+    - name: DocBuild
+      run: xcodebuild docbuild -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}' -derivedDataPath /tmp/docbuild
