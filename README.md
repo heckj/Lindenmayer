@@ -1,5 +1,11 @@
 # Lindenmayer
 
+[![Build](https://github.com/heckj/Lindenmayer/actions/workflows/swift.yml/badge.svg)](https://github.com/heckj/Lindenmayer/actions/workflows/swift.yml)
+[![Platforms](https://img.shields.io/badge/platforms-iOS%20|%20Mac%20-lightgray.svg)]()
+[![Swift 5.5](https://img.shields.io/badge/swift-5.5-red.svg?style=flat)](https://developer.apple.com/swift)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
+[![Twitter](https://img.shields.io/badge/twitter-@heckj-blue.svg)](http://twitter.com/heckj)
+
 The package provides a library you can expand upon to develop your own [Lindenmayer systems](https://en.wikipedia.org/wiki/L-system), directly in the Swift programming language.
 While the package includes a number example L-systems, the primary intent is to allow you to create L-systems with rules and modules that you define.
 This implementation provides support for context sensitive, and parametric grammars when creating your L-system.
