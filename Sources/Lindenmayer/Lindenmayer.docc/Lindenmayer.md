@@ -1,16 +1,19 @@
 # ``Lindenmayer``
 
-Lindenmayer provides a library you can use and extend to develop your own [Lindenmayer systems](https://en.wikipedia.org/wiki/L-system), in the Swift programming language.
+Lindenmayer provides a library to develop and run your own Lindenmayer Systems.
 
 ## Overview
 
-While the package includes a number example L-systems, the primary intent is to allow you to create L-systems with rules and modules that you define.
-This implementation provides support for context sensitive, and parametric grammars when creating your L-system.
+The package includes the core types to support you in building your own Lindenmayer systems (also known as L-systems), and a number examples sourced from Wikipedia and research papers.
+The library provides types and APIs enable you to create L-systems with rules and modules that you define, and renderers to generate 2D and 3D representations of the results.
 
-The library provides 2D and 3D representation rendering of a current L-system states, including some SwiftUI views that you can use to display either 2D or 3D results:
-- The 2D representation uses [Canvas](http://developer.apple.com/documentation/swiftui/Canvas) and [GraphicsContext](https://developer.apple.com/documentation/swiftui/graphicscontext) from [SwiftUI](https://developer.apple.com/documentation/swiftui) on Apple platforms.
-- The 3D representation uses [SceneKit](https://developer.apple.com/documentation/scenekit) on Apple platforms.
+The 2D renderer uses [Canvas](http://developer.apple.com/documentation/swiftui/Canvas) and [GraphicsContext](https://developer.apple.com/documentation/swiftui/graphicscontext) from [SwiftUI](https://developer.apple.com/documentation/swiftui) on Apple platforms.
+The 3D renderer uses [SceneKit](https://developer.apple.com/documentation/scenekit) on Apple platforms.
+The related package ``LindenmayerViews`` provides SwiftUI views that present the results of the renderers.
 
-The repository has [Discussions](https://github.com/heckj/Lindenmayer/discussions) enabled if you have questions, as well as [issues logged for planned improvements](https://github.com/heckj/Lindenmayer/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement). 
+The API provides support for both context free and context sensitive L-system grammars, as well as parametric grammars.
+
+To get support for using this package, see the [Discussions on Github](https://github.com/heckj/Lindenmayer/discussions) for questions and community feedback, or the [Github issue tracker](https://github.com/heckj/Lindenmayer/issues).
+For more information about L-systems, see the Wikipedia page [L-system](https://en.wikipedia.org/wiki/L-system).
 
 ## Topics
