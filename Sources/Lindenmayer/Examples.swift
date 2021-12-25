@@ -366,7 +366,7 @@ struct DetailedExamples {
                     
                     Modules.RollRight(branchAngle),
 //                    Modules.TurnRight(branchAngle),
-//                    Modules.LevelOut(),
+                    Modules.LevelOut(),
 
                     MainBranch(growthDistance: currentGrowthDistance*contractionRatioForBranch,
                             diameter: currentDiameter * widthContraction),

@@ -61,6 +61,51 @@ public struct SceneKitRenderer {
         self.lsystem = lsystem
     }
     
+    func material(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> SCNMaterial {
+        let material = SCNMaterial()
+        material.diffuse.contents = CGColor(red: red, green: green, blue: blue, alpha: alpha)
+        return material
+    }
+    
+    func addDebugFlooring(_ scene: SCNScene, grid: Bool = true) {
+        let flooring = SCNNode(geometry: SCNPlane(width: 10, height: 10))
+        flooring.geometry?.materials = [material(red: 0.1,green: 0.7,blue: 0.1,alpha: 0.5)]
+        flooring.simdEulerAngles = simd_float3(x: degreesToRadians(-90), y: 0, z: 0)
+
+        let axisMaterials = [material(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)]
+
+        let dot3D = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 0)
+        dot3D.materials = axisMaterials
+
+        let lowresCyl = SCNCylinder(radius: 0.01, height: 10)
+        lowresCyl.radialSegmentCount = 8
+        lowresCyl.heightSegmentCount = 1
+        lowresCyl.materials = axisMaterials
+
+        let zaxis = SCNNode(geometry: lowresCyl)
+        flooring.addChildNode(zaxis)
+        let xaxis = SCNNode(geometry: lowresCyl)
+        xaxis.simdEulerAngles = simd_float3(x: 0, y: 0, z: degreesToRadians(90))
+        flooring.addChildNode(xaxis)
+        let yaxis = SCNNode(geometry: lowresCyl)
+        yaxis.simdEulerAngles = simd_float3(x: degreesToRadians(90), y: 0, z: 0)
+        flooring.addChildNode(yaxis)
+        
+        if grid {
+            let loc: [Float] = [-5,-4,-3,-2,-1,0,1,2,3,4,5]
+            for i in loc {
+                for j in loc {
+                    print("\(i),\(j)")
+                    let dot = SCNNode(geometry: dot3D)
+                    dot.simdPosition = simd_float3(x: Float(i), y: Float(j), z: 0)
+                    flooring.addChildNode(dot)
+                }
+            }
+        }
+
+        scene.rootNode.addChildNode(flooring)
+    }
+    
     public var scene: SCNScene {
         get {
             let scene = SCNScene()
@@ -73,7 +118,10 @@ public struct SceneKitRenderer {
             // place the camera
             cameraNode.position = SCNVector3(x: 0, y: 0, z: 20)
             cameraNode.simdLook(at: simd_float3(x: 0, y: 5, z: 0))
-                        
+            
+            // set up debug/sizing flooring
+            addDebugFlooring(scene)
+            
             var currentState = GrowthState(node: scene.rootNode)
             var stateStack: [GrowthState] = []
 
@@ -135,8 +183,12 @@ public struct SceneKitRenderer {
                     // it was already at.
                     let temp = SCNNode()
                     temp.simdTransform = currentState.transform
-                    temp.simdEulerAngles = simd_float3(x: 0, y: temp.simdEulerAngles.y, z: 0)
-                    currentState.transform = temp.simdTransform
+                    
+                    print("transform:")
+                    print(temp.simdTransform.prettyPrintString())
+                    print("euler angles pitch: \(degrees(radians: temp.simdEulerAngles.x))° yaw: \(degrees(radians: temp.simdEulerAngles.y))° roll: \(degrees(radians: temp.simdEulerAngles.z))°")
+//                    temp.simdEulerAngles = simd_float3(x: 0, y: temp.simdEulerAngles.y, z: 0)
+//                    currentState.transform = temp.simdTransform
                     print("  -> \(String(describing: currentState.transform))")
                     
                     // NOTE: this isn't working as @V was described in the original literature.
@@ -231,5 +283,9 @@ public struct SceneKitRenderer {
     
     func degreesToRadians(_ value: Double) -> Float {
         return Float(value * .pi / 180.0)
+    }
+    
+    func degrees(radians: Float) -> Float {
+        return radians / .pi * 180.0
     }
 }
