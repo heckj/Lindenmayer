@@ -175,28 +175,42 @@ public struct SceneKitRenderer {
                     print("Yaw (rotate around +Y Axis) by \(angle)° -> \(String(describing: currentState.transform))")
 
                 case .levelOut:
-                    print("Leveling out")
-                    // Since I'm clearly not getting how to reverse Euler angles into the
-                    // correct transforms, I'm using the capability embedded within SCNNode
-                    // to update the current transform so that the Euler angles are leveled
-                    // out. This leaves the yaw (rotation around the Y axis) at whatever state
-                    // it was already at.
-                    let temp = SCNNode()
-                    temp.simdTransform = currentState.transform
-                    
-                    print("transform:")
-                    print(temp.simdTransform.prettyPrintString())
-                    print("euler angles pitch: \(degrees(radians: temp.simdEulerAngles.x))° yaw: \(degrees(radians: temp.simdEulerAngles.y))° roll: \(degrees(radians: temp.simdEulerAngles.z))°")
-//                    temp.simdEulerAngles = simd_float3(x: 0, y: temp.simdEulerAngles.y, z: 0)
-//                    currentState.transform = temp.simdTransform
-                    print("  -> \(String(describing: currentState.transform))")
-                    
-                    // NOTE: this isn't working as @V was described in the original literature.
-                    // It's intended to rotate the local frame such that things branch out horizontally,
-                    // but instead I've changed the whole frame of reference so that it's "growing up" next,
-                    // rather than maintaining it's previous heading.
-                    // Everything done previously with transforms was entirely from a world frame of reference.
+                    let angle = currentState.transform.angleFromVertical()
+                    print("Leveling out from angle: \(angle) vs. \(Float.pi/2)")
+                    if (angle < (Float.pi/2)) {
+                        print(" != No action needed - pointed above the horizon...")
+                    } else {
 
+                        let current: simd_quatf = simd_quatf(currentState.transform)
+                        let northpole = simd_quatf(angle: 0, axis: simd_float3(x: 0, y: 1, z: 0))
+//                        print("northpole quat: \(northpole) (angle: \(northpole.angle))")
+                        
+                        
+//                        print(" - Interpolated to 0: \(simd_slerp(current, northpole, 0.0)) Θ=\(simd_slerp(current, northpole, 0.0).angle)")
+//                        print(" - Interpolated to 0.1: \(simd_slerp(current, northpole, 0.1)) Θ=\(simd_slerp(current, northpole, 0.1).angle)")
+//                        print(" - Interpolated to 0.2: \(simd_slerp(current, northpole, 0.2)) Θ=\(simd_slerp(current, northpole, 0.2).angle)")
+//                        print(" - Interpolated to 0.3: \(simd_slerp(current, northpole, 0.3)) Θ=\(simd_slerp(current, northpole, 0.3).angle)")
+//                        print(" - Interpolated to 0.4: \(simd_slerp(current, northpole, 0.4)) Θ=\(simd_slerp(current, northpole, 0.4).angle)")
+//                        print(" - Interpolated to 0.5: \(simd_slerp(current, northpole, 0.5)) Θ=\(simd_slerp(current, northpole, 0.5).angle)")
+//                        print(" - Interpolated to 0.6: \(simd_slerp(current, northpole, 0.6)) Θ=\(simd_slerp(current, northpole, 0.6).angle)")
+//                        print(" - Interpolated to 0.7: \(simd_slerp(current, northpole, 0.7)) Θ=\(simd_slerp(current, northpole, 0.7).angle)")
+//                        print(" - Interpolated to 0.8: \(simd_slerp(current, northpole, 0.8)) Θ=\(simd_slerp(current, northpole, 0.8).angle)")
+//                        print(" - Interpolated to 0.9: \(simd_slerp(current, northpole, 0.9)) Θ=\(simd_slerp(current, northpole, 0.9).angle)")
+//                        print(" - Interpolated to 1.0: \(simd_slerp(current, northpole, 1.0)) Θ=\(simd_slerp(current, northpole, 1.0).angle)")
+                        
+                        
+                        let interpolation_percentage = .pi/2.0 / angle
+                        print(" - Est. interpolation percentage to get horizon: \(interpolation_percentage)")
+                        let new_rotation = simd_slerp(current, northpole, interpolation_percentage)
+//                        print(" interpolated quaternion: \(new_rotation), Θ=\(new_rotation.angle)")
+                        // convert back to a rotation
+                        let temp = SCNNode()
+                        temp.simdTransform = currentState.transform
+                        temp.simdRotation = new_rotation.vector
+                        currentState.transform = temp.simdTransform
+                        print("Updated transform:")
+                        print(currentState.transform.prettyPrintString("  "))
+                    }
                 case let .move(distance):
                     let moveTransform = translationTransform(x: 0, y: Float(distance), z: 0)
                     currentState = currentState.applyingTransform(moveTransform)
