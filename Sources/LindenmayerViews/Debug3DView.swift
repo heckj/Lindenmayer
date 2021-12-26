@@ -150,9 +150,7 @@ public struct NodeInfoView: View {
 
 public struct NodeAdjustmentView: View {
     let node: SCNNode?
-    @State private var morePitch: Float = 0
-    @State private var moreYaw: Float = 0
-    @State private var moreRoll: Float = 0
+    @State private var moreValue: Float = 0
     @State private var textField: String = ""
     @State private var anglesString: String = ""
 
@@ -163,11 +161,11 @@ public struct NodeAdjustmentView: View {
                 Button("add pitch") {
                     if (!textField.isEmpty) {
                         if let value = Float(textField) {
-                            morePitch = value
+                            moreValue = value
                         }
                     }
                     if let node = node {
-                        node.simdTransform = node.simdTransform * rotationAroundXAxisTransform(angle: morePitch)
+                        node.simdTransform = node.simdTransform * rotationAroundXAxisTransform(angle: moreValue)
                         var string = "euler angles:"
                         string += "\npitch: \(degrees(radians: node.simdEulerAngles.x))° (\(node.simdEulerAngles.x) rad)"
                         string += "\nyaw: \(degrees(radians: node.simdEulerAngles.y))° (\(node.simdEulerAngles.y) rad)"
@@ -180,11 +178,11 @@ public struct NodeAdjustmentView: View {
                 Button("add yaw") {
                     if (!textField.isEmpty) {
                         if let value = Float(textField) {
-                            moreYaw = value
+                            moreValue = value
                         }
                     }
                     if let node = node {
-                        node.simdTransform = node.simdTransform * rotationAroundYAxisTransform(angle: morePitch)
+                        node.simdTransform = node.simdTransform * rotationAroundYAxisTransform(angle: moreValue)
                         var string = "euler angles:"
                         string += "\npitch: \(degrees(radians: node.simdEulerAngles.x))° (\(node.simdEulerAngles.x) rad)"
                         string += "\nyaw: \(degrees(radians: node.simdEulerAngles.y))° (\(node.simdEulerAngles.y) rad)"
@@ -197,11 +195,11 @@ public struct NodeAdjustmentView: View {
                 Button("add roll") {
                     if (!textField.isEmpty) {
                         if let value = Float(textField) {
-                            moreRoll = value
+                            moreValue = value
                         }
                     }
                     if let node = node {
-                        node.simdTransform = node.simdTransform * rotationAroundZAxisTransform(angle: morePitch)
+                        node.simdTransform = node.simdTransform * rotationAroundZAxisTransform(angle: moreValue)
                     
                         var string = "euler angles:"
                         string += "\npitch: \(degrees(radians: node.simdEulerAngles.x))° (\(node.simdEulerAngles.x) rad)"
@@ -211,6 +209,7 @@ public struct NodeAdjustmentView: View {
                     }
                 }
             }
+            Text("Added \(moreValue)")
             Text(anglesString)
         }
     }
