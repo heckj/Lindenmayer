@@ -1,6 +1,6 @@
 //
 //  NonParameterizedRule.swift
-//  
+//
 //
 //  Created by Joseph Heck on 12/28/21.
 //
@@ -8,7 +8,7 @@
 import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-public struct NonParameterizedRule: Rule  {
+public struct NonParameterizedRule: Rule {
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?) throws -> [Module]
     public typealias singleMatchProducesList = (Module) throws -> [Module]
 

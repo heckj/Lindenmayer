@@ -1,6 +1,6 @@
 //
 //  Rule.swift
-//  
+//
 //
 //  Created by Joseph Heck on 12/28/21.
 //
@@ -12,14 +12,14 @@ public protocol Rule: CustomStringConvertible {
     func evaluate(_ leftCtxType: Module.Type?, _ directCtxType: Module.Type, _ rightCtxType: Module.Type?) -> Bool
 }
 
-extension Rule {
+public extension Rule {
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
     /// - Parameters:
     ///   - leftCtx: The type of atom 'to the left' of the atom being evaluated, if avaialble.
     ///   - directCtx: The type of the current atom to evaluate.
     ///   - rightCtx: The type of atom 'to the right' of the atom being evaluated, if available.
     /// - Returns: A Boolean value that indicates if the rule should be applied to the current atom within the L-systems state sequence.
-    public func evaluate(_ leftCtxType: Module.Type?, _ directCtxType: Module.Type, _ rightCtxType: Module.Type?) -> Bool {
+    func evaluate(_ leftCtxType: Module.Type?, _ directCtxType: Module.Type, _ rightCtxType: Module.Type?) -> Bool {
         // TODO(heckj): add an additional property that exposes a closure to call
         // to determine if the rule should be evaluated - where the closure exposes
         // access to the internal parameters of the various matched modules - effectively
@@ -52,12 +52,11 @@ extension Rule {
     }
 }
 
-extension Rule {
+public extension Rule {
     // - MARK: CustomStringConvertable
-    
+
     /// A description of the rule that details what it matches
-    public var description: String {
+    var description: String {
         return "Rule[matching \(matchset)]"
     }
-
 }
