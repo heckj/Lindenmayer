@@ -120,10 +120,10 @@ enum DetailedExamples {
     static var stem = Stem()
 
     static var fractalTree = LSystem<EmptyParams>(leaf, parameters: AltParams(), rules: [
-        Rule(Leaf.self) { _, _ in
+        ParameterizedRule(Leaf.self) { _, _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
         },
-        Rule(Stem.self) { _, _ in
+        ParameterizedRule(Stem.self) { _, _ in
             [stem, stem]
         },
     ])
@@ -131,7 +131,7 @@ enum DetailedExamples {
     // - MARK: Koch curve example
 
     static var kochCurve = LSystem<EmptyParams>(Modules.Draw(10), parameters: AltParams(), rules: [
-        Rule(Modules.Draw.self) { _, _ in
+        ParameterizedRule(Modules.Draw.self) { _, _ in
             [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
         },
     ])
@@ -155,10 +155,10 @@ enum DetailedExamples {
     static var sierpinskiTriangle = LSystem<EmptyParams>(
         [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)], parameters: AltParams(),
         rules: [
-            Rule(F.self) { _, _ in
+            ParameterizedRule(F.self) { _, _ in
                 [f, Modules.TurnRight(120), g, Modules.TurnLeft(120), f, Modules.TurnLeft(120), g, Modules.TurnRight(120), f]
             },
-            Rule(G.self) { _, _ in
+            ParameterizedRule(G.self) { _, _ in
                 [g, g]
             },
         ]
@@ -168,10 +168,10 @@ enum DetailedExamples {
 
     static var dragonCurve = LSystem<EmptyParams>(f, parameters: AltParams(),
                                      rules: [
-                                         Rule(F.self) { _, _ in
+                                         ParameterizedRule(F.self) { _, _ in
                                              [f, Modules.TurnLeft(90), g]
                                          },
-                                         Rule(G.self) { _, _ in
+                                         ParameterizedRule(G.self) { _, _ in
                                              [f, Modules.TurnRight(90), g]
                                          },
                                      ])
@@ -187,10 +187,10 @@ enum DetailedExamples {
 
     static var barnsleyFern = LSystem<EmptyParams>(x, parameters: AltParams(),
                                       rules: [
-                                          Rule(X.self) { _, _ in
+                                          ParameterizedRule(X.self) { _, _ in
                                               [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
                                           },
-                                          Rule(F.self) { _, _ in
+                                          ParameterizedRule(F.self) { _, _ in
                                               [f, f]
                                           },
                                       ])
@@ -208,10 +208,10 @@ enum DetailedExamples {
     }
 
     static var algae3D = LSystem<EmptyParams>(Cyl(), parameters: AltParams(), rules: [
-        Rule(Cyl.self) { _, _ in
+        ParameterizedRule(Cyl.self) { _, _ in
             [Cyl(), S()]
         },
-        Rule(S.self) { _, _ in
+        ParameterizedRule(S.self) { _, _ in
             [Cyl()]
         },
     ])
@@ -316,7 +316,7 @@ enum DetailedExamples {
         Trunk(growthDistance: defines.trunklength ?? 10.0, diameter: defines.trunkdiameter ?? 2.0),
         parameters: AltParams(Definitions()),
         rules: [
-            Rule(Trunk.self) { trunk, params in
+            ParameterizedRule(Trunk.self) { trunk, params in
                 guard let currentDiameter = trunk.diameter,
                       let currentGrowthDistance = trunk.growthDistance
                 else {
@@ -342,7 +342,7 @@ enum DetailedExamples {
                           diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            Rule(MainBranch.self) { branch, params in
+            ParameterizedRule(MainBranch.self) { branch, params in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
@@ -366,7 +366,7 @@ enum DetailedExamples {
                                     diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            Rule(SecondaryBranch.self) { branch, params in
+            ParameterizedRule(SecondaryBranch.self) { branch, params in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {

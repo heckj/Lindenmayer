@@ -12,10 +12,13 @@ public protocol LSystemProtocol {
     func evolve(iterations: Int) throws -> LSystemProtocol
 }
 
+// - likewise here in LSystem it feels like I could really use a factory method here to hide the specific types
+// that I'm creating to allow for easier construction of the lsystems as I'm creating new Lsystems...
+
 public struct NonParameterizedLSystem: LSystemProtocol {
     public let rules: [NonParameterizedRule]
 
-    public var state: [Module]
+    public let state: [Module]
         
     /// Creates a new Lindenmayer system from an initial state and rules you provide.
     /// - Parameters:
@@ -118,20 +121,20 @@ public struct NonParameterizedLSystem: LSystemProtocol {
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct LSystem<PType> : LSystemProtocol {
     
-    public let rules: [Rule<PType>]
+    public let rules: [ParameterizedRule<PType>]
     // consider making rules a 'var' and allowing rules to be added after the L-system is instantiated...
 
     public let parameters: AltParams<PType>
 
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
-    public var state: [Module]
+    public let state: [Module]
 
     /// Creates a new Lindenmayer system from an initial state and rules you provide.
     /// - Parameters:
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: Module, parameters: AltParams<PType>, rules: [Rule<PType>] = []) {
+    public init(_ axiom: Module, parameters: AltParams<PType>, rules: [ParameterizedRule<PType>] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = [axiom]
@@ -144,7 +147,7 @@ public struct LSystem<PType> : LSystemProtocol {
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: [Module], parameters: AltParams<PType>, rules: [Rule<PType>] = []) {
+    public init(_ axiom: [Module], parameters: AltParams<PType>, rules: [ParameterizedRule<PType>] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = axiom
@@ -201,7 +204,7 @@ public struct LSystem<PType> : LSystemProtocol {
 
                 // Iterate through the rules, finding the first rule to match
                 // based on calling 'evaluate' on each of the rules in sequence.
-                let maybeRule: Rule? = rules.first(where: { $0.evaluate(leftInstanceType, strictInstanceType, rightInstanceType) })
+                let maybeRule: ParameterizedRule? = rules.first(where: { $0.evaluate(leftInstanceType, strictInstanceType, rightInstanceType) })
                 if let foundRule = maybeRule {
                     // If a rule was found, then use it to generate the modules that
                     // replace this element in the sequence.

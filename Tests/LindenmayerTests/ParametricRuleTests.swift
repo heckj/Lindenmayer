@@ -15,7 +15,7 @@ final class ParametricRuleTests: XCTestCase {
     let p = ParameterizedExample()
 
     func testRuleDefaults() throws {
-        let r = Rule(ParameterizedExample.self) { ctx, _ -> [Module] in
+        let r = ParameterizedRule(ParameterizedExample.self) { ctx, _ -> [Module] in
             guard let value = ctx.i else {
                 throw Lindenmayer.RuntimeError<ParameterizedExample>(ctx)
             }
@@ -39,7 +39,7 @@ final class ParametricRuleTests: XCTestCase {
     }
 
     func testRuleDefaultsWithSystemParameters() throws {
-        let r = Rule(ParameterizedExample.self) { ctx, p -> [Module] in
+        let r = ParameterizedRule(ParameterizedExample.self) { ctx, p -> [Module] in
             guard let value = ctx.i else {
                 throw Lindenmayer.RuntimeError<ParameterizedExample>(ctx)
             }
