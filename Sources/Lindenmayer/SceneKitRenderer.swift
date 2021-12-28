@@ -54,8 +54,8 @@ extension ColorRepresentation {
 }
 
 public struct SceneKitRenderer {
-    let lsystem: LSystem
-    public init(_ lsystem: LSystem) {
+    let lsystem: LSystemProtocol
+    public init(_ lsystem: LSystemProtocol) {
         self.lsystem = lsystem
     }
 

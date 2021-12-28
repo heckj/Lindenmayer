@@ -8,7 +8,7 @@
 import Lindenmayer
 import XCTest
 
-final class ParameterSetTests: XCTestCase {
+final class ParametersTests: XCTestCase {
     func testBasicParameters() throws {
         let x = Parameters()
         XCTAssertNotNil(x)
