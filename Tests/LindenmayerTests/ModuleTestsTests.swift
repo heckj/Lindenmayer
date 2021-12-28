@@ -3,7 +3,6 @@ import Lindenmayer
 import XCTest
 
 final class ModuleTests: XCTestCase {
-
     func testBuiltins() {
         XCTAssertNotNil(Lindenmayer.Modules.internode)
         XCTAssertNotNil(Lindenmayer.Modules.draw)
@@ -13,7 +12,7 @@ final class ModuleTests: XCTestCase {
         XCTAssertNotNil(Lindenmayer.Modules.turnleft)
         XCTAssertNotNil(Lindenmayer.Modules.turnright)
     }
-    
+
     func testModuleFoo() {
         struct Foo: Module {
             var name: String = "foo"
@@ -37,5 +36,4 @@ final class ModuleTests: XCTestCase {
         // Verify name is passed out as 'description'
         XCTAssertEqual(x.description, "EmptyModule")
     }
-
 }

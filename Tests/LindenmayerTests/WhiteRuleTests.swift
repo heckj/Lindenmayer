@@ -2,17 +2,16 @@
 import XCTest
 
 final class WhiteboxRuleTests: XCTestCase {
-
     func testRuleDefaults() throws {
-        let r = Rule(Modules.Internode.self) { (ctx, _) throws -> [Module] in
-            return [ctx]
+        let r = Rule(Modules.Internode.self) { ctx, _ throws -> [Module] in
+            [ctx]
         }
         XCTAssertNotNil(r)
 
         // Verify matchset with basic rule
         XCTAssertNotNil(r.matchset)
         XCTAssertNil(r.matchset.0)
-        
+
         // Kind of a wrong hack - Type isn't equatable, but I can get a string description of it...
         XCTAssertEqual(String(describing: r.matchset.1), "Internode")
         XCTAssertNil(r.matchset.2)
@@ -20,7 +19,7 @@ final class WhiteboxRuleTests: XCTestCase {
 
     func testRuleProduction() throws {
         let r = Rule(Modules.Internode.self) { _, _ in
-            return [Modules.internode]
+            [Modules.internode]
         }
         XCTAssertNotNil(r)
 
@@ -29,6 +28,4 @@ final class WhiteboxRuleTests: XCTestCase {
         XCTAssertEqual(newModule.count, 1)
         XCTAssertEqual(newModule[0].description, "I")
     }
-
-    
 }

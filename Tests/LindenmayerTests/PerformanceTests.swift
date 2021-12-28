@@ -2,9 +2,8 @@ import Lindenmayer
 import XCTest
 
 final class PerformanceTests: XCTestCase {
-
     func X_testMemoryUse() {
-        self.measure(metrics: [XCTMemoryMetric()]) {
+        measure(metrics: [XCTMemoryMetric()]) {
             do {
                 let tree = Lindenmayer.Examples2D.barnsleyFern.lsystem
                 let evo1 = try tree.evolve(iterations: 6)
@@ -14,7 +13,7 @@ final class PerformanceTests: XCTestCase {
     }
 
     func X_testEvolutionSpeed() {
-        self.measure() {
+        measure {
             do {
                 // 20.675 seconds
                 let tree = Lindenmayer.Examples2D.barnsleyFern.lsystem
@@ -23,8 +22,8 @@ final class PerformanceTests: XCTestCase {
             } catch {}
         }
     }
-    
-    func X_testPerfBoundingRectCalc()  {
+
+    func X_testPerfBoundingRectCalc() {
         let evo1: LSystem?
         do {
             // 20.675 seconds
@@ -34,7 +33,7 @@ final class PerformanceTests: XCTestCase {
         } catch {
             evo1 = nil
         }
-        self.measure() {
+        measure {
             // 9.9 seconds
             let path: CGRect = GraphicsContextRenderer().calcBoundingRect(system: evo1!)
             print(path)

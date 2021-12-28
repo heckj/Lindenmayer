@@ -5,8 +5,8 @@
 //  Created by Joseph Heck on 12/16/21.
 //
 
-import SwiftUI
 import Lindenmayer
+import SwiftUI
 
 public struct LSystemMetrics: View {
     let system: LSystem
@@ -19,10 +19,10 @@ public struct LSystemMetrics: View {
                 .padding(.horizontal)
         }
     }
+
     public init(system: LSystem) {
         self.system = system
     }
-
 }
 
 struct LSystemMetrics_Previews: PreviewProvider {

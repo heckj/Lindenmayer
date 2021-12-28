@@ -13,23 +13,21 @@ import Foundation
 public struct LSystem {
     public let rules: [Rule]
     // consider making rules a 'var' and allowing rules to be added after the L-system is instantiated...
-    
+
     public let parameters: Parameters
-    
+
     var _state: [Module]
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
     public var state: [Module] {
-        get {
-            return _state
-        }
+        return _state
     }
-    
+
     /// Creates a new Lindenmayer system from an initial state and rules you provide.
     /// - Parameters:
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: Module, parameters:[String:Double] = [:], rules:[Rule] = []) {
+    public init(_ axiom: Module, parameters: [String: Double] = [:], rules: [Rule] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         _state = [axiom]
@@ -42,7 +40,7 @@ public struct LSystem {
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: [Module], parameters:[String:Double] = [:], rules:[Rule] = []) {
+    public init(_ axiom: [Module], parameters: [String: Double] = [:], rules: [Rule] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         _state = axiom
@@ -62,12 +60,12 @@ public struct LSystem {
         // in order to run the whole suite of the state in parallel for a new result. Await the whole
         // kit for a final resolution.
         var currentState: [Module] = state
-        for iter in 0..<iterations {
+        for iter in 0 ..< iterations {
             var newState: [Module] = []
             if debugPrint {
                 print("Iteration #\(iter)")
             }
-            
+
             if debugPrint {
                 print("Initial state: \(currentState.map { $0.description }.joined())")
             }
@@ -78,7 +76,7 @@ public struct LSystem {
                 let strictInstanceType: Module.Type = type(of: strictInstance)
                 let rightInstance: Module?
                 let rightInstanceType: Module.Type?
-                
+
                 if index - 1 > 0 {
                     leftInstance = currentState[index - 1]
                     if let unwrappedLeftInstance = leftInstance {
@@ -90,7 +88,7 @@ public struct LSystem {
                     leftInstance = nil
                     leftInstanceType = nil
                 }
-                
+
                 if currentState.count > index + 1 {
                     rightInstance = currentState[index + 1]
                     if let unwrappedRightInstance = rightInstance {
@@ -105,7 +103,7 @@ public struct LSystem {
                 if debugPrint {
                     print(" - Pattern to evaluate for rule matches: [\(String(describing: leftInstanceType)),\(String(describing: strictInstanceType)),\(String(describing: rightInstanceType))]")
                 }
-                
+
                 // Iterate through the rules, finding the first rule to match
                 // based on calling 'evaluate' on each of the rules in sequence.
                 let maybeRule: Rule? = rules.first(where: { $0.evaluate(leftInstanceType, strictInstanceType, rightInstanceType) })
@@ -129,6 +127,6 @@ public struct LSystem {
             // update the current state for the next iteration of processing
             currentState = newState
         }
-        return LSystem(currentState, rules: self.rules)
+        return LSystem(currentState, rules: rules)
     }
 }

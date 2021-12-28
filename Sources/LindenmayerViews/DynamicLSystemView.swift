@@ -5,8 +5,8 @@
 //  Created by Joseph Heck on 12/15/21.
 //
 
-import SwiftUI
 import Lindenmayer
+import SwiftUI
 
 @available(macOS 12.0, *)
 public struct DynamicLSystemView: View {
@@ -24,7 +24,7 @@ public struct DynamicLSystemView: View {
             .padding()
             HStack {
                 Text("Evolutions:")
-                Slider(value: $evolutions, in: 0...10.0, step: 1.0) {
+                Slider(value: $evolutions, in: 0 ... 10.0, step: 1.0) {
                     Text("Evolutions")
                 } minimumValueLabel: {
                     Text("0")

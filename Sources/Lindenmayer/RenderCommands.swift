@@ -32,32 +32,30 @@ public struct ColorRepresentation: Equatable {
     let green: Double
     let blue: Double
     let alpha: Double
-    
+
     public init(r: Double, g: Double, b: Double) {
-        self.red = r
-        self.green = g
-        self.blue = b
-        self.alpha = 1.0
+        red = r
+        green = g
+        blue = b
+        alpha = 1.0
     }
-    
+
     public init(red: Double, green: Double, blue: Double, alpha: Double) {
         self.red = red
         self.green = green
         self.blue = blue
         self.alpha = alpha
     }
-    
+
     static var black: ColorRepresentation {
-        get {
-            return ColorRepresentation(r: 0, g: 0, b: 0)
-        }
+        return ColorRepresentation(r: 0, g: 0, b: 0)
     }
 }
 
 // NOTE(heckj): extensions can't be extended by external developers, so
 // if we find we want that, these should instead be set up as static variables
 // on a struct, and then we do slightly different case mechanisms.
-public enum TwoDRenderCommand : Equatable {
+public enum TwoDRenderCommand: Equatable {
     case move(Double = 1.0) // "f"
     case draw(Double = 1.0) // "F"
     case turn(TurnDirection, Double = 90)
@@ -68,7 +66,7 @@ public enum TwoDRenderCommand : Equatable {
     case ignore
 }
 
-public enum ThreeDRenderCommand : Equatable {
+public enum ThreeDRenderCommand: Equatable {
     case pitch(PitchDirection, Double = 30) // rotation around X axis - positive values pitch up
     case roll(RollDirection, Double = 30) // rotation around Z axis - positive values roll to the left
     case yaw(TurnDirection, Double = 90) // rotation around Y axis - positive values turn to the left
@@ -81,4 +79,3 @@ public enum ThreeDRenderCommand : Equatable {
     case restoreState // "]"
     case ignore
 }
-

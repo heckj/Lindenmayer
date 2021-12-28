@@ -17,7 +17,7 @@ struct PathState {
     init() {
         self.init(-90, .zero, 1.0, ColorRepresentation.black)
     }
-    
+
     init(_ angle: Double, _ position: CGPoint, _ lineWidth: Double, _ lineColor: ColorRepresentation) {
         self.angle = angle
         self.position = position
@@ -29,9 +29,7 @@ struct PathState {
 // convenience for making a SwiftUI Color from the Color Representation struct
 extension ColorRepresentation {
     var color: SwiftUI.Color {
-        get {
-            Color(red: self.red, green: self.green, blue: self.blue, opacity: self.alpha)
-        }
+        Color(red: red, green: green, blue: blue, opacity: alpha)
     }
 }
 
@@ -41,7 +39,7 @@ public struct GraphicsContextRenderer {
     public init(unitLength: Double = 1) {
         self.unitLength = unitLength
     }
-    
+
     /// Draws the L-System into the provided GraphicsContext.
     ///
     /// - Parameters:
@@ -53,28 +51,28 @@ public struct GraphicsContextRenderer {
         if let size = size {
             // This is less pretty, because we have to process the whole damn thing to figure out the end-result
             // size prior to running the commands... grrr.
-            let boundingBox = self.calcBoundingRect(system: lsystem)
-            //print("Bounding box of complete path: \(boundingBox)")
+            let boundingBox = calcBoundingRect(system: lsystem)
+            // print("Bounding box of complete path: \(boundingBox)")
 
             // Next, scale the path to fit snuggly in our path
             let scale = min(size.width / boundingBox.width, size.height / boundingBox.height)
-            //print("Setting uniform scale factor of: \(scale)")
+            // print("Setting uniform scale factor of: \(scale)")
             context.scaleBy(x: scale, y: scale)
 
             // Translate the context based on the bounding box minimums
             context.translateBy(x: -boundingBox.minX, y: -boundingBox.minY)
-            //print("translating x by \(-boundingBox.minX) and y by \(-boundingBox.minY)")
+            // print("translating x by \(-boundingBox.minX) and y by \(-boundingBox.minY)")
         }
-        
+
         var state: [PathState] = []
         var currentState = PathState()
 
         for module in lsystem.state {
             for cmd in module.render2D {
                 switch cmd {
-                case .move(let distance):
+                case let .move(distance):
                     currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
-                case .draw(let distance):
+                case let .draw(distance):
                     let path = CGMutablePath()
                     path.move(to: currentState.position)
                     currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
@@ -82,7 +80,8 @@ public struct GraphicsContextRenderer {
                     context.stroke(
                         Path(path),
                         with: GraphicsContext.Shading.color(currentState.lineColor.color),
-                        lineWidth: currentState.lineWidth)
+                        lineWidth: currentState.lineWidth
+                    )
                 case let .turn(direction, angle):
                     currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
                 case .saveState:
@@ -110,7 +109,7 @@ public struct GraphicsContextRenderer {
         var maxY: Double = 0
         var minX: Double = 0
         var maxX: Double = 0
-        
+
         for module in system.state {
             for cmd in module.render2D {
                 switch cmd {
@@ -136,9 +135,9 @@ public struct GraphicsContextRenderer {
                 // print("Maximums: [\(maxX), \(maxY)]")
             }
         }
-        return CGRect(x: minX, y: minY, width: maxX-minX, height: maxY-minY)
+        return CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
     }
-    
+
     /// Returns a Core Graphics path representing the set of modules, ignoring line weights and colors.
     /// - Parameters:
     ///   - modules: The modules that make up the state of an LSystem.
@@ -154,10 +153,10 @@ public struct GraphicsContextRenderer {
         for module in modules {
             for cmd in module.render2D {
                 switch cmd {
-                case .move(let distance):
+                case let .move(distance):
                     currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
                     path.move(to: currentState.position)
-                case .draw(let distance):
+                case let .draw(distance):
                     currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
                     path.addLine(to: currentState.position)
                 case let .turn(direction, angle):
@@ -169,9 +168,9 @@ public struct GraphicsContextRenderer {
                     path.move(to: currentState.position)
                 case .ignore:
                     break
-                case .setLineWidth(_):
+                case .setLineWidth:
                     break
-                case .setLineColor(_):
+                case .setLineColor:
                     break
                 }
             }

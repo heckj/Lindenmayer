@@ -13,7 +13,7 @@ let package = Package(
             name: "Lindenmayer",
             targets: ["Lindenmayer"]
         ),
-        .library(name: "LindenmayerViews", targets: ["LindenmayerViews"])
+        .library(name: "LindenmayerViews", targets: ["LindenmayerViews"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.

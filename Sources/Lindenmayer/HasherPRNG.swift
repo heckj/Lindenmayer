@@ -18,21 +18,19 @@ public final class HasherPRNG: RandomNumberGenerator {
 
     /// The current positoin within the noise space that is used to determine the next pseudo-random value.
     public var position: Int = 0
-    
+
     /// The seed when creating this pseudo-random number generator.
     public var seed: UInt32 {
-        get {
-            _seed
-        }
+        _seed
     }
-    
+
     /// Creates a new pseudo-random number generator with the seed you provide.
     /// - Parameter seed: The seed value.
     public init(seed: UInt32) {
-        self.hasher = Hasher()
-        self._seed = seed
+        hasher = Hasher()
+        _seed = seed
     }
-    
+
     /// Returns the next random Integer.
     public func randomInt() -> Int {
         hasher.combine(seed)
@@ -41,7 +39,7 @@ public final class HasherPRNG: RandomNumberGenerator {
         position += 1
         return hashValue
     }
-    
+
     /// Returns the next random integer as an UInt64.
     public func next() -> UInt64 {
         hasher.combine(seed)

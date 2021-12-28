@@ -2,7 +2,6 @@
 import XCTest
 
 final class WhiteboxLSystemTests: XCTestCase {
-
     func testLSystemDefault() throws {
         let x = LSystem(Lindenmayer.Modules.internode)
         XCTAssertNotNil(x)

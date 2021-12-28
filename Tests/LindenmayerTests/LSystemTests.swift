@@ -2,18 +2,17 @@ import Lindenmayer
 import XCTest
 
 final class LSystemTests: XCTestCase {
-
     func testLSystemDefault() throws {
         let x = LSystem(Lindenmayer.Modules.internode)
         XCTAssertNotNil(x)
-        
+
         let result = x.state
         XCTAssertEqual(result.count, 1)
-        
+
         XCTAssertEqual(result[0].description, "I")
         XCTAssertEqual(result[0].render2D, [.draw(10)])
         XCTAssertEqual(result[0].render3D, .ignore)
-        
+
         let updated = try x.evolve()
         XCTAssertEqual(updated.state.count, 1)
         let downcast = updated.state[0] as! Lindenmayer.Modules.Internode
@@ -26,7 +25,7 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(algae.state.count, 1)
         XCTAssertEqual(algae.state.map { $0.description }.joined(), "A")
 
-        let iter1 = try algae.evolve() //debugPrint: true
+        let iter1 = try algae.evolve() // debugPrint: true
         XCTAssertEqual(iter1.state.count, 2)
 
         XCTAssertEqual(iter1.state[0].description, "A")
@@ -72,5 +71,4 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(evo1.state.map { $0.description }.joined(),
                        "F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F-F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F-F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F")
     }
-
 }

@@ -9,16 +9,15 @@ import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct Rule: CustomStringConvertible {
-    
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?, Parameters) throws -> [Module]
     public typealias singleMatchProducesList = (Module, Parameters) throws -> [Module]
-    
+
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    public var parameters: Parameters = Parameters()
-    
+    public var parameters: Parameters = .init()
+
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produce: multiMatchProducesModuleList
-    
+
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchset: (Module.Type?, Module.Type, Module.Type?)
 
@@ -43,8 +42,8 @@ public struct Rule: CustomStringConvertible {
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type, _ singleModuleProduce: @escaping singleMatchProducesList) {
         matchset = (nil, direct, nil)
-        produce = { left, direct, right, params -> [Module] in
-            return try singleModuleProduce(direct, params)
+        produce = { _, direct, _, params -> [Module] in
+            try singleModuleProduce(direct, params)
         }
     }
 
@@ -59,7 +58,7 @@ public struct Rule: CustomStringConvertible {
         // to determine if the rule should be evaluated - where the closure exposes
         // access to the internal parameters of the various matched modules - effectively
         // make this a parametric L-system.
-        
+
         // short circuit if the direct context doesn't match the matchset's setting
         guard matchset.1 == directCtxType else {
             return false
@@ -82,15 +81,14 @@ public struct Rule: CustomStringConvertible {
         } else {
             rightmatch = true
         }
-                
+
         return leftmatch && rightmatch
     }
-    
+
     // - MARK: CustomStringConvertable
-    
+
     /// A description of the rule that details what it matches
     public var description: String {
         return "Rule[matching \(matchset)]"
     }
-
 }
