@@ -18,7 +18,7 @@ public enum Examples2D: String, CaseIterable, Identifiable {
     case barnsleyFern
     public var id: String { rawValue }
     /// The example seed L-system
-    public var lsystem: LSystem {
+    public var lsystem: LSystemProtocol {
         switch self {
         case .algae:
             return DetailedExamples.algae
@@ -38,8 +38,8 @@ public enum Examples2D: String, CaseIterable, Identifiable {
     /// The L-system evolved by a number of iterations you provide.
     /// - Parameter iterations: The number of times to evolve the L-system.
     /// - Returns: The updated L-system from the number of evolutions you provided.
-    public func evolved(iterations: Int) -> LSystem {
-        var evolved: LSystem = lsystem
+    public func evolved(iterations: Int) -> LSystemProtocol {
+        var evolved: LSystemProtocol = lsystem
         do {
             evolved = try evolved.evolve(iterations: iterations)
         } catch {}
@@ -54,7 +54,7 @@ public enum Examples3D: String, CaseIterable, Identifiable {
     case algae3D
     public var id: String { rawValue }
     /// The example seed L-system
-    public var lsystem: LSystem {
+    public var lsystem: LSystemProtocol {
         switch self {
         case .hondaTreeBranchingModel:
             return DetailedExamples.hondaTree
@@ -66,8 +66,8 @@ public enum Examples3D: String, CaseIterable, Identifiable {
     /// The L-system evolved by a number of iterations you provide.
     /// - Parameter iterations: The number of times to evolve the L-system.
     /// - Returns: The updated L-system from the number of evolutions you provided.
-    public func evolved(iterations: Int) -> LSystem {
-        var evolved: LSystem = lsystem
+    public func evolved(iterations: Int) -> LSystemProtocol {
+        var evolved: LSystemProtocol = lsystem
         do {
             evolved = try evolved.evolve(iterations: iterations)
         } catch {}
@@ -89,11 +89,11 @@ enum DetailedExamples {
 
     static var b = B()
 
-    static var algae = LSystem(a, rules: [
-        Rule(A.self) { _, _ in
+    static var algae = NonParameterizedLSystem(a, rules: [
+        NonParameterizedRule(A.self) { _ in
             [a, b]
         },
-        Rule(B.self) { _, _ in
+        NonParameterizedRule(B.self) { _ in
             [a]
         },
     ])
@@ -119,7 +119,7 @@ enum DetailedExamples {
 
     static var stem = Stem()
 
-    static var fractalTree = LSystem(leaf, rules: [
+    static var fractalTree = LSystem<EmptyParams>(leaf, parameters: AltParams(), rules: [
         Rule(Leaf.self) { _, _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
         },
@@ -130,7 +130,7 @@ enum DetailedExamples {
 
     // - MARK: Koch curve example
 
-    static var kochCurve = LSystem(Modules.Draw(10), rules: [
+    static var kochCurve = LSystem<EmptyParams>(Modules.Draw(10), parameters: AltParams(), rules: [
         Rule(Modules.Draw.self) { _, _ in
             [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
         },
@@ -152,8 +152,8 @@ enum DetailedExamples {
 
     static var g = G()
 
-    static var sierpinskiTriangle = LSystem(
-        [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)],
+    static var sierpinskiTriangle = LSystem<EmptyParams>(
+        [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)], parameters: AltParams(),
         rules: [
             Rule(F.self) { _, _ in
                 [f, Modules.TurnRight(120), g, Modules.TurnLeft(120), f, Modules.TurnLeft(120), g, Modules.TurnRight(120), f]
@@ -166,7 +166,7 @@ enum DetailedExamples {
 
     // - MARK: dragon curve example
 
-    static var dragonCurve = LSystem(f,
+    static var dragonCurve = LSystem<EmptyParams>(f, parameters: AltParams(),
                                      rules: [
                                          Rule(F.self) { _, _ in
                                              [f, Modules.TurnLeft(90), g]
@@ -185,7 +185,7 @@ enum DetailedExamples {
 
     static var x = X()
 
-    static var barnsleyFern = LSystem(x,
+    static var barnsleyFern = LSystem<EmptyParams>(x, parameters: AltParams(),
                                       rules: [
                                           Rule(X.self) { _, _ in
                                               [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
@@ -207,7 +207,7 @@ enum DetailedExamples {
         public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(5, 2, ColorRepresentation(red: 0.1, green: 1.0, blue: 0.1, alpha: 1.0))
     }
 
-    static var algae3D = LSystem(Cyl(), rules: [
+    static var algae3D = LSystem<EmptyParams>(Cyl(), parameters: AltParams(), rules: [
         Rule(Cyl.self) { _, _ in
             [Cyl(), S()]
         },
@@ -279,27 +279,46 @@ enum DetailedExamples {
         let diameter: Double
     }
 
-    static let defines: [String: Double] = [
+//    static let defines: [String: Double] = [
+//        "r1": 0.9, /* Contraction ratio for the trunk */
+//        "r2": 0.6, /* Contraction ratio for branches */
+//        "a0": 45, /* Branching angle from the trunk */
+//        "a2": 45, /* Branching angle for lateral axes */
+//        "d": 137.5, /* Divergence angle */
+//        "wr": 0.707, /* Width contraction ratio */
+//        "trunklength": 10,
+//        "trunkdiameter": 2
+//    ]
+
+    static let defines = Parameters([
         "r1": 0.9, /* Contraction ratio for the trunk */
         "r2": 0.6, /* Contraction ratio for branches */
         "a0": 45, /* Branching angle from the trunk */
         "a2": 45, /* Branching angle for lateral axes */
         "d": 137.5, /* Divergence angle */
         "wr": 0.707, /* Width contraction ratio */
-    ]
-
+        "trunklength": 10,
+        "trunkdiameter": 2
+    ])
+    
+    struct Definitions {
+        let contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
+        let contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
+        let branchAngle: Double = 45 /* Branching angle from the trunk */
+        let lateralBranchAngle: Double = 45 /* Branching angle for lateral axes */
+        let divergence: Double = 137.5 /* Divergence angle */
+        let widthContraction: Double = 0.707 /* Width contraction ratio */
+        let trunklength: Double = 10.0
+        let trunkdiameter: Double = 2.0
+    }
+    
     static var hondaTree = LSystem(
-        Trunk(growthDistance: 10, diameter: 2),
-        parameters: defines,
+        Trunk(growthDistance: defines.trunklength ?? 10.0, diameter: defines.trunkdiameter ?? 2.0),
+        parameters: AltParams(Definitions()),
         rules: [
             Rule(Trunk.self) { trunk, params in
                 guard let currentDiameter = trunk.diameter,
-                      let currentGrowthDistance = trunk.growthDistance,
-                      let widthContraction = params.wr,
-                      let contractionRatioForTrunk = params.r1,
-                      let contractionRatioForBranch = params.r2,
-                      let branchAngle = params.a0,
-                      let divergence = params.d
+                      let currentGrowthDistance = trunk.growthDistance
                 else {
                     throw RuntimeError<Trunk>(trunk)
                 }
@@ -314,23 +333,18 @@ enum DetailedExamples {
                 return [
                     StaticTrunk(growthDistance: currentGrowthDistance, diameter: currentDiameter),
                     Modules.branch,
-                    Modules.PitchDown(branchAngle),
+                    Modules.PitchDown(params.branchAngle),
                     MainBranch(growthDistance: currentGrowthDistance,
-                               diameter: currentDiameter * widthContraction),
+                               diameter: currentDiameter * params.widthContraction),
                     Modules.endbranch,
-                    Modules.TurnLeft(divergence),
-                    Trunk(growthDistance: currentGrowthDistance * contractionRatioForTrunk,
-                          diameter: currentDiameter * widthContraction),
+                    Modules.TurnLeft(params.divergence),
+                    Trunk(growthDistance: currentGrowthDistance * params.contractionRatioForTrunk,
+                          diameter: currentDiameter * params.widthContraction),
                 ]
             },
             Rule(MainBranch.self) { branch, params in
                 guard let currentDiameter = branch.diameter,
-                      let currentGrowthDistance = branch.growthDistance,
-                      let widthContraction = params.wr,
-                      let contractionRatioForTrunk = params.r1,
-                      let contractionRatioForBranch = params.r2,
-                      let branchAngle = params.a2,
-                      let divergence = params.d
+                      let currentGrowthDistance = branch.growthDistance
                 else {
                     throw RuntimeError<MainBranch>(branch)
                 }
@@ -341,25 +355,20 @@ enum DetailedExamples {
                     StaticBranch(growthDistance: currentGrowthDistance, diameter: currentDiameter),
                     Modules.branch,
 
-                    Modules.RollLeft(branchAngle),
+                    Modules.RollLeft(params.lateralBranchAngle),
                     Modules.LevelOut(),
-                    SecondaryBranch(growthDistance: currentGrowthDistance * contractionRatioForBranch,
-                                    diameter: currentDiameter * widthContraction),
+                    SecondaryBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
+                                    diameter: currentDiameter * params.widthContraction),
 
                     Modules.endbranch,
 
-                    SecondaryBranch(growthDistance: currentGrowthDistance * contractionRatioForBranch,
-                                    diameter: currentDiameter * widthContraction),
+                    SecondaryBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
+                                    diameter: currentDiameter * params.widthContraction),
                 ]
             },
             Rule(SecondaryBranch.self) { branch, params in
                 guard let currentDiameter = branch.diameter,
-                      let currentGrowthDistance = branch.growthDistance,
-                      let widthContraction = params.wr,
-                      let contractionRatioForTrunk = params.r1,
-                      let contractionRatioForBranch = params.r2,
-                      let branchAngle = params.a2,
-                      let divergence = params.d
+                      let currentGrowthDistance = branch.growthDistance
                 else {
                     throw RuntimeError<SecondaryBranch>(branch)
                 }
@@ -369,16 +378,16 @@ enum DetailedExamples {
                     StaticBranch(growthDistance: currentGrowthDistance, diameter: currentDiameter),
                     Modules.branch,
 
-                    Modules.RollRight(branchAngle),
+                    Modules.RollRight(params.branchAngle),
                     Modules.LevelOut(),
 
-                    MainBranch(growthDistance: currentGrowthDistance * contractionRatioForBranch,
-                               diameter: currentDiameter * widthContraction),
+                    MainBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
+                               diameter: currentDiameter * params.widthContraction),
 
                     Modules.endbranch,
 
-                    MainBranch(growthDistance: currentGrowthDistance * contractionRatioForBranch,
-                               diameter: currentDiameter * widthContraction),
+                    MainBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
+                               diameter: currentDiameter * params.widthContraction),
                 ]
 
             },
