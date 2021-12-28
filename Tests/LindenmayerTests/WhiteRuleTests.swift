@@ -3,7 +3,7 @@ import XCTest
 
 final class WhiteboxRuleTests: XCTestCase {
     func testRuleDefaults() throws {
-        let r = Rule(Modules.Internode.self) { ctx, _ throws -> [Module] in
+        let r = ParameterizedRule(Modules.Internode.self) { ctx, _ throws -> [Module] in
             [ctx]
         }
         XCTAssertNotNil(r)
@@ -18,7 +18,7 @@ final class WhiteboxRuleTests: XCTestCase {
     }
 
     func testRuleProduction() throws {
-        let r = Rule(Modules.Internode.self) { _, _ in
+        let r = ParameterizedRule(Modules.Internode.self) { _, _ in
             [Modules.internode]
         }
         XCTAssertNotNil(r)
