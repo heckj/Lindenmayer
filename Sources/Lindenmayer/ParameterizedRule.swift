@@ -11,7 +11,7 @@ import Foundation
 // easier construction of a rule, with its associated production, and maybe evaluation, methods.
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-public struct ParameterizedRule<PType>: Rule  {
+public struct ParameterizedRule<PType>: Rule {
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?, AltParams<PType>) throws -> [Module]
     public typealias singleMatchProducesList = (Module, AltParams<PType>) throws -> [Module]
 

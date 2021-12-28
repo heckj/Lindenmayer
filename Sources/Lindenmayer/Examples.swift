@@ -167,14 +167,14 @@ enum DetailedExamples {
     // - MARK: dragon curve example
 
     static var dragonCurve = LSystem<EmptyParams>(f, parameters: AltParams(),
-                                     rules: [
-                                         ParameterizedRule(F.self) { _, _ in
-                                             [f, Modules.TurnLeft(90), g]
-                                         },
-                                         ParameterizedRule(G.self) { _, _ in
-                                             [f, Modules.TurnRight(90), g]
-                                         },
-                                     ])
+                                                  rules: [
+                                                      ParameterizedRule(F.self) { _, _ in
+                                                          [f, Modules.TurnLeft(90), g]
+                                                      },
+                                                      ParameterizedRule(G.self) { _, _ in
+                                                          [f, Modules.TurnRight(90), g]
+                                                      },
+                                                  ])
 
     // - MARK: Barnsley fern example
 
@@ -186,14 +186,14 @@ enum DetailedExamples {
     static var x = X()
 
     static var barnsleyFern = LSystem<EmptyParams>(x, parameters: AltParams(),
-                                      rules: [
-                                          ParameterizedRule(X.self) { _, _ in
-                                              [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
-                                          },
-                                          ParameterizedRule(F.self) { _, _ in
-                                              [f, f]
-                                          },
-                                      ])
+                                                   rules: [
+                                                       ParameterizedRule(X.self) { _, _ in
+                                                           [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
+                                                       },
+                                                       ParameterizedRule(F.self) { _, _ in
+                                                           [f, f]
+                                                       },
+                                                   ])
 
     // - MARK: Super simple test tree
 
@@ -298,9 +298,9 @@ enum DetailedExamples {
         "d": 137.5, /* Divergence angle */
         "wr": 0.707, /* Width contraction ratio */
         "trunklength": 10,
-        "trunkdiameter": 2
+        "trunkdiameter": 2,
     ])
-    
+
     struct Definitions {
         let contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
         let contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
@@ -311,7 +311,7 @@ enum DetailedExamples {
         let trunklength: Double = 10.0
         let trunkdiameter: Double = 2.0
     }
-    
+
     static var hondaTree = LSystem(
         Trunk(growthDistance: defines.trunklength ?? 10.0, diameter: defines.trunkdiameter ?? 2.0),
         parameters: AltParams(Definitions()),

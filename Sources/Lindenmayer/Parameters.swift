@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /*
  struct Point { var x, y: Int }
 
@@ -34,17 +33,14 @@ public struct AltParams<Value> {
     public init(_ p: Value) {
         _params = p
     }
-    
+
     public init() {
         self._params = EmptyParams() as! Value
     }
-    
-    // lookup via a keypath, which gives you typed parameters...
-    public subscript<T>(dynamicMember key: KeyPath<Value, T>) -> T {
-        get { return _params[keyPath: key] }
-    }
-}
 
+    // lookup via a keypath, which gives you typed parameters...
+    public subscript<T>(dynamicMember key: KeyPath<Value, T>) -> T { return _params[keyPath: key] }
+}
 
 /// A struct that holds a collection of parameters.
 ///

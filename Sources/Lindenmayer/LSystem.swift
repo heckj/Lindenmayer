@@ -19,7 +19,7 @@ public struct NonParameterizedLSystem: LSystemProtocol {
     public let rules: [NonParameterizedRule]
 
     public let state: [Module]
-        
+
     /// Creates a new Lindenmayer system from an initial state and rules you provide.
     /// - Parameters:
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
@@ -110,17 +110,15 @@ public struct NonParameterizedLSystem: LSystemProtocol {
         }
         return NonParameterizedLSystem(currentState, rules: rules)
     }
-    
 }
+
 // that implements most of the stuff below, but _doesn't_ pass parameters
 // through to the rules.
-
 
 /// An instance of a parameterized, stochastic Lindenmayer system.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public struct LSystem<PType> : LSystemProtocol {
-    
+public struct LSystem<PType>: LSystemProtocol {
     public let rules: [ParameterizedRule<PType>]
     // consider making rules a 'var' and allowing rules to be added after the L-system is instantiated...
 
