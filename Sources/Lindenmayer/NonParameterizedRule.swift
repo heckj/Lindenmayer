@@ -12,9 +12,6 @@ public struct NonParameterizedRule: Rule {
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?) throws -> [Module]
     public typealias singleMatchProducesList = (Module) throws -> [Module]
 
-    /// The set of parameters provided by the L-system for rule evaluation and production.
-    public var parameters: Parameters = .init()
-
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: multiMatchProducesModuleList
 

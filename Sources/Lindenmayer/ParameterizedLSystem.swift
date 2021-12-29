@@ -16,7 +16,7 @@ import Foundation
 public struct ParameterizedLSystem<PType>: LSystem {
     public let rules: [Rule]
 
-    public let parameters: AltParams<PType>
+    public let parameters: PType
 
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
     public let state: [Module]
@@ -26,7 +26,7 @@ public struct ParameterizedLSystem<PType>: LSystem {
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: Module, parameters: AltParams<PType>, rules: [Rule] = []) {
+    public init(_ axiom: Module, parameters: PType, rules: [Rule] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = [axiom]
@@ -39,7 +39,7 @@ public struct ParameterizedLSystem<PType>: LSystem {
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: [Module], parameters: AltParams<PType>, rules: [Rule] = []) {
+    public init(_ axiom: [Module], parameters: PType, rules: [Rule] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = axiom
