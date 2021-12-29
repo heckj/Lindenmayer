@@ -20,23 +20,40 @@ public struct NonParameterizedRule: Rule {
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchset: (Module.Type?, Module.Type, Module.Type?)
 
+    /// A psuedo-random number generator to use for stochastic rule productions.
+    var prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42)
+
     /// Creates a new rule with the extended context and closures you provide that result in a list of state elements.
     /// - Parameters:
     ///   - left: The type of the L-system state element prior to the current element that the rule evaluates.
     ///   - direct: The type of the L-system state element that the rule evaluates.
     ///   - right: The type of the L-system state element following the current element that the rule evaluates.
-    ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produceClosure: @escaping multiMatchProducesModuleList) {
+    ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
+    ///   - produceClosure: A closure that produces an array of L-system state elements to use in place of the current element.
+    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?,
+                prng: SeededPsuedoRandomNumberGenerator? = nil,
+                _ produceClosure: @escaping multiMatchProducesModuleList)
+    {
         matchset = (left, direct, right)
+        if let prng = prng {
+            self.prng = prng
+        }
         self.produceClosure = produceClosure
     }
 
     /// Creates a new rule to match the state element you provide along with a closures that results in a list of state elements.
     /// - Parameters:
     ///   - direct: The type of the L-system state element that the rule evaluates.
-    ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ direct: Module.Type, _ singleModuleProduce: @escaping singleMatchProducesList) {
+    ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
+    ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
+    public init(_ direct: Module.Type,
+                prng: SeededPsuedoRandomNumberGenerator? = nil,
+                _ singleModuleProduce: @escaping singleMatchProducesList)
+    {
         matchset = (nil, direct, nil)
+        if let prng = prng {
+            self.prng = prng
+        }
         produceClosure = { _, direct, _ -> [Module] in
             try singleModuleProduce(direct)
         }

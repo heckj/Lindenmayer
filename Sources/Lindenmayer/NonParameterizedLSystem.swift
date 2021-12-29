@@ -7,22 +7,30 @@
 
 import Foundation
 
+/// <#Description#>
 public struct NonParameterizedLSystem: LSystem {
-    /// The sequence of rules that the L-system uses to process and evolve its state.
-    public let rules: [Rule]
-
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
+
+    var prng: SeededPsuedoRandomNumberGenerator
+
+    /// The sequence of rules that the L-system uses to process and evolve its state.
+    public let rules: [Rule]
 
     /// Creates a new Lindenmayer system from an initial state and rules you provide.
     /// - Parameters:
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
+    ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: Module, rules: [Rule] = []) {
+    public init(_ axiom: Module,
+                prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
+                rules: [Rule] = [])
+    {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = [axiom]
+        self.prng = prng
         self.rules = rules
     }
 
@@ -30,11 +38,16 @@ public struct NonParameterizedLSystem: LSystem {
     /// - Parameters:
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
+    ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: [Module], rules: [Rule] = []) {
+    public init(_ axiom: [Module],
+                prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
+                rules: [Rule] = [])
+    {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = axiom
+        self.prng = prng
         self.rules = rules
     }
 
