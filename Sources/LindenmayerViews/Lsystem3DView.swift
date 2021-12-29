@@ -10,7 +10,7 @@ import SceneKit
 import SwiftUI
 
 public struct Lsystem3DView: View {
-    let system: LSystemProtocol
+    let system: LSystem
     func generateScene() -> SCNScene {
         let x = SceneKitRenderer(system)
         return x.scene
@@ -58,7 +58,7 @@ public struct Lsystem3DView: View {
         }
     }
 
-    public init(system: LSystemProtocol) {
+    public init(system: LSystem) {
         self.system = system
     }
 }

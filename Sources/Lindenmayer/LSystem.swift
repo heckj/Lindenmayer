@@ -7,16 +7,16 @@
 
 import Foundation
 
-public protocol LSystemProtocol {
+public protocol LSystem {
     var state: [Module] { get }
     var rules: [Rule] { get }
-    func evolve(iterations: Int) throws -> LSystemProtocol
-    func evolve() throws -> LSystemProtocol
+    func evolve(iterations: Int) throws -> LSystem
+    func evolve() throws -> LSystem
     func modules(atIndex: Int) -> ModuleSet
-    func updatedLSystem(with state: [Module]) -> LSystemProtocol
+    func updatedLSystem(with state: [Module]) -> LSystem
 }
 
-extension LSystemProtocol {
+extension LSystem {
     public func modules(atIndex: Int) -> ModuleSet {
         let strict = state[atIndex]
         
@@ -42,7 +42,7 @@ extension LSystemProtocol {
     /// When applying the rule, the element that matched is replaced with what the rule returns from ``Rule/produce``.
     /// The types of errors that may be thrown is defined by any errors referenced and thrown within the set of rules you provide.
     /// - Returns: An updated Lindenmayer system.
-    public func evolve() throws -> LSystemProtocol {
+    public func evolve() throws -> LSystem {
         // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
         // TODO(heckj): revisit this with async methods in mind, creating tasks for each iteration
         // in order to run the whole suite of the state in parallel for a new result. Await the whole
@@ -68,8 +68,8 @@ extension LSystemProtocol {
     }
     
     /// Updates the state of the Lindenmayer system by the number of iterations you provide.
-    public func evolve(iterations: Int = 1) throws -> LSystemProtocol {
-        var lsys: LSystemProtocol = self
+    public func evolve(iterations: Int = 1) throws -> LSystem {
+        var lsys: LSystem = self
         for _ in 0 ..< iterations {
             lsys = try lsys.evolve()
         }

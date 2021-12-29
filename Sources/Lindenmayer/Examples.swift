@@ -18,7 +18,7 @@ public enum Examples2D: String, CaseIterable, Identifiable {
     case barnsleyFern
     public var id: String { rawValue }
     /// The example seed L-system
-    public var lsystem: LSystemProtocol {
+    public var lsystem: LSystem {
         switch self {
         case .algae:
             return DetailedExamples.algae
@@ -38,8 +38,8 @@ public enum Examples2D: String, CaseIterable, Identifiable {
     /// The L-system evolved by a number of iterations you provide.
     /// - Parameter iterations: The number of times to evolve the L-system.
     /// - Returns: The updated L-system from the number of evolutions you provided.
-    public func evolved(iterations: Int) -> LSystemProtocol {
-        var evolved: LSystemProtocol = lsystem
+    public func evolved(iterations: Int) -> LSystem {
+        var evolved: LSystem = lsystem
         do {
             evolved = try evolved.evolve(iterations: iterations)
         } catch {}
@@ -54,7 +54,7 @@ public enum Examples3D: String, CaseIterable, Identifiable {
     case algae3D
     public var id: String { rawValue }
     /// The example seed L-system
-    public var lsystem: LSystemProtocol {
+    public var lsystem: LSystem {
         switch self {
         case .hondaTreeBranchingModel:
             return DetailedExamples.hondaTree
@@ -66,8 +66,8 @@ public enum Examples3D: String, CaseIterable, Identifiable {
     /// The L-system evolved by a number of iterations you provide.
     /// - Parameter iterations: The number of times to evolve the L-system.
     /// - Returns: The updated L-system from the number of evolutions you provided.
-    public func evolved(iterations: Int) -> LSystemProtocol {
-        var evolved: LSystemProtocol = lsystem
+    public func evolved(iterations: Int) -> LSystem {
+        var evolved: LSystem = lsystem
         do {
             evolved = try evolved.evolve(iterations: iterations)
         } catch {}
