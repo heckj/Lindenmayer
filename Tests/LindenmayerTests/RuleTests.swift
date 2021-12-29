@@ -9,9 +9,8 @@ final class RuleTests: XCTestCase {
     let foo = Foo()
 
     func testRuleDefaults() throws {
-        let r = ParameterizedRule(Modules.Internode.self) { ctx, p -> [Module] in
+        let r = NonParameterizedRule(Modules.Internode.self) { ctx -> [Module] in
             XCTAssertNotNil(ctx)
-            XCTAssertNotNil(p)
 
             return [ctx]
         }
@@ -21,7 +20,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleBasicMatch() throws {
-        let r = ParameterizedRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NonParameterizedRule(Modules.Internode.self) { _ -> [Module] in
             [self.foo]
         }
 
@@ -29,7 +28,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleBasicFailMatch() throws {
-        let r = ParameterizedRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NonParameterizedRule(Modules.Internode.self) { _ -> [Module] in
             [self.foo]
         }
 
@@ -37,7 +36,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraRight() throws {
-        let r = ParameterizedRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NonParameterizedRule(Modules.Internode.self) { _ -> [Module] in
             [self.foo]
         }
 
@@ -45,7 +44,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraLeft() throws {
-        let r = ParameterizedRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NonParameterizedRule(Modules.Internode.self) { _ -> [Module] in
             [self.foo]
         }
 
@@ -53,7 +52,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraLeftAndRight() throws {
-        let r = ParameterizedRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NonParameterizedRule(Modules.Internode.self) { _ -> [Module] in
             [self.foo]
         }
 

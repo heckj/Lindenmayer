@@ -13,7 +13,7 @@ import Foundation
 /// An instance of a parameterized, stochastic Lindenmayer system.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public struct LSystem<PType>: LSystemProtocol {
+public struct ParameterizedLSystem<PType>: LSystemProtocol {
     public let rules: [Rule]
 
     public let parameters: AltParams<PType>
@@ -52,7 +52,7 @@ public struct LSystem<PType>: LSystemProtocol {
     }
     
     public func updatedLSystem(with state: [Module]) -> LSystemProtocol {
-        return LSystem<PType>(state, parameters: self.parameters, rules: self.rules)
+        return ParameterizedLSystem<PType>(state, parameters: self.parameters, rules: self.rules)
     }
 
 }

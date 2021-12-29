@@ -3,7 +3,7 @@ import XCTest
 
 final class LSystemTests: XCTestCase {
     func testLSystemDefault() throws {
-        let x = LSystem(Lindenmayer.Modules.internode)
+        let x = NonParameterizedLSystem(Lindenmayer.Modules.internode)
         XCTAssertNotNil(x)
 
         let result = x.state
