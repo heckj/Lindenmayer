@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NonParameterizedLSystem: LSystemProtocol {
+public struct NonParameterizedLSystem: LSystem {
     public let rules: [Rule]
 
     public let state: [Module]
@@ -40,7 +40,7 @@ public struct NonParameterizedLSystem: LSystemProtocol {
         return try rule.produce(moduleSet)
     }
     
-    public func updatedLSystem(with state: [Module]) -> LSystemProtocol {
+    public func updatedLSystem(with state: [Module]) -> LSystem {
         return NonParameterizedLSystem(state, rules: self.rules)
     }
 }

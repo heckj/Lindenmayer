@@ -10,7 +10,7 @@ import SwiftUI
 
 @available(macOS 12.0, *)
 public struct Lsystem2DView: View {
-    let system: LSystemProtocol
+    let system: LSystem
     let renderer = GraphicsContextRenderer()
     public var body: some View {
         VStack {
@@ -21,7 +21,7 @@ public struct Lsystem2DView: View {
         }
     }
 
-    public init(system: LSystemProtocol) {
+    public init(system: LSystem) {
         self.system = system
     }
 }

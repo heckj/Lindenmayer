@@ -9,7 +9,7 @@ import Lindenmayer
 import SwiftUI
 
 public struct LSystemMetrics: View {
-    let system: LSystemProtocol
+    let system: LSystem
     public var body: some View {
         VStack {
             Text("State size: \(system.state.count)")
@@ -20,7 +20,7 @@ public struct LSystemMetrics: View {
         }
     }
 
-    public init(system: LSystemProtocol) {
+    public init(system: LSystem) {
         self.system = system
     }
 }
