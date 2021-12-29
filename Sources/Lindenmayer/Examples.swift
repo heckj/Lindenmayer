@@ -90,10 +90,10 @@ enum DetailedExamples {
     static var b = B()
 
     static var algae = NonParametericLSystem(a, rules: [
-        NonParametericRule(A.self) { _ in
+        NonParametericRule(A.self) { _, _ in
             [a, b]
         },
-        NonParametericRule(B.self) { _ in
+        NonParametericRule(B.self) { _, _ in
             [a]
         },
     ])
@@ -120,10 +120,10 @@ enum DetailedExamples {
     static var stem = Stem()
 
     static var fractalTree = NonParametericLSystem(leaf, rules: [
-        NonParametericRule(Leaf.self) { _ in
+        NonParametericRule(Leaf.self) { _, _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
         },
-        NonParametericRule(Stem.self) { _ in
+        NonParametericRule(Stem.self) { _, _ in
             [stem, stem]
         },
     ])
@@ -131,7 +131,7 @@ enum DetailedExamples {
     // - MARK: Koch curve example
 
     static var kochCurve = NonParametericLSystem(Modules.Draw(10), rules: [
-        NonParametericRule(Modules.Draw.self) { _ in
+        NonParametericRule(Modules.Draw.self) { _, _ in
             [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
         },
     ])
@@ -155,10 +155,10 @@ enum DetailedExamples {
     static var sierpinskiTriangle = NonParametericLSystem(
         [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)],
         rules: [
-            NonParametericRule(F.self) { _ in
+            NonParametericRule(F.self) { _, _ in
                 [f, Modules.TurnRight(120), g, Modules.TurnLeft(120), f, Modules.TurnLeft(120), g, Modules.TurnRight(120), f]
             },
-            NonParametericRule(G.self) { _ in
+            NonParametericRule(G.self) { _, _ in
                 [g, g]
             },
         ]
@@ -167,10 +167,10 @@ enum DetailedExamples {
     // - MARK: dragon curve example
 
     static var dragonCurve = NonParametericLSystem(f, rules: [
-        NonParametericRule(F.self) { _ in
+        NonParametericRule(F.self) { _, _ in
             [f, Modules.TurnLeft(90), g]
         },
-        NonParametericRule(G.self) { _ in
+        NonParametericRule(G.self) { _, _ in
             [f, Modules.TurnRight(90), g]
         },
     ])
@@ -186,10 +186,10 @@ enum DetailedExamples {
 
     static var barnsleyFern = NonParametericLSystem(x,
                                                     rules: [
-                                                        NonParametericRule(X.self) { _ in
+                                                        NonParametericRule(X.self) { _, _ in
                                                             [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
                                                         },
-                                                        NonParametericRule(F.self) { _ in
+                                                        NonParametericRule(F.self) { _, _ in
                                                             [f, f]
                                                         },
                                                     ])
@@ -207,10 +207,10 @@ enum DetailedExamples {
     }
 
     static var algae3D = NonParametericLSystem(Cyl(), rules: [
-        NonParametericRule(Cyl.self) { _ in
+        NonParametericRule(Cyl.self) { _, _ in
             [Cyl(), S()]
         },
-        NonParametericRule(S.self) { _ in
+        NonParametericRule(S.self) { _, _ in
             [Cyl()]
         },
     ])
@@ -343,7 +343,7 @@ enum DetailedExamples {
         axiom: Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter),
         parameters: defines,
         rules: [
-            ParametericRule<Definitions>(Trunk.self, params: defines) { trunk, params in
+            ParametericRule<Definitions>(Trunk.self, params: defines) { trunk, params, _ in
                 guard let currentDiameter = trunk.diameter,
                       let currentGrowthDistance = trunk.growthDistance
                 else {
@@ -371,7 +371,7 @@ enum DetailedExamples {
                           diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParametericRule(MainBranch.self, params: defines) { branch, params in
+            ParametericRule(MainBranch.self, params: defines) { branch, params, _ in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
@@ -396,7 +396,7 @@ enum DetailedExamples {
                                     diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParametericRule(SecondaryBranch.self, params: defines) { branch, params in
+            ParametericRule(SecondaryBranch.self, params: defines) { branch, params, _ in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {

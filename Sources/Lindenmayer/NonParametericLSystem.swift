@@ -14,7 +14,7 @@ public struct NonParametericLSystem: LSystem {
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
 
-    var prng: SeededPsuedoRandomNumberGenerator
+    var prng: SeededPseudoRandomNumberGenerator
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public let rules: [Rule]
@@ -26,7 +26,7 @@ public struct NonParametericLSystem: LSystem {
     ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(_ axiom: Module,
-                prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
+                prng: SeededPseudoRandomNumberGenerator = HasherPRNG(seed: 42),
                 rules: [Rule] = [])
     {
         state = [axiom]
@@ -41,7 +41,7 @@ public struct NonParametericLSystem: LSystem {
     ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(_ axiom: [Module],
-                prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
+                prng: SeededPseudoRandomNumberGenerator = HasherPRNG(seed: 42),
                 rules: [Rule] = [])
     {
         state = axiom

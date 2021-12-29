@@ -10,15 +10,15 @@ import Foundation
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct ParametericRule<PType>: Rule {
     /// The signature of the produce closure that provides up to three modules and a set of parameters and expects a sequence of modules.
-    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType) throws -> [Module]
+    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType, Chaos) throws -> [Module]
     /// The signature of the produce closure that provides a module and a set of parameters and expects a sequence of modules.
-    public typealias singleMatchProducesList = (Module, PType) throws -> [Module]
+    public typealias singleMatchProducesList = (Module, PType, Chaos) throws -> [Module]
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: PType
 
     /// A psuedo-random number generator to use for stochastic rule productions.
-    var prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42)
+    var prng: Chaos = .init(HasherPRNG(seed: 42))
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: multiMatchProducesModuleList
@@ -36,13 +36,13 @@ public struct ParametericRule<PType>: Rule {
     ///   - produceClosure: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?,
                 params: PType,
-                prng: SeededPsuedoRandomNumberGenerator? = nil,
+                prng: SeededPseudoRandomNumberGenerator? = nil,
                 _ produceClosure: @escaping multiMatchProducesModuleList)
     {
         matchset = (left, direct, right)
         parameters = params
         if let prng = prng {
-            self.prng = prng
+            self.prng = Chaos(prng)
         }
         self.produceClosure = produceClosure
     }
@@ -55,16 +55,16 @@ public struct ParametericRule<PType>: Rule {
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type,
                 params: PType,
-                prng: SeededPsuedoRandomNumberGenerator? = nil,
+                prng: SeededPseudoRandomNumberGenerator? = nil,
                 _ singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchset = (nil, direct, nil)
         parameters = params
         if let prng = prng {
-            self.prng = prng
+            self.prng = Chaos(prng)
         }
-        produceClosure = { _, direct, _, params -> [Module] in
-            try singleModuleProduce(direct, params)
+        produceClosure = { _, direct, _, params, chaos -> [Module] in
+            try singleModuleProduce(direct, params, chaos)
         }
     }
 
@@ -72,6 +72,6 @@ public struct ParametericRule<PType>: Rule {
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
     public func produce(_ matchSet: ModuleSet) throws -> [Module] {
-        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters)
+        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters, prng)
     }
 }
