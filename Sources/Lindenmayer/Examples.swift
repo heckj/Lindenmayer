@@ -311,7 +311,7 @@ enum DetailedExamples {
         let trunkdiameter: Double = 2.0
     }
 
-    static var hondaTree = LSystem(
+    static var hondaTree = ParameterizedLSystem(
         Trunk(growthDistance: defines.trunklength ?? 10.0, diameter: defines.trunkdiameter ?? 2.0),
         parameters: AltParams(Definitions()),
         rules: [
