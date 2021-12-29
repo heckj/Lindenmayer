@@ -34,10 +34,6 @@ public struct AltParams<Value> {
         _params = p
     }
 
-    public init() {
-        self._params = EmptyParams() as! Value
-    }
-
     // lookup via a keypath, which gives you typed parameters...
     public subscript<T>(dynamicMember key: KeyPath<Value, T>) -> T { return _params[keyPath: key] }
 }

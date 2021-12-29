@@ -10,6 +10,7 @@ import Foundation
 public protocol Rule: CustomStringConvertible {
     var matchset: (Module.Type?, Module.Type, Module.Type?) { get }
     func evaluate(_ leftCtxType: Module.Type?, _ directCtxType: Module.Type, _ rightCtxType: Module.Type?) -> Bool
+    func produce(_ matchSet: ModuleSet) throws -> [Module]
 }
 
 public extension Rule {

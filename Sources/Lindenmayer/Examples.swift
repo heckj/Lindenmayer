@@ -119,19 +119,19 @@ enum DetailedExamples {
 
     static var stem = Stem()
 
-    static var fractalTree = LSystem<EmptyParams>(leaf, parameters: AltParams(), rules: [
-        ParameterizedRule(Leaf.self) { _, _ in
+    static var fractalTree = NonParameterizedLSystem(leaf, rules: [
+        NonParameterizedRule(Leaf.self) { _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
         },
-        ParameterizedRule(Stem.self) { _, _ in
+        NonParameterizedRule(Stem.self) { _ in
             [stem, stem]
         },
     ])
 
     // - MARK: Koch curve example
 
-    static var kochCurve = LSystem<EmptyParams>(Modules.Draw(10), parameters: AltParams(), rules: [
-        ParameterizedRule(Modules.Draw.self) { _, _ in
+    static var kochCurve = NonParameterizedLSystem(Modules.Draw(10), rules: [
+        NonParameterizedRule(Modules.Draw.self) { _ in
             [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
         },
     ])
@@ -152,13 +152,13 @@ enum DetailedExamples {
 
     static var g = G()
 
-    static var sierpinskiTriangle = LSystem<EmptyParams>(
-        [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)], parameters: AltParams(),
+    static var sierpinskiTriangle = NonParameterizedLSystem(
+        [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)],
         rules: [
-            ParameterizedRule(F.self) { _, _ in
+            NonParameterizedRule(F.self) { _ in
                 [f, Modules.TurnRight(120), g, Modules.TurnLeft(120), f, Modules.TurnLeft(120), g, Modules.TurnRight(120), f]
             },
-            ParameterizedRule(G.self) { _, _ in
+            NonParameterizedRule(G.self) { _ in
                 [g, g]
             },
         ]
@@ -166,12 +166,11 @@ enum DetailedExamples {
 
     // - MARK: dragon curve example
 
-    static var dragonCurve = LSystem<EmptyParams>(f, parameters: AltParams(),
-                                                  rules: [
-                                                      ParameterizedRule(F.self) { _, _ in
+    static var dragonCurve = NonParameterizedLSystem(f, rules: [
+        NonParameterizedRule(F.self) { _ in
                                                           [f, Modules.TurnLeft(90), g]
                                                       },
-                                                      ParameterizedRule(G.self) { _, _ in
+        NonParameterizedRule(G.self) { _ in
                                                           [f, Modules.TurnRight(90), g]
                                                       },
                                                   ])
@@ -185,12 +184,12 @@ enum DetailedExamples {
 
     static var x = X()
 
-    static var barnsleyFern = LSystem<EmptyParams>(x, parameters: AltParams(),
+    static var barnsleyFern = NonParameterizedLSystem(x,
                                                    rules: [
-                                                       ParameterizedRule(X.self) { _, _ in
+                                                    NonParameterizedRule(X.self) { _ in
                                                            [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
                                                        },
-                                                       ParameterizedRule(F.self) { _, _ in
+                                                    NonParameterizedRule(F.self) { _ in
                                                            [f, f]
                                                        },
                                                    ])
@@ -207,11 +206,11 @@ enum DetailedExamples {
         public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(5, 2, ColorRepresentation(red: 0.1, green: 1.0, blue: 0.1, alpha: 1.0))
     }
 
-    static var algae3D = LSystem<EmptyParams>(Cyl(), parameters: AltParams(), rules: [
-        ParameterizedRule(Cyl.self) { _, _ in
+    static var algae3D = NonParameterizedLSystem(Cyl(), rules: [
+        NonParameterizedRule(Cyl.self) { _ in
             [Cyl(), S()]
         },
-        ParameterizedRule(S.self) { _, _ in
+        NonParameterizedRule(S.self) { _ in
             [Cyl()]
         },
     ])
@@ -316,7 +315,7 @@ enum DetailedExamples {
         Trunk(growthDistance: defines.trunklength ?? 10.0, diameter: defines.trunkdiameter ?? 2.0),
         parameters: AltParams(Definitions()),
         rules: [
-            ParameterizedRule(Trunk.self) { trunk, params in
+            ParameterizedRule<Definitions>(Trunk.self, params: AltParams(Definitions())) { trunk, params in
                 guard let currentDiameter = trunk.diameter,
                       let currentGrowthDistance = trunk.growthDistance
                 else {
@@ -342,7 +341,7 @@ enum DetailedExamples {
                           diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParameterizedRule(MainBranch.self) { branch, params in
+            ParameterizedRule(MainBranch.self, params: AltParams(Definitions())) { branch, params in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
@@ -366,7 +365,7 @@ enum DetailedExamples {
                                     diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParameterizedRule(SecondaryBranch.self) { branch, params in
+            ParameterizedRule(SecondaryBranch.self, params: AltParams(Definitions())) { branch, params in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
