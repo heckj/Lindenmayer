@@ -7,15 +7,14 @@
 
 import Foundation
 
-// - likewise here in LSystem it feels like I could really use a factory method here to hide the specific types
-// that I'm creating to allow for easier construction of the lsystems as I'm creating new Lsystems...
-
 /// An instance of a parameterized, stochastic Lindenmayer system.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct ParameterizedLSystem<PType>: LSystem {
+    /// The sequence of rules that the L-system uses to process and evolve its state.
     public let rules: [Rule]
-
+    
+    /// The parameters to provide to rules for evaluation and production.
     public let parameters: PType
 
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
@@ -26,7 +25,7 @@ public struct ParameterizedLSystem<PType>: LSystem {
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: Module, parameters: PType, rules: [Rule] = []) {
+    public init(axiom: Module, parameters: PType, rules: [Rule] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = [axiom]
@@ -39,19 +38,18 @@ public struct ParameterizedLSystem<PType>: LSystem {
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: [Module], parameters: PType, rules: [Rule] = []) {
+    public init(axiom: [Module], parameters: PType, rules: [Rule] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = axiom
         self.rules = rules
         self.parameters = parameters
     }
-
-    public func produceFromRule(_ rule: ParameterizedRule<PType>, from moduleSet: ModuleSet) throws -> [Module] {
-        return try rule.produce(moduleSet)
-    }
-
+    
+    /// Returns a new L-system with the provided state.
+    /// - Parameter state: The sequence of modules that represent the new state.
+    /// - Returns: A new L-system with the updated state that has the same rules and parameters.
     public func updatedLSystem(with state: [Module]) -> LSystem {
-        return ParameterizedLSystem<PType>(state, parameters: parameters, rules: rules)
+        return ParameterizedLSystem<PType>(axiom: state, parameters: parameters, rules: rules)
     }
 }
