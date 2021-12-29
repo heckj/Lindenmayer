@@ -278,28 +278,6 @@ enum DetailedExamples {
         let diameter: Double
     }
 
-//    static let defines: [String: Double] = [
-//        "r1": 0.9, /* Contraction ratio for the trunk */
-//        "r2": 0.6, /* Contraction ratio for branches */
-//        "a0": 45, /* Branching angle from the trunk */
-//        "a2": 45, /* Branching angle for lateral axes */
-//        "d": 137.5, /* Divergence angle */
-//        "wr": 0.707, /* Width contraction ratio */
-//        "trunklength": 10,
-//        "trunkdiameter": 2
-//    ]
-
-//    static let defines = Parameters([
-//        "r1": 0.9, /* Contraction ratio for the trunk */
-//        "r2": 0.6, /* Contraction ratio for branches */
-//        "a0": 45, /* Branching angle from the trunk */
-//        "a2": 45, /* Branching angle for lateral axes */
-//        "d": 137.5, /* Divergence angle */
-//        "wr": 0.707, /* Width contraction ratio */
-//        "trunklength": 10,
-//        "trunkdiameter": 2,
-//    ])
-
     struct Definitions {
         let contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
         let contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
@@ -314,7 +292,7 @@ enum DetailedExamples {
     static let defines = Definitions()
 
     static var hondaTree = ParameterizedLSystem(
-        Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter),
+        axiom: Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter),
         parameters: defines,
         rules: [
             ParameterizedRule<Definitions>(Trunk.self, params: defines) { trunk, params in

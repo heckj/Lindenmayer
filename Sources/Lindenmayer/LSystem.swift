@@ -7,16 +7,37 @@
 
 import Foundation
 
+/// A type that represents a Lindenmayer system and how it evolves.
 public protocol LSystem {
+    
+    /// The sequence of modules that represents the current state of the L-system.
     var state: [Module] { get }
+    
+    /// The sequence of rules that the L-system uses to process and evolve its state.
     var rules: [Rule] { get }
+    
+    /// Returns a new L-system that is evolved by the number of iterations you provide.
     func evolve(iterations: Int) throws -> LSystem
+    
+    /// Returns a new L-system after processing the current state against the rules to generate a new state sequence.
     func evolve() throws -> LSystem
+    
+    /// Returns a set of modules around the index location you provide.
+    /// - Parameter atIndex: The index location of the state of the current L-system.
+    /// - Returns: a set of three modules representing the module at the index, and to the left and right.
+    /// If any modules aren't available, they are `nil`.
     func modules(atIndex: Int) -> ModuleSet
+    
+    /// Returns a new L-system with the provided state.
     func updatedLSystem(with state: [Module]) -> LSystem
 }
 
 public extension LSystem {
+    
+    /// Returns a set of modules around the index location you provide.
+    /// - Parameter atIndex: The index location of the state of the current L-system.
+    /// - Returns: a set of three modules representing the module at the index, and to the left and right.
+    /// If any modules aren't available, they are `nil`.
     func modules(atIndex: Int) -> ModuleSet {
         let strict = state[atIndex]
 

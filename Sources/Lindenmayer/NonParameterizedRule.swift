@@ -9,7 +9,9 @@ import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct NonParameterizedRule: Rule {
+    /// The signature of the produce closure that provides a set of up to three modules and expects a sequence of modules.
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?) throws -> [Module]
+    /// The signature of the produce closure that provides a module and expects a sequence of modules.
     public typealias singleMatchProducesList = (Module) throws -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
@@ -39,7 +41,10 @@ public struct NonParameterizedRule: Rule {
             try singleModuleProduce(direct)
         }
     }
-
+    
+    /// Invokes the rule's produce closure with the modules provided.
+    /// - Parameter matchSet: The module instances to pass to the produce closure.
+    /// - Returns: A sequence of modules that the produce closure returns.
     public func produce(_ matchSet: ModuleSet) throws -> [Module] {
         try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance)
     }

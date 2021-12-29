@@ -7,12 +7,11 @@
 
 import Foundation
 
-// - feels like I could really use a factory method here to hide the specific types that I'm creating, and allow for
-// easier construction of a rule, with its associated production, and maybe evaluation, methods.
-
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct ParameterizedRule<PType>: Rule {
+    /// The signature of the produce closure that provides up to three modules and a set of parameters and expects a sequence of modules.
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType) throws -> [Module]
+    /// The signature of the produce closure that provides a module and a set of parameters and expects a sequence of modules.
     public typealias singleMatchProducesList = (Module, PType) throws -> [Module]
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
@@ -47,7 +46,10 @@ public struct ParameterizedRule<PType>: Rule {
             try singleModuleProduce(direct, params)
         }
     }
-
+    
+    /// Invokes the rule's produce closure with the modules provided and any parameters available.
+    /// - Parameter matchSet: The module instances to pass to the produce closure.
+    /// - Returns: A sequence of modules that the produce closure returns.
     public func produce(_ matchSet: ModuleSet) throws -> [Module] {
         try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters)
     }
