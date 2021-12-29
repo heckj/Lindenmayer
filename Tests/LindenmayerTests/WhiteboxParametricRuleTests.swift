@@ -1,7 +1,7 @@
-import Lindenmayer
+@testable import Lindenmayer
 import XCTest
 
-final class ParametricRuleTests: XCTestCase {
+final class WhiteboxParametricRuleTests: XCTestCase {
     struct ParameterizedExample: Module {
         var name: String = "P"
         var i: Double
