@@ -1,6 +1,6 @@
 //
 //  NonParameterizedLSystem.swift
-//  
+//
 //
 //  Created by Joseph Heck on 12/28/21.
 //
@@ -39,8 +39,8 @@ public struct NonParameterizedLSystem: LSystem {
     public func produceFromRule(_ rule: NonParameterizedRule, from moduleSet: ModuleSet) throws -> [Module] {
         return try rule.produce(moduleSet)
     }
-    
+
     public func updatedLSystem(with state: [Module]) -> LSystem {
-        return NonParameterizedLSystem(state, rules: self.rules)
+        return NonParameterizedLSystem(state, rules: rules)
     }
 }

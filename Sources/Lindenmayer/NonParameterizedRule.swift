@@ -42,9 +42,8 @@ public struct NonParameterizedRule: Rule {
             try singleModuleProduce(direct)
         }
     }
-    
-    public func produce(_ matchSet: ModuleSet) throws -> [Module] {
-        try self.produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance)
-    }
 
+    public func produce(_ matchSet: ModuleSet) throws -> [Module] {
+        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance)
+    }
 }

@@ -15,12 +15,12 @@ final class ParametricRuleTests: XCTestCase {
     struct ExampleDefines {
         let value: Double = 10.0
     }
-    
+
     let p = ParameterizedExample()
 
     func testRuleDefaults() throws {
-        let r = ParameterizedRule(ParameterizedExample.self, params: AltParams(ExampleDefines())) { ctx, p -> [Module] in
-            return [ParameterizedExample(p.value + 1.0)]
+        let r = ParameterizedRule(ParameterizedExample.self, params: AltParams(ExampleDefines())) { _, p -> [Module] in
+            [ParameterizedExample(p.value + 1.0)]
         }
 
         XCTAssertNotNil(r)

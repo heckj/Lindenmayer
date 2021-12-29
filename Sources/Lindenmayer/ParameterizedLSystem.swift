@@ -50,9 +50,8 @@ public struct ParameterizedLSystem<PType>: LSystem {
     public func produceFromRule(_ rule: ParameterizedRule<PType>, from moduleSet: ModuleSet) throws -> [Module] {
         return try rule.produce(moduleSet)
     }
-    
-    public func updatedLSystem(with state: [Module]) -> LSystem {
-        return ParameterizedLSystem<PType>(state, parameters: self.parameters, rules: self.rules)
-    }
 
+    public func updatedLSystem(with state: [Module]) -> LSystem {
+        return ParameterizedLSystem<PType>(state, parameters: parameters, rules: rules)
+    }
 }
