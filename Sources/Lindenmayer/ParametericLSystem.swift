@@ -1,5 +1,5 @@
 //
-//  LSystem.swift
+//  ParametericLSystem.swift
 //  X5336
 //
 //  Created by Joseph Heck on 12/12/21.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-/// An instance of a parameterized, stochastic Lindenmayer system.
+/// A parameterized, stochastic Lindenmayer system.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public struct ParameterizedLSystem<PType>: LSystem {
+public struct ParametericLSystem<PType>: LSystem {
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public let rules: [Rule]
 
@@ -64,6 +64,6 @@ public struct ParameterizedLSystem<PType>: LSystem {
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules and parameters.
     public func updatedLSystem(with state: [Module]) -> LSystem {
-        return ParameterizedLSystem<PType>(axiom: state, parameters: parameters, prng: prng, rules: rules)
+        return ParametericLSystem<PType>(axiom: state, parameters: parameters, prng: prng, rules: rules)
     }
 }

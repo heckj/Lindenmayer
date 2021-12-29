@@ -3,7 +3,7 @@ import XCTest
 
 final class WhiteboxLSystemTests: XCTestCase {
     func testLSystemDefault() throws {
-        let x = NonParameterizedLSystem(Lindenmayer.Modules.internode)
+        let x = NonParametericLSystem(Lindenmayer.Modules.internode)
         XCTAssertNotNil(x)
         // Verify internal state of LSystem:
         // No rules
