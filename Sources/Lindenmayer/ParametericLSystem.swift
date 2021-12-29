@@ -20,7 +20,7 @@ public struct ParametericLSystem<PType>: LSystem {
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
     public let state: [Module]
 
-    var prng: SeededPsuedoRandomNumberGenerator
+    var prng: SeededPseudoRandomNumberGenerator
 
     /// Creates a new Lindenmayer system from an initial state and rules you provide.
     /// - Parameters:
@@ -30,7 +30,7 @@ public struct ParametericLSystem<PType>: LSystem {
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(axiom: Module,
                 parameters: PType,
-                prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
+                prng: SeededPseudoRandomNumberGenerator = HasherPRNG(seed: 42),
                 rules: [Rule] = [])
     {
         // Using [axiom] instead of [] ensures that we always have a state
@@ -49,7 +49,7 @@ public struct ParametericLSystem<PType>: LSystem {
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(axiom: [Module],
                 parameters: PType,
-                prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
+                prng: SeededPseudoRandomNumberGenerator = HasherPRNG(seed: 42),
                 rules: [Rule] = [])
     {
         // Using [axiom] instead of [] ensures that we always have a state
