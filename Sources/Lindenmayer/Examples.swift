@@ -310,6 +310,7 @@ enum DetailedExamples {
         let trunklength: Double = 10.0
         let trunkdiameter: Double = 2.0
     }
+
     static let defines = Definitions()
 
     static var hondaTree = ParameterizedLSystem(
