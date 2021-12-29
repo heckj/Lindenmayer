@@ -46,7 +46,7 @@ public struct ParameterizedRule<PType>: Rule {
             try singleModuleProduce(direct, params)
         }
     }
-    
+
     /// Invokes the rule's produce closure with the modules provided and any parameters available.
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
