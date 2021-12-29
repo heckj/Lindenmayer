@@ -15,12 +15,12 @@ public struct ModuleSet {
     var leftInstance: Module?
     /// The type of the module to the left.
     var leftInstanceType: Module.Type?
-    
+
     /// The module instance.
     let directInstance: Module
     /// The type of the module instance.
     let directInstanceType: Module.Type
-    
+
     /// The module to the right (later) in the L-system's state sequence.
     var rightInstance: Module?
     /// The type of the module to the right.
@@ -34,7 +34,7 @@ public struct ModuleSet {
         self.directInstance = directInstance
         self.directInstanceType = directInstanceType
     }
-    
+
     /// Creates a new module set with a module and its left and right neighbors.
     /// - Parameters:
     ///   - leftInstance: The module to the left (earlier) in the L-system's state sequence.

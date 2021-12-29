@@ -13,7 +13,7 @@ import Foundation
 public struct ParameterizedLSystem<PType>: LSystem {
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public let rules: [Rule]
-    
+
     /// The parameters to provide to rules for evaluation and production.
     public let parameters: PType
 
@@ -45,7 +45,7 @@ public struct ParameterizedLSystem<PType>: LSystem {
         self.rules = rules
         self.parameters = parameters
     }
-    
+
     /// Returns a new L-system with the provided state.
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules and parameters.

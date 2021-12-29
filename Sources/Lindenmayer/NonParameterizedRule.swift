@@ -41,7 +41,7 @@ public struct NonParameterizedRule: Rule {
             try singleModuleProduce(direct)
         }
     }
-    
+
     /// Invokes the rule's produce closure with the modules provided.
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
