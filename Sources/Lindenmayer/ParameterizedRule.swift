@@ -12,11 +12,11 @@ import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct ParameterizedRule<PType>: Rule {
-    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, AltParams<PType>) throws -> [Module]
-    public typealias singleMatchProducesList = (Module, AltParams<PType>) throws -> [Module]
+    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType) throws -> [Module]
+    public typealias singleMatchProducesList = (Module, PType) throws -> [Module]
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    public var parameters: AltParams<PType>
+    public var parameters: PType
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: multiMatchProducesModuleList
@@ -30,7 +30,7 @@ public struct ParameterizedRule<PType>: Rule {
     ///   - direct: The type of the L-system state element that the rule evaluates.
     ///   - right: The type of the L-system state element following the current element that the rule evaluates.
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, params: AltParams<PType>, _ produceClosure: @escaping multiMatchProducesModuleList) {
+    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, params: PType, _ produceClosure: @escaping multiMatchProducesModuleList) {
         matchset = (left, direct, right)
         parameters = params
         self.produceClosure = produceClosure
@@ -40,7 +40,7 @@ public struct ParameterizedRule<PType>: Rule {
     /// - Parameters:
     ///   - direct: The type of the L-system state element that the rule evaluates.
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ direct: Module.Type, params: AltParams<PType>, _ singleModuleProduce: @escaping singleMatchProducesList) {
+    public init(_ direct: Module.Type, params: PType, _ singleModuleProduce: @escaping singleMatchProducesList) {
         matchset = (nil, direct, nil)
         parameters = params
         produceClosure = { _, direct, _, params -> [Module] in

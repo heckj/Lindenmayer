@@ -289,16 +289,16 @@ enum DetailedExamples {
 //        "trunkdiameter": 2
 //    ]
 
-    static let defines = Parameters([
-        "r1": 0.9, /* Contraction ratio for the trunk */
-        "r2": 0.6, /* Contraction ratio for branches */
-        "a0": 45, /* Branching angle from the trunk */
-        "a2": 45, /* Branching angle for lateral axes */
-        "d": 137.5, /* Divergence angle */
-        "wr": 0.707, /* Width contraction ratio */
-        "trunklength": 10,
-        "trunkdiameter": 2,
-    ])
+//    static let defines = Parameters([
+//        "r1": 0.9, /* Contraction ratio for the trunk */
+//        "r2": 0.6, /* Contraction ratio for branches */
+//        "a0": 45, /* Branching angle from the trunk */
+//        "a2": 45, /* Branching angle for lateral axes */
+//        "d": 137.5, /* Divergence angle */
+//        "wr": 0.707, /* Width contraction ratio */
+//        "trunklength": 10,
+//        "trunkdiameter": 2,
+//    ])
 
     struct Definitions {
         let contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
@@ -310,12 +310,13 @@ enum DetailedExamples {
         let trunklength: Double = 10.0
         let trunkdiameter: Double = 2.0
     }
+    static let defines = Definitions()
 
     static var hondaTree = ParameterizedLSystem(
-        Trunk(growthDistance: defines.trunklength ?? 10.0, diameter: defines.trunkdiameter ?? 2.0),
-        parameters: AltParams(Definitions()),
+        Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter),
+        parameters: defines,
         rules: [
-            ParameterizedRule<Definitions>(Trunk.self, params: AltParams(Definitions())) { trunk, params in
+            ParameterizedRule<Definitions>(Trunk.self, params: defines) { trunk, params in
                 guard let currentDiameter = trunk.diameter,
                       let currentGrowthDistance = trunk.growthDistance
                 else {
@@ -341,7 +342,7 @@ enum DetailedExamples {
                           diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParameterizedRule(MainBranch.self, params: AltParams(Definitions())) { branch, params in
+            ParameterizedRule(MainBranch.self, params: defines) { branch, params in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
@@ -365,7 +366,7 @@ enum DetailedExamples {
                                     diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParameterizedRule(SecondaryBranch.self, params: AltParams(Definitions())) { branch, params in
+            ParameterizedRule(SecondaryBranch.self, params: defines) { branch, params in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
