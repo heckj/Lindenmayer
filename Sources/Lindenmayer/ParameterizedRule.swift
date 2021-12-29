@@ -32,7 +32,7 @@ public struct ParameterizedRule<PType>: Rule {
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, params: AltParams<PType>, _ produceClosure: @escaping multiMatchProducesModuleList) {
         matchset = (left, direct, right)
-        self.parameters = params
+        parameters = params
         self.produceClosure = produceClosure
     }
 
@@ -42,13 +42,13 @@ public struct ParameterizedRule<PType>: Rule {
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type, params: AltParams<PType>, _ singleModuleProduce: @escaping singleMatchProducesList) {
         matchset = (nil, direct, nil)
-        self.parameters = params
+        parameters = params
         produceClosure = { _, direct, _, params -> [Module] in
             try singleModuleProduce(direct, params)
         }
     }
-    
+
     public func produce(_ matchSet: ModuleSet) throws -> [Module] {
-        try self.produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, self.parameters)
+        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters)
     }
 }

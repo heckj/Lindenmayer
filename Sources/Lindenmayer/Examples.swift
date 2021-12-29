@@ -168,12 +168,12 @@ enum DetailedExamples {
 
     static var dragonCurve = NonParameterizedLSystem(f, rules: [
         NonParameterizedRule(F.self) { _ in
-                                                          [f, Modules.TurnLeft(90), g]
-                                                      },
+            [f, Modules.TurnLeft(90), g]
+        },
         NonParameterizedRule(G.self) { _ in
-                                                          [f, Modules.TurnRight(90), g]
-                                                      },
-                                                  ])
+            [f, Modules.TurnRight(90), g]
+        },
+    ])
 
     // - MARK: Barnsley fern example
 
@@ -185,14 +185,14 @@ enum DetailedExamples {
     static var x = X()
 
     static var barnsleyFern = NonParameterizedLSystem(x,
-                                                   rules: [
-                                                    NonParameterizedRule(X.self) { _ in
-                                                           [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
-                                                       },
-                                                    NonParameterizedRule(F.self) { _ in
-                                                           [f, f]
-                                                       },
-                                                   ])
+                                                      rules: [
+                                                          NonParameterizedRule(X.self) { _ in
+                                                              [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
+                                                          },
+                                                          NonParameterizedRule(F.self) { _ in
+                                                              [f, f]
+                                                          },
+                                                      ])
 
     // - MARK: Super simple test tree
 
