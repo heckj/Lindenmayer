@@ -16,7 +16,7 @@ public struct NonParameterizedRule: Rule {
     public var parameters: Parameters = .init()
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
-    public let produce: multiMatchProducesModuleList
+    public let produceClosure: multiMatchProducesModuleList
 
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchset: (Module.Type?, Module.Type, Module.Type?)
@@ -29,7 +29,7 @@ public struct NonParameterizedRule: Rule {
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produceClosure: @escaping multiMatchProducesModuleList) {
         matchset = (left, direct, right)
-        produce = produceClosure
+        self.produceClosure = produceClosure
     }
 
     /// Creates a new rule to match the state element you provide along with a closures that results in a list of state elements.
@@ -38,8 +38,13 @@ public struct NonParameterizedRule: Rule {
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type, _ singleModuleProduce: @escaping singleMatchProducesList) {
         matchset = (nil, direct, nil)
-        produce = { _, direct, _ -> [Module] in
+        produceClosure = { _, direct, _ -> [Module] in
             try singleModuleProduce(direct)
         }
     }
+    
+    public func produce(_ matchSet: ModuleSet) throws -> [Module] {
+        try self.produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance)
+    }
+
 }
