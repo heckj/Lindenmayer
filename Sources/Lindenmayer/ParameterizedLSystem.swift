@@ -20,36 +20,50 @@ public struct ParameterizedLSystem<PType>: LSystem {
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
     public let state: [Module]
 
+    var prng: SeededPsuedoRandomNumberGenerator
+
     /// Creates a new Lindenmayer system from an initial state and rules you provide.
     /// - Parameters:
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
+    ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(axiom: Module, parameters: PType, rules: [Rule] = []) {
+    public init(axiom: Module,
+                parameters: PType,
+                prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
+                rules: [Rule] = [])
+    {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = [axiom]
-        self.rules = rules
         self.parameters = parameters
+        self.prng = prng
+        self.rules = rules
     }
 
     /// Creates a new Lindenmayer system from an initial state sequence and rules you provide.
     /// - Parameters:
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
+    ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(axiom: [Module], parameters: PType, rules: [Rule] = []) {
+    public init(axiom: [Module],
+                parameters: PType,
+                prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
+                rules: [Rule] = [])
+    {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         state = axiom
-        self.rules = rules
         self.parameters = parameters
+        self.prng = prng
+        self.rules = rules
     }
 
     /// Returns a new L-system with the provided state.
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules and parameters.
     public func updatedLSystem(with state: [Module]) -> LSystem {
-        return ParameterizedLSystem<PType>(axiom: state, parameters: parameters, rules: rules)
+        return ParameterizedLSystem<PType>(axiom: state, parameters: parameters, prng: prng, rules: rules)
     }
 }
