@@ -89,11 +89,11 @@ enum DetailedExamples {
 
     static var b = B()
 
-    static var algae = NonParameterizedLSystem(a, rules: [
-        NonParameterizedRule(A.self) { _ in
+    static var algae = NonParametericLSystem(a, rules: [
+        NonParametericRule(A.self) { _ in
             [a, b]
         },
-        NonParameterizedRule(B.self) { _ in
+        NonParametericRule(B.self) { _ in
             [a]
         },
     ])
@@ -119,19 +119,19 @@ enum DetailedExamples {
 
     static var stem = Stem()
 
-    static var fractalTree = NonParameterizedLSystem(leaf, rules: [
-        NonParameterizedRule(Leaf.self) { _ in
+    static var fractalTree = NonParametericLSystem(leaf, rules: [
+        NonParametericRule(Leaf.self) { _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
         },
-        NonParameterizedRule(Stem.self) { _ in
+        NonParametericRule(Stem.self) { _ in
             [stem, stem]
         },
     ])
 
     // - MARK: Koch curve example
 
-    static var kochCurve = NonParameterizedLSystem(Modules.Draw(10), rules: [
-        NonParameterizedRule(Modules.Draw.self) { _ in
+    static var kochCurve = NonParametericLSystem(Modules.Draw(10), rules: [
+        NonParametericRule(Modules.Draw.self) { _ in
             [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
         },
     ])
@@ -152,13 +152,13 @@ enum DetailedExamples {
 
     static var g = G()
 
-    static var sierpinskiTriangle = NonParameterizedLSystem(
+    static var sierpinskiTriangle = NonParametericLSystem(
         [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)],
         rules: [
-            NonParameterizedRule(F.self) { _ in
+            NonParametericRule(F.self) { _ in
                 [f, Modules.TurnRight(120), g, Modules.TurnLeft(120), f, Modules.TurnLeft(120), g, Modules.TurnRight(120), f]
             },
-            NonParameterizedRule(G.self) { _ in
+            NonParametericRule(G.self) { _ in
                 [g, g]
             },
         ]
@@ -166,11 +166,11 @@ enum DetailedExamples {
 
     // - MARK: dragon curve example
 
-    static var dragonCurve = NonParameterizedLSystem(f, rules: [
-        NonParameterizedRule(F.self) { _ in
+    static var dragonCurve = NonParametericLSystem(f, rules: [
+        NonParametericRule(F.self) { _ in
             [f, Modules.TurnLeft(90), g]
         },
-        NonParameterizedRule(G.self) { _ in
+        NonParametericRule(G.self) { _ in
             [f, Modules.TurnRight(90), g]
         },
     ])
@@ -184,15 +184,15 @@ enum DetailedExamples {
 
     static var x = X()
 
-    static var barnsleyFern = NonParameterizedLSystem(x,
-                                                      rules: [
-                                                          NonParameterizedRule(X.self) { _ in
-                                                              [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
-                                                          },
-                                                          NonParameterizedRule(F.self) { _ in
-                                                              [f, f]
-                                                          },
-                                                      ])
+    static var barnsleyFern = NonParametericLSystem(x,
+                                                    rules: [
+                                                        NonParametericRule(X.self) { _ in
+                                                            [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
+                                                        },
+                                                        NonParametericRule(F.self) { _ in
+                                                            [f, f]
+                                                        },
+                                                    ])
 
     // - MARK: Super simple test tree
 
@@ -206,16 +206,64 @@ enum DetailedExamples {
         public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(5, 2, ColorRepresentation(red: 0.1, green: 1.0, blue: 0.1, alpha: 1.0))
     }
 
-    static var algae3D = NonParameterizedLSystem(Cyl(), rules: [
-        NonParameterizedRule(Cyl.self) { _ in
+    static var algae3D = NonParametericLSystem(Cyl(), rules: [
+        NonParametericRule(Cyl.self) { _ in
             [Cyl(), S()]
         },
-        NonParameterizedRule(S.self) { _ in
+        NonParametericRule(S.self) { _ in
             [Cyl()]
         },
     ])
 
     // - MARK: Honda's model for trees
+
+    /*
+     Honda's model for trees
+     #define r1   0.9   /* Contraction ratio for the trunk */
+     #define r2   0.6   /* Contraction ratio for branches */
+     #define a0   45    /* Branching angle from the trunk */
+     #define a2   45    /* Branching angle for lateral axes */
+     #define d    137.5 /* Divergence angle */
+     #define wr   0.707 /* Width contraction ratio */
+
+     w: A(1,10) // axiom
+     P1: A(s, w) -> !(w) F(s) [ &(a0) B(s * r2, w * wr) ] /(d) A(s * r1, w * wr)
+     P2: B(s, w) -> !(w) F(s) [ -(a2) @V C(s * r2, w * wr) ] C(s * r1, w * wr)
+     P3: C(s, w) -> !(w) F(s) [ +(a2) @V B(s * r2, w * wr) ] B(s * r1, w * wr)
+
+     Rules of L+C modeling in: http://algorithmicbotany.org/papers/hanan.dis1992.pdf
+     - 'PARAMETRIC L-SYSTEMS AND THEIR APPLICATION TO THE MODELLING AND VISUALIZATION
+     OF PLANTS'
+
+     pg 34
+
+     & - pitch down by angle ∂
+     ^ - pitch up by angle ∂
+     \ - roll left by angle ∂
+     / - roll right by angle ∂
+     | - turn around (∂ = 180°)
+     - turn right by angle ∂
+     + turn left by angle ∂
+
+     F - move and draw line of current width
+
+     , select next color from the color map by index+
+     ; select previous color from the color map by index-
+     # increase the line width by line width increment
+     ! decrease the line width by line width increment
+     " increase the value of the elasticity factor by its increment
+     ' decrease the value of the elasticity factor by its increment
+
+     ~ display bicubic surface patch for this element
+
+     pg 41:
+
+     @ - special purpose interpretation
+     @C - draw circle with radius equal to current linewidth
+     @S - draw sphere with radius equal to current linewidth
+     @LF - decrease line length attribute by a constant factor
+     @V rotates the turtle around it's heading vector so that the left vector is horizontal and the y component of the up vector is positive
+     */
 
     struct Trunk: Module {
         public var name = "A"
@@ -291,16 +339,17 @@ enum DetailedExamples {
 
     static let defines = Definitions()
 
-    static var hondaTree = ParameterizedLSystem(
+    static var hondaTree = ParametericLSystem(
         axiom: Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter),
         parameters: defines,
         rules: [
-            ParameterizedRule<Definitions>(Trunk.self, params: defines) { trunk, params in
+            ParametericRule<Definitions>(Trunk.self, params: defines) { trunk, params in
                 guard let currentDiameter = trunk.diameter,
                       let currentGrowthDistance = trunk.growthDistance
                 else {
                     throw RuntimeError<Trunk>(trunk)
                 }
+
                 // original: !(w) F(s) [ &(a0) B(s * r2, w * wr) ] /(d) A(s * r1, w * wr)
                 // Conversion:
                 // s -> trunk.growthDistance, w -> trunk.diameter
@@ -309,6 +358,7 @@ enum DetailedExamples {
                 // [ &(a0) B(s * r2, w * wr) ] /(d)
                 //   => branch, pitch down by a0 degrees, then grow a B branch (s = s * r2, w = w * wr)
                 //      then end the branch, and yaw around by d°
+
                 return [
                     StaticTrunk(growthDistance: currentGrowthDistance, diameter: currentDiameter),
                     Modules.branch,
@@ -321,12 +371,13 @@ enum DetailedExamples {
                           diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParameterizedRule(MainBranch.self, params: defines) { branch, params in
+            ParametericRule(MainBranch.self, params: defines) { branch, params in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
                     throw RuntimeError<MainBranch>(branch)
                 }
+
                 // Original P2: B(s, w) -> !(w) F(s) [ -(a2) @V C(s * r2, w * wr) ] C(s * r1, w * wr)
                 // !(w) F(s) - Static Main Branch
 
@@ -345,7 +396,7 @@ enum DetailedExamples {
                                     diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParameterizedRule(SecondaryBranch.self, params: defines) { branch, params in
+            ParametericRule(SecondaryBranch.self, params: defines) { branch, params in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
@@ -353,6 +404,7 @@ enum DetailedExamples {
                 }
 
                 // Original: P3: C(s, w) -> !(w) F(s) [ +(a2) @V B(s * r2, w * wr) ] B(s * r1, w * wr)
+
                 return [
                     StaticBranch(growthDistance: currentGrowthDistance, diameter: currentDiameter),
                     Modules.branch,
@@ -372,61 +424,4 @@ enum DetailedExamples {
             },
         ]
     )
-
-    /*
-     Honda's model for trees
-     #define r1   0.9   /* Contraction ratio for the trunk */
-     #define r2   0.6   /* Contraction ratio for branches */
-     #define a0   45    /* Branching angle from the trunk */
-     #define a2   45    /* Branching angle for lateral axes */
-     #define d    137.5 /* Divergence angle */
-     #define wr   0.707 /* Width contraction ratio */
-
-     w: A(1,10) // axiom
-     P1: A(s, w) -> !(w) F(s) [ &(a0) B(s * r2, w * wr) ] /(d) A(s * r1, w * wr)
-     P2: B(s, w) -> !(w) F(s) [ -(a2) @V C(s * r2, w * wr) ] C(s * r1, w * wr)
-     P3: C(s, w) -> !(w) F(s) [ +(a2) @V B(s * r2, w * wr) ] B(s * r1, w * wr)
-
-     // simpler version - L-system 24
-
-     { W = 10; }
-     w: A(1)
-     { W = W * wr; } // re-evaluate current width by contracting
-     P1: A(1) -> !(W) F(1) [ &(a0) B(1*r2) ] /(d) A(1*r1)
-     P2: B(1) -> !(W) F(1) [ -(a2) @V C(1*r2) ] C(1*r1)
-     P3: C(1) -> !(W) F(1) [ +(a2) @V B(1*r2) ] B(1*r1)
-
-     Rules of L+C modeling in: http://algorithmicbotany.org/papers/hanan.dis1992.pdf
-     - 'PARAMETRIC L-SYSTEMS AND THEIR APPLICATION TO THE MODELLING AND VISUALIZATION
-     OF PLANTS'
-
-     pg 34
-
-     & - pitch down by angle ∂
-     ^ - pitch up by angle ∂
-     \ - roll left by angle ∂
-     / - roll right by angle ∂
-     | - turn around (∂ = 180°)
-     - turn right by angle ∂
-     + turn left by angle ∂
-
-     F - move and draw line of current width
-
-     , select next color from the color map by index+
-     ; select previous color from the color map by index-
-     # increase the line width by line width increment
-     ! decrease the line width by line width increment
-     " increase the value of the elasticity factor by its increment
-     ' decrease the value of the elasticity factor by its increment
-
-     ~ display bicubic surface patch for this element
-
-     pg 41:
-
-     @ - special purpose interpretation
-     @C - draw circle with radius equal to current linewidth
-     @S - draw sphere with radius equal to current linewidth
-     @LF - decrease line length attribute by a constant factor
-     @V rotates the turtle around it's heading vector so that the left vector is horizontal and the y component of the up vector is positive
-     */
 }

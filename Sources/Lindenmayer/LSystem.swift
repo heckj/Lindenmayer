@@ -1,5 +1,5 @@
 //
-//  LSystemProtocol.swift
+//  LSystem.swift
 //
 //
 //  Created by Joseph Heck on 12/28/21.
@@ -58,7 +58,7 @@ public extension LSystem {
     /// Processes the current state against its rules to provide an updated L-system
     ///
     /// The Lindermayer system iterates through the rules provided, applying the first rule that matches the state from the rule to the current state of the system.
-    /// When applying the rule, the element that matched is replaced with what the rule returns from ``Rule/produce``.
+    /// When applying the rule, the element that matched is replaced with what the rule returns from ``Rule/produce(_:)``.
     /// The types of errors that may be thrown is defined by any errors referenced and thrown within the set of rules you provide.
     /// - Returns: An updated Lindenmayer system.
     func evolve() throws -> LSystem {

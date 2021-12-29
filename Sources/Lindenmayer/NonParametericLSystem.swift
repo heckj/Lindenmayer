@@ -1,5 +1,5 @@
 //
-//  NonParameterizedLSystem.swift
+//  NonParametericLSystem.swift
 //
 //
 //  Created by Joseph Heck on 12/28/21.
@@ -7,8 +7,10 @@
 
 import Foundation
 
-/// <#Description#>
-public struct NonParameterizedLSystem: LSystem {
+/// A stochastic Lindenmayer system.
+///
+/// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
+public struct NonParametericLSystem: LSystem {
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
 
@@ -27,8 +29,6 @@ public struct NonParameterizedLSystem: LSystem {
                 prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
                 rules: [Rule] = [])
     {
-        // Using [axiom] instead of [] ensures that we always have a state
-        // environment that can be evolved based on the rules available.
         state = [axiom]
         self.prng = prng
         self.rules = rules
@@ -44,8 +44,6 @@ public struct NonParameterizedLSystem: LSystem {
                 prng: SeededPsuedoRandomNumberGenerator = HasherPRNG(seed: 42),
                 rules: [Rule] = [])
     {
-        // Using [axiom] instead of [] ensures that we always have a state
-        // environment that can be evolved based on the rules available.
         state = axiom
         self.prng = prng
         self.rules = rules
@@ -55,6 +53,6 @@ public struct NonParameterizedLSystem: LSystem {
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules.
     public func updatedLSystem(with state: [Module]) -> LSystem {
-        return NonParameterizedLSystem(state, rules: rules)
+        return NonParametericLSystem(state, rules: rules)
     }
 }
