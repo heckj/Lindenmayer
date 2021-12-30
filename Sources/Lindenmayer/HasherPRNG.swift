@@ -33,21 +33,26 @@ public final class Chaos {
     /// - Parameter range: The range of possible values for the float.
     func randomFloat(in range: ClosedRange<Float>) -> Float {
         precondition(!range.isEmpty)
-        return Float(_prng.next()) * (range.upperBound - range.lowerBound) + range.lowerBound
+        let randomFloat = Float(_prng.next()) / Float(UInt64.max)
+//        print(" - bounds: \(range.lowerBound) to \(range.upperBound)")
+//        print(" - Generated random float \(randomFloat)")
+        let boundedFloat = randomFloat * (range.upperBound - range.lowerBound) + range.lowerBound
+//        print(" - Bounded to \(boundedFloat)")
+        return boundedFloat
     }
 
     /// Returns a random integer from within the range you provide.
     /// - Parameter range: The range of possible values for the integer.
     func randomInt(in range: ClosedRange<Int>) -> Int {
         precondition(!range.isEmpty)
-        return Int(_prng.next()) * (range.upperBound - range.lowerBound + 1) + range.lowerBound
+        return Int(clamping: _prng.next()) * (range.upperBound - range.lowerBound + 1) + range.lowerBound
     }
 
     /// Returns a single module randomly selected from the list you provide.
     /// - Parameter from: The sequence of modules to choose from.
     func select(_ from: [Module]) -> Module {
         precondition(!from.isEmpty)
-        let selectedIndex = Int(_prng.next()) % from.count
+        let selectedIndex = Int(clamping: _prng.next()) % from.count
         return from[selectedIndex]
     }
 
@@ -55,7 +60,8 @@ public final class Chaos {
     ///
     /// Also known as a "coin-toss".
     func randomBool() -> Bool {
-        let selectedProb = Int(_prng.next()) % 100
+        let n = _prng.next()
+        let selectedProb = Int(clamping: n) % 100
         return (selectedProb >= 50)
     }
 

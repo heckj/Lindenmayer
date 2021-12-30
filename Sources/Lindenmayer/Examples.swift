@@ -52,6 +52,7 @@ public enum Examples3D: String, CaseIterable, Identifiable {
     /// A tree branching L-system based on L-system 6 in the model provided in Algorithmic Beauty of Plants.
     case hondaTreeBranchingModel
     case algae3D
+    case randomBush
     public var id: String { rawValue }
     /// The example seed L-system
     public var lsystem: LSystem {
@@ -60,6 +61,8 @@ public enum Examples3D: String, CaseIterable, Identifiable {
             return DetailedExamples.hondaTree
         case .algae3D:
             return DetailedExamples.algae3D
+        case .randomBush:
+            return DetailedExamples.randomBush
         }
     }
 
@@ -424,4 +427,59 @@ enum DetailedExamples {
             },
         ]
     )
+    
+    // - MARK: Random Bush
+    
+    struct Stem2: Module {
+        public var name = "i"
+        let length: Double // start at 10
+        public var render3D: ThreeDRenderCommand {
+            ThreeDRenderCommand.cylinder( // length, radius
+                length,
+                length / 10,
+                ColorRepresentation(red: 0.5, green: 0.7, blue: 0.1, alpha: 0.9)
+            )
+        }
+
+    }
+
+    struct StaticStem2: Module {
+        public var name = "I"
+        let length: Double // start at 10
+        public var render3D: ThreeDRenderCommand {
+            ThreeDRenderCommand.cylinder( // length, radius
+                length,
+                length / 10,
+                ColorRepresentation(red: 0.7, green: 0.7, blue: 0.1, alpha: 0.95)
+            )
+        }
+    }
+    
+    struct BushDefinitions {
+    }
+
+    static var randomBush = ParametericLSystem(
+        axiom: [
+            Stem2(length: 1),
+       ],
+        parameters: BushDefinitions(),
+        rules: [
+            NonParametericRule(Stem2.self, { stem, chaos in
+                
+                guard let length = stem.length else {
+                    throw RuntimeError<Stem2>(stem)
+                }
+                
+                let upper: Float = 45.0
+                let lower: Float = 15.0
+                
+                if chaos.randomBool() {
+                    return [StaticStem2(length: 2), Modules.PitchDown(Double(chaos.randomFloat(in: lower...upper))), Stem2(length: length)]
+                } else {
+                    return [StaticStem2(length: 2), Modules.PitchUp(Double(chaos.randomFloat(in: lower...upper))), Stem2(length: length)]
+                }
+            })
+        ]
+    )
+
 }

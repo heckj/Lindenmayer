@@ -54,11 +54,8 @@ extension ColorRepresentation {
 }
 
 public struct SceneKitRenderer {
-    let lsystem: LSystem
-    public init(_ lsystem: LSystem) {
-        self.lsystem = lsystem
-    }
-
+    public init() {}
+    
     func material(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> SCNMaterial {
         let material = SCNMaterial()
         material.diffuse.contents = CGColor(red: red, green: green, blue: blue, alpha: alpha)
@@ -93,7 +90,7 @@ public struct SceneKitRenderer {
             let loc: [Float] = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
             for i in loc {
                 for j in loc {
-                    print("\(i),\(j)")
+//                    print("\(i),\(j)")
                     let dot = SCNNode(geometry: dot3D)
                     dot.simdPosition = simd_float3(x: Float(i), y: Float(j), z: 0)
                     flooring.addChildNode(dot)
@@ -104,7 +101,7 @@ public struct SceneKitRenderer {
         scene.rootNode.addChildNode(flooring)
     }
 
-    public var scene: SCNScene {
+    public func generateScene(lsystem: LSystem) -> SCNScene {
         let scene = SCNScene()
         // create and add a camera to the scene
         let cameraNode = SCNNode()
@@ -202,8 +199,8 @@ public struct SceneKitRenderer {
                     temp.simdTransform = currentState.transform
                     temp.simdRotation = new_rotation.vector
                     currentState.transform = temp.simdTransform
-                    print("Updated transform:")
-                    print(currentState.transform.prettyPrintString("  "))
+//                    print("Updated transform:")
+//                    print(currentState.transform.prettyPrintString("  "))
                 }
             case let .move(distance):
                 let moveTransform = translationTransform(x: 0, y: Float(distance), z: 0)
@@ -219,7 +216,7 @@ public struct SceneKitRenderer {
 
                 // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
                 let nudgeOriginTransform = translationTransform(x: 0, y: Float(length / 2.0), z: 0)
-                print(" - calc nudgeTransform: \(nudgeOriginTransform)")
+//                print(" - calc nudgeTransform: \(nudgeOriginTransform)")
                 node.simdTransform = matrix_multiply(currentState.transform, nudgeOriginTransform)
 
                 scene.rootNode.addChildNode(node)
@@ -230,7 +227,7 @@ public struct SceneKitRenderer {
                 currentState = currentState.applyingTransform(moveStateTransform)
 
                 print("Added cylinder (r=\(radius)) by \(length) at \(String(describing: node.simdTransform))")
-                print("Moving +y by \(length) -> \(String(describing: currentState.transform))")
+//                print("Moving +y by \(length) -> \(String(describing: currentState.transform))")
 
             case let .cone(length, topRadius, bottomRadius, colorRep):
                 let node = SCNNode(geometry: SCNCone(topRadius: topRadius, bottomRadius: bottomRadius, height: length))
@@ -250,7 +247,7 @@ public struct SceneKitRenderer {
                 currentState = currentState.applyingTransform(moveStateTransform)
 
                 print("Added cone (tr=\(topRadius), br=\(bottomRadius) by \(length) at \(String(describing: node.simdTransform))")
-                print("Moving +y by \(length) -> \(String(describing: currentState.transform))")
+//                print("Moving +y by \(length) -> \(String(describing: currentState.transform))")
 
             case let .sphere(radius, colorRep):
                 let node = SCNNode(geometry: SCNSphere(radius: radius))
@@ -267,7 +264,7 @@ public struct SceneKitRenderer {
                 currentState = currentState.applyingTransform(moveStateTransform)
 
                 print("Added sphere (r=\(radius)) at \(String(describing: node.simdTransform))")
-                print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")
+//                print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")
 
             case .saveState:
                 stateStack.append(currentState)
