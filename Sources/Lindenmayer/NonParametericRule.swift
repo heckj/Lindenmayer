@@ -10,9 +10,9 @@ import Foundation
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct NonParametericRule: Rule {
     /// The signature of the produce closure that provides a set of up to three modules and expects a sequence of modules.
-    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, Chaos) throws -> [Module]
+    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, Chaos<HasherPRNG>) throws -> [Module]
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias singleMatchProducesList = (Module, Chaos) throws -> [Module]
+    public typealias singleMatchProducesList = (Module, Chaos<HasherPRNG>) throws -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: multiMatchProducesModuleList
@@ -31,12 +31,12 @@ public struct NonParametericRule: Rule {
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - produceClosure: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?,
-                prng: SeededPseudoRandomNumberGenerator? = nil,
+                prng: Chaos<HasherPRNG>? = nil,
                 _ produceClosure: @escaping multiMatchProducesModuleList)
     {
         matchset = (left, direct, right)
         if let prng = prng {
-            self.prng = Chaos(prng)
+            self.prng = prng
         }
         self.produceClosure = produceClosure
     }
@@ -47,12 +47,12 @@ public struct NonParametericRule: Rule {
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type,
-                prng: SeededPseudoRandomNumberGenerator? = nil,
+                prng: Chaos<HasherPRNG>? = nil,
                 _ singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchset = (nil, direct, nil)
         if let prng = prng {
-            self.prng = Chaos(prng)
+            self.prng = prng
         }
         produceClosure = { _, direct, _, chaos -> [Module] in
             try singleModuleProduce(direct, chaos)

@@ -13,56 +13,45 @@ import Foundation
 /// With a given seed and position, the random numbers should be completely deterministic.
 public protocol SeededPseudoRandomNumberGenerator: RandomNumberGenerator {
     /// The seed for the random number generator.
-    var seed: UInt32 { get }
+    var seed: UInt64 { get }
     /// The position from which to provide the next value within the sequence of random numbers the seed generates.
-    var position: Int { get set }
+    var position: UInt64 { get set }
 
     /// Creates a new pseudo-random number generator with the seed you provide.
-    init(seed: UInt32)
+    init(seed: UInt64)
 }
 
 /// A struct that provides probabilistic functions based on a seedable psuedo-random number generator that you provide.
-public final class Chaos {
-    var _prng: SeededPseudoRandomNumberGenerator
+public final class Chaos<PRNG> where PRNG: SeededPseudoRandomNumberGenerator {
+    var _prng: PRNG
 
-    init(_ prng: SeededPseudoRandomNumberGenerator) {
+    public init(_ prng: PRNG) {
         _prng = prng
     }
 
     /// Returns a random float value within the range you provide.
     /// - Parameter range: The range of possible values for the float.
     func randomFloat(in range: ClosedRange<Float>) -> Float {
-        precondition(!range.isEmpty)
-        let randomFloat = Float(_prng.next()) / Float(UInt64.max)
-//        print(" - bounds: \(range.lowerBound) to \(range.upperBound)")
-//        print(" - Generated random float \(randomFloat)")
-        let boundedFloat = randomFloat * (range.upperBound - range.lowerBound) + range.lowerBound
-//        print(" - Bounded to \(boundedFloat)")
-        return boundedFloat
+        Float.random(in: range, using: &_prng)
     }
 
     /// Returns a random integer from within the range you provide.
     /// - Parameter range: The range of possible values for the integer.
     func randomInt(in range: ClosedRange<Int>) -> Int {
-        precondition(!range.isEmpty)
-        return Int(clamping: _prng.next()) * (range.upperBound - range.lowerBound + 1) + range.lowerBound
+        Int.random(in: range, using: &_prng)
     }
 
     /// Returns a single module randomly selected from the list you provide.
     /// - Parameter from: The sequence of modules to choose from.
     func select(_ from: [Module]) -> Module {
-        precondition(!from.isEmpty)
-        let selectedIndex = Int(clamping: _prng.next()) % from.count
-        return from[selectedIndex]
+        return from.randomElement(using: &_prng)!
     }
 
     /// Returns a random Boolean value of roughly equal odds.
     ///
     /// Also known as a "coin-toss".
     func randomBool() -> Bool {
-        let n = _prng.next()
-        let selectedProb = Int(clamping: n) % 100
-        return (selectedProb >= 50)
+        Bool.random(using: &_prng)
     }
 
     /// Returns a Boolean value that indicates if the randomly selected value between 0.0 and 1.0 is less than the the probability you provide.
@@ -81,19 +70,19 @@ public final class Chaos {
 /// that noise functions result in very effect PRNG generators, are exceptionally fast, and generate
 /// consistent and deterministic, random numbers.
 public struct HasherPRNG: SeededPseudoRandomNumberGenerator {
-    var _seed: UInt32
+    var _seed: UInt64
 
     /// The current positoin within the noise space that is used to determine the next pseudo-random value.
-    public var position: Int = 0
+    public var position: UInt64 = 0
 
     /// The seed when creating this pseudo-random number generator.
-    public var seed: UInt32 {
+    public var seed: UInt64 {
         _seed
     }
 
     /// Creates a new pseudo-random number generator with the seed you provide.
     /// - Parameter seed: The seed value.
-    public init(seed: UInt32) {
+    public init(seed: UInt64) {
         _seed = seed
     }
 
