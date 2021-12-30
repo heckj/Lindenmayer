@@ -18,11 +18,14 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
+        .package(
+            name: "Squirrel3",
+            url: "https://github.com/heckj/Squirrel3.git", .upToNextMajor(from: "1.0.0"))
     ],
     targets: [
         .target(
             name: "Lindenmayer",
-            dependencies: []
+            dependencies: ["Squirrel3"]
         ),
         .target(
             name: "LindenmayerViews",
@@ -30,7 +33,7 @@ let package = Package(
         ),
         .testTarget(
             name: "LindenmayerTests",
-            dependencies: ["Lindenmayer"]
+            dependencies: ["Lindenmayer", "Squirrel3"]
         ),
     ]
 )
