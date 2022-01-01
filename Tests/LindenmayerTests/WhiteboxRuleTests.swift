@@ -3,7 +3,7 @@ import XCTest
 
 final class WhiteboxRuleTests: XCTestCase {
     func testRuleDefaults() throws {
-        let r = BasicRuleRNG<HasherPRNG>(Modules.Internode.self, prng: HasherPRNG(seed: 0)) { ctx, _ throws -> [Module] in
+        let r = RewriteRuleRNG<HasherPRNG>(Modules.Internode.self, prng: HasherPRNG(seed: 0)) { ctx, _ throws -> [Module] in
             [ctx]
         }
         XCTAssertNotNil(r)
@@ -18,7 +18,7 @@ final class WhiteboxRuleTests: XCTestCase {
     }
 
     func testRuleProduction() throws {
-        let r = BasicRuleRNG<HasherPRNG>(Modules.Internode.self, prng: HasherPRNG(seed: 0)) { _, _ in
+        let r = RewriteRuleRNG<HasherPRNG>(Modules.Internode.self, prng: HasherPRNG(seed: 0)) { _, _ in
             [Modules.internode]
         }
         XCTAssertNotNil(r)

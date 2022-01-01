@@ -1,24 +1,21 @@
 //
-//  ParametericRule.swift
-//  X5336
+//  RewriteRuleDefines.swift
 //
-//  Created by Joseph Heck on 12/12/21.
+//
+//  Created by Joseph Heck on 1/1/22.
 //
 
 import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-public struct BasicRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberGenerator {
+public struct RewriteRuleDefines<PType>: Rule {
     /// The signature of the produce closure that provides up to three modules and a set of parameters and expects a sequence of modules.
-    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType, Chaos<PRNG>) throws -> [Module]
+    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType) throws -> [Module]
     /// The signature of the produce closure that provides a module and a set of parameters and expects a sequence of modules.
-    public typealias singleMatchProducesList = (Module, PType, Chaos<PRNG>) throws -> [Module]
+    public typealias singleMatchProducesList = (Module, PType) throws -> [Module]
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: PType
-
-    /// A psuedo-random number generator to use for stochastic rule productions.
-    var prng: PRNG
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: multiMatchProducesModuleList
@@ -36,12 +33,10 @@ public struct BasicRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberGen
     ///   - produceClosure: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?,
                 params: PType,
-                prng: PRNG,
                 _ produceClosure: @escaping multiMatchProducesModuleList)
     {
         matchset = (left, direct, right)
         parameters = params
-        self.prng = prng
         self.produceClosure = produceClosure
     }
 
@@ -53,14 +48,12 @@ public struct BasicRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberGen
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type,
                 params: PType,
-                prng: PRNG,
                 _ singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchset = (nil, direct, nil)
         parameters = params
-        self.prng = prng
-        produceClosure = { _, direct, _, params, _ -> [Module] in
-            try singleModuleProduce(direct, params, Chaos(prng))
+        produceClosure = { _, direct, _, params -> [Module] in
+            try singleModuleProduce(direct, params)
         }
     }
 
@@ -68,6 +61,6 @@ public struct BasicRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberGen
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
     public func produce(_ matchSet: ModuleSet) throws -> [Module] {
-        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters, Chaos(prng))
+        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters)
     }
 }
