@@ -3,7 +3,7 @@ import XCTest
 
 final class WhiteboxLSystemTests: XCTestCase {
     func testLSystemDefault() throws {
-        let x = NoDefinesLSystem<HasherPRNG>([Modules.internode])
+        let x = NoDefinesLSystem<HasherPRNG>([Modules.internode], prng: HasherPRNG(seed: 42))
         XCTAssertNotNil(x)
         // Verify internal state of LSystem:
         // No rules

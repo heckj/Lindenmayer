@@ -175,7 +175,7 @@ enum DetailedExamples {
 
     static var g = G()
 
-    static var sierpinskiTriangle = NoDefinesLSystem<HasherPRNG>(
+    static var sierpinskiTriangle = Lindenmayer.basic(
         [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)]
         )
         .rewrite(F.self) { _, _ in
@@ -357,10 +357,11 @@ enum DetailedExamples {
     static let defines = Definitions()
 
     static var hondaTree = DefinesLSystem(
-        axiom: Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter),
+        axiom: [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
         parameters: defines,
+        prng: HasherPRNG(seed: 42),
         rules: [
-            DefinesRule<Definitions>(Trunk.self, params: defines) { trunk, params, _ in
+            DefinesRule<Definitions, HasherPRNG>(Trunk.self, params: defines, prng: HasherPRNG(seed: 42)) { trunk, params, _ in
                 guard let currentDiameter = trunk.diameter,
                       let currentGrowthDistance = trunk.growthDistance
                 else {
@@ -388,7 +389,7 @@ enum DetailedExamples {
                           diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            DefinesRule(MainBranch.self, params: defines) { branch, params, _ in
+            DefinesRule(MainBranch.self, params: defines, prng: HasherPRNG(seed: 42)) { branch, params, _ in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
@@ -413,7 +414,7 @@ enum DetailedExamples {
                                     diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            DefinesRule(SecondaryBranch.self, params: defines) { branch, params, _ in
+            DefinesRule(SecondaryBranch.self, params: defines, prng: HasherPRNG(seed: 42)) { branch, params, _ in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
@@ -477,6 +478,7 @@ enum DetailedExamples {
             Stem2(length: 1),
        ],
         parameters: BushDefinitions(),
+        prng: HasherPRNG(seed: 42),
         rules: [
             NoDefinesRule<HasherPRNG>(Stem2.self, prng: Chaos(HasherPRNG(seed: 42)), { stem, chaos in
                 
