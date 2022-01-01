@@ -128,30 +128,27 @@ enum DetailedExamples {
         .rewrite(Stem.self) { _ in
             [stem, stem]
         }
-    
-    
+
     /* Two notes from this latest update:
      first - the need to specify the type of generic isn't great. I'd love to hide that away entirely, but still keep the capability of
      specifying an alternate generic RNG to use internally. I might be able to leave the type system in place, but "hide" it by
      creating a static func on the protocol itself, which returns the relevant type without having the specify all the gory details.
-     
+
      second - the types passed through to the closure - I'm not using the stochastics all the time, so I'm wondering if it would make
      more sense to have yet another generic type of LSystem and Rule - one that didn't have stochastics at all. Then the others might
      build on that, adding generics (and generating them with static func's on the protocol for convenience). So something like:
-     
+
      BasicLSystem
      StochasticLSystem <-- adds the default HasherPRNG generic to the rules
      StochasticDefinesLSystem <-- adds the HasherPRNG and the definition object to the rules
-     
+
      I'd need the corresponding rules to match:
-     
+
      BasicRule
      StochasticRule
      StochasticDefinesRules
      */
-    
-    
-    
+
     // - MARK: Koch curve example
 
     static var kochCurve = Lindenmayer.basic(Modules.Draw(10))
@@ -177,13 +174,13 @@ enum DetailedExamples {
 
     static var sierpinskiTriangle = Lindenmayer.basic(
         [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)]
-        )
-        .rewrite(F.self) { _ in
-            [f, Modules.TurnRight(120), g, Modules.TurnLeft(120), f, Modules.TurnLeft(120), g, Modules.TurnRight(120), f]
-        }
-        .rewrite(G.self) { _ in
-            [g, g]
-        }
+    )
+    .rewrite(F.self) { _ in
+        [f, Modules.TurnRight(120), g, Modules.TurnLeft(120), f, Modules.TurnLeft(120), g, Modules.TurnRight(120), f]
+    }
+    .rewrite(G.self) { _ in
+        [g, g]
+    }
 
     // - MARK: dragon curve example
 
@@ -359,88 +356,89 @@ enum DetailedExamples {
     static var hondaTree = Lindenmayer.withDefines(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
         prng: HasherPRNG(seed: 42),
-        parameters: defines)
-        .rewriteWithAll(Trunk.self) { trunk, params, _ in
-            guard let currentDiameter = trunk.diameter,
-                  let currentGrowthDistance = trunk.growthDistance
-            else {
-                throw RuntimeError<Trunk>(trunk)
-            }
-
-            // original: !(w) F(s) [ &(a0) B(s * r2, w * wr) ] /(d) A(s * r1, w * wr)
-            // Conversion:
-            // s -> trunk.growthDistance, w -> trunk.diameter
-            // !(w) F(s) => reduce width of pen, then draw the line forward a distance of 's'
-            //   this is covered by returning a StaticTrunk that doesn't continue to evolve
-            // [ &(a0) B(s * r2, w * wr) ] /(d)
-            //   => branch, pitch down by a0 degrees, then grow a B branch (s = s * r2, w = w * wr)
-            //      then end the branch, and yaw around by d°
-
-            return [
-                StaticTrunk(growthDistance: currentGrowthDistance, diameter: currentDiameter),
-                Modules.branch,
-                Modules.PitchDown(params.branchAngle),
-                MainBranch(growthDistance: currentGrowthDistance,
-                           diameter: currentDiameter * params.widthContraction),
-                Modules.endbranch,
-                Modules.TurnLeft(params.divergence),
-                Trunk(growthDistance: currentGrowthDistance * params.contractionRatioForTrunk,
-                      diameter: currentDiameter * params.widthContraction),
-            ]
+        parameters: defines
+    )
+    .rewriteWithAll(Trunk.self) { trunk, params, _ in
+        guard let currentDiameter = trunk.diameter,
+              let currentGrowthDistance = trunk.growthDistance
+        else {
+            throw RuntimeError<Trunk>(trunk)
         }
-        .rewriteWithAll(MainBranch.self) { branch, params, _ in
-            guard let currentDiameter = branch.diameter,
-                  let currentGrowthDistance = branch.growthDistance
-            else {
-                throw RuntimeError<MainBranch>(branch)
-            }
 
-            // Original P2: B(s, w) -> !(w) F(s) [ -(a2) @V C(s * r2, w * wr) ] C(s * r1, w * wr)
-            // !(w) F(s) - Static Main Branch
+        // original: !(w) F(s) [ &(a0) B(s * r2, w * wr) ] /(d) A(s * r1, w * wr)
+        // Conversion:
+        // s -> trunk.growthDistance, w -> trunk.diameter
+        // !(w) F(s) => reduce width of pen, then draw the line forward a distance of 's'
+        //   this is covered by returning a StaticTrunk that doesn't continue to evolve
+        // [ &(a0) B(s * r2, w * wr) ] /(d)
+        //   => branch, pitch down by a0 degrees, then grow a B branch (s = s * r2, w = w * wr)
+        //      then end the branch, and yaw around by d°
 
-            return [
-                StaticBranch(growthDistance: currentGrowthDistance, diameter: currentDiameter),
-                Modules.branch,
-
-                Modules.RollLeft(params.lateralBranchAngle),
-                Modules.LevelOut(),
-                SecondaryBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
-                                diameter: currentDiameter * params.widthContraction),
-
-                Modules.endbranch,
-
-                SecondaryBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
-                                diameter: currentDiameter * params.widthContraction),
-            ]
+        return [
+            StaticTrunk(growthDistance: currentGrowthDistance, diameter: currentDiameter),
+            Modules.branch,
+            Modules.PitchDown(params.branchAngle),
+            MainBranch(growthDistance: currentGrowthDistance,
+                       diameter: currentDiameter * params.widthContraction),
+            Modules.endbranch,
+            Modules.TurnLeft(params.divergence),
+            Trunk(growthDistance: currentGrowthDistance * params.contractionRatioForTrunk,
+                  diameter: currentDiameter * params.widthContraction),
+        ]
+    }
+    .rewriteWithAll(MainBranch.self) { branch, params, _ in
+        guard let currentDiameter = branch.diameter,
+              let currentGrowthDistance = branch.growthDistance
+        else {
+            throw RuntimeError<MainBranch>(branch)
         }
-        .rewriteWithAll(SecondaryBranch.self) { branch, params, _ in
-            guard let currentDiameter = branch.diameter,
-                  let currentGrowthDistance = branch.growthDistance
-            else {
-                throw RuntimeError<SecondaryBranch>(branch)
-            }
 
-            // Original: P3: C(s, w) -> !(w) F(s) [ +(a2) @V B(s * r2, w * wr) ] B(s * r1, w * wr)
+        // Original P2: B(s, w) -> !(w) F(s) [ -(a2) @V C(s * r2, w * wr) ] C(s * r1, w * wr)
+        // !(w) F(s) - Static Main Branch
 
-            return [
-                StaticBranch(growthDistance: currentGrowthDistance, diameter: currentDiameter),
-                Modules.branch,
+        return [
+            StaticBranch(growthDistance: currentGrowthDistance, diameter: currentDiameter),
+            Modules.branch,
 
-                Modules.RollRight(params.branchAngle),
-                Modules.LevelOut(),
+            Modules.RollLeft(params.lateralBranchAngle),
+            Modules.LevelOut(),
+            SecondaryBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
+                            diameter: currentDiameter * params.widthContraction),
 
-                MainBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
-                           diameter: currentDiameter * params.widthContraction),
+            Modules.endbranch,
 
-                Modules.endbranch,
-
-                MainBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
-                           diameter: currentDiameter * params.widthContraction),
-            ]
+            SecondaryBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
+                            diameter: currentDiameter * params.widthContraction),
+        ]
+    }
+    .rewriteWithAll(SecondaryBranch.self) { branch, params, _ in
+        guard let currentDiameter = branch.diameter,
+              let currentGrowthDistance = branch.growthDistance
+        else {
+            throw RuntimeError<SecondaryBranch>(branch)
         }
+
+        // Original: P3: C(s, w) -> !(w) F(s) [ +(a2) @V B(s * r2, w * wr) ] B(s * r1, w * wr)
+
+        return [
+            StaticBranch(growthDistance: currentGrowthDistance, diameter: currentDiameter),
+            Modules.branch,
+
+            Modules.RollRight(params.branchAngle),
+            Modules.LevelOut(),
+
+            MainBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
+                       diameter: currentDiameter * params.widthContraction),
+
+            Modules.endbranch,
+
+            MainBranch(growthDistance: currentGrowthDistance * params.contractionRatioForBranch,
+                       diameter: currentDiameter * params.widthContraction),
+        ]
+    }
 
     // - MARK: Random Bush
-    
+
     struct Stem2: Module {
         public var name = "i"
         let length: Double // start at 10
@@ -451,7 +449,6 @@ enum DetailedExamples {
                 ColorRepresentation(red: 0.5, green: 0.7, blue: 0.1, alpha: 0.9)
             )
         }
-
     }
 
     struct StaticStem2: Module {
@@ -465,23 +462,22 @@ enum DetailedExamples {
             )
         }
     }
-    
-    struct BushDefinitions {
-    }
-    
+
+    struct BushDefinitions {}
+
     static var randomBush = Lindenmayer.withDefines(Stem2(length: 1), prng: HasherPRNG(seed: 42), parameters: BushDefinitions())
         .rewriteWithRNG(Stem2.self) { stem, rng -> [Module] in
             guard let length = stem.length else {
                 throw RuntimeError<Stem2>(stem)
             }
-            
+
             let upper: Float = 45.0
             let lower: Float = 15.0
-            
+
             if rng.randomBool() {
-                return [StaticStem2(length: 2), Modules.PitchDown(Double(rng.randomFloat(in: lower...upper))), Stem2(length: length)]
+                return [StaticStem2(length: 2), Modules.PitchDown(Double(rng.randomFloat(in: lower ... upper))), Stem2(length: length)]
             } else {
-                return [StaticStem2(length: 2), Modules.PitchUp(Double(rng.randomFloat(in: lower...upper))), Stem2(length: length)]
+                return [StaticStem2(length: 2), Modules.PitchUp(Double(rng.randomFloat(in: lower ... upper))), Stem2(length: length)]
             }
         }
 }

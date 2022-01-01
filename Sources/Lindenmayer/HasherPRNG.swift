@@ -67,7 +67,6 @@ public final class Chaos<PRNG> where PRNG: RandomNumberGenerator {
     func p() -> Float {
         return Float.random(in: 0.0 ... 1.0, using: &_prng)
     }
-
 }
 
 /// A seeded pseudo-random number generator that uses Foundation's Hash function as a noise function.

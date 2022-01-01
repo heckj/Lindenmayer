@@ -8,6 +8,8 @@
 import Foundation
 
 /// A type that represents a Lindenmayer system and how it evolves.
+///
+/// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public protocol LSystem {
     /// The sequence of modules that represents the current state of the L-system.
     var state: [Module] { get }
