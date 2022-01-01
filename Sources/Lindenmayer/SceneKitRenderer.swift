@@ -55,7 +55,7 @@ extension ColorRepresentation {
 
 public struct SceneKitRenderer {
     public init() {}
-    
+
     func material(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> SCNMaterial {
         let material = SCNMaterial()
         material.diffuse.contents = CGColor(red: red, green: green, blue: blue, alpha: alpha)

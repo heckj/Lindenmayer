@@ -9,7 +9,6 @@ import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct BasicRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberGenerator {
-
     /// The signature of the produce closure that provides up to three modules and a set of parameters and expects a sequence of modules.
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType, Chaos<PRNG>) throws -> [Module]
     /// The signature of the produce closure that provides a module and a set of parameters and expects a sequence of modules.
@@ -60,7 +59,7 @@ public struct BasicRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberGen
         matchset = (nil, direct, nil)
         parameters = params
         self.prng = prng
-        produceClosure = { _, direct, _, params, chaos -> [Module] in
+        produceClosure = { _, direct, _, params, _ -> [Module] in
             try singleModuleProduce(direct, params, Chaos(prng))
         }
     }
