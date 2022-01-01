@@ -92,14 +92,13 @@ enum DetailedExamples {
 
     static var b = B()
 
-    static var algae = NonParametericLSystem(a, rules: [
-        NonParametericRule(A.self) { _, _ in
+    static var algae = NoDefinesLSystem<HasherPRNG>(a)
+        .rewrite(A.self) { _, _ in
             [a, b]
-        },
-        NonParametericRule(B.self) { _, _ in
+        }
+        .rewrite(B.self) { _, _ in
             [a]
-        },
-    ])
+        }
 
     // - MARK: Fractal tree example
 
@@ -122,22 +121,43 @@ enum DetailedExamples {
 
     static var stem = Stem()
 
-    static var fractalTree = NonParametericLSystem(leaf, rules: [
-        NonParametericRule(Leaf.self) { _, _ in
+    static var fractalTree = NoDefinesLSystem<HasherPRNG>(leaf)
+        .rewrite(Leaf.self) { _, _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
-        },
-        NonParametericRule(Stem.self) { _, _ in
+        }
+        .rewrite(Stem.self) { _, _ in
             [stem, stem]
-        },
-    ])
-
+        }
+    
+    
+    /* Two notes from this latest update:
+     first - the need to specify the type of generic isn't great. I'd love to hide that away entirely, but still keep the capability of
+     specifying an alternate generic RNG to use internally. I might be able to leave the type system in place, but "hide" it by
+     creating a static func on the protocol itself, which returns the relevant type without having the specify all the gory details.
+     
+     second - the types passed through to the closure - I'm not using the stochastics all the time, so I'm wondering if it would make
+     more sense to have yet another generic type of LSystem and Rule - one that didn't have stochastics at all. Then the others might
+     build on that, adding generics (and generating them with static func's on the protocol for convenience). So something like:
+     
+     BasicLSystem
+     StochasticLSystem <-- adds the default HasherPRNG generic to the rules
+     StochasticDefinesLSystem <-- adds the HasherPRNG and the definition object to the rules
+     
+     I'd need the corresponding rules to match:
+     
+     BasicRule
+     StochasticRule
+     StochasticDefinesRules
+     */
+    
+    
+    
     // - MARK: Koch curve example
 
-    static var kochCurve = NonParametericLSystem(Modules.Draw(10), rules: [
-        NonParametericRule(Modules.Draw.self) { _, _ in
+    static var kochCurve = NoDefinesLSystem<HasherPRNG>(Modules.Draw(10))
+        .rewrite(Modules.Draw.self) { _, _ in
             [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
-        },
-    ])
+        }
 
     // - MARK: Sierpinski triangle example
 
@@ -155,28 +175,25 @@ enum DetailedExamples {
 
     static var g = G()
 
-    static var sierpinskiTriangle = NonParametericLSystem(
-        [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)],
-        rules: [
-            NonParametericRule(F.self) { _, _ in
-                [f, Modules.TurnRight(120), g, Modules.TurnLeft(120), f, Modules.TurnLeft(120), g, Modules.TurnRight(120), f]
-            },
-            NonParametericRule(G.self) { _, _ in
-                [g, g]
-            },
-        ]
-    )
+    static var sierpinskiTriangle = NoDefinesLSystem<HasherPRNG>(
+        [f, Modules.TurnRight(120), g, Modules.TurnRight(120), g, Modules.TurnRight(120)]
+        )
+        .rewrite(F.self) { _, _ in
+            [f, Modules.TurnRight(120), g, Modules.TurnLeft(120), f, Modules.TurnLeft(120), g, Modules.TurnRight(120), f]
+        }
+        .rewrite(G.self) { _, _ in
+            [g, g]
+        }
 
     // - MARK: dragon curve example
 
-    static var dragonCurve = NonParametericLSystem(f, rules: [
-        NonParametericRule(F.self) { _, _ in
+    static var dragonCurve = NoDefinesLSystem<HasherPRNG>(f)
+        .rewrite(F.self) { _, _ in
             [f, Modules.TurnLeft(90), g]
-        },
-        NonParametericRule(G.self) { _, _ in
+        }
+        .rewrite(G.self) { _, _ in
             [f, Modules.TurnRight(90), g]
-        },
-    ])
+        }
 
     // - MARK: Barnsley fern example
 
@@ -187,15 +204,13 @@ enum DetailedExamples {
 
     static var x = X()
 
-    static var barnsleyFern = NonParametericLSystem(x,
-                                                    rules: [
-                                                        NonParametericRule(X.self) { _, _ in
-                                                            [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
-                                                        },
-                                                        NonParametericRule(F.self) { _, _ in
-                                                            [f, f]
-                                                        },
-                                                    ])
+    static var barnsleyFern = NoDefinesLSystem<HasherPRNG>(x)
+        .rewrite(X.self) { _, _ in
+            [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
+        }
+        .rewrite(F.self) { _, _ in
+            [f, f]
+        }
 
     // - MARK: Super simple test tree
 
@@ -209,14 +224,13 @@ enum DetailedExamples {
         public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(5, 2, ColorRepresentation(red: 0.1, green: 1.0, blue: 0.1, alpha: 1.0))
     }
 
-    static var algae3D = NonParametericLSystem(Cyl(), rules: [
-        NonParametericRule(Cyl.self) { _, _ in
+    static var algae3D = NoDefinesLSystem<HasherPRNG>(Cyl())
+        .rewrite(Cyl.self) { _, _ in
             [Cyl(), S()]
-        },
-        NonParametericRule(S.self) { _, _ in
+        }
+        .rewrite(S.self) { _, _ in
             [Cyl()]
-        },
-    ])
+        }
 
     // - MARK: Honda's model for trees
 
@@ -342,11 +356,11 @@ enum DetailedExamples {
 
     static let defines = Definitions()
 
-    static var hondaTree = ParametericLSystem(
+    static var hondaTree = DefinesLSystem(
         axiom: Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter),
         parameters: defines,
         rules: [
-            ParametericRule<Definitions>(Trunk.self, params: defines) { trunk, params, _ in
+            DefinesRule<Definitions>(Trunk.self, params: defines) { trunk, params, _ in
                 guard let currentDiameter = trunk.diameter,
                       let currentGrowthDistance = trunk.growthDistance
                 else {
@@ -374,7 +388,7 @@ enum DetailedExamples {
                           diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParametericRule(MainBranch.self, params: defines) { branch, params, _ in
+            DefinesRule(MainBranch.self, params: defines) { branch, params, _ in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
@@ -399,7 +413,7 @@ enum DetailedExamples {
                                     diameter: currentDiameter * params.widthContraction),
                 ]
             },
-            ParametericRule(SecondaryBranch.self, params: defines) { branch, params, _ in
+            DefinesRule(SecondaryBranch.self, params: defines) { branch, params, _ in
                 guard let currentDiameter = branch.diameter,
                       let currentGrowthDistance = branch.growthDistance
                 else {
@@ -458,13 +472,13 @@ enum DetailedExamples {
     struct BushDefinitions {
     }
 
-    static var randomBush = ParametericLSystem(
+    static var randomBush = DefinesLSystem(
         axiom: [
             Stem2(length: 1),
        ],
         parameters: BushDefinitions(),
         rules: [
-            NonParametericRule(Stem2.self, { stem, chaos in
+            NoDefinesRule<HasherPRNG>(Stem2.self, prng: Chaos(HasherPRNG(seed: 42)), { stem, chaos in
                 
                 guard let length = stem.length else {
                     throw RuntimeError<Stem2>(stem)

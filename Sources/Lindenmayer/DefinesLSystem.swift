@@ -10,7 +10,7 @@ import Foundation
 /// A parameterized, stochastic Lindenmayer system.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public struct ParametericLSystem<PType>: LSystem {
+public struct DefinesLSystem<PType>: LSystem {
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public let rules: [Rule]
 
@@ -64,6 +64,6 @@ public struct ParametericLSystem<PType>: LSystem {
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules and parameters.
     public func updatedLSystem(with state: [Module]) -> LSystem {
-        return ParametericLSystem<PType>(axiom: state, parameters: parameters, prng: prng, rules: rules)
+        return DefinesLSystem<PType>(axiom: state, parameters: parameters, prng: prng, rules: rules)
     }
 }

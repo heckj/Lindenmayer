@@ -9,7 +9,7 @@ final class RuleTests: XCTestCase {
     let foo = Foo()
 
     func testRuleDefaults() throws {
-        let r = NonParametericRule(Modules.Internode.self) { ctx, _ -> [Module] in
+        let r = NoDefinesRule(Modules.Internode.self, prng: Chaos(HasherPRNG(seed: 0))) { ctx, _ -> [Module] in
             XCTAssertNotNil(ctx)
 
             return [ctx]
@@ -20,7 +20,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleBasicMatch() throws {
-        let r = NonParametericRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NoDefinesRule(Modules.Internode.self, prng: Chaos(HasherPRNG(seed: 0))) { _, _ -> [Module] in
             [self.foo]
         }
 
@@ -28,7 +28,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleBasicFailMatch() throws {
-        let r = NonParametericRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NoDefinesRule(Modules.Internode.self, prng: Chaos(HasherPRNG(seed: 0))) { _, _ -> [Module] in
             [self.foo]
         }
 
@@ -36,7 +36,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraRight() throws {
-        let r = NonParametericRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NoDefinesRule(Modules.Internode.self, prng: Chaos(HasherPRNG(seed: 0))) { _, _ -> [Module] in
             [self.foo]
         }
 
@@ -44,7 +44,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraLeft() throws {
-        let r = NonParametericRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NoDefinesRule(Modules.Internode.self, prng: Chaos(HasherPRNG(seed: 0))) { _, _ -> [Module] in
             [self.foo]
         }
 
@@ -52,7 +52,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraLeftAndRight() throws {
-        let r = NonParametericRule(Modules.Internode.self) { _, _ -> [Module] in
+        let r = NoDefinesRule(Modules.Internode.self, prng: Chaos(HasherPRNG(seed: 0))) { _, _ -> [Module] in
             [self.foo]
         }
 

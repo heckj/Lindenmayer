@@ -22,7 +22,7 @@ public protocol SeededPseudoRandomNumberGenerator: RandomNumberGenerator {
 }
 
 /// A struct that provides probabilistic functions based on a seedable psuedo-random number generator that you provide.
-public final class Chaos<PRNG> where PRNG: SeededPseudoRandomNumberGenerator {
+public final class Chaos<PRNG> where PRNG: RandomNumberGenerator {
     var _prng: PRNG
 
     public init(_ prng: PRNG) {
@@ -56,12 +56,18 @@ public final class Chaos<PRNG> where PRNG: SeededPseudoRandomNumberGenerator {
 
     /// Returns a Boolean value that indicates if the randomly selected value between 0.0 and 1.0 is less than the the probability you provide.
     /// - Parameter prob: The probability, between 0.0 and 1.0, of the result being true.
-    func randomChance(_ prob: Float) -> Bool {
+    func p(_ prob: Float) -> Bool {
         // ensure that the provided probability is between 0.0 and 1.0
         precondition(prob > 0.0 && prob < 1.0)
         let selectedProb = randomFloat(in: 0.0 ... 1.0)
         return (selectedProb <= prob)
     }
+
+    /// Returns a random float value between 0.0 and 1.0.
+    func p() -> Float {
+        return Float.random(in: 0.0 ... 1.0, using: &_prng)
+    }
+
 }
 
 /// A seeded pseudo-random number generator that uses Foundation's Hash function as a noise function.

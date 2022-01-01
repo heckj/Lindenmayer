@@ -8,7 +8,7 @@
 import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-public struct ParametericRule<PType>: Rule {
+public struct DefinesRule<PType>: Rule {
     /// The signature of the produce closure that provides up to three modules and a set of parameters and expects a sequence of modules.
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType, Chaos<HasherPRNG>) throws -> [Module]
     /// The signature of the produce closure that provides a module and a set of parameters and expects a sequence of modules.
