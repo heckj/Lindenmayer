@@ -4,13 +4,13 @@ import XCTest
 
 final class ModuleTests: XCTestCase {
     func testBuiltins() {
-        XCTAssertNotNil(Lindenmayer.Modules.internode)
-        XCTAssertNotNil(Lindenmayer.Modules.draw)
-        XCTAssertNotNil(Lindenmayer.Modules.move)
-        XCTAssertNotNil(Lindenmayer.Modules.branch)
-        XCTAssertNotNil(Lindenmayer.Modules.endbranch)
-        XCTAssertNotNil(Lindenmayer.Modules.turnleft)
-        XCTAssertNotNil(Lindenmayer.Modules.turnright)
+        XCTAssertNotNil(Modules.internode)
+        XCTAssertNotNil(Modules.draw)
+        XCTAssertNotNil(Modules.move)
+        XCTAssertNotNil(Modules.branch)
+        XCTAssertNotNil(Modules.endbranch)
+        XCTAssertNotNil(Modules.turnleft)
+        XCTAssertNotNil(Modules.turnright)
     }
 
     func testModuleFoo() {

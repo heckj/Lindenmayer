@@ -43,7 +43,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
     func testRuleDefaultsWithSystemParameters() throws {
         let r = DefinesRule(ParameterizedExample.self, params: ExampleDefines()) { ctx, p, _ -> [Module] in
             guard let value = ctx.i else {
-                throw Lindenmayer.RuntimeError<ParameterizedExample>(ctx)
+                throw RuntimeError<ParameterizedExample>(ctx)
             }
             return [ParameterizedExample(value + p.value)]
         }

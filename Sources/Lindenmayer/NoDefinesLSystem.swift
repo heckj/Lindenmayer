@@ -19,21 +19,6 @@ public struct NoDefinesLSystem<PRNG>: LSystem where PRNG: RandomNumberGenerator 
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public var rules: [Rule]
 
-    /// Creates a new Lindenmayer system from an initial state and rules you provide.
-    /// - Parameters:
-    ///   - axiom: A module that represents the initial state of the Lindenmayer system..
-    ///   - parameters: A set of parameters accessible to rules for evaluation and production.
-    ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
-    ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: Module,
-                prng: PRNG = HasherPRNG(seed: 42) as! PRNG,
-                rules: [Rule] = [])
-    {
-        state = [axiom]
-        self.prng = Chaos(prng)
-        self.rules = rules
-    }
-
     /// Creates a new Lindenmayer system from an initial state sequence and rules you provide.
     /// - Parameters:
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
