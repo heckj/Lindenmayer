@@ -92,7 +92,7 @@ enum DetailedExamples {
 
     static var b = B()
 
-    static var algae = NoDefinesLSystem<HasherPRNG>(a)
+    static var algae = Lindenmayer.basic([a])
         .rewrite(A.self) { _, _ in
             [a, b]
         }
@@ -121,7 +121,7 @@ enum DetailedExamples {
 
     static var stem = Stem()
 
-    static var fractalTree = NoDefinesLSystem<HasherPRNG>(leaf)
+    static var fractalTree = Lindenmayer.basic(leaf)
         .rewrite(Leaf.self) { _, _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
         }
@@ -154,7 +154,7 @@ enum DetailedExamples {
     
     // - MARK: Koch curve example
 
-    static var kochCurve = NoDefinesLSystem<HasherPRNG>(Modules.Draw(10))
+    static var kochCurve = Lindenmayer.basic(Modules.Draw(10))
         .rewrite(Modules.Draw.self) { _, _ in
             [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
         }
@@ -187,7 +187,7 @@ enum DetailedExamples {
 
     // - MARK: dragon curve example
 
-    static var dragonCurve = NoDefinesLSystem<HasherPRNG>(f)
+    static var dragonCurve = Lindenmayer.basic(f)
         .rewrite(F.self) { _, _ in
             [f, Modules.TurnLeft(90), g]
         }
@@ -204,7 +204,7 @@ enum DetailedExamples {
 
     static var x = X()
 
-    static var barnsleyFern = NoDefinesLSystem<HasherPRNG>(x)
+    static var barnsleyFern = Lindenmayer.basic(x)
         .rewrite(X.self) { _, _ in
             [f, Modules.TurnLeft(25), Modules.branch, Modules.branch, x, Modules.endbranch, Modules.TurnRight(25), x, Modules.endbranch, Modules.TurnRight(25), f, Modules.branch, Modules.TurnRight(25), f, x, Modules.endbranch, Modules.TurnLeft(25), x]
         }
@@ -224,7 +224,7 @@ enum DetailedExamples {
         public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(5, 2, ColorRepresentation(red: 0.1, green: 1.0, blue: 0.1, alpha: 1.0))
     }
 
-    static var algae3D = NoDefinesLSystem<HasherPRNG>(Cyl())
+    static var algae3D = Lindenmayer.basic(Cyl())
         .rewrite(Cyl.self) { _, _ in
             [Cyl(), S()]
         }

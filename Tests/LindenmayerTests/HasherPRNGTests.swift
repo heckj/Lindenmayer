@@ -55,9 +55,10 @@ final class HasherPRNGTests: XCTestCase {
     }
     
     
-    
+    // flaky - sometimes the fairness doesn't quite line up...
+    // example:
+    // After 1000000 coin flips, we got 501417. Expected: 500000.0 Standard deviation: 500.0
     func testFairness() throws {
-        
         var rng = HasherPRNG(seed: UInt64.random(in: 0 ..< 1_000_000))
         
         let flips = 1_000_000
