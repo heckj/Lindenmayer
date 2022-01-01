@@ -7,38 +7,6 @@
 
 import Foundation
 
-public struct Lindenmayer {
-    /// Creates a new Lindenmayer system from an initial state and rules you provide.
-    /// - Parameters:
-    ///   - axiom: An initial module that represents the initial state of the Lindenmayer system..
-    static func basic(_ axiom:Module) -> NoDefinesLSystem<HasherPRNG> {
-        return NoDefinesLSystem([axiom], prng: HasherPRNG(seed: 42))
-    }
-
-    /// Creates a new Lindenmayer system from an initial state and rules you provide.
-    /// - Parameters:
-    ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
-    static func basic(_ axiom:[Module]) -> NoDefinesLSystem<HasherPRNG> {
-        return NoDefinesLSystem(axiom, prng: HasherPRNG(seed: 42))
-    }
-
-    /// Creates a new Lindenmayer system from an initial state and rules you provide.
-    /// - Parameters:
-    ///   - axiom: An initial module that represents the initial state of the Lindenmayer system..
-    ///   - prng: A psuedo-random number generator to use for randomness in rule productions.
-    static func basic<RNGType>(_ axiom:Module, prng: RNGType) -> NoDefinesLSystem<RNGType> {
-        return NoDefinesLSystem([axiom], prng: prng)
-    }
-
-    /// Creates a new Lindenmayer system from an initial state and rules you provide.
-    /// - Parameters:
-    ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
-    ///   - prng: A psuedo-random number generator to use for for randomness in rule productions.
-    static func basic<RNGType>(_ axiom:[Module], prng: RNGType) -> NoDefinesLSystem<RNGType> {
-        return NoDefinesLSystem(axiom, prng: prng)
-    }
-}
-
 /// A type that represents a Lindenmayer system and how it evolves.
 public protocol LSystem {
     /// The sequence of modules that represents the current state of the L-system.
@@ -62,9 +30,6 @@ public protocol LSystem {
     /// Returns a new L-system with the provided state.
     func updatedLSystem(with state: [Module]) -> LSystem
 }
-
-
-
 
 public extension LSystem {
     /// Returns a set of modules around the index location you provide.
