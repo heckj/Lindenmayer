@@ -40,7 +40,22 @@ public struct LSystemBasic: LSystem {
     ///   - direct: The type of module that the rule matches
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewrite(_ direct: Module.Type, _ produce: @escaping (Module) throws -> [Module]) -> Self {
+    public func rewrite(_ direct: Module.Type,
+                        where evalClosure: (@escaping (ModuleSet) -> Bool),
+                        produces produceClosure: @escaping (Module) throws -> [Module]) -> Self {
+        let newRule = RewriteRule(direct, evalClosure, produceClosure)
+        var newRuleSet: [Rule] = rules
+        newRuleSet.append(contentsOf: [newRule])
+        return LSystemBasic(state, rules: newRuleSet)
+    }
+
+    /// Adds a rewriting rule to the L-System.
+    /// - Parameters:
+    ///   - direct: The type of module that the rule matches
+    ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
+    /// - Returns: A new L-System with the additional rule added.
+    public func rewrite(_ direct: Module.Type,
+                        _ produce: @escaping (Module) throws -> [Module]) -> Self {
         let newRule = RewriteRule(direct, nil, produce)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
