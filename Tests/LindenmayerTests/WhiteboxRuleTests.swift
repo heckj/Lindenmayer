@@ -4,7 +4,7 @@ import XCTest
 
 final class WhiteboxRuleTests: XCTestCase {
     func testRuleDefaults() throws {
-        let r = RewriteRuleRNG<PRNG>(Modules.Internode.self, prng: PRNG(seed: 0)) { ctx, _ throws -> [Module] in
+        let r = RewriteRuleRNG<PRNG>(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { ctx, _ throws -> [Module] in
             [ctx]
         }
         XCTAssertNotNil(r)
@@ -19,7 +19,7 @@ final class WhiteboxRuleTests: XCTestCase {
     }
 
     func testRuleProduction() throws {
-        let r = RewriteRuleRNG<PRNG>(Modules.Internode.self, prng: PRNG(seed: 0)) { _, _ in
+        let r = RewriteRuleRNG<PRNG>(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ in
             [Modules.internode]
         }
         XCTAssertNotNil(r)
