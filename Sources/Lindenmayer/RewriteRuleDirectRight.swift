@@ -13,7 +13,7 @@ public struct RewriteRuleDirectRight<DC, RC>: Rule where DC: Module, RC: Module 
     public var parametricEval: ((ModuleSet) -> Bool)? = nil
     
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias rightMatchProducesList = (DC, RC) throws -> [Module]
+    public typealias rightMatchProducesList = (DC, RC) -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: rightMatchProducesList
@@ -60,12 +60,12 @@ public struct RewriteRuleDirectRight<DC, RC>: Rule where DC: Module, RC: Module 
     /// Invokes the rule's produce closure with the modules provided.
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
-    public func produce(_ matchSet: ModuleSet) throws -> [Module] {
+    public func produce(_ matchSet: ModuleSet) -> [Module] {
         guard let directInstance = matchSet.directInstance as? DC,
                 let rightInstance = matchSet.rightInstance as? RC
         else {
             return []
         }
-        return try produceClosure(directInstance, rightInstance)
+        return produceClosure(directInstance, rightInstance)
     }
 }

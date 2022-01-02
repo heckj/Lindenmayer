@@ -78,7 +78,7 @@ public extension LSystem {
             if let foundRule = maybeRule {
                 // If a rule was found, then use it to generate the modules that
                 // replace this element in the sequence.
-                newState.append(contentsOf: try foundRule.produce(moduleSet))
+                newState.append(contentsOf: foundRule.produce(moduleSet))
             } else {
                 // If no rule was identified, we pass along the 'Module' as an
                 // ignored module for later evaluation - for example to be used
