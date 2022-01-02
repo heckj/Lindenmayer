@@ -11,6 +11,9 @@ import Foundation
 public protocol Rule: CustomStringConvertible {
     /// The types of modules this rule matches.
     var matchset: (Module.Type?, Module.Type, Module.Type?) { get }
+    
+    /// An optional closure that determines if the rule should be evaluated.
+    var parametricEval: ((ModuleSet) -> Bool)? { get }
 
     /// Returns a Boolean value that indicates whether the rule applies to the set of modules you provide.
     func evaluate(_ leftCtxType: Module.Type?, _ directCtxType: Module.Type, _ rightCtxType: Module.Type?) -> Bool

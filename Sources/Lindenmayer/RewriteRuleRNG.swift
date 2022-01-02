@@ -9,6 +9,8 @@ import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct RewriteRuleRNG<PRNG>: Rule where PRNG: RandomNumberGenerator {
+    public var parametricEval: ((ModuleSet) -> Bool)? = nil
+    
     /// The signature of the produce closure that provides a set of up to three modules and expects a sequence of modules.
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?, RNGWrapper<PRNG>) throws -> [Module]
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
