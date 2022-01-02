@@ -1,5 +1,5 @@
 //
-//  RewriteRuleDirect.swift
+//  RewriteRuleDirectRNG.swift
 //
 //
 //  Created by Joseph Heck on 1/1/22.
@@ -65,5 +65,12 @@ public struct RewriteRuleDirectRNG<DC, PRNG>: Rule where DC: Module, PRNG: Rando
             return []
         }
         return produceClosure(directInstance, prng)
+    }
+}
+
+extension RewriteRuleDirectRNG: CustomStringConvertible {
+    /// A description of the rule that details what it matches
+    public var description: String {
+        return "Rule(direct)(\(String(describing: matchingType)) w/  rng"
     }
 }

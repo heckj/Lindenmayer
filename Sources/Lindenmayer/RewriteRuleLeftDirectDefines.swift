@@ -1,5 +1,5 @@
 //
-//  RewriteRuleLeftDirectRightDefinesRNG.swift
+//  RewriteRuleLeftDirectDefines.swift
 //
 //
 //  Created by Joseph Heck on 1/1/22.
@@ -70,5 +70,12 @@ public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module
             return []
         }
         return produceClosure(leftInstance, directInstance, parameters)
+    }
+}
+
+extension RewriteRuleLeftDirectDefines: CustomStringConvertible {
+    /// A description of the rule that details what it matches
+    public var description: String {
+        return "Rule(left,direct)(\(String(describing: matchingTypes)) w/ parameters: \(String(describing: parameters))"
     }
 }

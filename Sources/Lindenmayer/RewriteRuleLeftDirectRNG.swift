@@ -71,3 +71,10 @@ public struct RewriteRuleLeftDirectRNG<LC, DC, PRNG>: Rule where LC: Module, DC:
         return produceClosure(leftInstance, directInstance, prng)
     }
 }
+
+extension RewriteRuleLeftDirectRNG: CustomStringConvertible {
+    /// A description of the rule that details what it matches
+    public var description: String {
+        return "Rule(left,direct)(\(String(describing: matchingTypes)) w/ rng"
+    }
+}
