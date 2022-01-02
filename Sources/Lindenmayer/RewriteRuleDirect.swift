@@ -26,12 +26,12 @@ public struct RewriteRuleDirect<DC>: Rule where DC: Module {
     ///   - direct: The type of the L-system state element that the rule evaluates.
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ direct: DC.Type,
-                _ evalClosure: ((ModuleSet) -> Bool)?,
-                _ singleModuleProduce: @escaping singleMatchProducesList)
+    public init(direct: DC.Type,
+                where evalClosure: ((ModuleSet) -> Bool)?,
+                produce produceClosure: @escaping singleMatchProducesList)
     {
         matchingType = direct
-        produceClosure = singleModuleProduce
+        self.produceClosure = produceClosure
     }
     
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
