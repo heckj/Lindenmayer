@@ -29,6 +29,7 @@ public struct RewriteRule: Rule {
     ///   - right: The type of the L-system state element following the current element that the rule evaluates.
     ///   - produceClosure: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?,
+                _ evalClosure: ((ModuleSet) -> Bool)?,
                 _ produceClosure: @escaping multiMatchProducesModuleList)
     {
         matchset = (left, direct, right)
@@ -41,6 +42,7 @@ public struct RewriteRule: Rule {
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type,
+                _ evalClosure: ((ModuleSet) -> Bool)?,
                 _ singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchset = (nil, direct, nil)

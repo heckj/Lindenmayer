@@ -10,7 +10,7 @@ final class RuleTests: XCTestCase {
     let foo = Foo()
 
     func testRuleDefaults() throws {
-        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { ctx, _ -> [Module] in
+        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), nil) { ctx, _ -> [Module] in
             XCTAssertNotNil(ctx)
 
             return [ctx]
@@ -21,7 +21,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleBasicMatch() throws {
-        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ -> [Module] in
+        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), nil) { _, _ -> [Module] in
             [self.foo]
         }
 
@@ -30,7 +30,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleBasicFailMatch() throws {
-        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ -> [Module] in
+        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), nil) { _, _ -> [Module] in
             [self.foo]
         }
         let moduleSet = ModuleSet(directInstance: foo)
@@ -38,7 +38,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraRight() throws {
-        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ -> [Module] in
+        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), nil) { _, _ -> [Module] in
             [self.foo]
         }
         let moduleSet = ModuleSet(leftInstance: nil,
@@ -48,7 +48,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraLeft() throws {
-        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ -> [Module] in
+        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), nil) { _, _ -> [Module] in
             [self.foo]
         }
         let moduleSet = ModuleSet(leftInstance: Foo(),
@@ -59,7 +59,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraLeftAndRight() throws {
-        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ -> [Module] in
+        let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), nil) { _, _ -> [Module] in
             [self.foo]
         }
         let moduleSet = ModuleSet(leftInstance: Foo(),

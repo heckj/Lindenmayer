@@ -34,6 +34,7 @@ public struct RewriteRuleRNG<PRNG>: Rule where PRNG: RandomNumberGenerator {
     ///   - produceClosure: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?,
                 prng: RNGWrapper<PRNG>,
+                _ evalClosure: ((ModuleSet) -> Bool)?,
                 _ produceClosure: @escaping multiMatchProducesModuleList)
     {
         matchset = (left, direct, right)
@@ -48,6 +49,7 @@ public struct RewriteRuleRNG<PRNG>: Rule where PRNG: RandomNumberGenerator {
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type,
                 prng: RNGWrapper<PRNG>,
+                _ evalClosure: ((ModuleSet) -> Bool)?,
                 _ singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchset = (nil, direct, nil)
