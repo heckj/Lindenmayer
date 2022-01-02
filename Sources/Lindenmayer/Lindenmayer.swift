@@ -6,20 +6,21 @@
 //
 
 import Foundation
+import Squirrel3
 
 public enum Lindenmayer {
     /// Creates a new Lindenmayer system from an initial state.
     /// - Parameters:
     ///   - axiom: An initial module that represents the initial state of the Lindenmayer system..
-    static func basic(_ axiom: Module) -> LSystemRNG<HasherPRNG> {
-        return LSystemRNG([axiom], prng: HasherPRNG(seed: 42))
+    static func basic(_ axiom: Module) -> LSystemRNG<PRNG> {
+        return LSystemRNG([axiom], prng: PRNG(seed: 42))
     }
 
     /// Creates a new Lindenmayer system from an initial state.
     /// - Parameters:
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
-    static func basic(_ axiom: [Module]) -> LSystemRNG<HasherPRNG> {
-        return LSystemRNG(axiom, prng: HasherPRNG(seed: 42))
+    static func basic(_ axiom: [Module]) -> LSystemRNG<PRNG> {
+        return LSystemRNG(axiom, prng: PRNG(seed: 42))
     }
 
     /// Creates a new Lindenmayer system from an initial state and using the random number generator you provide.

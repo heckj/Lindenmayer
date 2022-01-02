@@ -10,9 +10,9 @@ import Foundation
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct RewriteRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberGenerator {
     /// The signature of the produce closure that provides up to three modules and a set of parameters and expects a sequence of modules.
-    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType, Chaos<PRNG>) throws -> [Module]
+    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, PType, RNGWrapper<PRNG>) throws -> [Module]
     /// The signature of the produce closure that provides a module and a set of parameters and expects a sequence of modules.
-    public typealias singleMatchProducesList = (Module, PType, Chaos<PRNG>) throws -> [Module]
+    public typealias singleMatchProducesList = (Module, PType, RNGWrapper<PRNG>) throws -> [Module]
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: PType
@@ -60,7 +60,7 @@ public struct RewriteRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberG
         parameters = params
         self.prng = prng
         produceClosure = { _, direct, _, params, _ -> [Module] in
-            try singleModuleProduce(direct, params, Chaos(prng))
+            try singleModuleProduce(direct, params, RNGWrapper(prng))
         }
     }
 
@@ -68,6 +68,6 @@ public struct RewriteRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberG
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
     public func produce(_ matchSet: ModuleSet) throws -> [Module] {
-        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters, Chaos(prng))
+        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters, RNGWrapper(prng))
     }
 }

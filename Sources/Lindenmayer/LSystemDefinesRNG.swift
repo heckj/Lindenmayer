@@ -53,7 +53,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: RandomNumberGe
     ///   - direct: The type of module that the rule matches
     ///   - singleModuleProduce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewriteWithAll(_ direct: Module.Type, _ singleModuleProduce: @escaping (Module, PType, Chaos<PRNG>) throws -> [Module]) -> Self {
+    public func rewriteWithAll(_ direct: Module.Type, _ singleModuleProduce: @escaping (Module, PType, RNGWrapper<PRNG>) throws -> [Module]) -> Self {
         let newRule = RewriteRuleDefinesRNG(direct, params: parameters, prng: prng, singleModuleProduce)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
@@ -67,7 +67,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: RandomNumberGe
     ///   - right: An optional type of module that the rule matches to the right of the main module.
     ///   - produce: A new L-System with the additional rule added.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewriteWithAll(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produce: @escaping (Module?, Module, Module?, PType, Chaos<PRNG>) throws -> [Module]) -> Self {
+    public func rewriteWithAll(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produce: @escaping (Module?, Module, Module?, PType, RNGWrapper<PRNG>) throws -> [Module]) -> Self {
         let newRule = RewriteRuleDefinesRNG(left, direct, right, params: parameters, prng: prng, produce)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
@@ -88,14 +88,14 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: RandomNumberGe
         return LSystemDefinesRNG(axiom: state, parameters: parameters, prng: prng, rules: newRuleSet)
     }
 
-    public func rewriteWithRNG(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produce: @escaping (Module?, Module, Module?, Chaos<PRNG>) throws -> [Module]) -> Self {
+    public func rewriteWithRNG(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produce: @escaping (Module?, Module, Module?, RNGWrapper<PRNG>) throws -> [Module]) -> Self {
         let newRule = RewriteRuleRNG(left, direct, right, prng: prng, produce)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return LSystemDefinesRNG(axiom: state, parameters: parameters, prng: prng, rules: newRuleSet)
     }
 
-    public func rewriteWithRNG(_ direct: Module.Type, _ produce: @escaping (Module, Chaos<PRNG>) throws -> [Module]) -> Self {
+    public func rewriteWithRNG(_ direct: Module.Type, _ produce: @escaping (Module, RNGWrapper<PRNG>) throws -> [Module]) -> Self {
         let newRule = RewriteRuleRNG(direct, prng: prng, produce)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
