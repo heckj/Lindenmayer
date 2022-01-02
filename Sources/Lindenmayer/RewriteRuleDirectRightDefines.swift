@@ -71,3 +71,10 @@ public struct RewriteRuleDirectRightDefines<DC, RC, PType>: Rule where DC: Modul
         return produceClosure(directInstance, rightInstance, parameters)
     }
 }
+
+extension RewriteRuleDirectRightDefines: CustomStringConvertible {
+    /// A description of the rule that details what it matches
+    public var description: String {
+        return "Rule(direct,right)(\(String(describing: matchingTypes)) w/ parameters: \(String(describing: parameters))"
+    }
+}

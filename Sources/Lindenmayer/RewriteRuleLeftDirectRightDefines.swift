@@ -75,3 +75,10 @@ public struct RewriteRuleLeftDirectRightDefines<LC, DC, RC, PType>: Rule where L
         return produceClosure(leftInstance, directInstance, rightInstance, parameters)
     }
 }
+
+extension RewriteRuleLeftDirectRightDefines: CustomStringConvertible {
+    /// A description of the rule that details what it matches
+    public var description: String {
+        return "Rule(left,direct,right)(\(String(describing: matchingTypes)) w/ parameters: \(String(describing: parameters))"
+    }
+}
