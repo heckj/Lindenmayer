@@ -9,7 +9,7 @@ import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct RewriteRuleDirectRight<DC, RC>: Rule where DC: Module, RC: Module {
-    public var parametricEval: ((ModuleSet) -> Bool)?
+    public var parametricEval: ((DC, RC) -> Bool)?
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
     public typealias rightMatchProducesList = (DC, RC) -> [Module]
@@ -26,7 +26,7 @@ public struct RewriteRuleDirectRight<DC, RC>: Rule where DC: Module, RC: Module 
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType: DC.Type, rightType: RC.Type,
-                where _: ((ModuleSet) -> Bool)?,
+                where _: ((DC, RC) -> Bool)?,
                 produces produceClosure: @escaping rightMatchProducesList)
     {
         matchingTypes = (directType, rightType)
@@ -49,7 +49,12 @@ public struct RewriteRuleDirectRight<DC, RC>: Rule where DC: Module, RC: Module 
         }
 
         if let additionalEval = parametricEval {
-            return additionalEval(matchSet)
+            guard let directInstance = matchSet.directInstance as? DC,
+                  let rightInstance = matchSet.rightInstance as? RC
+            else {
+                return false
+            }
+            return additionalEval(directInstance, rightInstance)
         }
 
         return true

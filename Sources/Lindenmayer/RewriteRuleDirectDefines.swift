@@ -9,7 +9,7 @@ import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
-    public var parametricEval: ((ModuleSet) -> Bool)?
+    public var parametricEval: ((DC, PType) -> Bool)?
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: PType
@@ -30,7 +30,7 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType direct: DC.Type,
                 parameters: PType,
-                where _: ((ModuleSet) -> Bool)?,
+                where _: ((DC, PType) -> Bool)?,
                 produces singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchingType = direct
@@ -51,7 +51,10 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
         }
 
         if let additionalEval = parametricEval {
-            return additionalEval(matchSet)
+            guard let directInstance = matchSet.directInstance as? DC else {
+                return false
+            }
+            return additionalEval(directInstance, parameters)
         }
 
         return true
