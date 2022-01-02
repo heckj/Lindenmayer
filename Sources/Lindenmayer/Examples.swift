@@ -481,4 +481,19 @@ enum DetailedExamples {
                 return [StaticStem2(length: 2), Modules.PitchUp(Double(rng.randomFloat(in: lower ... upper))), Stem2(length: length)]
             }
         }
+    
+    static var experiment2 = Lindenmayer.basic(Stem2(length: 1))
+        .rewrite(Stem2.self) { set in
+            guard let length = set.directInstance.length else {
+                return false
+            }
+            return stem.length! < 5
+        } produces: { stem in
+            guard let length = stem.length else {
+                throw RuntimeError<Stem2>(stem)
+            }
+
+            return [Stem2(length: length + 1)]
+
+        }
 }
