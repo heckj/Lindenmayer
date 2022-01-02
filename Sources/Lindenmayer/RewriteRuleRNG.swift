@@ -21,7 +21,7 @@ public struct RewriteRuleRNG<PRNG>: Rule where PRNG: RandomNumberGenerator {
     public let matchset: (Module.Type?, Module.Type, Module.Type?)
 
     /// A psuedo-random number generator to use for stochastic rule productions.
-    var prng: PRNG
+    var prng: RNGWrapper<PRNG>
 
     /// Creates a new rule with the extended context and closures you provide that result in a list of state elements.
     /// - Parameters:
@@ -31,7 +31,7 @@ public struct RewriteRuleRNG<PRNG>: Rule where PRNG: RandomNumberGenerator {
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - produceClosure: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?,
-                prng: PRNG,
+                prng: RNGWrapper<PRNG>,
                 _ produceClosure: @escaping multiMatchProducesModuleList)
     {
         matchset = (left, direct, right)
@@ -45,7 +45,7 @@ public struct RewriteRuleRNG<PRNG>: Rule where PRNG: RandomNumberGenerator {
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type,
-                prng: PRNG,
+                prng: RNGWrapper<PRNG>,
                 _ singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchset = (nil, direct, nil)
@@ -59,6 +59,6 @@ public struct RewriteRuleRNG<PRNG>: Rule where PRNG: RandomNumberGenerator {
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
     public func produce(_ matchSet: ModuleSet) throws -> [Module] {
-        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, RNGWrapper(prng))
+        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, prng)
     }
 }

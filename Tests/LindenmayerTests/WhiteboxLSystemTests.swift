@@ -4,7 +4,7 @@ import XCTest
 
 final class WhiteboxLSystemTests: XCTestCase {
     func testLSystemDefault() throws {
-        let x = LSystemRNG<PRNG>([Modules.internode], prng: PRNG(seed: 42))
+        let x = LSystemRNG<PRNG>([Modules.internode], prng: RNGWrapper(PRNG(seed: 0)))
         XCTAssertNotNil(x)
         // Verify internal state of LSystem:
         // No rules

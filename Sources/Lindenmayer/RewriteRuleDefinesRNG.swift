@@ -18,7 +18,7 @@ public struct RewriteRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberG
     var parameters: PType
 
     /// A psuedo-random number generator to use for stochastic rule productions.
-    var prng: PRNG
+    var prng: RNGWrapper<PRNG>
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: multiMatchProducesModuleList
@@ -36,7 +36,7 @@ public struct RewriteRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberG
     ///   - produceClosure: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?,
                 params: PType,
-                prng: PRNG,
+                prng: RNGWrapper<PRNG>,
                 _ produceClosure: @escaping multiMatchProducesModuleList)
     {
         matchset = (left, direct, right)
@@ -53,14 +53,14 @@ public struct RewriteRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberG
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type,
                 params: PType,
-                prng: PRNG,
+                prng: RNGWrapper<PRNG>,
                 _ singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchset = (nil, direct, nil)
         parameters = params
         self.prng = prng
         produceClosure = { _, direct, _, params, _ -> [Module] in
-            try singleModuleProduce(direct, params, RNGWrapper(prng))
+            try singleModuleProduce(direct, params, prng)
         }
     }
 
@@ -68,6 +68,6 @@ public struct RewriteRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberG
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
     public func produce(_ matchSet: ModuleSet) throws -> [Module] {
-        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters, RNGWrapper(prng))
+        try produceClosure(matchSet.leftInstance, matchSet.directInstance, matchSet.rightInstance, parameters, prng)
     }
 }
