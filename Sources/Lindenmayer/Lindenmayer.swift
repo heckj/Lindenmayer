@@ -27,7 +27,7 @@ public enum Lindenmayer {
     /// - Parameters:
     ///   - axiom: An initial module that represents the initial state of the Lindenmayer system..
     ///   - prng: A psuedo-random number generator to use for randomness in rule productions.
-    static func basic<RNGType>(_ axiom: Module, prng: RNGType) -> LSystemRNG<RNGType> {
+    static func withRNG<RNGType>(_ axiom: Module, prng: RNGType) -> LSystemRNG<RNGType> {
         return LSystemRNG([axiom], prng: RNGWrapper(prng))
     }
 
@@ -35,7 +35,7 @@ public enum Lindenmayer {
     /// - Parameters:
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - prng: A psuedo-random number generator to use for for randomness in rule productions.
-    static func basic<RNGType>(_ axiom: [Module], prng: RNGType) -> LSystemRNG<RNGType> {
+    static func withRNG<RNGType>(_ axiom: [Module], prng: RNGType) -> LSystemRNG<RNGType> {
         return LSystemRNG(axiom, prng: RNGWrapper(prng))
     }
 

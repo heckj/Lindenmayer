@@ -466,7 +466,7 @@ enum DetailedExamples {
 
     struct BushDefinitions {}
 
-    static var randomBush = Lindenmayer.withDefines(Stem2(length: 1), prng: PRNG(seed: 42), parameters: BushDefinitions())
+    static var randomBush = Lindenmayer.withRNG(Stem2(length: 1), prng: PRNG(seed: 42))
         .rewriteWithRNG(Stem2.self) { stem, rng -> [Module] in
             guard let length = stem.length else {
                 throw RuntimeError<Stem2>(stem)
@@ -475,7 +475,7 @@ enum DetailedExamples {
             let upper: Float = 45.0
             let lower: Float = 15.0
 
-            if rng.randomBool() {
+            if rng.p(0.5) {
                 return [StaticStem2(length: 2), Modules.PitchDown(Double(rng.randomFloat(in: lower ... upper))), Stem2(length: length)]
             } else {
                 return [StaticStem2(length: 2), Modules.PitchUp(Double(rng.randomFloat(in: lower ... upper))), Stem2(length: length)]
