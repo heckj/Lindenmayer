@@ -27,13 +27,14 @@ final class WhiteboxParametricRuleTests: XCTestCase {
         XCTAssertNotNil(r)
         XCTAssertNotNil(r.parameters)
 
+        let moduleSet = ModuleSet(directInstance: p)
         // verify evaluation will trigger with a default P module
-        XCTAssertEqual(r.evaluate(nil, ParameterizedExample.self, nil), true)
+        XCTAssertEqual(r.evaluate(moduleSet), true)
         // And with a different parameter value
-        XCTAssertEqual(r.evaluate(nil, type(of: ParameterizedExample(21)), nil), true)
+        let differentValueModuleSet = ModuleSet(directInstance: ParameterizedExample(21))
+        XCTAssertEqual(r.evaluate(differentValueModuleSet), true)
 
-        let set = ModuleSet(directInstance: ParameterizedExample(10), directInstanceType: ParameterizedExample.self)
-        let newModules: [Module] = try r.produce(set)
+        let newModules: [Module] = try r.produce(moduleSet)
         XCTAssertEqual(newModules.count, 1)
         let param = newModules[0] as! ParameterizedExample
         // verify that our rule was processed, returning the same module with
@@ -52,12 +53,14 @@ final class WhiteboxParametricRuleTests: XCTestCase {
         XCTAssertNotNil(r)
         XCTAssertNotNil(r.parameters)
 
+        let moduleSet = ModuleSet(directInstance: p)
         // verify evaluation will trigger with a default P module
-        XCTAssertEqual(r.evaluate(nil, ParameterizedExample.self, nil), true)
+        XCTAssertEqual(r.evaluate(moduleSet), true)
         // And with a different parameter value
-        XCTAssertEqual(r.evaluate(nil, type(of: ParameterizedExample(21)), nil), true)
+        let differentValueModuleSet = ModuleSet(directInstance: ParameterizedExample(21))
+        XCTAssertEqual(r.evaluate(differentValueModuleSet), true)
 
-        let set = ModuleSet(directInstance: ParameterizedExample(10), directInstanceType: ParameterizedExample.self)
+        let set = ModuleSet(directInstance: ParameterizedExample(10))
         let newModules: [Module] = try r.produce(set)
         XCTAssertEqual(newModules.count, 1)
         let param = newModules[0] as! ParameterizedExample

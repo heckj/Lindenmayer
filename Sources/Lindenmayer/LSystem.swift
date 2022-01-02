@@ -41,7 +41,7 @@ public extension LSystem {
     func modules(atIndex: Int) -> ModuleSet {
         let strict = state[atIndex]
 
-        var moduleSet = ModuleSet(directInstance: strict, directInstanceType: type(of: strict))
+        var moduleSet = ModuleSet(directInstance: strict)
 
         if atIndex - 1 > 0 {
             let leftInstance = state[atIndex - 1]
@@ -74,7 +74,7 @@ public extension LSystem {
             // Iterate through the rules, finding the first rule to match
             // based on calling 'evaluate' on each of the rules in sequence.
             
-            let maybeRule: Rule? = rules.first(where: { $0.evaluate(moduleSet.leftInstanceType, moduleSet.directInstanceType, moduleSet.rightInstanceType) })
+            let maybeRule: Rule? = rules.first(where: { $0.evaluate(moduleSet) })
             if let foundRule = maybeRule {
                 // If a rule was found, then use it to generate the modules that
                 // replace this element in the sequence.

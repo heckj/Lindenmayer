@@ -16,8 +16,8 @@ final class RuleTests: XCTestCase {
             return [ctx]
         }
         XCTAssertNotNil(r)
-        let check = r.evaluate(nil, type(of: foo), nil)
-        XCTAssertEqual(check, false)
+        let moduleSet = ModuleSet(directInstance: foo)
+        XCTAssertEqual(r.evaluate(moduleSet), false)
     }
 
     func testRuleBasicMatch() throws {
@@ -25,38 +25,46 @@ final class RuleTests: XCTestCase {
             [self.foo]
         }
 
-        XCTAssertEqual(r.evaluate(nil, Modules.Internode.self, nil), true)
+        let moduleSet = ModuleSet(directInstance: Modules.internode)
+        XCTAssertEqual(r.evaluate(moduleSet), true)
     }
 
     func testRuleBasicFailMatch() throws {
         let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ -> [Module] in
             [self.foo]
         }
-
-        XCTAssertEqual(r.evaluate(nil, Foo.self, nil), false)
+        let moduleSet = ModuleSet(directInstance: foo)
+        XCTAssertEqual(r.evaluate(moduleSet), false)
     }
 
     func testRuleMatchExtraRight() throws {
         let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ -> [Module] in
             [self.foo]
         }
-
-        XCTAssertEqual(r.evaluate(nil, Modules.Internode.self, Foo.self), true)
+        let moduleSet = ModuleSet(leftInstance: nil,
+                                  directInstance: Modules.internode,
+                                  rightInstance: Foo())
+        XCTAssertEqual(r.evaluate(moduleSet), true)
     }
 
     func testRuleMatchExtraLeft() throws {
         let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ -> [Module] in
             [self.foo]
         }
+        let moduleSet = ModuleSet(leftInstance: Foo(),
+                                  directInstance: Modules.internode,
+                                  rightInstance: nil)
 
-        XCTAssertEqual(r.evaluate(Foo.self, Modules.Internode.self, nil), true)
+        XCTAssertEqual(r.evaluate(moduleSet), true)
     }
 
     func testRuleMatchExtraLeftAndRight() throws {
         let r = RewriteRuleRNG(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0))) { _, _ -> [Module] in
             [self.foo]
         }
-
-        XCTAssertEqual(r.evaluate(Foo.self, Modules.Internode.self, Foo.self), true)
+        let moduleSet = ModuleSet(leftInstance: Foo(),
+                                  directInstance: Modules.internode,
+                                  rightInstance: Foo())
+        XCTAssertEqual(r.evaluate(moduleSet), true)
     }
 }

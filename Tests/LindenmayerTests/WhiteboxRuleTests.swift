@@ -24,7 +24,7 @@ final class WhiteboxRuleTests: XCTestCase {
         }
         XCTAssertNotNil(r)
 
-        let set = ModuleSet(directInstance: Modules.internode, directInstanceType: Modules.Internode.self)
+        let set = ModuleSet(directInstance: Modules.internode)
         // Verify produce returns an Internode
         let newModule = try r.produce(set)
         XCTAssertEqual(newModule.count, 1)
