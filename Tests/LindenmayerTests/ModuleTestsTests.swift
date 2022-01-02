@@ -23,9 +23,6 @@ final class ModuleTests: XCTestCase {
         // Verify default built-in behavior for a new module
         XCTAssertEqual(x.render2D, [TwoDRenderCommand.ignore])
         XCTAssertEqual(x.render3D, ThreeDRenderCommand.ignore)
-        // Verify subscript lookup returns nil, but doesn't throw
-        XCTAssertNil(x[dynamicMember: "something"])
-        XCTAssertNil(x.something)
     }
 
     func testEmptyModuleName() {
