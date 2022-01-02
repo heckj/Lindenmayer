@@ -1,8 +1,8 @@
-import Lindenmayer
+@testable import Lindenmayer
 import Squirrel3
 import XCTest
 
-final class HasherPRNGTests: XCTestCase {
+final class PRNGWrapperTests: XCTestCase {
     func testConsistency_HasherPRNG() throws {
         let seed: UInt64 = 235_474_323
         var firstResults: [UInt64] = []
@@ -52,5 +52,32 @@ final class HasherPRNGTests: XCTestCase {
         }
 
         XCTAssertEqual(firstResults, secondResults)
+    }
+    
+    func testCheckingRNGReferenceType() throws {
+        // requires `@testable import Lindenmayer` to get to the DetailedExamples struct
+        let start = DetailedExamples.randomBush
+        
+        XCTAssertEqual(start.prng._prng.seed, 42)
+        XCTAssertEqual(start.prng._invokeCount, 0)
+        
+        let oneEv = try start.evolve()
+        let downcastOneEv = oneEv as! LSystemRNG<PRNG>
+        XCTAssertEqual(downcastOneEv.prng._prng.seed, 42)
+        XCTAssertEqual(downcastOneEv.prng._invokeCount, 2)
+        //print(downcastOneEv.prng._prng.position)
+        
+        let sideTest = RNGWrapper(PRNG(seed: 42))
+        let _ = sideTest.p()
+        let _ = sideTest.p()
+        XCTAssertEqual(sideTest._invokeCount, 2)
+        XCTAssertEqual(sideTest._prng.position, downcastOneEv.prng._prng.position)
+        
+        let twoEv = try oneEv.evolve()
+        let downcastTwoEv = twoEv as! LSystemRNG<PRNG>
+        // Even though evolve is returning a new LSystem, the underlying reference to the RNG should be the same - so it
+        // continues to move forward as new evolutions are invoked.
+        XCTAssertEqual(downcastTwoEv.prng._invokeCount, 4)
+        XCTAssertEqual(downcastOneEv.prng._invokeCount, 4)
     }
 }
