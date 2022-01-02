@@ -10,3 +10,13 @@ The API is by no means finished, complete, or in a final form. There are several
 
 This edition is suitable for experimentation, and I certainly welcome feedback in the [discussion section](https://github.com/heckj/Lindenmayer/discussions) of the [Github repository](https://github.com/heckj/Lindenmayer/).
 
+## [0.7.0](https://github.com/heckj/Lindenmayer/releases/tag/0.7.0) (2022-1-2)
+
+**BREAKING CHANGES** 
+
+Writing rules ergonomic updates:
+
+The process of writing LSystems has been improved by including factory/wrapper methods on the various types of LSystems (basic, RNG, Parameters, RNG+Parameters), and now all the rules are explicitly typed. This in turn allows for the closures that produce the rewriting for the relevant modules to be explicitly typed, so there's no longer a need to down-cast from the existential `Module` type into the specific kind of module in order to use the types parameters when computing what replaces it.
+
+The rules all now also have additional evaluation criteria enabled through an optional (typed) closure so that you can choose if rules are activated not only by the types they match, but in addition with a closure that you provide that can interrogate the modules that were matched.
+
