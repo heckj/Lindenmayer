@@ -39,6 +39,7 @@ public struct RewriteRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberG
     public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?,
                 params: PType,
                 prng: RNGWrapper<PRNG>,
+                _ evalClosure: ((ModuleSet) -> Bool)?,
                 _ produceClosure: @escaping multiMatchProducesModuleList)
     {
         matchset = (left, direct, right)
@@ -56,6 +57,7 @@ public struct RewriteRuleDefinesRNG<PType, PRNG>: Rule where PRNG: RandomNumberG
     public init(_ direct: Module.Type,
                 params: PType,
                 prng: RNGWrapper<PRNG>,
+                _ evalClosure: ((ModuleSet) -> Bool)?,
                 _ singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchset = (nil, direct, nil)
