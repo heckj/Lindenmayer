@@ -46,7 +46,7 @@ public struct LSystemRNG<PRNG>: LSystem where PRNG: RandomNumberGenerator {
     ///   - direct: The type of module that the rule matches
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewriteWithRNG(_ direct: Module.Type, _ produce: @escaping (Module, Chaos<PRNG>) throws -> [Module]) -> Self {
+    public func rewriteWithRNG(_ direct: Module.Type, _ produce: @escaping (Module, RNGWrapper<PRNG>) throws -> [Module]) -> Self {
         let newRule = RewriteRuleRNG(direct, prng: prng, produce)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
@@ -60,7 +60,7 @@ public struct LSystemRNG<PRNG>: LSystem where PRNG: RandomNumberGenerator {
     ///   - right: An optional type of module that the rule matches to the right of the main module.
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewriteWithRNG(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produce: @escaping (Module?, Module, Module?, Chaos<PRNG>) throws -> [Module]) -> Self {
+    public func rewriteWithRNG(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produce: @escaping (Module?, Module, Module?, RNGWrapper<PRNG>) throws -> [Module]) -> Self {
         let newRule = RewriteRuleRNG(left, direct, right, prng: prng, produce)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])

@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import Squirrel3
 
 /// A collection of two-dimensional example L-systems.
 ///
@@ -355,7 +356,7 @@ enum DetailedExamples {
 
     static var hondaTree = Lindenmayer.withDefines(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
-        prng: HasherPRNG(seed: 42),
+        prng: PRNG(seed: 42),
         parameters: defines
     )
     .rewriteWithAll(Trunk.self) { trunk, params, _ in
@@ -465,7 +466,7 @@ enum DetailedExamples {
 
     struct BushDefinitions {}
 
-    static var randomBush = Lindenmayer.withDefines(Stem2(length: 1), prng: HasherPRNG(seed: 42), parameters: BushDefinitions())
+    static var randomBush = Lindenmayer.withDefines(Stem2(length: 1), prng: PRNG(seed: 42), parameters: BushDefinitions())
         .rewriteWithRNG(Stem2.self) { stem, rng -> [Module] in
             guard let length = stem.length else {
                 throw RuntimeError<Stem2>(stem)

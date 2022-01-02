@@ -1,9 +1,10 @@
 import Lindenmayer
+import Squirrel3
 import XCTest
 
 final class LSystemTests: XCTestCase {
     func testLSystemDefault() throws {
-        let x = LSystemRNG<HasherPRNG>([Modules.internode], prng: HasherPRNG(seed: 42))
+        let x = LSystemRNG<PRNG>([Modules.internode], prng: PRNG(seed: 42))
         XCTAssertNotNil(x)
 
         let result = x.state
