@@ -4,29 +4,27 @@ import XCTest
 
 final class WhiteboxRuleTests: XCTestCase {
     func testRuleDefaults() throws {
-        let r = RewriteRuleRNG<PRNG>(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), nil) { ctx, _ throws -> [Module] in
+        let r = RewriteRuleDirect(direct: Modules.Internode.self,
+                                  where: nil) { ctx in
             [ctx]
         }
         XCTAssertNotNil(r)
+        
 
-        // Verify matchset with basic rule
-        XCTAssertNotNil(r.matchset)
-        XCTAssertNil(r.matchset.0)
+        XCTAssertNotNil(r.matchingType)
 
-        // Kind of a wrong hack - Type isn't equatable, but I can get a string description of it...
-        XCTAssertEqual(String(describing: r.matchset.1), "Internode")
-        XCTAssertNil(r.matchset.2)
+        XCTAssertEqual(String(describing: type(of: r.matchingType)), "Internode.Type")
     }
 
     func testRuleProduction() throws {
-        let r = RewriteRuleRNG<PRNG>(Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), nil) { _, _ in
+        let r = RewriteRuleDirectRNG(directType: Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), where: nil) { _, _ in
             [Modules.internode]
         }
         XCTAssertNotNil(r)
 
         let set = ModuleSet(directInstance: Modules.internode)
         // Verify produce returns an Internode
-        let newModule = try r.produce(set)
+        let newModule = r.produce(set)
         XCTAssertEqual(newModule.count, 1)
         XCTAssertEqual(newModule[0].description, "I")
     }
