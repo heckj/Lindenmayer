@@ -20,7 +20,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
     let p = ParameterizedExample()
 
     func testRuleDefaults() throws {
-        let r = RewriteRuleDefinesRNG(ParameterizedExample.self, params: ExampleDefines(), prng: RNGWrapper(PRNG(seed: 0)), nil) { _, p, _ -> [Module] in
+        let r = RewriteRuleDirectDefinesRNG(directType: ParameterizedExample.self, parameters: ExampleDefines(), prng: RNGWrapper(PRNG(seed: 0)), where: nil) { _, p, _ -> [Module] in
             [ParameterizedExample(p.value + 1.0)]
         }
 
@@ -34,7 +34,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
         let differentValueModuleSet = ModuleSet(directInstance: ParameterizedExample(21))
         XCTAssertEqual(r.evaluate(differentValueModuleSet), true)
 
-        let newModules: [Module] = try r.produce(moduleSet)
+        let newModules: [Module] = r.produce(moduleSet)
         XCTAssertEqual(newModules.count, 1)
         let param = newModules[0] as! ParameterizedExample
         // verify that our rule was processed, returning the same module with
@@ -43,11 +43,11 @@ final class WhiteboxParametricRuleTests: XCTestCase {
     }
 
     func testRuleDefaultsWithSystemParameters() throws {
-        let r = RewriteRuleDefinesRNG(ParameterizedExample.self, params: ExampleDefines(), prng: RNGWrapper(PRNG(seed: 0)), nil) { ctx, p, _ -> [Module] in
-            guard let value = ctx.i else {
-                throw RuntimeError<ParameterizedExample>(ctx)
-            }
-            return [ParameterizedExample(value + p.value)]
+        let r = RewriteRuleDirectDefinesRNG(directType: ParameterizedExample.self,
+                                            parameters: ExampleDefines(),
+                                            prng: RNGWrapper(PRNG(seed: 0)),
+                                            where: nil) { ctx, p, _ -> [Module] in
+            return [ParameterizedExample(p.value + p.value)]
         }
 
         XCTAssertNotNil(r)
@@ -61,7 +61,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
         XCTAssertEqual(r.evaluate(differentValueModuleSet), true)
 
         let set = ModuleSet(directInstance: ParameterizedExample(10))
-        let newModules: [Module] = try r.produce(set)
+        let newModules: [Module] = r.produce(set)
         XCTAssertEqual(newModules.count, 1)
         let param = newModules[0] as! ParameterizedExample
         // verify that our rule was processed, returning the same module with
