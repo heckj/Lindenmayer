@@ -16,7 +16,8 @@ public protocol Rule: CustomStringConvertible {
     var parametricEval: ((ModuleSet) -> Bool)? { get }
 
     /// Returns a Boolean value that indicates whether the rule applies to the set of modules you provide.
-    func evaluate(_ leftCtxType: Module.Type?, _ directCtxType: Module.Type, _ rightCtxType: Module.Type?) -> Bool
+    func evaluate(_ matchSet: ModuleSet) -> Bool
+    //func evaluate(_ leftCtxType: Module.Type?, _ directCtxType: Module.Type, _ rightCtxType: Module.Type?) -> Bool
 
     /// Returns a sequence of modules based on the existing module, and potentially it's contextual position with the module to the right and left.
     /// - Returns: The sequence of modules that replaces the current module during evolution.
@@ -30,14 +31,10 @@ public extension Rule {
     ///   - directCtx: The type of the current atom to evaluate.
     ///   - rightCtx: The type of atom 'to the right' of the atom being evaluated, if available.
     /// - Returns: A Boolean value that indicates if the rule should be applied to the current atom within the L-systems state sequence.
-    func evaluate(_ leftCtxType: Module.Type?, _ directCtxType: Module.Type, _ rightCtxType: Module.Type?) -> Bool {
-        // TODO(heckj): add an additional property that exposes a closure to call
-        // to determine if the rule should be evaluated - where the closure exposes
-        // access to the internal parameters of the various matched modules - effectively
-        // make this a parametric L-system.
+    func evaluate(_ matchSet: ModuleSet) -> Bool {
 
         // short circuit if the direct context doesn't match the matchset's setting
-        guard matchset.1 == directCtxType else {
+        guard matchset.1 == matchSet.directInstanceType else {
             return false
         }
 
@@ -45,7 +42,7 @@ public extension Rule {
         let leftmatch: Bool
         // First unwrap the type if we can, because an Optional<Foo> won't match Foo...
         if let unwrapedLeft = matchset.0 {
-            leftmatch = unwrapedLeft == leftCtxType
+            leftmatch = unwrapedLeft == matchSet.leftInstanceType
         } else {
             leftmatch = true
         }
@@ -54,7 +51,7 @@ public extension Rule {
         let rightmatch: Bool
         // First unwrap the type if we can, because an Optional<Foo> won't match Foo...
         if let unwrapedRight = matchset.2 {
-            rightmatch = unwrapedRight == rightCtxType
+            rightmatch = unwrapedRight == matchSet.rightInstanceType
         } else {
             rightmatch = true
         }
