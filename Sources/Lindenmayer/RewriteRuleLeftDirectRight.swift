@@ -8,10 +8,9 @@
 import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-public struct RewriteRuleLeftDirectRight<LC, DC, RC>: Rule where LC: Module ,DC: Module, RC: Module {
-    
-    public var parametricEval: ((ModuleSet) -> Bool)? = nil
-    
+public struct RewriteRuleLeftDirectRight<LC, DC, RC>: Rule where LC: Module, DC: Module, RC: Module {
+    public var parametricEval: ((ModuleSet) -> Bool)?
+
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
     public typealias combinationMatchProducesList = (LC, DC, RC) -> [Module]
 
@@ -27,13 +26,13 @@ public struct RewriteRuleLeftDirectRight<LC, DC, RC>: Rule where LC: Module ,DC:
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(leftType: LC.Type, directType: DC.Type, rightType: RC.Type,
-                where evalClosure: ((ModuleSet) -> Bool)?,
+                where _: ((ModuleSet) -> Bool)?,
                 produces produceClosure: @escaping combinationMatchProducesList)
     {
         matchingTypes = (leftType, directType, rightType)
         self.produceClosure = produceClosure
     }
-    
+
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
     /// - Parameters:
     ///   - leftCtx: The type of atom 'to the left' of the atom being evaluated, if avaialble.
@@ -51,10 +50,10 @@ public struct RewriteRuleLeftDirectRight<LC, DC, RC>: Rule where LC: Module ,DC:
             return false
         }
 
-        if let additionalEval = self.parametricEval {
+        if let additionalEval = parametricEval {
             return additionalEval(matchSet)
         }
-        
+
         return true
     }
 
@@ -63,8 +62,8 @@ public struct RewriteRuleLeftDirectRight<LC, DC, RC>: Rule where LC: Module ,DC:
     /// - Returns: A sequence of modules that the produce closure returns.
     public func produce(_ matchSet: ModuleSet) -> [Module] {
         guard let leftInstance = matchSet.leftInstance as? LC,
-                let directInstance = matchSet.directInstance as? DC,
-                let rightInstance = matchSet.rightInstance as? RC
+              let directInstance = matchSet.directInstance as? DC,
+              let rightInstance = matchSet.rightInstance as? RC
         else {
             return []
         }

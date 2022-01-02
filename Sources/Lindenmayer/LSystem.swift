@@ -73,7 +73,7 @@ public extension LSystem {
             let moduleSet = modules(atIndex: index)
             // Iterate through the rules, finding the first rule to match
             // based on calling 'evaluate' on each of the rules in sequence.
-            
+
             let maybeRule: Rule? = rules.first(where: { $0.evaluate(moduleSet) })
             if let foundRule = maybeRule {
                 // If a rule was found, then use it to generate the modules that

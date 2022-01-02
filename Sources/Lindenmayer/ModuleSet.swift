@@ -7,7 +7,7 @@
 
 import Foundation
 //
-//public struct ModuleSetSingle<DC> where DC: Module {
+// public struct ModuleSetSingle<DC> where DC: Module {
 //    /// The module instance.
 //    let directInstance: DC
 //    /// The type of the module instance.
@@ -17,9 +17,9 @@ import Foundation
 //        self.directInstance = directInstance
 //        directInstanceType = type(of: directInstance)
 //    }
-//}
+// }
 //
-//public struct ModuleSetLeft<LC, DC> where DC: Module, LC: Module {
+// public struct ModuleSetLeft<LC, DC> where DC: Module, LC: Module {
 //
 //    /// The module to the left (earlier) in the L-systems's state sequence.
 //    let leftInstance: LC
@@ -41,9 +41,9 @@ import Foundation
 //        self.directInstance = directInstance
 //        directInstanceType = type(of: directInstance)
 //    }
-//}
+// }
 //
-//public struct ModuleSetRight<DC, RC> where DC: Module, RC: Module {
+// public struct ModuleSetRight<DC, RC> where DC: Module, RC: Module {
 //
 //    let leftInstance: Module? = nil
 //    let leftInstanceType: Module.Type? = nil
@@ -66,9 +66,9 @@ import Foundation
 //        self.rightInstance = rightInstance
 //        rightInstanceType = type(of: rightInstance)
 //    }
-//}
+// }
 //
-//public struct ModuleSetBoth<LC, DC, RC> where LC: Module, DC: Module, RC: Module {
+// public struct ModuleSetBoth<LC, DC, RC> where LC: Module, DC: Module, RC: Module {
 //
 //    /// The module to the left (earlier) in the L-systems's state sequence.
 //    let leftInstance: LC
@@ -95,7 +95,7 @@ import Foundation
 //        self.rightInstance = rightInstance
 //        rightInstanceType = type(of: rightInstance)
 //    }
-//}
+// }
 
 /// The set of modules found in sequence while processing the state of an L-system.
 ///
@@ -122,7 +122,7 @@ public struct ModuleSet {
     ///   - directInstanceType: The type of the module.
     public init(directInstance: Module) {
         self.directInstance = directInstance
-        self.directInstanceType = type(of: directInstance)
+        directInstanceType = type(of: directInstance)
     }
 
     /// Creates a new module set with a module and its left and right neighbors.
@@ -136,15 +136,15 @@ public struct ModuleSet {
     public init(leftInstance: Module?, directInstance: Module, rightInstance: Module?) {
         if let leftInstance = leftInstance {
             self.leftInstance = leftInstance
-            self.leftInstanceType = type(of: leftInstance)
+            leftInstanceType = type(of: leftInstance)
         }
-        
+
         self.directInstance = directInstance
-        self.directInstanceType = type(of: directInstance)
-        
+        directInstanceType = type(of: directInstance)
+
         if let rightInstance = rightInstance {
             self.rightInstance = rightInstance
-            self.rightInstanceType = type(of: rightInstance)
+            rightInstanceType = type(of: rightInstance)
         }
     }
 }

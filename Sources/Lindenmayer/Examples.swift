@@ -359,7 +359,7 @@ enum DetailedExamples {
         prng: PRNG(seed: 42),
         parameters: defines
     )
-        .rewriteWithAll(directContext: Trunk.self) { trunk, params, _ in
+    .rewriteWithAll(directContext: Trunk.self) { trunk, params, _ in
 
         // original: !(w) F(s) [ &(a0) B(s * r2, w * wr) ] /(d) A(s * r1, w * wr)
         // Conversion:
@@ -370,7 +370,7 @@ enum DetailedExamples {
         //   => branch, pitch down by a0 degrees, then grow a B branch (s = s * r2, w = w * wr)
         //      then end the branch, and yaw around by d°
 
-        return [
+        [
             StaticTrunk(growthDistance: trunk.growthDistance, diameter: trunk.diameter),
             Modules.branch,
             Modules.PitchDown(params.branchAngle),
@@ -382,12 +382,12 @@ enum DetailedExamples {
                   diameter: trunk.diameter * params.widthContraction),
         ]
     }
-        .rewriteWithAll(directContext: MainBranch.self) { branch, params, _ in
+    .rewriteWithAll(directContext: MainBranch.self) { branch, params, _ in
 
         // Original P2: B(s, w) -> !(w) F(s) [ -(a2) @V C(s * r2, w * wr) ] C(s * r1, w * wr)
         // !(w) F(s) - Static Main Branch
 
-        return [
+        [
             StaticBranch(growthDistance: branch.growthDistance, diameter: branch.diameter),
             Modules.branch,
 
@@ -402,11 +402,11 @@ enum DetailedExamples {
                             diameter: branch.diameter * params.widthContraction),
         ]
     }
-        .rewriteWithAll(directContext: SecondaryBranch.self) { branch, params, _ in
+    .rewriteWithAll(directContext: SecondaryBranch.self) { branch, params, _ in
 
         // Original: P3: C(s, w) -> !(w) F(s) [ +(a2) @V B(s * r2, w * wr) ] B(s * r1, w * wr)
 
-        return [
+        [
             StaticBranch(growthDistance: branch.growthDistance, diameter: branch.diameter),
             Modules.branch,
 
@@ -463,7 +463,7 @@ enum DetailedExamples {
                 return [StaticStem2(length: 2), Modules.PitchUp(Double(rng.randomFloat(in: lower ... upper))), Stem2(length: stem.length)]
             }
         }
-    
+
 //    static var experiment2 = Lindenmayer.basic(Stem2(length: 1))
 //        .rewrite(Stem2.self) { set in
 //            guard let length = set.directInstance.length else {

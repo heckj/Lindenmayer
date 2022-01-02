@@ -9,7 +9,6 @@ final class WhiteboxRuleTests: XCTestCase {
             [ctx]
         }
         XCTAssertNotNil(r)
-        
 
         XCTAssertNotNil(r.matchingType)
 

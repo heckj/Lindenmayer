@@ -10,9 +10,9 @@ import Foundation
 /// A type that represents a rewriting rule used by an L-system to process the modules within it.
 public protocol Rule: CustomStringConvertible {
     /// The types of modules this rule matches.
-// move into generics internal, remove from protocol
+    // move into generics internal, remove from protocol
 //    var matchset: (Module.Type?, Module.Type, Module.Type?) { get }
-    
+
 //    /// An optional closure that determines if the rule should be evaluated.
 //    var parametricEval: ((ModuleSet) -> Bool)? { get }
 
@@ -23,8 +23,9 @@ public protocol Rule: CustomStringConvertible {
     /// - Returns: The sequence of modules that replaces the current module during evolution.
     func produce(_ matchSet: ModuleSet) -> [Module]
 }
+
 //
-//public extension Rule {
+// public extension Rule {
 //    /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
 //    /// - Parameters:
 //    ///   - leftCtx: The type of atom 'to the left' of the atom being evaluated, if avaialble.
@@ -62,13 +63,13 @@ public protocol Rule: CustomStringConvertible {
 //
 //        return leftmatch && rightmatch
 //    }
-//}
+// }
 
 public extension Rule {
     // - MARK: CustomStringConvertable
 
     /// A description of the rule that details what it matches
     var description: String {
-        return "Rule" //[matching \(matchset)]"
+        return "Rule" // [matching \(matchset)]"
     }
 }
