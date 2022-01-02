@@ -8,16 +8,15 @@
 import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rule where LC: Module ,DC: Module, RC: Module, PRNG: RandomNumberGenerator {
-    
+public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rule where LC: Module, DC: Module, RC: Module, PRNG: RandomNumberGenerator {
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: PType
 
     /// A psuedo-random number generator to use for stochastic rule productions.
     var prng: RNGWrapper<PRNG>
 
-    public var parametricEval: ((ModuleSet) -> Bool)? = nil
-    
+    public var parametricEval: ((ModuleSet) -> Bool)?
+
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
     public typealias combinationMatchProducesList = (LC, DC, RC, PType, RNGWrapper<PRNG>) -> [Module]
 
@@ -35,7 +34,7 @@ public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rul
     public init(leftType: LC.Type, directType: DC.Type, rightType: RC.Type,
                 parameters: PType,
                 prng: RNGWrapper<PRNG>,
-                where evalClosure: ((ModuleSet) -> Bool)?,
+                where _: ((ModuleSet) -> Bool)?,
                 produces produceClosure: @escaping combinationMatchProducesList)
     {
         matchingTypes = (leftType, directType, rightType)
@@ -43,7 +42,7 @@ public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rul
         self.prng = prng
         self.produceClosure = produceClosure
     }
-    
+
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
     /// - Parameters:
     ///   - leftCtx: The type of atom 'to the left' of the atom being evaluated, if avaialble.
@@ -61,10 +60,10 @@ public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rul
             return false
         }
 
-        if let additionalEval = self.parametricEval {
+        if let additionalEval = parametricEval {
             return additionalEval(matchSet)
         }
-        
+
         return true
     }
 
@@ -73,11 +72,11 @@ public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rul
     /// - Returns: A sequence of modules that the produce closure returns.
     public func produce(_ matchSet: ModuleSet) -> [Module] {
         guard let leftInstance = matchSet.leftInstance as? LC,
-                let directInstance = matchSet.directInstance as? DC,
-                let rightInstance = matchSet.rightInstance as? RC
+              let directInstance = matchSet.directInstance as? DC,
+              let rightInstance = matchSet.rightInstance as? RC
         else {
             return []
         }
-        return  produceClosure(leftInstance, directInstance, rightInstance, self.parameters, self.prng)
+        return produceClosure(leftInstance, directInstance, rightInstance, parameters, prng)
     }
 }

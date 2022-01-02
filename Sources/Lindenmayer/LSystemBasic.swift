@@ -34,19 +34,19 @@ public struct LSystemBasic: LSystem {
     public func updatedLSystem(with state: [Module]) -> LSystem {
         return LSystemBasic(state, rules: rules)
     }
-    
 }
 
-extension LSystemBasic {
+public extension LSystemBasic {
     /// Adds a rewriting rule to the L-System.
     /// - Parameters:
     ///   - direct: The type of module that the rule matches
     ///   - where: A closure that you provide ...
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewrite<DC>(_ direct: DC.Type,
-                            where evalClosure: (@escaping (ModuleSet) -> Bool),
-                            produces produceClosure: @escaping (Module) -> [Module]) -> Self where DC: Module {
+    func rewrite<DC>(_ direct: DC.Type,
+                     where evalClosure: @escaping (ModuleSet) -> Bool,
+                     produces produceClosure: @escaping (Module) -> [Module]) -> Self where DC: Module
+    {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
@@ -58,8 +58,9 @@ extension LSystemBasic {
     ///   - direct: The type of module that the rule matches
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewrite<DC>(_ direct: DC.Type,
-                            produces produceClosure: @escaping (Module) -> [Module]) -> Self where DC: Module {
+    func rewrite<DC>(_ direct: DC.Type,
+                     produces produceClosure: @escaping (Module) -> [Module]) -> Self where DC: Module
+    {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
@@ -72,9 +73,10 @@ extension LSystemBasic {
     ///   - where: A closure that you provide ...
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
-                            where evalClosure: (@escaping (ModuleSet) -> Bool),
-                                produces produceClosure: @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module {
+    func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
+                         where evalClosure: @escaping (ModuleSet) -> Bool,
+                         produces produceClosure: @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
+    {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
@@ -86,8 +88,9 @@ extension LSystemBasic {
     ///   - direct: The type of module that the rule matches
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
-                                produces produceClosure: @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module {
+    func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
+                         produces produceClosure: @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
+    {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
@@ -100,9 +103,10 @@ extension LSystemBasic {
     ///   - where: A closure that you provide ...
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
-                            where evalClosure: (@escaping (ModuleSet) -> Bool),
-                                produces produceClosure: @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module {
+    func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
+                         where evalClosure: @escaping (ModuleSet) -> Bool,
+                         produces produceClosure: @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
+    {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
@@ -114,24 +118,25 @@ extension LSystemBasic {
     ///   - direct: The type of module that the rule matches
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
-                                produces produceClosure: @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module {
+    func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
+                         produces produceClosure: @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
+    {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return LSystemBasic(state, rules: newRuleSet)
     }
-    
-    
+
     /// Adds a rewriting rule to the L-System.
     /// - Parameters:
     ///   - direct: The type of module that the rule matches
     ///   - where: A closure that you provide ...
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-                            where evalClosure: (@escaping (ModuleSet) -> Bool),
-                                    produces produceClosure: @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module {
+    func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
+                             where evalClosure: @escaping (ModuleSet) -> Bool,
+                             produces produceClosure: @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
+    {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
@@ -143,8 +148,9 @@ extension LSystemBasic {
     ///   - direct: The type of module that the rule matches
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
-    public func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-                                    produces produceClosure: @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module {
+    func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
+                             produces produceClosure: @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
+    {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])

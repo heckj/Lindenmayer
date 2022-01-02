@@ -9,8 +9,7 @@ import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
-    
-    public var parametricEval: ((ModuleSet) -> Bool)? = nil
+    public var parametricEval: ((ModuleSet) -> Bool)?
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: PType
@@ -31,14 +30,14 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType direct: DC.Type,
                 parameters: PType,
-                where evalClosure: ((ModuleSet) -> Bool)?,
+                where _: ((ModuleSet) -> Bool)?,
                 produces singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchingType = direct
         self.parameters = parameters
         produceClosure = singleModuleProduce
     }
-    
+
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
     /// - Parameters:
     ///   - leftCtx: The type of atom 'to the left' of the atom being evaluated, if avaialble.
@@ -46,19 +45,17 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
     ///   - rightCtx: The type of atom 'to the right' of the atom being evaluated, if available.
     /// - Returns: A Boolean value that indicates if the rule should be applied to the current atom within the L-systems state sequence.
     public func evaluate(_ matchSet: ModuleSet) -> Bool {
-
         // short circuit if the direct context doesn't match the matchset's setting
         guard matchingType == matchSet.directInstanceType else {
             return false
         }
 
-        if let additionalEval = self.parametricEval {
+        if let additionalEval = parametricEval {
             return additionalEval(matchSet)
         }
-        
+
         return true
     }
-
 
     /// Invokes the rule's produce closure with the modules provided.
     /// - Parameter matchSet: The module instances to pass to the produce closure.
@@ -67,6 +64,6 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
         guard let directInstance = matchSet.directInstance as? DC else {
             return []
         }
-        return produceClosure(directInstance, self.parameters)
+        return produceClosure(directInstance, parameters)
     }
 }
