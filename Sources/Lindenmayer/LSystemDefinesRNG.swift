@@ -62,7 +62,7 @@ public extension LSystemDefinesRNG {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithAll<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-        where evalClosure: @escaping (ModuleSet) -> Bool,
+        where evalClosure: @escaping (LC, DC, RC, PType) -> Bool,
         produces produceClosure: @escaping (LC, DC, RC, PType, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module, PRNG: RandomNumberGenerator
@@ -113,7 +113,7 @@ public extension LSystemDefinesRNG {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithAll<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
-        where evalClosure: @escaping (ModuleSet) -> Bool,
+        where evalClosure: @escaping (LC, DC, PType) -> Bool,
         produces produceClosure: @escaping (LC, DC, PType, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
         where LC: Module, DC: Module
@@ -163,7 +163,7 @@ public extension LSystemDefinesRNG {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithAll<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
-        where evalClosure: @escaping (ModuleSet) -> Bool,
+        where evalClosure: @escaping (DC, RC, PType) -> Bool,
         produces produceClosure: @escaping (DC, RC, PType, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
         where DC: Module, RC: Module, PRNG: RandomNumberGenerator
@@ -212,7 +212,7 @@ public extension LSystemDefinesRNG {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithAll<DC>(
         directContext: DC.Type,
-        where evalClosure: @escaping (ModuleSet) -> Bool,
+        where evalClosure: @escaping (DC, PType) -> Bool,
         produces produceClosure: @escaping (DC, PType, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
         where DC: Module
@@ -266,7 +266,7 @@ public extension LSystemDefinesRNG {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithParams<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-        where evalClosure: @escaping (ModuleSet) -> Bool,
+        where evalClosure: @escaping (LC, DC, RC, PType) -> Bool,
         produces produceClosure: @escaping (LC, DC, RC, PType) -> [Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module
@@ -320,7 +320,7 @@ public extension LSystemDefinesRNG {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-        where evalClosure: @escaping (ModuleSet) -> Bool,
+        where evalClosure: @escaping (LC, DC, RC) -> Bool,
         produces produceClosure: @escaping (LC, DC, RC, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module, PRNG: RandomNumberGenerator
@@ -369,7 +369,7 @@ public extension LSystemDefinesRNG {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
-        where evalClosure: @escaping (ModuleSet) -> Bool,
+        where evalClosure: @escaping (LC, DC) -> Bool,
         produces produceClosure: @escaping (LC, DC, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
         where LC: Module, DC: Module
@@ -418,7 +418,7 @@ public extension LSystemDefinesRNG {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
-        where evalClosure: @escaping (ModuleSet) -> Bool,
+        where evalClosure: @escaping (DC, RC) -> Bool,
         produces produceClosure: @escaping (DC, RC, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
         where DC: Module, RC: Module
@@ -465,7 +465,7 @@ public extension LSystemDefinesRNG {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<DC>(
         directContext: DC.Type,
-        where evalClosure: @escaping (ModuleSet) -> Bool,
+        where evalClosure: @escaping (DC) -> Bool,
         produces produceClosure: @escaping (DC, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
         where DC: Module
@@ -512,8 +512,8 @@ public extension LSystemDefinesRNG {
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC>(_ direct: DC.Type,
-                     where evalClosure: @escaping (ModuleSet) -> Bool,
-                     produces produceClosure: @escaping (Module) -> [Module]) -> Self where DC: Module
+                     where evalClosure: @escaping (DC) -> Bool,
+                     produces produceClosure: @escaping (DC) -> [Module]) -> Self where DC: Module
     {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
         var newRuleSet: [Rule] = rules
@@ -527,7 +527,7 @@ public extension LSystemDefinesRNG {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC>(_ direct: DC.Type,
-                     produces produceClosure: @escaping (Module) -> [Module]) -> Self where DC: Module
+                     produces produceClosure: @escaping (DC) -> [Module]) -> Self where DC: Module
     {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
         var newRuleSet: [Rule] = rules
@@ -542,7 +542,7 @@ public extension LSystemDefinesRNG {
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
-                         where evalClosure: @escaping (ModuleSet) -> Bool,
+                         where evalClosure: @escaping (LC, DC) -> Bool,
                          produces produceClosure: @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
     {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
@@ -572,7 +572,7 @@ public extension LSystemDefinesRNG {
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
-                         where evalClosure: @escaping (ModuleSet) -> Bool,
+                         where evalClosure: @escaping (DC, RC) -> Bool,
                          produces produceClosure: @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
     {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
@@ -602,7 +602,7 @@ public extension LSystemDefinesRNG {
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-                             where evalClosure: @escaping (ModuleSet) -> Bool,
+                             where evalClosure: @escaping (LC, DC, RC) -> Bool,
                              produces produceClosure: @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
     {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)

@@ -12,7 +12,7 @@ public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: PType
 
-    public var parametricEval: ((ModuleSet) -> Bool)?
+    public var parametricEval: ((LC, DC, PType) -> Bool)?
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
     public typealias combinationMatchProducesList = (LC, DC, PType) -> [Module]
@@ -30,7 +30,7 @@ public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(leftType: LC.Type, directType: DC.Type,
                 parameters: PType,
-                where _: ((ModuleSet) -> Bool)?,
+                where _: ((LC, DC, PType) -> Bool)?,
                 produces produceClosure: @escaping combinationMatchProducesList)
     {
         matchingTypes = (leftType, directType)
@@ -53,7 +53,13 @@ public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module
         }
 
         if let additionalEval = parametricEval {
-            return additionalEval(matchSet)
+            guard let leftInstance = matchSet.leftInstance as? LC,
+                  let directInstance = matchSet.directInstance as? DC
+
+            else {
+                return false
+            }
+            return additionalEval(leftInstance, directInstance, parameters)
         }
 
         return true

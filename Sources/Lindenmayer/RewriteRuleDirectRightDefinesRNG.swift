@@ -15,7 +15,7 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
     /// A psuedo-random number generator to use for stochastic rule productions.
     var prng: RNGWrapper<PRNG>
 
-    public var parametricEval: ((ModuleSet) -> Bool)?
+    public var parametricEval: ((DC, RC, PType) -> Bool)?
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
     public typealias combinationMatchProducesList = (DC, RC, PType, RNGWrapper<PRNG>) -> [Module]
@@ -34,7 +34,7 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
     public init(directType: DC.Type, rightType: RC.Type,
                 parameters: PType,
                 prng: RNGWrapper<PRNG>,
-                where _: ((ModuleSet) -> Bool)?,
+                where _: ((DC, RC, PType) -> Bool)?,
                 produces produceClosure: @escaping combinationMatchProducesList)
     {
         matchingTypes = (directType, rightType)
@@ -58,7 +58,12 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
         }
 
         if let additionalEval = parametricEval {
-            return additionalEval(matchSet)
+            guard let directInstance = matchSet.directInstance as? DC,
+                  let rightInstance = matchSet.rightInstance as? RC
+            else {
+                return false
+            }
+            return additionalEval(directInstance, rightInstance, parameters)
         }
 
         return true

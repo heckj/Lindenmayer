@@ -9,7 +9,7 @@ import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Module, PRNG: RandomNumberGenerator {
-    public var parametricEval: ((ModuleSet) -> Bool)?
+    public var parametricEval: ((DC, PType) -> Bool)?
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: PType
@@ -34,7 +34,7 @@ public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Modul
     public init(directType direct: DC.Type,
                 parameters: PType,
                 prng: RNGWrapper<PRNG>,
-                where _: ((ModuleSet) -> Bool)?,
+                where _: ((DC, PType) -> Bool)?,
                 produces singleModuleProduce: @escaping singleMatchProducesList)
     {
         matchingType = direct
@@ -56,7 +56,11 @@ public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Modul
         }
 
         if let additionalEval = parametricEval {
-            return additionalEval(matchSet)
+            guard let directInstance = matchSet.directInstance as? DC else {
+                return false
+            }
+
+            return additionalEval(directInstance, parameters)
         }
 
         return true
