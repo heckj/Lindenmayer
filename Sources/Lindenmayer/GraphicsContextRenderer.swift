@@ -36,6 +36,11 @@ extension ColorRepresentation {
 public struct GraphicsContextRenderer {
     let unitLength: Double
 
+    enum TurnDirection {
+        case left
+        case right
+    }
+    
     public init(unitLength: Double = 1) {
         self.unitLength = unitLength
     }
@@ -69,31 +74,45 @@ public struct GraphicsContextRenderer {
 
         for module in lsystem.state {
             for cmd in module.render2D {
-                switch cmd {
-                case let .move(distance):
-                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
-                case let .draw(distance):
-                    let path = CGMutablePath()
-                    path.move(to: currentState.position)
-                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
-                    path.addLine(to: currentState.position)
-                    context.stroke(
-                        Path(path),
-                        with: GraphicsContext.Shading.color(currentState.lineColor.color),
-                        lineWidth: currentState.lineWidth
-                    )
-                case let .turn(direction, angle):
-                    currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
-                case .saveState:
+                switch cmd.name {
+                case TurtleCodes.move.rawValue:
+                    if let cmd = cmd as? RenderCommand.Move {
+                        currentState = updatedStateByMoving(currentState, distance: unitLength * cmd.length)
+                    }
+                case TurtleCodes.draw.rawValue:
+                    if let cmd = cmd as? RenderCommand.Draw {
+                        let path = CGMutablePath()
+                        path.move(to: currentState.position)
+                        currentState = updatedStateByMoving(currentState, distance: unitLength * cmd.length)
+                        path.addLine(to: currentState.position)
+                        context.stroke(
+                            Path(path),
+                            with: GraphicsContext.Shading.color(currentState.lineColor.color),
+                            lineWidth: currentState.lineWidth
+                        )
+                    }
+                case TurtleCodes.branch.rawValue:
                     state.append(currentState)
-                case .restoreState:
+                case TurtleCodes.endBranch.rawValue:
                     currentState = state.removeLast()
-                case .ignore:
+                case TurtleCodes.setLineWidth.rawValue:
+                    if let cmd = cmd as? RenderCommand.SetLineWidth {
+                        currentState = updatedStateWithLineWidth(currentState, lineWidth: cmd.width)
+                    }
+                case TurtleCodes.setColor.rawValue:
+                    if let cmd = cmd as? RenderCommand.SetColor {
+                        currentState = updatedStateWithLineColor(currentState, lineColor: cmd.representation)
+                    }
+                case TurtleCodes.leftTurn.rawValue:
+                    if let cmd = cmd as? RenderCommand.TurnLeft {
+                        currentState = updatedStateByTurning(currentState, angle: cmd.angle, direction: .left)
+                    }
+                case TurtleCodes.rightTurn.rawValue:
+                    if let cmd = cmd as? RenderCommand.TurnRight {
+                        currentState = updatedStateByTurning(currentState, angle: cmd.angle, direction: .right)
+                    }
+                default: // ignore
                     break
-                case let .setLineWidth(width):
-                    currentState = updatedStateWithLineWidth(currentState, lineWidth: width)
-                case let .setLineColor(color):
-                    currentState = updatedStateWithLineColor(currentState, lineColor: color)
                 }
             }
         }
@@ -112,18 +131,28 @@ public struct GraphicsContextRenderer {
 
         for module in system.state {
             for cmd in module.render2D {
-                switch cmd {
-                case let .move(distance):
-                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
-                case let .draw(distance):
-                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
-                case let .turn(direction, angle):
-                    currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
-                case .saveState:
+                switch cmd.name {
+                case TurtleCodes.move.rawValue:
+                    if let cmd = cmd as? RenderCommand.Move {
+                        currentState = updatedStateByMoving(currentState, distance: unitLength * cmd.length)
+                    }
+                case TurtleCodes.draw.rawValue:
+                    if let cmd = cmd as? RenderCommand.Draw {
+                        currentState = updatedStateByMoving(currentState, distance: unitLength * cmd.length)
+                    }
+                case TurtleCodes.branch.rawValue:
                     stateStack.append(currentState)
-                case .restoreState:
+                case TurtleCodes.endBranch.rawValue:
                     currentState = stateStack.removeLast()
-                default:
+                case TurtleCodes.leftTurn.rawValue:
+                    if let cmd = cmd as? RenderCommand.TurnLeft {
+                        currentState = updatedStateByTurning(currentState, angle: cmd.angle, direction: .left)
+                    }
+                case TurtleCodes.rightTurn.rawValue:
+                    if let cmd = cmd as? RenderCommand.TurnRight {
+                        currentState = updatedStateByTurning(currentState, angle: cmd.angle, direction: .right)
+                    }
+                default: // ignore
                     break
                 }
                 minY = min(currentState.position.y, minY)
@@ -133,6 +162,7 @@ public struct GraphicsContextRenderer {
                 // print("current location: [\(currentState.position.x), \(currentState.position.y)]")
                 // print("Minimums: [\(minX), \(minY)]")
                 // print("Maximums: [\(maxX), \(maxY)]")
+
             }
         }
         return CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
@@ -152,25 +182,31 @@ public struct GraphicsContextRenderer {
 
         for module in modules {
             for cmd in module.render2D {
-                switch cmd {
-                case let .move(distance):
-                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
-                    path.move(to: currentState.position)
-                case let .draw(distance):
-                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
-                    path.addLine(to: currentState.position)
-                case let .turn(direction, angle):
-                    currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
-                case .saveState:
+                switch cmd.name {
+                case TurtleCodes.move.rawValue:
+                    if let cmd = cmd as? RenderCommand.Move {
+                        currentState = updatedStateByMoving(currentState, distance: unitLength * cmd.length)
+                        path.move(to: currentState.position)
+                    }
+                case TurtleCodes.draw.rawValue:
+                    if let cmd = cmd as? RenderCommand.Draw {
+                        currentState = updatedStateByMoving(currentState, distance: unitLength * cmd.length)
+                        path.addLine(to: currentState.position)
+                    }
+                case TurtleCodes.branch.rawValue:
                     state.append(currentState)
-                case .restoreState:
+                case TurtleCodes.endBranch.rawValue:
                     currentState = state.removeLast()
                     path.move(to: currentState.position)
-                case .ignore:
-                    break
-                case .setLineWidth:
-                    break
-                case .setLineColor:
+                case TurtleCodes.leftTurn.rawValue:
+                    if let cmd = cmd as? RenderCommand.TurnLeft {
+                        currentState = updatedStateByTurning(currentState, angle: cmd.angle, direction: .left)
+                    }
+                case TurtleCodes.rightTurn.rawValue:
+                    if let cmd = cmd as? RenderCommand.TurnRight {
+                        currentState = updatedStateByTurning(currentState, angle: cmd.angle, direction: .right)
+                    }
+                default: // ignore
                     break
                 }
             }
