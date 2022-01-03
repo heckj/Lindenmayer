@@ -122,53 +122,62 @@ public struct SceneKitRenderer {
         for module in lsystem.state {
             // process the 'module.render3D'
             let cmd = module.render3D
-            switch cmd {
-            case let .pitch(direction, angle):
-                let directionAngleInRadians: Float
-                switch direction {
-                case .down:
-                    // negative values pitch nose down
-                    directionAngleInRadians = -1.0 * degreesToRadians(angle)
-                case .up:
-                    // positive values pitch nose up
-                    directionAngleInRadians = degreesToRadians(angle)
+            switch cmd.name {
+            case TurtleCodes.pitchUp.rawValue:
+                // positive values pitch nose up
+                if let cmd = cmd as? RenderCommand.PitchUp {
+                    let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
+                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
+                    print("Pitch (rotate around +X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
-                let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
-                currentState = currentState.applyingTransform(yawTransform)
+                
+            case TurtleCodes.pitchDown.rawValue:
+                // negative values pitch nose down
+                if let cmd = cmd as? RenderCommand.PitchDown {
+                    let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
+                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
+                    print("Pitch (rotate around +X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+                }
 
-                print("Pitch (rotate around +X Axis) by \(angle)° -> \(String(describing: currentState.transform))")
-
-            case let .roll(direction, angle):
-                let directionAngleInRadians: Float
-                switch direction {
-                case .right:
-                    // negative values roll to the right
-                    directionAngleInRadians = -1.0 * degreesToRadians(angle)
-                case .left:
+            case TurtleCodes.rollLeft.rawValue:
+                // negative values pitch nose down
+                if let cmd = cmd as? RenderCommand.RollLeft {
                     // positive values roll to the left
-                    directionAngleInRadians = degreesToRadians(angle)
+                    let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
+                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
+                    print("Roll (rotate around +Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
-                let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
-                currentState = currentState.applyingTransform(yawTransform)
+            case TurtleCodes.rollRight.rawValue:
+                if let cmd = cmd as? RenderCommand.RollRight {
+                    // negative values roll to the right
+                    let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
+                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
+                    print("Roll (rotate around +Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+                }
 
-                print("Roll (rotate around +Z Axis) by \(angle)° -> \(String(describing: currentState.transform))")
-
-            case let .yaw(direction, angle):
-                let directionAngleInRadians: Float
-                switch direction {
-                case .right:
-                    // negative values turn to the right
-                    directionAngleInRadians = -1.0 * degreesToRadians(angle)
-                case .left:
+            case TurtleCodes.leftTurn.rawValue:
+                if let cmd = cmd as? RenderCommand.TurnLeft {
                     // positive values turn to the left
-                    directionAngleInRadians = degreesToRadians(angle)
+                    let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
+                    let yawTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
+
+                    print("Yaw (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
-                let yawTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
-                currentState = currentState.applyingTransform(yawTransform)
+            case TurtleCodes.rightTurn.rawValue:
+                if let cmd = cmd as? RenderCommand.TurnRight {
+                    // negative values turn to the right
+                    let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
+                    let yawTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
 
-                print("Yaw (rotate around +Y Axis) by \(angle)° -> \(String(describing: currentState.transform))")
-
-            case .levelOut:
+                    print("Yaw (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+                }
+            case TurtleCodes.spinToHorizontal.rawValue:
                 let angle = currentState.transform.angleFromVertical()
                 print("Leveling out from angle: \(angle) vs. \(Float.pi / 2)")
                 if angle < (Float.pi / 2) {
@@ -202,82 +211,89 @@ public struct SceneKitRenderer {
 //                    print("Updated transform:")
 //                    print(currentState.transform.prettyPrintString("  "))
                 }
-            case let .move(distance):
-                let moveTransform = translationTransform(x: 0, y: Float(distance), z: 0)
-                currentState = currentState.applyingTransform(moveTransform)
-
-                print("Moving +y by \(distance) -> \(String(describing: currentState.transform))")
-
-            case let .cylinder(length, radius, colorRep):
-                let node = SCNNode(geometry: SCNCylinder(radius: radius, height: length))
-                if let colorRep = colorRep {
-                    node.geometry?.materials = [colorRep.material]
+                
+            case TurtleCodes.move.rawValue:
+                if let cmd = cmd as? RenderCommand.Move {
+                    let moveTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
+                    currentState = currentState.applyingTransform(moveTransform)
+                    print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
-
-                // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
-                let nudgeOriginTransform = translationTransform(x: 0, y: Float(length / 2.0), z: 0)
-//                print(" - calc nudgeTransform: \(nudgeOriginTransform)")
-                node.simdTransform = matrix_multiply(currentState.transform, nudgeOriginTransform)
-
-                scene.rootNode.addChildNode(node)
-                currentState.nodeRef = node
-
-                // Move the origin of the where to put the next object at the "end" of this node.
-                let moveStateTransform = translationTransform(x: 0, y: Float(length), z: 0)
-                currentState = currentState.applyingTransform(moveStateTransform)
-
-                print("Added cylinder (r=\(radius)) by \(length) at \(String(describing: node.simdTransform))")
-//                print("Moving +y by \(length) -> \(String(describing: currentState.transform))")
-
-            case let .cone(length, topRadius, bottomRadius, colorRep):
-                let node = SCNNode(geometry: SCNCone(topRadius: topRadius, bottomRadius: bottomRadius, height: length))
-                if let colorRep = colorRep {
-                    node.geometry?.materials = [colorRep.material]
-                }
-
-                // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
-                let nudgeOriginTransform = translationTransform(x: 0, y: Float(length / 2.0), z: 0)
-                node.simdTransform = matrix_multiply(currentState.transform, nudgeOriginTransform)
-
-                scene.rootNode.addChildNode(node)
-                currentState.nodeRef = node
-
-                // Move the origin of the where to put the next object at the "end" of this node.
-                let moveStateTransform = translationTransform(x: 0, y: Float(length), z: 0)
-                currentState = currentState.applyingTransform(moveStateTransform)
-
-                print("Added cone (tr=\(topRadius), br=\(bottomRadius) by \(length) at \(String(describing: node.simdTransform))")
-//                print("Moving +y by \(length) -> \(String(describing: currentState.transform))")
-
-            case let .sphere(radius, colorRep):
-                let node = SCNNode(geometry: SCNSphere(radius: radius))
-                if let colorRep = colorRep {
-                    node.geometry?.materials = [colorRep.material]
-                }
-                node.simdTransform = currentState.transform
-
-                scene.rootNode.addChildNode(node)
-                currentState.nodeRef = node
-
-                // Move the origin of the where to put the next object at the "end" of this node.
-                let moveStateTransform = translationTransform(x: 0, y: Float(radius), z: 0)
-                currentState = currentState.applyingTransform(moveStateTransform)
-
-                print("Added sphere (r=\(radius)) at \(String(describing: node.simdTransform))")
-//                print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")
-
-            case .saveState:
+                
+            case TurtleCodes.branch.rawValue:
                 stateStack.append(currentState)
                 print("Saving state: \(String(describing: currentState.transform))")
-
-            case .restoreState:
+                
+            case TurtleCodes.endBranch.rawValue:
                 currentState = stateStack.removeLast()
                 print("Restored state to: \(String(describing: currentState.transform))")
+            
+            case TurtleCodes.cylinder.rawValue:
+                if let cmd = cmd as? RenderCommand.Cylinder {
+                    let node = SCNNode(geometry: SCNCylinder(radius: cmd.radius, height: cmd.length))
+                    if let colorRep = cmd.color {
+                        node.geometry?.materials = [colorRep.material]
+                    }
 
-            case .ignore:
+                    // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
+                    let nudgeOriginTransform = translationTransform(x: 0, y: Float(cmd.length / 2.0), z: 0)
+    //                print(" - calc nudgeTransform: \(nudgeOriginTransform)")
+                    node.simdTransform = matrix_multiply(currentState.transform, nudgeOriginTransform)
+
+                    scene.rootNode.addChildNode(node)
+                    currentState.nodeRef = node
+
+                    // Move the origin of the where to put the next object at the "end" of this node.
+                    let moveStateTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
+                    currentState = currentState.applyingTransform(moveStateTransform)
+
+                    print("Added cylinder (r=\(cmd.radius)) by \(cmd.length) at \(String(describing: node.simdTransform))")
+    //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
+
+                }
+            case TurtleCodes.cone.rawValue:
+                if let cmd = cmd as? RenderCommand.Cone {
+                    let node = SCNNode(geometry: SCNCone(topRadius: cmd.radiusTop, bottomRadius: cmd.radiusBottom, height: cmd.length))
+                    if let colorRep = cmd.color {
+                        node.geometry?.materials = [colorRep.material]
+                    }
+
+                    // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
+                    let nudgeOriginTransform = translationTransform(x: 0, y: Float(cmd.length / 2.0), z: 0)
+                    node.simdTransform = matrix_multiply(currentState.transform, nudgeOriginTransform)
+
+                    scene.rootNode.addChildNode(node)
+                    currentState.nodeRef = node
+
+                    // Move the origin of the where to put the next object at the "end" of this node.
+                    let moveStateTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
+                    currentState = currentState.applyingTransform(moveStateTransform)
+
+                    print("Added cone (tr=\(cmd.radiusTop), br=\(cmd.radiusBottom) by \(cmd.length) at \(String(describing: node.simdTransform))")
+    //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
+
+                }
+            case TurtleCodes.sphere.rawValue:
+                if let cmd = cmd as? RenderCommand.Sphere {
+                    let node = SCNNode(geometry: SCNSphere(radius: cmd.radius))
+                    if let colorRep = cmd.color {
+                        node.geometry?.materials = [colorRep.material]
+                    }
+                    node.simdTransform = currentState.transform
+
+                    scene.rootNode.addChildNode(node)
+                    currentState.nodeRef = node
+
+                    // Move the origin of the where to put the next object at the "end" of this node.
+                    let moveStateTransform = translationTransform(x: 0, y: Float(cmd.radius), z: 0)
+                    currentState = currentState.applyingTransform(moveStateTransform)
+
+                    print("Added sphere (r=\(cmd.radius)) at \(String(describing: node.simdTransform))")
+    //                print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")
+                }
+            default: // ignore
                 break
-            }
-        }
+            } // switch cmd.name
+        } // for module in lsystem.state
 
         return scene
     }

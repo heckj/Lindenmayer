@@ -12,11 +12,21 @@ public protocol Module: CustomStringConvertible {
     ///
     /// Use a single character or very short string for the name, as it's used in textual descriptions of the state of an L-system.
     var name: String { get }
-
     /// Returns a sequence of render commands to display the content in 2-dimensionals.
-    var render2D: [TwoDRenderCommand] { get }
+    var render2D: [TwoDRenderCmd] { get }
     /// Returns a sequence of render commands to display the content in 3-dimensionals.
-    var render3D: ThreeDRenderCommand { get }
+    var render3D: ThreeDRenderCmd { get }
+}
+
+// MARK: - Default values (implementations of computed properties) for 2D and 3D rendering commands of a module.
+
+extension Module {    
+    public var render2D: [TwoDRenderCmd] {
+        return []
+    }
+    public var render3D: ThreeDRenderCmd {
+        return RenderCommand.Ignore()
+    }
 }
 
 public extension Module {
@@ -34,22 +44,3 @@ public extension Module {
     }
 }
 
-public extension Module {
-    // MARK: - Default render command implementations
-
-    /// The 2D rendering commands to use when a renderer represents this module visually.
-    ///
-    /// The default value is a single ``TwoDRenderCommand/ignore`` command, which provides no visual representation.
-    /// Provide your own variable that returns a list of render commands that the 2D renderer supports to define your own visual representation.
-    var render2D: [TwoDRenderCommand] {
-        return [.ignore]
-    }
-
-    /// The 3D rendering commands to use when a renderer represents this module visually.
-    ///
-    /// The default value is a single ``ThreeDRenderCommand/ignore`` command, which provides no visual representation.
-    /// Provide your own variable that returns a list of render commands that the 3D renderer supports to define your own visual representation.
-    var render3D: ThreeDRenderCommand {
-        return .ignore
-    }
-}
