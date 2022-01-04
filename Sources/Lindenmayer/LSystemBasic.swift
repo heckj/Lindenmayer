@@ -11,6 +11,7 @@ import Foundation
 public struct LSystemBasic: LSystem {
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
+    let axiom: [Module]
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public var rules: [Rule]
@@ -22,9 +23,15 @@ public struct LSystemBasic: LSystem {
     ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(_ axiom: [Module],
+                state: [Module]?,
                 rules: [Rule] = [])
     {
-        state = axiom
+        self.axiom = axiom
+        if let state = state {
+            self.state = state
+        } else {
+            state = axiom
+        }
         self.rules = rules
     }
 
@@ -32,7 +39,11 @@ public struct LSystemBasic: LSystem {
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules.
     public func updatedLSystem(with state: [Module]) -> LSystem {
-        return LSystemBasic(state, rules: rules)
+        return LSystemBasic(self.axiom, state: state, rules: rules)
+    }
+    
+    public func reset() -> LSystem {
+        return LSystemBasic(self.axiom, rules: rules)
     }
 }
 

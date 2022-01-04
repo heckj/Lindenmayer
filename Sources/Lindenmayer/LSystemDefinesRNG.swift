@@ -19,6 +19,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: RandomNumberGe
 
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
     public let state: [Module]
+    let axiom: [Module]
 
     var prng: RNGWrapper<PRNG>
 
@@ -29,13 +30,19 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: RandomNumberGe
     ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(axiom: [Module],
+                state: [Module]?,
                 parameters: PType,
                 prng: RNGWrapper<PRNG>,
                 rules: [Rule] = [])
     {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
-        state = axiom
+        axiom = axiom
+        if let state = state {
+            self.state = state
+        } else {
+            self.state = axiom
+        }
         self.parameters = parameters
         self.prng = prng
         self.rules = rules
@@ -47,6 +54,11 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: RandomNumberGe
     public func updatedLSystem(with state: [Module]) -> LSystem {
         return LSystemDefinesRNG<PType, PRNG>(axiom: state, parameters: parameters, prng: prng, rules: rules)
     }
+    
+    public func reset() -> LSystem {
+        return LSystemDefinesRNG<PType, PRNG>(self.axiom, state: state, parameters: parameters, rules: rules)
+    }
+
 }
 
 // - MARK: Rewrite rules including RNG and Parameters from the LSystem

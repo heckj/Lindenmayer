@@ -24,6 +24,9 @@ public protocol LSystem {
 
     /// Returns a new L-system after processing the current state against the rules to generate a new state sequence.
     func evolve() -> LSystem
+    
+    /// Returns a new L-system reset to its original state. 
+    func reset() -> LSystem
 
     /// Returns a set of modules around the index location you provide.
     /// - Parameter atIndex: The index location of the state of the current L-system.
