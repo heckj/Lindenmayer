@@ -58,12 +58,12 @@ final class PRNGWrapperTests: XCTestCase {
         // requires `@testable import Lindenmayer` to get to the DetailedExamples struct
         let start = Detailed3DExamples.randomBush
 
-        XCTAssertEqual(start.prng._prng.seed, 42)
+        XCTAssertEqual(start.prng.seed, 42)
         XCTAssertEqual(start.prng._invokeCount, 0)
 
         let oneEv = start.evolve()
         let downcastOneEv = oneEv as! LSystemRNG<PRNG>
-        XCTAssertEqual(downcastOneEv.prng._prng.seed, 42)
+        XCTAssertEqual(downcastOneEv.prng.seed, 42)
         XCTAssertEqual(downcastOneEv.prng._invokeCount, 2)
         // print(downcastOneEv.prng._prng.position)
 
@@ -71,7 +71,7 @@ final class PRNGWrapperTests: XCTestCase {
         _ = sideTest.p()
         _ = sideTest.p()
         XCTAssertEqual(sideTest._invokeCount, 2)
-        XCTAssertEqual(sideTest._prng.position, downcastOneEv.prng._prng.position)
+        XCTAssertEqual(sideTest.position, downcastOneEv.prng.position)
 
         let twoEv = oneEv.evolve()
         let downcastTwoEv = twoEv as! LSystemRNG<PRNG>
@@ -79,5 +79,24 @@ final class PRNGWrapperTests: XCTestCase {
         // continues to move forward as new evolutions are invoked.
         XCTAssertEqual(downcastTwoEv.prng._invokeCount, 4)
         XCTAssertEqual(downcastOneEv.prng._invokeCount, 4)
+        start.prng.resetRNG(seed: start.prng.seed)
+    }
+    
+    func testResettingPRNG() throws {
+        // requires `@testable import Lindenmayer` to get to the DetailedExamples struct
+        let start = Detailed3DExamples.randomBush
+
+        XCTAssertEqual(start.prng.seed, 42)
+        XCTAssertEqual(start.prng._invokeCount, 0)
+
+        let oneEv = start.evolve()
+        let downcastOneEv = oneEv as! LSystemRNG<PRNG>
+        XCTAssertEqual(downcastOneEv.prng.seed, 42)
+        XCTAssertEqual(downcastOneEv.prng._invokeCount, 2)
+        
+        start.prng.resetRNG(seed: start.prng.seed)
+        XCTAssertEqual(downcastOneEv.prng.seed, 42)
+        XCTAssertEqual(downcastOneEv.prng.position, 42)
+        XCTAssertEqual(downcastOneEv.prng._invokeCount, 0)
     }
 }
