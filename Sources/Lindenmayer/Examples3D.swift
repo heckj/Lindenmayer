@@ -61,7 +61,7 @@ public enum Detailed3DExamples {
 
     /*
      Monopodial tree - as described by Honda
-     
+
      #define r1   0.9   /* Contraction ratio for the trunk */
      #define r2   0.6   /* Contraction ratio for branches */
      #define a0   45    /* Branching angle from the trunk */
@@ -203,7 +203,7 @@ public enum Detailed3DExamples {
         parameters: defines
     )
     .rewriteWithParams(directContext: Trunk.self) { trunk, params in
-        
+
         // original: !(w) F(s) [ &(a0) B(s * r2, w * wr) ] /(d) A(s * r1, w * wr)
         // Conversion:
         // s -> trunk.growthDistance, w -> trunk.diameter

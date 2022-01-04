@@ -87,7 +87,7 @@ final class PRNGWrapperTests: XCTestCase {
         XCTAssertEqual(start.prng._invokeCount, 0)
 
         let oneEv = start.evolve()
-        
+
         XCTAssertEqual(oneEv.prng.seed, 42)
         XCTAssertEqual(oneEv.prng._invokeCount, 2)
 

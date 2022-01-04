@@ -39,7 +39,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
     {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
-        self.initialParameters = parameters.unwrap()
+        initialParameters = parameters.unwrap()
         self.axiom = axiom
         if let state = state {
             self.state = state
@@ -47,7 +47,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
             self.state = axiom
         }
         self.parameters = parameters
-        
+
         self.prng = prng
         self.rules = rules
     }

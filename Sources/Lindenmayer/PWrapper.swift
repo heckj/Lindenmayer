@@ -1,6 +1,6 @@
 //
 //  PWrapper.swift
-//  
+//
 //
 //  Created by Joseph Heck on 1/4/22.
 //
@@ -15,11 +15,11 @@ public final class PWrapper<PType> {
     public func update(_ p: PType) {
         _parameters = p
     }
-    
+
     public func unwrap() -> PType {
         return _parameters
     }
-    
+
     /// Creates a new random number generator wrapper class with the random number generator you provide.
     /// - Parameter prng: A random number generator.
     public init(_ p: PType) {
