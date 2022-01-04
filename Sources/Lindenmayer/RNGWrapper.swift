@@ -7,11 +7,13 @@
 
 import Foundation
 
-/// A struct that provides probabilistic functions based on a seedable psuedo-random number generator that you provide.
+/// A class that provides probabilistic functions based on the seedable psuedo-random number generator used to create it.
 public final class RNGWrapper<PRNG> where PRNG: RandomNumberGenerator {
     var _prng: PRNG
     var _invokeCount: UInt64 = 0
-
+    
+    /// Creates a new random number generator wrapper class with the random number generator you provide.
+    /// - Parameter prng: A random number generator.
     public init(_ prng: PRNG) {
         _prng = prng
     }

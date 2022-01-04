@@ -4,15 +4,16 @@ import XCTest
 
 final class LSystemTests: XCTestCase {
     func testLSystemDefault() throws {
-        let x = LSystemRNG<PRNG>(axiom: [Modules.internode], prng: RNGWrapper(PRNG(seed: 0)))
+        let x = LSystemRNG<PRNG>(axiom: [Modules.Internode()], prng: RNGWrapper(PRNG(seed: 0)))
         XCTAssertNotNil(x)
 
         let result = x.state
         XCTAssertEqual(result.count, 1)
 
         XCTAssertEqual(result[0].description, "I")
-        XCTAssertEqual(result[0].render2D, [.draw(10)])
-        XCTAssertEqual(result[0].render3D, .ignore)
+        XCTAssertEqual(result[0].render2D.count, 1)
+        XCTAssertEqual(result[0].render2D[0].name, RenderCommand.Draw(length: 10).name)
+        XCTAssertEqual(result[0].render3D.name, RenderCommand.Ignore().name)
 
         let updated = try x.evolve()
         XCTAssertEqual(updated.state.count, 1)
@@ -61,15 +62,15 @@ final class LSystemTests: XCTestCase {
     func testFractalTree_evolve2() throws {
         let tree = Examples2D.fractalTree.lsystem
         let evo1 = try tree.evolve()
-        XCTAssertEqual(evo1.state.map { $0.description }.joined(), "I[-L]+L")
+        XCTAssertEqual(evo1.state.map { $0.description }.joined(), "I[+L]-L")
         let evo2 = try evo1.evolve()
-        XCTAssertEqual(evo2.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
+        XCTAssertEqual(evo2.state.map { $0.description }.joined(), "II[+I[+L]-L]-I[+L]-L")
     }
 
     func testLSystem_kochCurve() throws {
         let tree = Examples2D.kochCurve.lsystem
         let evo1 = try tree.evolve(iterations: 3)
         XCTAssertEqual(evo1.state.map { $0.description }.joined(),
-                       "F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F-F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F-F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F")
+                       "F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F")
     }
 }

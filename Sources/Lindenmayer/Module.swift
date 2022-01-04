@@ -18,20 +18,23 @@ public protocol Module: CustomStringConvertible {
     var render3D: ThreeDRenderCmd { get }
 }
 
-// MARK: - Default values (implementations of computed properties) for 2D and 3D rendering commands of a module.
-
-extension Module {    
+// MARK: - Default Implementations of computed properties for 2D and 3D rendering commands of a module.
+extension Module {
+    
+    /// The sequence of two-dimensional oriented rendering commands that you use to represent the module.
     public var render2D: [TwoDRenderCmd] {
         return []
     }
+    
+    /// The three-dimensional oriented rendering command that you use to represent the module.
     public var render3D: ThreeDRenderCmd {
         return RenderCommand.Ignore()
     }
 }
 
+// MARK: - CustomStringConvertible default implementation
 public extension Module {
-    // MARK: - CustomStringConvertible default implementation
-
+    
     /// Returns a string description for this module.
     var description: String {
         let resovledName: String

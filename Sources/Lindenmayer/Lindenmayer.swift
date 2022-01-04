@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Squirrel3
 
 public enum Lindenmayer {
     /// Creates a new Lindenmayer system from an initial state.
