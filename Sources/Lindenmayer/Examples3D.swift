@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Examples3D.swift
 //  
 //
 //  Created by Joseph Heck on 1/3/22.
@@ -218,12 +218,12 @@ enum Detailed3DExamples {
         //      then end the branch, and yaw around by d°
         [
             StaticTrunk(growthDistance: trunk.growthDistance, diameter: trunk.diameter),
-            Modules.branch,
-            Modules.PitchDown(params.branchAngle),
+            Modules.Branch(),
+            Modules.PitchDown(angle: params.branchAngle),
             MainBranch(growthDistance: trunk.growthDistance,
                        diameter: trunk.diameter * params.widthContraction),
-            Modules.endbranch,
-            Modules.TurnLeft(params.divergence),
+            Modules.EndBranch(),
+            Modules.TurnLeft(angle: params.divergence),
             Trunk(growthDistance: trunk.growthDistance * params.contractionRatioForTrunk,
                   diameter: trunk.diameter * params.widthContraction),
         ]
@@ -233,14 +233,14 @@ enum Detailed3DExamples {
         // !(w) F(s) - Static Main Branch
         [
             StaticBranch(growthDistance: branch.growthDistance, diameter: branch.diameter),
-            Modules.branch,
+            Modules.Branch(),
 
-            Modules.RollLeft(params.lateralBranchAngle),
+            Modules.RollLeft(angle: params.lateralBranchAngle),
             Modules.LevelOut(),
             SecondaryBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
                             diameter: branch.diameter * params.widthContraction),
 
-            Modules.endbranch,
+            Modules.EndBranch(),
 
             SecondaryBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
                             diameter: branch.diameter * params.widthContraction),
@@ -250,18 +250,17 @@ enum Detailed3DExamples {
         // Original: P3: C(s, w) -> !(w) F(s) [ +(a2) @V B(s * r2, w * wr) ] B(s * r1, w * wr)
         [
             StaticBranch(growthDistance: branch.growthDistance, diameter: branch.diameter),
-            Modules.branch,
+            Modules.Branch(),
 
-            Modules.RollRight(params.branchAngle),
+            Modules.RollRight(angle: params.branchAngle),
             Modules.LevelOut(),
 
             MainBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
                        diameter: branch.diameter * params.widthContraction),
 
-            Modules.endbranch,
-
+            Modules.EndBranch(),
             MainBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
-                       diameter: branch.diameter * params.widthContraction),
+                                    diameter: branch.diameter * params.widthContraction)
         ]
     }
 
@@ -302,13 +301,13 @@ enum Detailed3DExamples {
             if rng.p(0.5) {
                 return [
                     StaticStem2(length: 2),
-                    RenderCommand.PitchDown(angle: Double(rng.randomFloat(in: lower ... upper))),
+                    Modules.PitchDown(angle: Double(rng.randomFloat(in: lower ... upper))),
                     Stem2(length: stem.length)
                 ]
             } else {
                 return [
                     StaticStem2(length: 2),
-                    RenderCommand.PitchUp(angle: Double(rng.randomFloat(in: lower ... upper))),
+                    Modules.PitchUp(angle: Double(rng.randomFloat(in: lower ... upper))),
                     Stem2(length: stem.length)
                 ]
             }

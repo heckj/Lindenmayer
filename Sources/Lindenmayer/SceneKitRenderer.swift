@@ -8,6 +8,7 @@
 import CoreGraphics
 import Foundation
 import SceneKit
+import simd
 
 struct GrowthState {
     var transform: simd_float4x4
@@ -307,4 +308,5 @@ public struct SceneKitRenderer {
     func degrees(radians: Float) -> Float {
         return radians / .pi * 180.0
     }
+
 }

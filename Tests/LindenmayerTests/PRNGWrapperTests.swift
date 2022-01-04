@@ -56,7 +56,7 @@ final class PRNGWrapperTests: XCTestCase {
 
     func testCheckingRNGReferenceType() throws {
         // requires `@testable import Lindenmayer` to get to the DetailedExamples struct
-        let start = DetailedExamples.randomBush
+        let start = Detailed3DExamples.randomBush
 
         XCTAssertEqual(start.prng._prng.seed, 42)
         XCTAssertEqual(start.prng._invokeCount, 0)

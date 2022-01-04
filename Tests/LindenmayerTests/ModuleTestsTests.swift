@@ -4,13 +4,13 @@ import XCTest
 
 final class ModuleTests: XCTestCase {
     func testBuiltins() {
-        XCTAssertNotNil(Modules.internode)
-        XCTAssertNotNil(Modules.draw)
-        XCTAssertNotNil(Modules.move)
-        XCTAssertNotNil(Modules.branch)
-        XCTAssertNotNil(Modules.endbranch)
-        XCTAssertNotNil(Modules.turnleft)
-        XCTAssertNotNil(Modules.turnright)
+        XCTAssertNotNil(Modules.Internode())
+        XCTAssertNotNil(Modules.Draw())
+        XCTAssertNotNil(Modules.Move())
+        XCTAssertNotNil(Modules.Branch())
+        XCTAssertNotNil(Modules.EndBranch())
+        XCTAssertNotNil(Modules.TurnLeft())
+        XCTAssertNotNil(Modules.TurnRight())
     }
 
     func testModuleFoo() {
@@ -21,8 +21,8 @@ final class ModuleTests: XCTestCase {
         // Verify name is passed out as 'description'
         XCTAssertEqual(x.description, "foo")
         // Verify default built-in behavior for a new module
-        XCTAssertEqual(x.render2D, [TwoDRenderCommand.ignore])
-        XCTAssertEqual(x.render3D, ThreeDRenderCommand.ignore)
+        XCTAssertEqual(x.render2D.count, 0)
+        XCTAssertEqual(x.render3D.name, RenderCommand.Ignore().name)
     }
 
     func testEmptyModuleName() {

@@ -17,11 +17,11 @@ final class WhiteboxRuleTests: XCTestCase {
 
     func testRuleProduction() throws {
         let r = RewriteRuleDirectRNG(directType: Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), where: nil) { _, _ in
-            [Modules.internode]
+            [Modules.Internode()]
         }
         XCTAssertNotNil(r)
 
-        let set = ModuleSet(directInstance: Modules.internode)
+        let set = ModuleSet(directInstance: Modules.Internode())
         // Verify produce returns an Internode
         let newModule = r.produce(set)
         XCTAssertEqual(newModule.count, 1)

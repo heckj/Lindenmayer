@@ -29,7 +29,7 @@ final class RuleTests: XCTestCase {
             [self.foo]
         }
 
-        let moduleSet = ModuleSet(directInstance: Modules.internode)
+        let moduleSet = ModuleSet(directInstance: Modules.Internode())
         XCTAssertEqual(r.evaluate(moduleSet), true)
     }
 
@@ -50,7 +50,7 @@ final class RuleTests: XCTestCase {
             [self.foo]
         }
         let moduleSet = ModuleSet(leftInstance: nil,
-                                  directInstance: Modules.internode,
+                                  directInstance: Modules.Internode(),
                                   rightInstance: Foo())
         XCTAssertEqual(r.evaluate(moduleSet), true)
     }
@@ -62,7 +62,7 @@ final class RuleTests: XCTestCase {
             [self.foo]
         }
         let moduleSet = ModuleSet(leftInstance: Foo(),
-                                  directInstance: Modules.internode,
+                                  directInstance: Modules.Internode(),
                                   rightInstance: nil)
 
         XCTAssertEqual(r.evaluate(moduleSet), true)
@@ -75,7 +75,7 @@ final class RuleTests: XCTestCase {
             [self.foo]
         }
         let moduleSet = ModuleSet(leftInstance: Foo(),
-                                  directInstance: Modules.internode,
+                                  directInstance: Modules.Internode(),
                                   rightInstance: Foo())
         XCTAssertEqual(r.evaluate(moduleSet), true)
     }

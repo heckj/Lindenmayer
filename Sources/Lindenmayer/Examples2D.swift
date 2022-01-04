@@ -1,11 +1,10 @@
 //
-//  ExampleLSystems.swift
+//  Examples2D.swift
 //
 //  Created by Joseph Heck on 12/14/21.
 //
 
 import Foundation
-import Squirrel3
 
 /// A collection of two-dimensional example L-systems.
 ///
@@ -92,24 +91,24 @@ enum Detailed2DExamples {
     static var stem = Stem()
 
     static var fractalTree = Lindenmayer.basic(leaf)
-        .rewrite(Leaf.self) { _ in
+        .rewrite(Leaf.self) { leaf in
             [stem,
-             RenderCommand.branch, RenderCommand.TurnLeft(angle: 45), leaf, RenderCommand.endBranch,
-             RenderCommand.TurnRight(angle: 45), leaf]
+             Modules.Branch(), Modules.TurnLeft(angle: 45), leaf, Modules.EndBranch(),
+             Modules.TurnRight(angle: 45), leaf]
         }
-        .rewrite(Stem.self) { _ in
+        .rewrite(Stem.self) { stem in
             [stem, stem]
         }
 
     // - MARK: Koch curve example
 
-    static var kochCurve = Lindenmayer.basic(RenderCommand.Draw(length: 10))
-        .rewrite(RenderCommand.Draw.self) { _ in
-            [RenderCommand.draw, RenderCommand.turnLeft,
-             RenderCommand.draw, RenderCommand.turnRight,
-             RenderCommand.draw, RenderCommand.turnRight,
-             RenderCommand.draw, RenderCommand.turnLeft,
-             RenderCommand.draw]
+    static var kochCurve = Lindenmayer.basic(Modules.Draw(length: 10))
+        .rewrite(Modules.Draw.self) { _ in
+            [Modules.Draw(length: 10), Modules.TurnLeft(angle: 90),
+             Modules.Draw(length: 10), Modules.TurnRight(angle: 90),
+             Modules.Draw(length: 10), Modules.TurnRight(angle: 90),
+             Modules.Draw(length: 10), Modules.TurnLeft(angle: 90),
+             Modules.Draw(length: 10)]
         }
 
     // - MARK: Sierpinski triangle example
@@ -129,15 +128,15 @@ enum Detailed2DExamples {
     static var g = G()
 
     static var sierpinskiTriangle = Lindenmayer.basic(
-        [f, RenderCommand.TurnRight(angle: 120),
-         g, RenderCommand.TurnRight(angle: 120),
-         g, RenderCommand.TurnRight(angle: 120)]
+        [f, Modules.TurnRight(angle: 120),
+         g, Modules.TurnRight(angle: 120),
+         g, Modules.TurnRight(angle: 120)]
     )
     .rewrite(F.self) { _ in
-        [f, RenderCommand.TurnRight(angle: 120),
-         g, RenderCommand.TurnLeft(angle: 120),
-         f, RenderCommand.TurnLeft(angle: 120),
-         g, RenderCommand.TurnRight(angle: 120),
+        [f, Modules.TurnRight(angle: 120),
+         g, Modules.TurnLeft(angle: 120),
+         f, Modules.TurnLeft(angle: 120),
+         g, Modules.TurnRight(angle: 120),
          f]
     }
     .rewrite(G.self) { _ in
@@ -148,10 +147,10 @@ enum Detailed2DExamples {
 
     static var dragonCurve = Lindenmayer.basic(f)
         .rewrite(F.self) { _ in
-            [f, RenderCommand.turnLeft, g]
+            [f, Modules.TurnLeft(angle: 90), g]
         }
         .rewrite(G.self) { _ in
-            [f, RenderCommand.turnRight, g]
+            [f, Modules.TurnRight(angle: 90), g]
         }
 
     // - MARK: Barnsley fern example
@@ -164,14 +163,14 @@ enum Detailed2DExamples {
 
     static var barnsleyFern = Lindenmayer.basic(x)
         .rewrite(X.self) { _ in
-            [f, RenderCommand.TurnLeft(angle: 25),
-             RenderCommand.branch,
-                RenderCommand.branch, x, RenderCommand.endBranch,
-                RenderCommand.TurnRight(angle: 25), x,
-             RenderCommand.endBranch,
-             RenderCommand.TurnRight(angle: 25), f,
-             RenderCommand.branch, RenderCommand.TurnRight(angle: 25), f, x, RenderCommand.endBranch,
-             RenderCommand.TurnLeft(angle: 25), x]
+            [f, Modules.TurnLeft(angle: 25),
+             Modules.Branch(),
+             Modules.Branch(), x, Modules.EndBranch(),
+             Modules.TurnRight(angle: 25), x,
+             Modules.EndBranch(),
+             Modules.TurnRight(angle: 25), f,
+             Modules.Branch(), Modules.TurnRight(angle: 25), f, x, Modules.EndBranch(),
+             Modules.TurnLeft(angle: 25), x]
         }
         .rewrite(F.self) { _ in
             [f, f]
