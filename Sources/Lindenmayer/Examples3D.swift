@@ -60,7 +60,8 @@ public enum Detailed3DExamples {
     // - MARK: Honda's model for trees
 
     /*
-     Honda's model for trees
+     Monopodial tree - as described by Honda
+     
      #define r1   0.9   /* Contraction ratio for the trunk */
      #define r2   0.6   /* Contraction ratio for branches */
      #define a0   45    /* Branching angle from the trunk */
@@ -131,8 +132,8 @@ public enum Detailed3DExamples {
             )
         }
 
-        let growthDistance: Double // start at 1
-        let diameter: Double // start at 10
+        let growthDistance: Double
+        let diameter: Double
     }
 
     struct MainBranch: Module {
@@ -142,20 +143,6 @@ public enum Detailed3DExamples {
                 length: growthDistance,
                 radius: diameter / 2,
                 color: ColorRepresentation(red: 0.3, green: 0.9, blue: 0.1, alpha: 0.9)
-            )
-        }
-
-        let growthDistance: Double
-        let diameter: Double
-    }
-
-    struct StaticBranch: Module {
-        public var name = "o"
-        public var render3D: ThreeDRenderCmd {
-            RenderCommand.Cylinder(
-                length: growthDistance,
-                radius: diameter / 2,
-                color: ColorRepresentation(red: 0.7, green: 0.3, blue: 0.1, alpha: 0.95)
             )
         }
 
@@ -185,7 +172,7 @@ public enum Detailed3DExamples {
         var divergence: Double = 137.5 /* Divergence angle */
         var widthContraction: Double = 0.707 /* Width contraction ratio */
         var trunklength: Double = 10.0
-        var trunkdiameter: Double = 2.0
+        var trunkdiameter: Double = 1.0
 
         init(r1: Double = 0.9,
              r2: Double = 0.6,
@@ -216,6 +203,7 @@ public enum Detailed3DExamples {
         parameters: defines
     )
     .rewriteWithParams(directContext: Trunk.self) { trunk, params in
+        
         // original: !(w) F(s) [ &(a0) B(s * r2, w * wr) ] /(d) A(s * r1, w * wr)
         // Conversion:
         // s -> trunk.growthDistance, w -> trunk.diameter
@@ -228,7 +216,7 @@ public enum Detailed3DExamples {
             StaticTrunk(growthDistance: trunk.growthDistance, diameter: trunk.diameter),
             Modules.Branch(),
             Modules.PitchDown(angle: params.branchAngle),
-            MainBranch(growthDistance: trunk.growthDistance,
+            MainBranch(growthDistance: trunk.growthDistance * params.contractionRatioForBranch,
                        diameter: trunk.diameter * params.widthContraction),
             Modules.EndBranch(),
             Modules.TurnLeft(angle: params.divergence),
@@ -240,7 +228,7 @@ public enum Detailed3DExamples {
         // Original P2: B(s, w) -> !(w) F(s) [ -(a2) @V C(s * r2, w * wr) ] C(s * r1, w * wr)
         // !(w) F(s) - Static Main Branch
         [
-            StaticBranch(growthDistance: branch.growthDistance, diameter: branch.diameter),
+            StaticTrunk(growthDistance: branch.growthDistance, diameter: branch.diameter),
             Modules.Branch(),
 
             Modules.RollLeft(angle: params.lateralBranchAngle),
@@ -250,14 +238,14 @@ public enum Detailed3DExamples {
 
             Modules.EndBranch(),
 
-            SecondaryBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
+            SecondaryBranch(growthDistance: branch.growthDistance * params.contractionRatioForTrunk,
                             diameter: branch.diameter * params.widthContraction),
         ]
     }
     .rewriteWithParams(directContext: SecondaryBranch.self) { branch, params in
         // Original: P3: C(s, w) -> !(w) F(s) [ +(a2) @V B(s * r2, w * wr) ] B(s * r1, w * wr)
         [
-            StaticBranch(growthDistance: branch.growthDistance, diameter: branch.diameter),
+            StaticTrunk(growthDistance: branch.growthDistance, diameter: branch.diameter),
             Modules.Branch(),
 
             Modules.RollRight(angle: params.branchAngle),
@@ -267,7 +255,7 @@ public enum Detailed3DExamples {
                        diameter: branch.diameter * params.widthContraction),
 
             Modules.EndBranch(),
-            MainBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
+            MainBranch(growthDistance: branch.growthDistance * params.contractionRatioForTrunk,
                        diameter: branch.diameter * params.widthContraction),
         ]
     }
