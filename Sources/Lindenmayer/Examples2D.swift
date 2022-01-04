@@ -36,7 +36,7 @@ public enum Examples2D: String, CaseIterable, Identifiable {
     }
 }
 
-enum Detailed2DExamples {
+public enum Detailed2DExamples {
     // - MARK: Algae example
 
     struct A: Module {

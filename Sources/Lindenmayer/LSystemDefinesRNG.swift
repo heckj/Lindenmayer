@@ -11,12 +11,13 @@ import Squirrel3
 /// A parameterized, stochastic Lindenmayer system.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNumberGenerator {
+public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNumberGenerator, PType: AnyObject {
+    
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public let rules: [Rule]
 
     /// The parameters to provide to rules for evaluation and production.
-    public let parameters: PType
+    public var parameters: PType
 
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
     public let state: [Module]
@@ -57,9 +58,54 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
     }
     
     public func reset() -> LSystem {
+        self.prng.resetRNG(seed: self.prng.seed)
         return LSystemDefinesRNG<PType, PRNG>(axiom: self.axiom, state: nil, parameters: parameters, prng: prng, rules: rules)
     }
 
+    public func setSeed(seed: UInt64) {
+        self.prng.resetRNG(seed: seed)
+    }
+
+    public mutating func setParameters(params: PType) {
+        self.parameters = params
+    }
+    
+    public mutating func set(seed: UInt64, params: PType) {
+        self.prng.resetRNG(seed: seed)
+        self.parameters = params
+    }
+    
+    /// Processes the current state against its rules to provide an updated L-system
+    ///
+    /// The Lindermayer system iterates through the rules provided, applying the first rule that matches the state from the rule to the current state of the system.
+    /// When applying the rule, the element that matched is replaced with what the rule returns from ``Rule/produce(_:)``.
+    /// The types of errors that may be thrown is defined by any errors referenced and thrown within the set of rules you provide.
+    /// - Returns: An updated Lindenmayer system.
+    public func evolve() -> LSystem {
+        // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
+        // TODO(heckj): revisit this with async methods in mind, creating tasks for each iteration
+        // in order to run the whole suite of the state in parallel for a new result. Await the whole
+        // kit for a final resolution.
+        var newState: [Module] = []
+        for index in 0 ..< state.count {
+            let moduleSet = modules(atIndex: index)
+            // Iterate through the rules, finding the first rule to match
+            // based on calling 'evaluate' on each of the rules in sequence.
+
+            let maybeRule: Rule? = rules.first(where: { $0.evaluate(moduleSet) })
+            if let foundRule = maybeRule {
+                // If a rule was found, then use it to generate the modules that
+                // replace this element in the sequence.
+                newState.append(contentsOf: foundRule.produce(moduleSet))
+            } else {
+                // If no rule was identified, we pass along the 'Module' as an
+                // ignored module for later evaluation - for example to be used
+                // to represent the final visual state externally.
+                newState.append(moduleSet.directInstance)
+            }
+        }
+        return updatedLSystem(with: newState)
+    }
 }
 
 // - MARK: Rewrite rules including RNG and Parameters from the LSystem
