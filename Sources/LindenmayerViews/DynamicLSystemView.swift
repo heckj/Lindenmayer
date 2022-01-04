@@ -33,7 +33,7 @@ public struct DynamicLSystemView: View {
                 }
             }
             .padding()
-            Lsystem2DView(system: selectedSystem.evolved(iterations: Int(evolutions)))
+            Lsystem2DView(system: selectedSystem.lsystem.evolved(iterations: Int(evolutions)))
         }
     }
 }
