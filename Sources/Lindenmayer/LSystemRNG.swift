@@ -31,11 +31,11 @@ public struct LSystemRNG<PRNG>: LSystem where PRNG: RandomNumberGenerator {
                 prng: RNGWrapper<PRNG>,
                 rules: [Rule] = [])
     {
-        axiom = axiom
+        self.axiom = axiom
         if let state = state {
             self.state = state
         } else {
-            state = axiom
+            self.state = axiom
         }
         self.prng = prng
         self.rules = rules
@@ -49,7 +49,7 @@ public struct LSystemRNG<PRNG>: LSystem where PRNG: RandomNumberGenerator {
     }
     
     public func reset() -> LSystem {
-        return LSystemRNG(self.axiom, prng: prng, rules: rules)
+        return LSystemRNG(axiom: self.axiom, state: nil, prng: prng, rules: rules)
     }
 
 }
@@ -80,7 +80,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -104,7 +104,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -129,7 +129,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -152,7 +152,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -178,7 +178,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -201,7 +201,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -225,7 +225,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -247,7 +247,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 }
 
@@ -267,7 +267,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -281,7 +281,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -297,7 +297,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -311,7 +311,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -327,7 +327,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -341,7 +341,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -357,7 +357,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -371,6 +371,6 @@ public extension LSystemRNG {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: state, prng: prng, rules: newRuleSet)
+        return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: newRuleSet)
     }
 }

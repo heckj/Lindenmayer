@@ -30,7 +30,7 @@ public struct LSystemBasic: LSystem {
         if let state = state {
             self.state = state
         } else {
-            state = axiom
+            self.state = axiom
         }
         self.rules = rules
     }
@@ -43,7 +43,7 @@ public struct LSystemBasic: LSystem {
     }
     
     public func reset() -> LSystem {
-        return LSystemBasic(self.axiom, rules: rules)
+        return LSystemBasic(self.axiom, state: nil, rules: rules)
     }
 }
 
@@ -61,7 +61,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -75,7 +75,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -91,7 +91,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -105,7 +105,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -121,7 +121,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -135,7 +135,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -151,7 +151,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -165,6 +165,6 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, rules: newRuleSet)
     }
 }

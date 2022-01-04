@@ -4,7 +4,7 @@ import XCTest
 
 final class LSystemTests: XCTestCase {
     func testLSystemDefault() throws {
-        let x = LSystemRNG<PRNG>(axiom: [Modules.Internode()], prng: RNGWrapper(PRNG(seed: 0)))
+        let x = LSystemRNG<PRNG>(axiom: [Modules.Internode()], state: nil, prng: RNGWrapper(PRNG(seed: 0)))
         XCTAssertNotNil(x)
 
         let result = x.state
