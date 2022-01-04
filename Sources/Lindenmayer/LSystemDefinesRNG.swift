@@ -11,18 +11,19 @@ import Squirrel3
 /// A parameterized, stochastic Lindenmayer system.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNumberGenerator, PType: AnyObject {
+public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNumberGenerator {
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public let rules: [Rule]
 
     /// The parameters to provide to rules for evaluation and production.
-    public var parameters: PType
+    public var parameters: PWrapper<PType>
+    let initialParameters: PType
 
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
     public let state: [Module]
     let axiom: [Module]
 
-    var prng: RNGWrapper<PRNG>
+    let prng: RNGWrapper<PRNG>
 
     /// Creates a new Lindenmayer system from an initial state sequence and rules you provide.
     /// - Parameters:
@@ -32,12 +33,13 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(axiom: [Module],
                 state: [Module]?,
-                parameters: PType,
+                parameters: PWrapper<PType>,
                 prng: RNGWrapper<PRNG>,
                 rules: [Rule] = [])
     {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
+        self.initialParameters = parameters.unwrap()
         self.axiom = axiom
         if let state = state {
             self.state = state
@@ -45,6 +47,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
             self.state = axiom
         }
         self.parameters = parameters
+        
         self.prng = prng
         self.rules = rules
     }
@@ -58,6 +61,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
 
     public func reset() -> Self {
         prng.resetRNG(seed: prng.seed)
+        parameters.update(initialParameters)
         return LSystemDefinesRNG<PType, PRNG>(axiom: axiom, state: nil, parameters: parameters, prng: prng, rules: rules)
     }
 
@@ -65,13 +69,13 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
         prng.resetRNG(seed: seed)
     }
 
-    public mutating func setParameters(params: PType) {
-        parameters = params
+    public func setParameters(params: PType) {
+        parameters.update(params)
     }
 
-    public mutating func set(seed: UInt64, params: PType) {
+    public func set(seed: UInt64, params: PType) {
         prng.resetRNG(seed: seed)
-        parameters = params
+        parameters.update(params)
     }
 
     /// Processes the current state against its rules to provide an updated L-system

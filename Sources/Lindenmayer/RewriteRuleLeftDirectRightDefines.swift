@@ -10,7 +10,7 @@ import Foundation
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct RewriteRuleLeftDirectRightDefines<LC, DC, RC, PType>: Rule where LC: Module, DC: Module, RC: Module {
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    var parameters: PType
+    var parameters: PWrapper<PType>
 
     public var parametricEval: ((LC, DC, RC, PType) -> Bool)?
 
@@ -29,7 +29,7 @@ public struct RewriteRuleLeftDirectRightDefines<LC, DC, RC, PType>: Rule where L
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(leftType: LC.Type, directType: DC.Type, rightType: RC.Type,
-                parameters: PType,
+                parameters: PWrapper<PType>,
                 where _: ((LC, DC, RC, PType) -> Bool)?,
                 produces produceClosure: @escaping combinationMatchProducesList)
     {
@@ -60,7 +60,7 @@ public struct RewriteRuleLeftDirectRightDefines<LC, DC, RC, PType>: Rule where L
                   let directInstance = matchSet.directInstance as? DC,
                   let rightInstance = matchSet.rightInstance as? RC
             else { return false }
-            return additionalEval(leftInstance, directInstance, rightInstance, parameters)
+            return additionalEval(leftInstance, directInstance, rightInstance, parameters.unwrap())
         }
 
         return true
@@ -76,7 +76,7 @@ public struct RewriteRuleLeftDirectRightDefines<LC, DC, RC, PType>: Rule where L
         else {
             return []
         }
-        return produceClosure(leftInstance, directInstance, rightInstance, parameters)
+        return produceClosure(leftInstance, directInstance, rightInstance, parameters.unwrap())
     }
 }
 

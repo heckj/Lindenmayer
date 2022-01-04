@@ -177,7 +177,7 @@ public enum Detailed3DExamples {
         let diameter: Double
     }
 
-    public class Definitions {
+    public struct Definitions: Equatable {
         var contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
         var contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
         var branchAngle: Double = 45 /* Branching angle from the trunk */
