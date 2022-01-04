@@ -28,7 +28,7 @@ public enum Examples3D: String, CaseIterable, Identifiable {
     }
 }
 
-enum Detailed3DExamples {
+public enum Detailed3DExamples {
     
     // - MARK: 3D Algae test
 
@@ -50,7 +50,7 @@ enum Detailed3DExamples {
         )
     }
 
-    static var algae3D = Lindenmayer.basic(Cyl())
+    public static var algae3D = Lindenmayer.basic(Cyl())
         .rewrite(Cyl.self) { _ in
             [Cyl(), S()]
         }
@@ -178,7 +178,7 @@ enum Detailed3DExamples {
         let diameter: Double
     }
 
-    struct Definitions {
+    public class Definitions {
         var contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
         var contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
         var branchAngle: Double = 45 /* Branching angle from the trunk */
@@ -200,17 +200,17 @@ enum Detailed3DExamples {
     }
 
     static let defines = Definitions()
-    static let figure2_6A = defines
-    static let figure2_6B = Definitions(r1: 0.9, r2: 0.9, a0: 45, a2: 45)
-    static let figure2_6C = Definitions(r1: 0.9, r2: 0.8, a0: 45, a2: 45)
-    static let figure2_6D = Definitions(r1: 0.9, r2: 0.7, a0: 30, a2: -30)
+    public static let figure2_6A = defines
+    public static let figure2_6B = Definitions(r1: 0.9, r2: 0.9, a0: 45, a2: 45)
+    public static let figure2_6C = Definitions(r1: 0.9, r2: 0.8, a0: 45, a2: 45)
+    public static let figure2_6D = Definitions(r1: 0.9, r2: 0.7, a0: 30, a2: -30)
 
-    static let figure2_7A = Definitions(r1: 0.9, r2: 0.7, a0: 5, a2: 65)
-    static let figure2_7B = Definitions(r1: 0.9, r2: 0.7, a0: 10, a2: 60)
-    static let figure2_7C = Definitions(r1: 0.9, r2: 0.8, a0: 20, a2: 50)
-    static let figure2_7D = Definitions(r1: 0.9, r2: 0.8, a0: 35, a2: 35)
+    public static let figure2_7A = Definitions(r1: 0.9, r2: 0.7, a0: 5, a2: 65)
+    public static let figure2_7B = Definitions(r1: 0.9, r2: 0.7, a0: 10, a2: 60)
+    public static let figure2_7C = Definitions(r1: 0.9, r2: 0.8, a0: 20, a2: 50)
+    public static let figure2_7D = Definitions(r1: 0.9, r2: 0.8, a0: 35, a2: 35)
 
-    static var hondaTree = Lindenmayer.withDefines(
+    public static var hondaTree = Lindenmayer.withDefines(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
         prng: PRNG(seed: 42),
         parameters: defines
@@ -283,13 +283,7 @@ enum Detailed3DExamples {
 //    ω : A(1,10)
 //    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
 //    p2 : B(l,w) : * → !(w)F(l)[+(a1)$B(l*r1,w*wr)] [-(a2 )$B(l*r2 ,w*wr )]
-    
-    
-    
-    
-    
-    
-    
+
     
     // - MARK: Random Bush
 
@@ -317,9 +311,7 @@ enum Detailed3DExamples {
         }
     }
 
-    struct BushDefinitions {}
-
-    static var randomBush = Lindenmayer.withRNG(Stem2(length: 1), prng: PRNG(seed: 42))
+    public static var randomBush = Lindenmayer.withRNG(Stem2(length: 1), prng: PRNG(seed: 42))
         .rewriteWithRNG(directContext: Stem2.self) { stem, rng -> [Module] in
 
             let upper: Float = 45.0
