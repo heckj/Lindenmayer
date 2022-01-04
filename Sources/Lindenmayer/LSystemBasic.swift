@@ -38,11 +38,11 @@ public struct LSystemBasic: LSystem {
     /// Returns a new L-system with the provided state.
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules.
-    public func updatedLSystem(with state: [Module]) -> LSystem {
+    public func updatedLSystem(with state: [Module]) -> Self {
         return LSystemBasic(self.axiom, state: state, rules: rules)
     }
     
-    public func reset() -> LSystem {
+    public func reset() -> Self {
         return LSystemBasic(self.axiom, state: nil, rules: rules)
     }
 }

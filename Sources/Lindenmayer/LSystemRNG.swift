@@ -45,16 +45,16 @@ public struct LSystemRNG<PRNG>: LSystem where PRNG: SeededRandomNumberGenerator 
     /// Returns a new L-system with the provided state.
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules.
-    public func updatedLSystem(with state: [Module]) -> LSystem {
+    public func updatedLSystem(with state: [Module]) -> Self {
         return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: rules)
     }
     
-    public func reset() -> LSystem {
+    public func reset() -> Self {
         self.prng.resetRNG(seed: self.prng.seed)
         return LSystemRNG(axiom: self.axiom, state: nil, prng: prng, rules: rules)
     }
 
-    public func evolve(with seed: UInt64) -> LSystem {
+    public func evolve(with seed: UInt64) -> Self {
         self.prng.resetRNG(seed: seed)
         return self.evolve()
     }

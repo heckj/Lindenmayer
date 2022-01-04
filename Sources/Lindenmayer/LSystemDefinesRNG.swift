@@ -53,11 +53,11 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
     /// Returns a new L-system with the provided state.
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules and parameters.
-    public func updatedLSystem(with state: [Module]) -> LSystem {
+    public func updatedLSystem(with state: [Module]) -> Self {
         return LSystemDefinesRNG<PType, PRNG>(axiom: axiom, state: state, parameters: parameters, prng: prng, rules: rules)
     }
     
-    public func reset() -> LSystem {
+    public func reset() -> Self {
         self.prng.resetRNG(seed: self.prng.seed)
         return LSystemDefinesRNG<PType, PRNG>(axiom: self.axiom, state: nil, parameters: parameters, prng: prng, rules: rules)
     }
