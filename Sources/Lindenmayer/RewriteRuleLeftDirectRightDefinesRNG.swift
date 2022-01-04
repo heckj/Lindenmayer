@@ -11,7 +11,7 @@ import Squirrel3
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rule where LC: Module, DC: Module, RC: Module, PRNG: SeededRandomNumberGenerator {
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    var parameters: PType
+    var parameters: PWrapper<PType>
 
     /// A psuedo-random number generator to use for stochastic rule productions.
     var prng: RNGWrapper<PRNG>
@@ -33,7 +33,7 @@ public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rul
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(leftType: LC.Type, directType: DC.Type, rightType: RC.Type,
-                parameters: PType,
+                parameters: PWrapper<PType>,
                 prng: RNGWrapper<PRNG>,
                 where _: ((LC, DC, RC, PType) -> Bool)?,
                 produces produceClosure: @escaping combinationMatchProducesList)
@@ -66,7 +66,7 @@ public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rul
                   let directInstance = matchSet.directInstance as? DC,
                   let rightInstance = matchSet.rightInstance as? RC
             else { return false }
-            return additionalEval(leftInstance, directInstance, rightInstance, parameters)
+            return additionalEval(leftInstance, directInstance, rightInstance, parameters.unwrap())
         }
 
         return true
@@ -82,7 +82,7 @@ public struct RewriteRuleLeftDirectRightDefinesRNG<LC, DC, RC, PType, PRNG>: Rul
         else {
             return []
         }
-        return produceClosure(leftInstance, directInstance, rightInstance, parameters, prng)
+        return produceClosure(leftInstance, directInstance, rightInstance, parameters.unwrap(), prng)
     }
 }
 
