@@ -19,32 +19,36 @@ public extension Modules {
         public var render2D: [TwoDRenderCmd] = [RenderCommand.Draw(length: 10)] // draws a line 10 units long
         public init() {}
     }
-    
+
     // MARK: - Built-in Modules that are effectively wrappers around specific rendering commands
-    
+
     struct TurnLeft: Module {
         public let name = RenderCommand.turnLeft.name
         public let angle: Double
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.TurnLeft(angle: angle)]
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.TurnLeft(angle: angle)
         }
+
         public init(angle: Double = 90) {
             self.angle = angle
         }
     }
-    
+
     struct TurnRight: Module {
         public let name = RenderCommand.turnRight.name
         public let angle: Double
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.TurnRight(angle: angle)]
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.TurnRight(angle: angle)
         }
+
         public init(angle: Double = 90) {
             self.angle = angle
         }
@@ -56,9 +60,11 @@ public extension Modules {
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.Draw(length: length)]
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.Draw(length: length)
         }
+
         public init(length: Double = 1) {
             self.length = length
         }
@@ -70,9 +76,11 @@ public extension Modules {
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.Move(length: length)]
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.Move(length: length)
         }
+
         public init(length: Double = 1) {
             self.length = length
         }
@@ -83,21 +91,25 @@ public extension Modules {
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.Branch()]
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.Branch()
         }
+
         public init() {}
     }
 
     struct EndBranch: Module {
         public let name = RenderCommand.endBranch.name
-        
+
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.EndBranch()]
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.EndBranch()
         }
+
         public init() {}
     }
 
@@ -107,23 +119,27 @@ public extension Modules {
         public var render2D: [TwoDRenderCmd] {
             []
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.RollLeft(angle: angle)
         }
+
         public init(angle: Double = 90) {
             self.angle = angle
         }
     }
-    
+
     struct RollRight: Module {
         public let name = RenderCommand.rollRight.name
         public let angle: Double
         public var render2D: [TwoDRenderCmd] {
             []
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.RollRight(angle: angle)
         }
+
         public init(angle: Double = 90) {
             self.angle = angle
         }
@@ -135,20 +151,23 @@ public extension Modules {
         public var render2D: [TwoDRenderCmd] {
             []
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.PitchUp(angle: angle)
         }
+
         public init(angle: Double = 90) {
             self.angle = angle
         }
     }
-    
+
     struct PitchDown: Module {
         public let name = RenderCommand.pitchDown.name
         public let angle: Double
         public var render2D: [TwoDRenderCmd] {
             []
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.PitchDown(angle: angle)
         }
@@ -159,10 +178,11 @@ public extension Modules {
         public var render2D: [TwoDRenderCmd] {
             []
         }
+
         public var render3D: ThreeDRenderCmd {
             RenderCommand.SpinToFlat()
         }
+
         public init() {}
     }
-
 }

@@ -1,6 +1,6 @@
 //
 //  Examples3D.swift
-//  
+//
 //
 //  Created by Joseph Heck on 1/3/22.
 //
@@ -29,7 +29,6 @@ public enum Examples3D: String, CaseIterable, Identifiable {
 }
 
 public enum Detailed3DExamples {
-    
     // - MARK: 3D Algae test
 
     struct Cyl: Module {
@@ -170,7 +169,7 @@ public enum Detailed3DExamples {
             RenderCommand.Cylinder(
                 length: growthDistance,
                 radius: diameter / 2,
-                color:ColorRepresentation(red: 0.3, green: 0.1, blue: 0.9, alpha: 0.9)
+                color: ColorRepresentation(red: 0.3, green: 0.1, blue: 0.9, alpha: 0.9)
             )
         }
 
@@ -187,11 +186,12 @@ public enum Detailed3DExamples {
         var widthContraction: Double = 0.707 /* Width contraction ratio */
         var trunklength: Double = 10.0
         var trunkdiameter: Double = 2.0
-        
+
         init(r1: Double = 0.9,
-                 r2: Double = 0.6,
-                 a0: Double = 45,
-                 a2: Double = 45) {
+             r2: Double = 0.6,
+             a0: Double = 45,
+             a2: Double = 45)
+        {
             contractionRatioForTrunk = r1
             contractionRatioForBranch = r2
             branchAngle = a0
@@ -268,7 +268,7 @@ public enum Detailed3DExamples {
 
             Modules.EndBranch(),
             MainBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
-                                    diameter: branch.diameter * params.widthContraction)
+                       diameter: branch.diameter * params.widthContraction),
         ]
     }
 
@@ -284,7 +284,6 @@ public enum Detailed3DExamples {
 //    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
 //    p2 : B(l,w) : * → !(w)F(l)[+(a1)$B(l*r1,w*wr)] [-(a2 )$B(l*r2 ,w*wr )]
 
-    
     // - MARK: Random Bush
 
     struct Stem2: Module {
@@ -321,13 +320,13 @@ public enum Detailed3DExamples {
                 return [
                     StaticStem2(length: 2),
                     Modules.PitchDown(angle: Double(rng.randomFloat(in: lower ... upper))),
-                    Stem2(length: stem.length)
+                    Stem2(length: stem.length),
                 ]
             } else {
                 return [
                     StaticStem2(length: 2),
                     Modules.PitchUp(angle: Double(rng.randomFloat(in: lower ... upper))),
-                    Stem2(length: stem.length)
+                    Stem2(length: stem.length),
                 ]
             }
         }

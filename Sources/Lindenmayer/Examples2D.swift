@@ -66,7 +66,7 @@ public enum Detailed2DExamples {
         public var render2D: [TwoDRenderCmd] = [
             RenderCommand.SetLineWidth(width: 3),
             RenderCommand.SetColor(representation: green),
-            RenderCommand.Draw(length: 5)
+            RenderCommand.Draw(length: 5),
         ]
     }
 

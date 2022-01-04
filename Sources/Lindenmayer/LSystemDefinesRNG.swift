@@ -12,7 +12,6 @@ import Squirrel3
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNumberGenerator, PType: AnyObject {
-    
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public let rules: [Rule]
 
@@ -56,25 +55,25 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
     public func updatedLSystem(with state: [Module]) -> Self {
         return LSystemDefinesRNG<PType, PRNG>(axiom: axiom, state: state, parameters: parameters, prng: prng, rules: rules)
     }
-    
+
     public func reset() -> Self {
-        self.prng.resetRNG(seed: self.prng.seed)
-        return LSystemDefinesRNG<PType, PRNG>(axiom: self.axiom, state: nil, parameters: parameters, prng: prng, rules: rules)
+        prng.resetRNG(seed: prng.seed)
+        return LSystemDefinesRNG<PType, PRNG>(axiom: axiom, state: nil, parameters: parameters, prng: prng, rules: rules)
     }
 
     public func setSeed(seed: UInt64) {
-        self.prng.resetRNG(seed: seed)
+        prng.resetRNG(seed: seed)
     }
 
     public mutating func setParameters(params: PType) {
-        self.parameters = params
+        parameters = params
     }
-    
+
     public mutating func set(seed: UInt64, params: PType) {
-        self.prng.resetRNG(seed: seed)
-        self.parameters = params
+        prng.resetRNG(seed: seed)
+        parameters = params
     }
-    
+
     /// Processes the current state against its rules to provide an updated L-system
     ///
     /// The Lindermayer system iterates through the rules provided, applying the first rule that matches the state from the rule to the current state of the system.
@@ -364,7 +363,7 @@ public extension LSystemDefinesRNG {
         newRuleSet.append(contentsOf: [rule])
         return LSystemDefinesRNG(axiom: axiom, state: state, parameters: parameters, prng: prng, rules: newRuleSet)
     }
-    
+
     /// Adds a rewriting rule to the L-System.
     /// - Parameters:
     ///   - left: An optional type of module that the rule matches to the left of the main module.
@@ -412,7 +411,7 @@ public extension LSystemDefinesRNG {
         newRuleSet.append(contentsOf: [rule])
         return LSystemDefinesRNG(axiom: axiom, state: state, parameters: parameters, prng: prng, rules: newRuleSet)
     }
-    
+
     /// Adds a rewriting rule to the L-System.
     /// - Parameters:
     ///   - left: An optional type of module that the rule matches to the left of the main module.
@@ -460,8 +459,7 @@ public extension LSystemDefinesRNG {
         newRuleSet.append(contentsOf: [rule])
         return LSystemDefinesRNG(axiom: axiom, state: state, parameters: parameters, prng: prng, rules: newRuleSet)
     }
-    
-    
+
     /// Adds a rewriting rule to the L-System.
     /// - Parameters:
     ///   - direct: The type of module that the rule matches

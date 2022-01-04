@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Joseph Heck on 1/3/22.
 //
@@ -44,4 +44,3 @@ extension simd_float4x4 {
         return calc_angle
     }
 }
-

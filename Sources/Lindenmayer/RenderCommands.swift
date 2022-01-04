@@ -60,7 +60,6 @@ public enum TurtleCodes: String {
     case cylinder = "||"
     case cone = "/\\"
     case sphere = "o"
-    
 }
 
 // MARK: - RENDERING COMMAND PROTOCOLS -
@@ -94,7 +93,7 @@ public enum RenderCommand {
 
     public struct Move: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.move.rawValue
-        
+
         public let length: Double
         public init(length: Double) {
             self.length = length
@@ -103,7 +102,7 @@ public enum RenderCommand {
 
     public struct Draw: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.draw.rawValue
-        
+
         public let length: Double
         public init(length: Double) {
             self.length = length
@@ -112,7 +111,7 @@ public enum RenderCommand {
 
     public struct TurnLeft: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.leftTurn.rawValue
-        
+
         public let angle: Double
         public init(angle: Double) {
             self.angle = angle
@@ -121,7 +120,7 @@ public enum RenderCommand {
 
     public struct TurnRight: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.rightTurn.rawValue
-        
+
         public let angle: Double
         public init(angle: Double) {
             self.angle = angle
@@ -139,7 +138,6 @@ public enum RenderCommand {
         public init(width: Double) {
             self.width = width
         }
-
     }
 
     public struct SetColor: TwoDRenderCmd {
@@ -148,7 +146,6 @@ public enum RenderCommand {
         public init(representation: ColorRepresentation) {
             self.representation = representation
         }
-
     }
 
     public struct PitchUp: ThreeDRenderCmd {
@@ -157,7 +154,6 @@ public enum RenderCommand {
         public init(angle: Double) {
             self.angle = angle
         }
-
     }
 
     public struct PitchDown: ThreeDRenderCmd {
@@ -166,7 +162,6 @@ public enum RenderCommand {
         public init(angle: Double) {
             self.angle = angle
         }
-
     }
 
     public struct RollRight: ThreeDRenderCmd {
@@ -175,7 +170,6 @@ public enum RenderCommand {
         public init(angle: Double) {
             self.angle = angle
         }
-
     }
 
     public struct RollLeft: ThreeDRenderCmd {
@@ -184,7 +178,6 @@ public enum RenderCommand {
         public init(angle: Double) {
             self.angle = angle
         }
-
     }
 
     public struct SpinToFlat: ThreeDRenderCmd {
@@ -205,7 +198,6 @@ public enum RenderCommand {
             self.radius = radius
             self.color = color
         }
-
     }
 
     public struct Cone: ThreeDRenderCmd {
@@ -220,7 +212,6 @@ public enum RenderCommand {
             self.radiusBottom = radiusBottom
             self.color = color
         }
-
     }
 
     public struct Sphere: ThreeDRenderCmd {
@@ -232,7 +223,7 @@ public enum RenderCommand {
             self.color = color
         }
     }
-    
+
     // 2D ONLY
     public static var setLineWidth = SetLineWidth(width: 1)
     public static var setColor = SetColor(representation: ColorRepresentation(r: 0.0, g: 0.0, b: 0.0))
@@ -240,22 +231,22 @@ public enum RenderCommand {
     // 2D and 3D
     public static var move = Move(length: 1.0)
     public static var draw = Draw(length: 1.0)
-    
+
     public static var turnLeft = TurnLeft(angle: 90)
     public static var turnRight = TurnRight(angle: 90)
-    
+
     public static var branch = Branch()
     public static var endBranch = EndBranch()
-    
+
     // 3D ONLY
     public static var pitchUp = PitchUp(angle: 30)
     public static var pitchDown = PitchDown(angle: 30)
-    
+
     public static var rollRight = RollRight(angle: 90)
     public static var rollLeft = RollLeft(angle: 90)
-    
+
     public static var spinToFlat = SpinToFlat()
-    
+
     public static var cylinder = Cylinder(length: 1, radius: 0.1)
     public static var cone = Cone(length: 1, radiusTop: 0, radiusBottom: 0.1)
     public static var sphere = Sphere(radius: 0.1)
