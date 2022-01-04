@@ -81,7 +81,7 @@ final class PRNGWrapperTests: XCTestCase {
         XCTAssertEqual(downcastOneEv.prng._invokeCount, 4)
         start.prng.resetRNG(seed: start.prng.seed)
     }
-    
+
     func testResettingPRNG() throws {
         // requires `@testable import Lindenmayer` to get to the DetailedExamples struct
         let start = Detailed3DExamples.randomBush
@@ -93,7 +93,7 @@ final class PRNGWrapperTests: XCTestCase {
         let downcastOneEv = oneEv as! LSystemRNG<PRNG>
         XCTAssertEqual(downcastOneEv.prng.seed, 42)
         XCTAssertEqual(downcastOneEv.prng._invokeCount, 2)
-        
+
         start.prng.resetRNG(seed: start.prng.seed)
         XCTAssertEqual(downcastOneEv.prng.seed, 42)
         XCTAssertEqual(downcastOneEv.prng.position, 42)

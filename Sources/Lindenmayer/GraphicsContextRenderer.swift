@@ -40,7 +40,7 @@ public struct GraphicsContextRenderer {
         case left
         case right
     }
-    
+
     public init(unitLength: Double = 1) {
         self.unitLength = unitLength
     }
@@ -162,7 +162,6 @@ public struct GraphicsContextRenderer {
                 // print("current location: [\(currentState.position.x), \(currentState.position.y)]")
                 // print("Minimums: [\(minX), \(minY)]")
                 // print("Maximums: [\(maxX), \(maxY)]")
-
             }
         }
         return CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)

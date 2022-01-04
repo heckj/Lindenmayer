@@ -132,7 +132,7 @@ public struct SceneKitRenderer {
                     currentState = currentState.applyingTransform(yawTransform)
                     print("Pitch (rotate around +X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
-                
+
             case TurtleCodes.pitchDown.rawValue:
                 // negative values pitch nose down
                 if let cmd = cmd as? RenderCommand.PitchDown {
@@ -212,22 +212,22 @@ public struct SceneKitRenderer {
 //                    print("Updated transform:")
 //                    print(currentState.transform.prettyPrintString("  "))
                 }
-                
+
             case TurtleCodes.move.rawValue:
                 if let cmd = cmd as? RenderCommand.Move {
                     let moveTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
                     currentState = currentState.applyingTransform(moveTransform)
                     print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
-                
+
             case TurtleCodes.branch.rawValue:
                 stateStack.append(currentState)
                 print("Saving state: \(String(describing: currentState.transform))")
-                
+
             case TurtleCodes.endBranch.rawValue:
                 currentState = stateStack.removeLast()
                 print("Restored state to: \(String(describing: currentState.transform))")
-            
+
             case TurtleCodes.cylinder.rawValue:
                 if let cmd = cmd as? RenderCommand.Cylinder {
                     let node = SCNNode(geometry: SCNCylinder(radius: cmd.radius, height: cmd.length))
@@ -237,7 +237,7 @@ public struct SceneKitRenderer {
 
                     // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
                     let nudgeOriginTransform = translationTransform(x: 0, y: Float(cmd.length / 2.0), z: 0)
-    //                print(" - calc nudgeTransform: \(nudgeOriginTransform)")
+                    //                print(" - calc nudgeTransform: \(nudgeOriginTransform)")
                     node.simdTransform = matrix_multiply(currentState.transform, nudgeOriginTransform)
 
                     scene.rootNode.addChildNode(node)
@@ -248,8 +248,7 @@ public struct SceneKitRenderer {
                     currentState = currentState.applyingTransform(moveStateTransform)
 
                     print("Added cylinder (r=\(cmd.radius)) by \(cmd.length) at \(String(describing: node.simdTransform))")
-    //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
-
+                    //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
             case TurtleCodes.cone.rawValue:
                 if let cmd = cmd as? RenderCommand.Cone {
@@ -270,8 +269,7 @@ public struct SceneKitRenderer {
                     currentState = currentState.applyingTransform(moveStateTransform)
 
                     print("Added cone (tr=\(cmd.radiusTop), br=\(cmd.radiusBottom) by \(cmd.length) at \(String(describing: node.simdTransform))")
-    //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
-
+                    //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
             case TurtleCodes.sphere.rawValue:
                 if let cmd = cmd as? RenderCommand.Sphere {
@@ -289,7 +287,7 @@ public struct SceneKitRenderer {
                     currentState = currentState.applyingTransform(moveStateTransform)
 
                     print("Added sphere (r=\(cmd.radius)) at \(String(describing: node.simdTransform))")
-    //                print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")
+                    //                print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")
                 }
             default: // ignore
                 break
@@ -308,5 +306,4 @@ public struct SceneKitRenderer {
     func degrees(radians: Float) -> Float {
         return radians / .pi * 180.0
     }
-
 }

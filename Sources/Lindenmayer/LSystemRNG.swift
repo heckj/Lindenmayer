@@ -48,15 +48,15 @@ public struct LSystemRNG<PRNG>: LSystem where PRNG: SeededRandomNumberGenerator 
     public func updatedLSystem(with state: [Module]) -> Self {
         return LSystemRNG(axiom: axiom, state: state, prng: prng, rules: rules)
     }
-    
+
     public func reset() -> Self {
-        self.prng.resetRNG(seed: self.prng.seed)
-        return LSystemRNG(axiom: self.axiom, state: nil, prng: prng, rules: rules)
+        prng.resetRNG(seed: prng.seed)
+        return LSystemRNG(axiom: axiom, state: nil, prng: prng, rules: rules)
     }
 
     public func evolve(with seed: UInt64) -> Self {
-        self.prng.resetRNG(seed: seed)
-        return self.evolve()
+        prng.resetRNG(seed: seed)
+        return evolve()
     }
 }
 
