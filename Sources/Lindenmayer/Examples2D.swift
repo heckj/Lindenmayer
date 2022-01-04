@@ -34,17 +34,6 @@ public enum Examples2D: String, CaseIterable, Identifiable {
             return Detailed2DExamples.barnsleyFern
         }
     }
-
-    /// The L-system evolved by a number of iterations you provide.
-    /// - Parameter iterations: The number of times to evolve the L-system.
-    /// - Returns: The updated L-system from the number of evolutions you provided.
-    public func evolved(iterations: Int) -> LSystem {
-        var evolved: LSystem = lsystem
-        do {
-            evolved = try evolved.evolve(iterations: iterations)
-        } catch {}
-        return evolved
-    }
 }
 
 enum Detailed2DExamples {

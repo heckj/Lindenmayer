@@ -26,17 +26,6 @@ public enum Examples3D: String, CaseIterable, Identifiable {
             return Detailed3DExamples.randomBush
         }
     }
-
-    /// The L-system evolved by a number of iterations you provide.
-    /// - Parameter iterations: The number of times to evolve the L-system.
-    /// - Returns: The updated L-system from the number of evolutions you provided.
-    public func evolved(iterations: Int) -> LSystem {
-        var evolved: LSystem = lsystem
-        do {
-            evolved = try evolved.evolve(iterations: iterations)
-        } catch {}
-        return evolved
-    }
 }
 
 enum Detailed3DExamples {
@@ -190,17 +179,36 @@ enum Detailed3DExamples {
     }
 
     struct Definitions {
-        let contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
-        let contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
-        let branchAngle: Double = 45 /* Branching angle from the trunk */
-        let lateralBranchAngle: Double = 45 /* Branching angle for lateral axes */
-        let divergence: Double = 137.5 /* Divergence angle */
-        let widthContraction: Double = 0.707 /* Width contraction ratio */
-        let trunklength: Double = 10.0
-        let trunkdiameter: Double = 2.0
+        var contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
+        var contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
+        var branchAngle: Double = 45 /* Branching angle from the trunk */
+        var lateralBranchAngle: Double = 45 /* Branching angle for lateral axes */
+        var divergence: Double = 137.5 /* Divergence angle */
+        var widthContraction: Double = 0.707 /* Width contraction ratio */
+        var trunklength: Double = 10.0
+        var trunkdiameter: Double = 2.0
+        
+        init(r1: Double = 0.9,
+                 r2: Double = 0.6,
+                 a0: Double = 45,
+                 a2: Double = 45) {
+            contractionRatioForTrunk = r1
+            contractionRatioForBranch = r2
+            branchAngle = a0
+            lateralBranchAngle = a2
+        }
     }
 
     static let defines = Definitions()
+    static let figure2_6A = defines
+    static let figure2_6B = Definitions(r1: 0.9, r2: 0.9, a0: 45, a2: 45)
+    static let figure2_6C = Definitions(r1: 0.9, r2: 0.8, a0: 45, a2: 45)
+    static let figure2_6D = Definitions(r1: 0.9, r2: 0.7, a0: 30, a2: -30)
+
+    static let figure2_7A = Definitions(r1: 0.9, r2: 0.7, a0: 5, a2: 65)
+    static let figure2_7B = Definitions(r1: 0.9, r2: 0.7, a0: 10, a2: 60)
+    static let figure2_7C = Definitions(r1: 0.9, r2: 0.8, a0: 20, a2: 50)
+    static let figure2_7D = Definitions(r1: 0.9, r2: 0.8, a0: 35, a2: 35)
 
     static var hondaTree = Lindenmayer.withDefines(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
@@ -264,6 +272,25 @@ enum Detailed3DExamples {
         ]
     }
 
+    // Sympodial tree - as described by Aono and Kunii
+    // ABOP - page 58, 59
+//    n = 10
+//    #define r1 0.9 /* contraction ratio 1 */
+//    #define r2 0.7 /* contraction ratio 2 */
+//    #define a1 10 /* branching angle 1 */
+//    #define a2 60 /* branching angle 2 */
+//    #define wr 0.707 /* width decrease rate */
+//    ω : A(1,10)
+//    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
+//    p2 : B(l,w) : * → !(w)F(l)[+(a1)$B(l*r1,w*wr)] [-(a2 )$B(l*r2 ,w*wr )]
+    
+    
+    
+    
+    
+    
+    
+    
     // - MARK: Random Bush
 
     struct Stem2: Module {

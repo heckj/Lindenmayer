@@ -17,11 +17,13 @@ public protocol LSystem {
     /// The sequence of rules that the L-system uses to process and evolve its state.
     var rules: [Rule] { get }
 
-    /// Returns a new L-system that is evolved by the number of iterations you provide.
-    func evolve(iterations: Int) throws -> LSystem
+    /// The L-system evolved by a number of iterations you provide.
+    /// - Parameter iterations: The number of times to evolve the L-system.
+    /// - Returns: The updated L-system from the number of evolutions you provided.
+    func evolved(iterations: Int) -> LSystem
 
     /// Returns a new L-system after processing the current state against the rules to generate a new state sequence.
-    func evolve() throws -> LSystem
+    func evolve() -> LSystem
 
     /// Returns a set of modules around the index location you provide.
     /// - Parameter atIndex: The index location of the state of the current L-system.
@@ -63,7 +65,7 @@ public extension LSystem {
     /// When applying the rule, the element that matched is replaced with what the rule returns from ``Rule/produce(_:)``.
     /// The types of errors that may be thrown is defined by any errors referenced and thrown within the set of rules you provide.
     /// - Returns: An updated Lindenmayer system.
-    func evolve() throws -> LSystem {
+    func evolve() -> LSystem {
         // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
         // TODO(heckj): revisit this with async methods in mind, creating tasks for each iteration
         // in order to run the whole suite of the state in parallel for a new result. Await the whole
@@ -89,11 +91,13 @@ public extension LSystem {
         return updatedLSystem(with: newState)
     }
 
-    /// Updates the state of the Lindenmayer system by the number of iterations you provide.
-    func evolve(iterations: Int = 1) throws -> LSystem {
+    /// The L-system evolved by a number of iterations you provide.
+    /// - Parameter iterations: The number of times to evolve the L-system.
+    /// - Returns: The updated L-system from the number of evolutions you provided.
+    func evolved(iterations: Int = 1) -> LSystem {
         var lsys: LSystem = self
         for _ in 0 ..< iterations {
-            lsys = try lsys.evolve()
+            lsys = lsys.evolve()
         }
         return lsys
     }

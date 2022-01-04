@@ -4,35 +4,27 @@ import XCTest
 final class PerformanceTests: XCTestCase {
     func X_testMemoryUse() {
         measure(metrics: [XCTMemoryMetric()]) {
-            do {
-                let tree = Examples2D.barnsleyFern.lsystem
-                let evo1 = try tree.evolve(iterations: 6)
-                XCTAssertNotNil(evo1)
-            } catch {}
+            let tree = Examples2D.barnsleyFern.lsystem
+            let evo1 = tree.evolved(iterations: 6)
+            XCTAssertNotNil(evo1)
         }
     }
 
     func X_testEvolutionSpeed() {
         measure {
-            do {
-                // 20.675 seconds
-                let tree = Examples2D.barnsleyFern.lsystem
-                let evo1 = try tree.evolve(iterations: 10)
-                XCTAssertNotNil(evo1)
-            } catch {}
+            // 20.675 seconds
+            let tree = Examples2D.barnsleyFern.lsystem
+            let evo1 = tree.evolved(iterations: 10)
+            XCTAssertNotNil(evo1)
         }
     }
 
     func X_testPerfBoundingRectCalc() {
         let evo1: LSystem?
-        do {
-            // 20.675 seconds
-            let tree = Examples2D.barnsleyFern.lsystem
-            evo1 = try tree.evolve(iterations: 10)
-            XCTAssertNotNil(evo1)
-        } catch {
-            evo1 = nil
-        }
+        // 20.675 seconds
+        let tree = Examples2D.barnsleyFern.lsystem
+        evo1 = tree.evolved(iterations: 10)
+        XCTAssertNotNil(evo1)
         measure {
             // 9.9 seconds
             let path: CGRect = GraphicsContextRenderer().calcBoundingRect(system: evo1!)
