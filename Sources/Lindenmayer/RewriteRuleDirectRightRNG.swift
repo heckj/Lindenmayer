@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Squirrel3
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-public struct RewriteRuleDirectRightRNG<DC, RC, PRNG>: Rule where DC: Module, RC: Module, PRNG: RandomNumberGenerator {
+public struct RewriteRuleDirectRightRNG<DC, RC, PRNG>: Rule where DC: Module, RC: Module, PRNG: SeededRandomNumberGenerator {
     /// A psuedo-random number generator to use for stochastic rule productions.
     var prng: RNGWrapper<PRNG>
 

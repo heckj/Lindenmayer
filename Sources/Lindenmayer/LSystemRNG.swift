@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import Squirrel3
 
 /// A stochastic Lindenmayer system.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public struct LSystemRNG<PRNG>: LSystem where PRNG: RandomNumberGenerator {
+public struct LSystemRNG<PRNG>: LSystem where PRNG: SeededRandomNumberGenerator {
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
     let axiom: [Module]
