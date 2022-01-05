@@ -113,16 +113,23 @@ public enum Detailed3DExamples {
 
     struct Trunk: Module {
         public var name = "A"
-        public var render3D: ThreeDRenderCmd {
-            RenderCommand.Cylinder(
-                length: growthDistance,
-                radius: diameter / 2,
-                color: ColorRepresentation(red: 0.7, green: 0.7, blue: 0.1, alpha: 0.9)
-            )
-        }
 
         let growthDistance: Double // start at 1
         let diameter: Double // start at 10
+    }
+
+    struct MainBranch: Module {
+        public var name = "B"
+
+        let growthDistance: Double
+        let diameter: Double
+    }
+
+    struct SecondaryBranch: Module {
+        public var name = "C"
+
+        let growthDistance: Double
+        let diameter: Double
     }
 
     struct StaticTrunk: Module {
@@ -132,34 +139,6 @@ public enum Detailed3DExamples {
                 length: growthDistance,
                 radius: diameter / 2,
                 color: ColorRepresentation(red: 0.7, green: 0.3, blue: 0.1, alpha: 0.95)
-            )
-        }
-
-        let growthDistance: Double
-        let diameter: Double
-    }
-
-    struct MainBranch: Module {
-        public var name = "B"
-        public var render3D: ThreeDRenderCmd {
-            RenderCommand.Cylinder(
-                length: growthDistance,
-                radius: diameter / 2,
-                color: ColorRepresentation(red: 0.3, green: 0.9, blue: 0.1, alpha: 0.9)
-            )
-        }
-
-        let growthDistance: Double
-        let diameter: Double
-    }
-
-    struct SecondaryBranch: Module {
-        public var name = "C"
-        public var render3D: ThreeDRenderCmd {
-            RenderCommand.Cylinder(
-                length: growthDistance,
-                radius: diameter / 2,
-                color: ColorRepresentation(red: 0.3, green: 0.1, blue: 0.9, alpha: 0.9)
             )
         }
 
