@@ -11,15 +11,18 @@ import Squirrel3
 /// A collection of three-dimensional example L-systems.
 public enum Examples3D: String, CaseIterable, Identifiable {
     /// A tree branching L-system based on L-system 6 in the model provided in Algorithmic Beauty of Plants.
-    case hondaTreeBranchingModel
+    case monopodialTree
+    case sympodialTree
     case algae3D
     case randomBush
     public var id: String { rawValue }
     /// The example seed L-system
     public var lsystem: LSystem {
         switch self {
-        case .hondaTreeBranchingModel:
-            return Detailed3DExamples.hondaTree
+        case .monopodialTree:
+            return Detailed3DExamples.monopodialTree
+        case .sympodialTree:
+            return Detailed3DExamples.sympodialTree
         case .algae3D:
             return Detailed3DExamples.algae3D
         case .randomBush:
@@ -164,7 +167,7 @@ public enum Detailed3DExamples {
         let diameter: Double
     }
 
-    public struct Definitions: Equatable {
+    public struct Definitions: Codable, Equatable {
         var contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
         var contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
         var branchAngle: Double = 45 /* Branching angle from the trunk */
@@ -192,12 +195,7 @@ public enum Detailed3DExamples {
     public static let figure2_6C = Definitions(r1: 0.9, r2: 0.8, a0: 45, a2: 45)
     public static let figure2_6D = Definitions(r1: 0.9, r2: 0.7, a0: 30, a2: -30)
 
-    public static let figure2_7A = Definitions(r1: 0.9, r2: 0.7, a0: 5, a2: 65)
-    public static let figure2_7B = Definitions(r1: 0.9, r2: 0.7, a0: 10, a2: 60)
-    public static let figure2_7C = Definitions(r1: 0.9, r2: 0.8, a0: 20, a2: 50)
-    public static let figure2_7D = Definitions(r1: 0.9, r2: 0.8, a0: 35, a2: 35)
-
-    public static var hondaTree = Lindenmayer.withDefines(
+    public static var monopodialTree = Lindenmayer.withDefines(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
         prng: PRNG(seed: 42),
         parameters: defines
@@ -260,17 +258,79 @@ public enum Detailed3DExamples {
         ]
     }
 
+    // - MARK: Sympodial Trees
+    
     // Sympodial tree - as described by Aono and Kunii
     // ABOP - page 58, 59
-//    n = 10
-//    #define r1 0.9 /* contraction ratio 1 */
-//    #define r2 0.7 /* contraction ratio 2 */
-//    #define a1 10 /* branching angle 1 */
-//    #define a2 60 /* branching angle 2 */
-//    #define wr 0.707 /* width decrease rate */
-//    ω : A(1,10)
-//    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
-//    p2 : B(l,w) : * → !(w)F(l)[+(a1)$B(l*r1,w*wr)] [-(a2 )$B(l*r2 ,w*wr )]
+    //    n = 10
+    //    #define r1 0.9 /* contraction ratio 1 */
+    //    #define r2 0.7 /* contraction ratio 2 */
+    //    #define a1 10 /* branching angle 1 */
+    //    #define a2 60 /* branching angle 2 */
+    //    #define wr 0.707 /* width decrease rate */
+    //    ω : A(1,10)
+    //    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
+    //    p2 : B(l,w) : * → !(w)F(l)[+(a1)$B(l*r1,w*wr)] [-(a2 )$B(l*r2 ,w*wr )]
+
+    public struct SympodialDefn: Codable, Equatable {
+        var r1: Double
+        var r2: Double
+        var a1: Double
+        var a2: Double
+        var wr: Double = 0.707 /* Width contraction ratio */
+
+        init(r1: Double = 0.9,
+             r2: Double = 0.7,
+             a1: Double = 10,
+             a2: Double = 60)
+        {
+            self.r1 = r1
+            self.r2 = r2
+            self.a1 = a1
+            self.a2 = a2
+        }
+    }
+    
+    public static let figure2_7A = SympodialDefn(r1: 0.9, r2: 0.7, a1: 5, a2: 65)
+    public static let figure2_7B = SympodialDefn(r1: 0.9, r2: 0.7, a1: 10, a2: 60)
+    public static let figure2_7C = SympodialDefn(r1: 0.9, r2: 0.8, a1: 20, a2: 50)
+    public static let figure2_7D = SympodialDefn(r1: 0.9, r2: 0.8, a1: 35, a2: 35)
+
+    public static let sympodialTree = Lindenmayer.withDefines(
+        MainBranch(growthDistance: 10, diameter: 1),
+        prng: PRNG(seed: 0),
+        parameters: figure2_7A
+    ).rewriteWithParams(directContext: MainBranch.self) { node, params in
+        //    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
+        return [
+            StaticTrunk(growthDistance: node.growthDistance, diameter: node.diameter),
+            Modules.Branch(),
+            Modules.PitchDown(angle: params.a1),
+            SecondaryBranch(growthDistance: node.growthDistance * params.r1, diameter: node.diameter * params.wr),
+            Modules.EndBranch(),
+            Modules.TurnLeft(angle: 180),
+            Modules.Branch(),
+            Modules.PitchDown(angle: params.a2),
+            SecondaryBranch(growthDistance: node.growthDistance * params.r2, diameter: node.diameter * params.wr),
+            Modules.EndBranch(),
+        ]
+    }
+    .rewriteWithParams(directContext: SecondaryBranch.self) { node, params in
+        //    p2 : B(l,w) : * → !(w)F(l)[+(a1)$B(l*r1,w*wr)] [-(a2 )$B(l*r2 ,w*wr )]
+        return [
+            StaticTrunk(growthDistance: node.growthDistance, diameter: node.diameter),
+            Modules.Branch(),
+            Modules.RollRight(angle: params.a1),
+            Modules.LevelOut(),
+            SecondaryBranch(growthDistance: node.growthDistance * params.r1, diameter: node.diameter * params.wr),
+            Modules.EndBranch(),
+            Modules.Branch(),
+            Modules.RollLeft(angle: params.a2),
+            Modules.LevelOut(),
+            SecondaryBranch(growthDistance: node.growthDistance * params.r2, diameter: node.diameter * params.wr),
+            Modules.EndBranch(),
+        ]
+    }
 
     // - MARK: Random Bush
 
