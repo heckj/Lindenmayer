@@ -211,7 +211,7 @@ public struct SceneKitRenderer {
                     // apply transform that reflects the updated rotation immediately.
                     let temp = SCNNode()
                     temp.simdTransform = currentState.transform
-                    temp.simdRotation = new_rotation.vector
+                    temp.simdOrientation = new_rotation
                     currentState.transform = temp.simdTransform
 //                    print("Updated transform:")
 //                    print(currentState.transform.prettyPrintString("  "))
