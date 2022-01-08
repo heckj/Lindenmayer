@@ -238,7 +238,7 @@ public enum Detailed3DExamples {
     }
 
     // - MARK: Sympodial Trees
-    
+
     // Sympodial tree - as described by Aono and Kunii
     // ABOP - page 58, 59
     //    n = 10
@@ -269,7 +269,7 @@ public enum Detailed3DExamples {
             self.a2 = a2
         }
     }
-    
+
     public static let figure2_7A = SympodialDefn(r1: 0.9, r2: 0.7, a1: 5, a2: 65)
     public static let figure2_7B = SympodialDefn(r1: 0.9, r2: 0.7, a1: 10, a2: 60)
     public static let figure2_7C = SympodialDefn(r1: 0.9, r2: 0.8, a1: 20, a2: 50)
@@ -281,7 +281,7 @@ public enum Detailed3DExamples {
         parameters: figure2_7A
     ).rewriteWithParams(directContext: MainBranch.self) { node, params in
         //    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
-        return [
+        [
             StaticTrunk(growthDistance: node.growthDistance, diameter: node.diameter),
             Modules.Branch(),
             Modules.PitchDown(angle: params.a1),
@@ -296,7 +296,7 @@ public enum Detailed3DExamples {
     }
     .rewriteWithParams(directContext: SecondaryBranch.self) { node, params in
         //    p2 : B(l,w) : * → !(w)F(l)[+(a1)$B(l*r1,w*wr)] [-(a2 )$B(l*r2 ,w*wr )]
-        return [
+        [
             StaticTrunk(growthDistance: node.growthDistance, diameter: node.diameter),
             Modules.Branch(),
             Modules.RollRight(angle: params.a1),

@@ -179,12 +179,13 @@ public struct SceneKitRenderer {
                     print("Yaw (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
             case TurtleCodes.spinToHorizontal.rawValue:
+                // Angle is the computed difference between the current heading and straight "up".
                 let angle = currentState.transform.angleFromVertical()
                 print("Leveling out from angle: \(angle) vs. \(Float.pi / 2)")
                 if angle < (Float.pi / 2) {
                     print(" != No action needed - pointed above the horizon...")
                 } else {
-                    let current = simd_quatf(currentState.transform)
+                    let current_rotation = simd_quatf(currentState.transform)
                     let northpole = simd_quatf(angle: 0, axis: simd_float3(x: 0, y: 1, z: 0))
 //                        print("northpole quat: \(northpole) (angle: \(northpole.angle))")
 
@@ -202,9 +203,12 @@ public struct SceneKitRenderer {
 
                     let interpolation_percentage = .pi / 2.0 / angle
                     print(" - Est. interpolation percentage to get horizon: \(interpolation_percentage)")
-                    let new_rotation = simd_slerp(current, northpole, interpolation_percentage)
+                    let new_rotation = simd_slerp(current_rotation, northpole, interpolation_percentage)
 //                        print(" interpolated quaternion: \(new_rotation), Θ=\(new_rotation.angle)")
-                    // convert back to a rotation
+                    // convert back to a rotation by creating a new SCNNode, applying the state's transform,
+                    // and then updating the rotation on the SCNNode with the new_rotation we calculated
+                    // through interpolation. Then apply that node's SCNTransform back over the current one to
+                    // apply transform that reflects the updated rotation immediately.
                     let temp = SCNNode()
                     temp.simdTransform = currentState.transform
                     temp.simdRotation = new_rotation.vector
