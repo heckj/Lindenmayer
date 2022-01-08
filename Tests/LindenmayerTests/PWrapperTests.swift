@@ -43,13 +43,13 @@ final class PWrapperTests: XCTestCase {
         XCTAssertEqual(f.parameters.unwrap().value, 13)
         XCTAssertNotNil(next)
     }
-    
+
     func testCodabling() throws {
         let x = JSONEncoder()
         let zzz = try x.encode(Detailed3DExamples.figure2_6B)
         print(String(data: zzz, encoding: .utf8)!)
-/*
- {"contractionRatioForTrunk":0.9,"widthContraction":0.707,"lateralBranchAngle":45,"trunklength":10,"trunkdiameter":1,"branchAngle":45,"divergence":137.5,"contractionRatioForBranch":0.9}
- */
+        /*
+         {"contractionRatioForTrunk":0.9,"widthContraction":0.707,"lateralBranchAngle":45,"trunklength":10,"trunkdiameter":1,"branchAngle":45,"divergence":137.5,"contractionRatioForBranch":0.9}
+         */
     }
 }
