@@ -13,6 +13,7 @@ import Foundation
 public protocol LSystem {
     /// The sequence of modules that represents the current state of the L-system.
     var state: [Module] { get }
+    var newStateIndicators: [Bool] { get }
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
     var rules: [Rule] { get }
@@ -35,7 +36,12 @@ public protocol LSystem {
     func modules(atIndex: Int) -> ModuleSet
 
     /// Returns a new L-system with the provided state.
-    func updatedLSystem(with state: [Module]) -> Self
+    /// - Parameter state: The sequence of modules that represent the new state.
+    /// - Returns: A new L-system with the updated state that has the same rules.
+    ///
+    /// This function is called from the common LSystem protocol's default implementation to generate an updated
+    /// L-system with a set of new modules.
+    func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self
 }
 
 public extension LSystem {
@@ -74,6 +80,8 @@ public extension LSystem {
         // in order to run the whole suite of the state in parallel for a new result. Await the whole
         // kit for a final resolution.
         var newState: [Module] = []
+        var newStateIndicatorArray: [Bool] = []
+        var newStateIndexLocation = 0
         for index in 0 ..< state.count {
             let moduleSet = modules(atIndex: index)
             // Iterate through the rules, finding the first rule to match
@@ -83,15 +91,22 @@ public extension LSystem {
             if let foundRule = maybeRule {
                 // If a rule was found, then use it to generate the modules that
                 // replace this element in the sequence.
-                newState.append(contentsOf: foundRule.produce(moduleSet))
+                let newModules = foundRule.produce(moduleSet)
+                newState.append(contentsOf: newModules)
+                for _ in newModules {
+                    newStateIndicatorArray.append(true)
+                    newStateIndexLocation += 1
+                }
             } else {
                 // If no rule was identified, we pass along the 'Module' as an
                 // ignored module for later evaluation - for example to be used
                 // to represent the final visual state externally.
                 newState.append(moduleSet.directInstance)
+                newStateIndicatorArray.append(false)
+                newStateIndexLocation += 1
             }
         }
-        return updatedLSystem(with: newState)
+        return updatedLSystem(with: newState, newItemIndicators: newStateIndicatorArray)
     }
 
     /// The L-system evolved by a number of iterations you provide.
