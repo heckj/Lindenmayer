@@ -9,9 +9,10 @@ import Foundation
 
 /// A basic Lindenmayer system.
 public struct LSystemBasic: LSystem {
+    let axiom: [Module]
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
-    let axiom: [Module]
+    public var newStateIndicators: [Bool]
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
     public var rules: [Rule]
@@ -24,6 +25,7 @@ public struct LSystemBasic: LSystem {
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(_ axiom: [Module],
                 state: [Module]?,
+                newStateIndicators: [Bool]?,
                 rules: [Rule] = [])
     {
         self.axiom = axiom
@@ -32,18 +34,29 @@ public struct LSystemBasic: LSystem {
         } else {
             self.state = axiom
         }
+        if let newStateIndicators = newStateIndicators {
+            self.newStateIndicators = newStateIndicators
+        } else {
+            self.newStateIndicators = []
+            for _ in axiom {
+                self.newStateIndicators.append(true)
+            }
+        }
         self.rules = rules
     }
 
     /// Returns a new L-system with the provided state.
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules.
-    public func updatedLSystem(with state: [Module]) -> Self {
-        return LSystemBasic(axiom, state: state, rules: rules)
+    ///
+    /// This function is called from the common LSystem protocol's default implementation to generate an updated
+    /// L-system with a set of new modules.
+    public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
+        return LSystemBasic(axiom, state: state, newStateIndicators: newItemIndicators, rules: rules)
     }
 
     public func reset() -> Self {
-        return LSystemBasic(axiom, state: nil, rules: rules)
+        return LSystemBasic(axiom, state: nil, newStateIndicators: newStateIndicators, rules: rules)
     }
 }
 
@@ -61,7 +74,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -75,7 +88,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -91,7 +104,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -105,7 +118,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -121,7 +134,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -135,7 +148,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -151,7 +164,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -165,6 +178,6 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, rules: newRuleSet)
+        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 }
