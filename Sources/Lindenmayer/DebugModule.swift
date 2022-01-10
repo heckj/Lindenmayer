@@ -1,6 +1,6 @@
 //
 //  DebugModule.swift
-//  
+//
 //
 //  Created by Joseph Heck on 1/10/22.
 //
@@ -12,9 +12,9 @@ public class DebugModule: Identifiable {
     public let new: Bool
     public let id: Int
     init(_ m: Module, at: Int, isNew: Bool = false) {
-        self.id = at
-        self.module = m
-        self.new = isNew
+        id = at
+        module = m
+        new = isNew
     }
 }
 
@@ -30,4 +30,3 @@ public extension LSystem {
         return DebugModule(state[at], at: at, isNew: newStateIndicators[at])
     }
 }
-

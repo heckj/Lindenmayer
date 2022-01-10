@@ -1,6 +1,6 @@
 //
 //  NewModuleSummaryView.swift
-//  
+//
 //
 //  Created by Joseph Heck on 1/10/22.
 //
@@ -13,6 +13,26 @@ public enum SummarySizes: Double, CaseIterable {
     case medium = 16
     case large = 32
     case touchable = 44
+}
+
+struct EmptyModuleSummaryView: View {
+    let size: SummarySizes
+    var body: some View {
+        switch size {
+        case .medium:
+            Color.clear
+                .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
+        case .large:
+            Color.clear
+                .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
+        case .touchable:
+            Color.clear
+                .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
+        default:
+            Color.clear
+                .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
+        }
+    }
 }
 
 @available(macOS 12.0, *)
@@ -29,6 +49,7 @@ struct TinyModuleSummaryView: View {
                     Text(module.module.name)
                         .font(.caption)
                 }
+                .background(module.new ? Color.green : Color.gray)
         case .large:
             Rectangle()
                 .strokeBorder(module.new ? Color.green : Color.gray, lineWidth: 2)
@@ -36,6 +57,7 @@ struct TinyModuleSummaryView: View {
                 .background {
                     Text(module.module.name)
                 }
+                .background(module.new ? Color.green : Color.gray)
         case .touchable:
             Rectangle()
                 .strokeBorder(module.new ? Color.green : Color.gray, lineWidth: 2)
@@ -44,12 +66,13 @@ struct TinyModuleSummaryView: View {
                     Text(module.module.name)
                         .font(.title)
                 }
+                .background(module.new ? Color.green : Color.gray)
         default:
             Rectangle()
                 .strokeBorder(module.new ? Color.green : Color.gray, lineWidth: 2)
                 .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
+                .background(module.new ? Color.green : Color.gray)
         }
-        
     }
 }
 
@@ -58,6 +81,7 @@ struct TinyModuleSummaryView_Previews: PreviewProvider {
     static func provideModule() -> DebugModule {
         Examples3D.monopodialTree.lsystem.evolved(iterations: 4).state(at: 13)
     }
+
     static var previews: some View {
         TinyModuleSummaryView(size: .tiny, module: provideModule())
     }
@@ -70,8 +94,8 @@ struct NewModuleSummaryView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: true) {
             HStack(alignment: .top, spacing: 1) {
-                ForEach(0..<system.state.count) {
-                    TinyModuleSummaryView(size: size, module: system.state(at:$0))
+                ForEach(0 ..< system.state.count) {
+                    TinyModuleSummaryView(size: size, module: system.state(at: $0))
                 }
             }
         }
@@ -79,13 +103,11 @@ struct NewModuleSummaryView: View {
 }
 
 @available(macOS 12.0, *)
-struct NewModuleSummaryView_Previews: PreviewProvider {
+struct TinyModuleSummaryView_Previews2: PreviewProvider {
     static var previews: some View {
-        
         ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
             NewModuleSummaryView(size: sizeChoice,
                                  system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4))
-            
         }
     }
 }

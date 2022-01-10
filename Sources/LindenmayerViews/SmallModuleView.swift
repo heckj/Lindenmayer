@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Joseph Heck on 1/10/22.
 //
@@ -26,6 +26,7 @@ struct SmallModuleView_Previews: PreviewProvider {
     static func provideModule() -> DebugModule {
         Examples3D.monopodialTree.lsystem.evolved(iterations: 4).state(at: 13)
     }
+
     static var previews: some View {
         SmallModuleView(module: provideModule())
     }
