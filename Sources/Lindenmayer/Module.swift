@@ -46,3 +46,24 @@ public extension Module {
         return resovledName
     }
 }
+
+public extension Module {
+    func namedType() -> String {
+        let mirror = Mirror(reflecting: self)
+        return "\(mirror.subjectType)"
+    }
+    func xxx() -> String {
+        let mirror = Mirror(reflecting: self)
+        
+        var xx = "\(String(reflecting: self))"
+        xx += "#children:\(mirror.children.count),"
+        xx += "subjType:\(mirror.subjectType),"
+        xx += "desc:\(mirror.description),"
+        xx += "displayStyle:\(String(describing: mirror.displayStyle))\n"
+        for child in mirror.children {
+            xx += "label:\(String(describing: child.label))"
+            xx += "value:\(child.value)\n"
+        }
+        return xx
+    }
+}

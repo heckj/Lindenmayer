@@ -27,6 +27,6 @@ public struct LSystemMetrics: View {
 
 struct LSystemMetrics_Previews: PreviewProvider {
     static var previews: some View {
-        LSystemMetrics(system: Examples2D.barnsleyFern.lsystem)
+        LSystemMetrics(system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4))
     }
 }

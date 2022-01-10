@@ -20,7 +20,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(
             name: "Squirrel3",
-            url: "https://github.com/heckj/Squirrel3.git", .upToNextMajor(from: "1.0.0")
+            url: "https://github.com/heckj/Squirrel3.git", .upToNextMajor(from: "1.1.0")
         ),
     ],
     targets: [
