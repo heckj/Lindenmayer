@@ -8,7 +8,7 @@
 import Lindenmayer
 import SwiftUI
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 public struct DynamicLSystemView: View {
     @State private var evolutions: Double = 0
     @State private var selectedSystem = Examples2D.fractalTree
@@ -38,7 +38,7 @@ public struct DynamicLSystemView: View {
     }
 }
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct DynamicLSystemView_Previews: PreviewProvider {
     static var previews: some View {
         DynamicLSystemView()

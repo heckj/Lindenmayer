@@ -8,7 +8,7 @@
 import Lindenmayer
 import SwiftUI
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct WindowedSmallModuleView: View {
     let size: SummarySizes
     let system: LSystem
@@ -110,7 +110,7 @@ struct WindowedSmallModuleView: View {
     }
 }
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct WindowedSmallModuleView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in

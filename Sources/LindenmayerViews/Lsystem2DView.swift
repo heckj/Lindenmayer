@@ -8,7 +8,7 @@
 import Lindenmayer
 import SwiftUI
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 public struct Lsystem2DView: View {
     let system: LSystem
     let renderer = GraphicsContextRenderer()
@@ -26,7 +26,7 @@ public struct Lsystem2DView: View {
     }
 }
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct Lsystem2DView_Previews: PreviewProvider {
     static var previews: some View {
         Lsystem2DView(system: Examples2D.barnsleyFern.lsystem.evolved(iterations: 4))

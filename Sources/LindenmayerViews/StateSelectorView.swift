@@ -8,7 +8,7 @@
 import Lindenmayer
 import SwiftUI
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct StateSelectorView: View {
     let system: LSystem
     // state for the related views that show stuff
@@ -104,7 +104,7 @@ struct StateSelectorView: View {
     }
 }
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct StateSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         StateSelectorView(system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4))
