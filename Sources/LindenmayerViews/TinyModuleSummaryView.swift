@@ -35,7 +35,7 @@ struct EmptyModuleSummaryView: View {
     }
 }
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct TinyModuleSummaryView: View {
     let size: SummarySizes
     let module: DebugModule
@@ -76,7 +76,7 @@ struct TinyModuleSummaryView: View {
     }
 }
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct TinyModuleSummaryView_Previews: PreviewProvider {
     static func provideModule() -> DebugModule {
         Examples3D.monopodialTree.lsystem.evolved(iterations: 4).state(at: 13)
@@ -87,7 +87,7 @@ struct TinyModuleSummaryView_Previews: PreviewProvider {
     }
 }
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct NewModuleSummaryView: View {
     let size: SummarySizes
     let system: LSystem
@@ -102,7 +102,7 @@ struct NewModuleSummaryView: View {
     }
 }
 
-@available(macOS 12.0, *)
+@available(macOS 12.0, iOS 15.0, *)
 struct TinyModuleSummaryView_Previews2: PreviewProvider {
     static var previews: some View {
         ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
