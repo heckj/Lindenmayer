@@ -83,31 +83,13 @@ struct TinyModuleSummaryView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        TinyModuleSummaryView(size: .tiny, module: provideModule())
-    }
-}
-
-@available(macOS 12.0, iOS 15.0, *)
-struct NewModuleSummaryView: View {
-    let size: SummarySizes
-    let system: LSystem
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: true) {
+        let system = Examples3D.monopodialTree.lsystem.evolved(iterations: 4)
+        ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
             HStack(alignment: .top, spacing: 1) {
                 ForEach(0 ..< system.state.count) {
-                    TinyModuleSummaryView(size: size, module: system.state(at: $0))
+                    TinyModuleSummaryView(size: sizeChoice, module: system.state(at: $0))
                 }
             }
-        }
-    }
-}
-
-@available(macOS 12.0, iOS 15.0, *)
-struct TinyModuleSummaryView_Previews2: PreviewProvider {
-    static var previews: some View {
-        ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
-            NewModuleSummaryView(size: sizeChoice,
-                                 system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4))
         }
     }
 }

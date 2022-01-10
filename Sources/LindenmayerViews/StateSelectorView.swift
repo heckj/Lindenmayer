@@ -24,77 +24,88 @@ struct StateSelectorView: View {
 
     var body: some View {
         VStack {
-            NewModuleSummaryView(size: .small, system: system)
-            Slider(value: $sliderPosition,
-                   in: 0 ... Double(system.state.count - 1),
-                   step: 1,
-                   onEditingChanged: { _ in
-                       indexPosition = Int(sliderPosition)
-                   })
-            Text("Position: \(Int(sliderPosition)) of \(system.state.count - 1)")
-            HStack {
-                Button {
-                    // ending the long press
-                    if self.isLongPressingReverse {
-                        self.isLongPressingReverse.toggle()
-                        self.reverseTimer?.invalidate()
-                    } else {
-                        if sliderPosition >= 1.0 {
-                            sliderPosition -= 1
-                            indexPosition -= 1
+            ScrollViewReader { proxy in
+                ScrollView(.horizontal, showsIndicators: true) {
+                    HStack(alignment: .top, spacing: 1) {
+                        ForEach(0 ..< system.state.count) {
+                            TinyModuleSummaryView(size: .medium, module: system.state(at: $0))
+                                .id($0)
                         }
                     }
-                } label: {
-                    Image(systemName: "chevron.backward.square")
-                        .font(.title)
                 }
-                .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
-                    // start the long press reverse
-                    self.isLongPressingReverse = true
-                    self.isLongPressingForward = false
-                    self.forwardTimer?.invalidate()
-                    // or fastforward has started to start the timer
-                    self.reverseTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
-                        if sliderPosition >= 1.0 {
-                            sliderPosition -= 1
-                            indexPosition -= 1
+                Slider(value: $sliderPosition,
+                       in: 0 ... Double(system.state.count - 1),
+                       step: 1,
+                       onEditingChanged: { _ in
+                           indexPosition = Int(sliderPosition)
+                           proxy.scrollTo(indexPosition)
+                       })
+                Text("Position: \(Int(sliderPosition)) of \(system.state.count - 1)")
+                HStack {
+                    Button {
+                        // ending the long press
+                        if self.isLongPressingReverse {
+                            self.isLongPressingReverse.toggle()
+                            self.reverseTimer?.invalidate()
+                        } else {
+                            if sliderPosition >= 1.0 {
+                                sliderPosition -= 1
+                                indexPosition -= 1
+                                proxy.scrollTo(indexPosition)
+                            }
                         }
+                    } label: {
+                        Image(systemName: "chevron.backward.square")
+                            .font(.title)
+                    }
+                    .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
+                        // start the long press reverse
+                        self.isLongPressingReverse = true
+                        self.isLongPressingForward = false
+                        self.forwardTimer?.invalidate()
+                        // or fastforward has started to start the timer
+                        self.reverseTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+                            if sliderPosition >= 1.0 {
+                                sliderPosition -= 1
+                                indexPosition -= 1
+                                proxy.scrollTo(indexPosition)
+                            }
+                        })
                     })
-                })
-                Spacer()
-                WindowedSmallModuleView(size: .touchable, system: system, position: indexPosition, windowSize: 7)
-//                SmallModuleView(module: system.state(at: indexPosition))
-                Spacer()
-                Button {
-                    if sliderPosition < Double(system.state.count - 1) {
+                    Spacer()
+                    WindowedSmallModuleView(size: .touchable, system: system, position: indexPosition, windowSize: 7)
+                    Spacer()
+                    Button {
                         // ending the long press forward
                         if self.isLongPressingForward {
                             self.isLongPressingForward.toggle()
                             self.forwardTimer?.invalidate()
                         } else {
-                            if sliderPosition <= Double(system.state.count - 1) {
+                            if sliderPosition < Double(system.state.count - 1) {
                                 sliderPosition += 1
                                 indexPosition += 1
+                                proxy.scrollTo(indexPosition)
                             }
                         }
+                    } label: {
+                        Image(systemName: "chevron.forward.square")
+                            .font(.title)
                     }
-                } label: {
-                    Image(systemName: "chevron.forward.square")
-                        .font(.title)
-                }
-                .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
-                    // start the long press forward
-                    self.isLongPressingForward = true
-                    self.isLongPressingReverse = false
-                    self.reverseTimer?.invalidate()
-                    // or fastforward has started to start the timer
-                    self.forwardTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
-                        if sliderPosition <= Double(system.state.count - 1) {
-                            sliderPosition += 1
-                            indexPosition += 1
-                        }
+                    .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
+                        // start the long press forward
+                        self.isLongPressingForward = true
+                        self.isLongPressingReverse = false
+                        self.reverseTimer?.invalidate()
+                        // or fastforward has started to start the timer
+                        self.forwardTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+                            if sliderPosition < Double(system.state.count - 1) {
+                                sliderPosition += 1
+                                indexPosition += 1
+                                proxy.scrollTo(indexPosition)
+                            }
+                        })
                     })
-                })
+                }
             }
         }
     }
