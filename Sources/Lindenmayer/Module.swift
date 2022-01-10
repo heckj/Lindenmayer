@@ -52,9 +52,10 @@ public extension Module {
         let mirror = Mirror(reflecting: self)
         return "\(mirror.subjectType)"
     }
+
     func xxx() -> String {
         let mirror = Mirror(reflecting: self)
-        
+
         var xx = "\(String(reflecting: self))"
         xx += "#children:\(mirror.children.count),"
         xx += "subjType:\(mirror.subjectType),"
