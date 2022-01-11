@@ -9,13 +9,13 @@ import Lindenmayer
 import SwiftUI
 
 @available(macOS 12.0, iOS 15.0, *)
-struct WindowedSmallModuleView: View {
+public struct WindowedSmallModuleView: View {
     let size: SummarySizes
     let system: LSystem
     let position: Int
     let windowSize: Int
 
-    var body: some View {
+    public var body: some View {
         // precondition(position in 0..<system.state)
         HStack(spacing: 1) {
             if windowSize > 7 {

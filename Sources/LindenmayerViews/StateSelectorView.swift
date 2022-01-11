@@ -9,10 +9,10 @@ import Lindenmayer
 import SwiftUI
 
 @available(macOS 12.0, iOS 15.0, *)
-struct StateSelectorView: View {
+public struct StateSelectorView: View {
     let system: LSystem
     // state for the related views that show stuff
-    @State private var indexPosition: Int = 0
+    @Binding var indexPosition: Int
     // state for the slider
     @State private var sliderPosition: Double = 0
     @State private var activelyMovingSlider: Bool = false
@@ -22,24 +22,22 @@ struct StateSelectorView: View {
     @State private var isLongPressingForward: Bool = false
     @State private var forwardTimer: Timer?
 
-    var body: some View {
+    public var body: some View {
         VStack {
             ScrollViewReader { proxy in
                 ScrollView(.horizontal, showsIndicators: true) {
-                    HStack(alignment: .top, spacing: 1) {
-                        ForEach(0 ..< system.state.count) {
-                            TinyModuleSummaryView(size: .medium, module: system.state(at: $0))
-                                .id($0)
-                        }
-                    }
+                    HorizontalSummarySequence(size: .medium, system: system)
                 }
-                Slider(value: $sliderPosition,
-                       in: 0 ... Double(system.state.count - 1),
-                       step: 1,
-                       onEditingChanged: { _ in
-                           indexPosition = Int(sliderPosition)
-                           proxy.scrollTo(indexPosition)
-                       })
+                if system.state.count > 1 {
+                    // a slider can't be 0 ... 0 - "max stride must be positive"
+                    Slider(value: $sliderPosition,
+                           in: 0 ... Double(system.state.count - 1),
+                           step: 1,
+                           onEditingChanged: { _ in
+                               indexPosition = Int(sliderPosition)
+                               proxy.scrollTo(indexPosition)
+                           })
+                }
                 Text("Position: \(Int(sliderPosition)) of \(system.state.count - 1)")
                 HStack {
                     Button {
@@ -72,6 +70,7 @@ struct StateSelectorView: View {
                             }
                         })
                     })
+                    .keyboardShortcut(KeyboardShortcut(.leftArrow))
                     Spacer()
                     WindowedSmallModuleView(size: .touchable, system: system, position: indexPosition, windowSize: 7)
                     Spacer()
@@ -105,19 +104,21 @@ struct StateSelectorView: View {
                             }
                         })
                     })
+                    .keyboardShortcut(KeyboardShortcut(.rightArrow))
                 }
             }
         }
     }
 
-    public init(system: LSystem) {
+    public init(system: LSystem, position: Binding<Int>) {
         self.system = system
+        _indexPosition = position
     }
 }
 
 @available(macOS 12.0, iOS 15.0, *)
 struct StateSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        StateSelectorView(system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4))
+        StateSelectorView(system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4), position: .constant(13))
     }
 }

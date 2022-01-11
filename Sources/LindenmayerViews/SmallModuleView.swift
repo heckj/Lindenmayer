@@ -7,9 +7,9 @@
 import Lindenmayer
 import SwiftUI
 
-struct SmallModuleView: View {
+public struct SmallModuleView: View {
     let module: DebugModule
-    var body: some View {
+    public var body: some View {
         VStack {
             Text("\(module.module.name)")
                 .font(.title)
@@ -19,6 +19,10 @@ struct SmallModuleView: View {
         .background(module.new ? Color.green : Color.gray)
         .border(.black)
         .padding(1)
+    }
+
+    public init(module: DebugModule) {
+        self.module = module
     }
 }
 

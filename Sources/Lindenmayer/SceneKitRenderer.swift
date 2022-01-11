@@ -91,7 +91,6 @@ public struct SceneKitRenderer {
             let loc: [Float] = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
             for i in loc {
                 for j in loc {
-//                    print("\(i),\(j)")
                     let dot = SCNNode(geometry: dot3D)
                     dot.simdPosition = simd_float3(x: Float(i), y: Float(j), z: 0)
                     flooring.addChildNode(dot)
@@ -102,7 +101,7 @@ public struct SceneKitRenderer {
         scene.rootNode.addChildNode(flooring)
     }
 
-    public func generateScene(lsystem: LSystem) -> SCNScene {
+    public func generateScene(lsystem: LSystem) -> (SCNScene, [matrix_float4x4]) {
         let scene = SCNScene()
         // create and add a camera to the scene
         let cameraNode = SCNNode()
@@ -117,10 +116,12 @@ public struct SceneKitRenderer {
         // set up debug/sizing flooring
         addDebugFlooring(scene)
 
+        var transformSequence: [matrix_float4x4] = []
+
         var currentState = GrowthState(node: scene.rootNode)
         var stateStack: [GrowthState] = []
 
-        for module in lsystem.state {
+        for (index, module) in lsystem.state.enumerated() {
             // process the 'module.render3D'
             let cmd = module.render3D
             switch cmd.name {
@@ -238,6 +239,7 @@ public struct SceneKitRenderer {
                     if let colorRep = cmd.color {
                         node.geometry?.materials = [colorRep.material]
                     }
+                    node.name = "n\(index)"
 
                     // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
                     let nudgeOriginTransform = translationTransform(x: 0, y: Float(cmd.length / 2.0), z: 0)
@@ -260,6 +262,7 @@ public struct SceneKitRenderer {
                     if let colorRep = cmd.color {
                         node.geometry?.materials = [colorRep.material]
                     }
+                    node.name = "n\(index)"
 
                     // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
                     let nudgeOriginTransform = translationTransform(x: 0, y: Float(cmd.length / 2.0), z: 0)
@@ -281,6 +284,8 @@ public struct SceneKitRenderer {
                     if let colorRep = cmd.color {
                         node.geometry?.materials = [colorRep.material]
                     }
+                    node.name = "n\(index)"
+
                     node.simdTransform = currentState.transform
 
                     scene.rootNode.addChildNode(node)
@@ -296,9 +301,10 @@ public struct SceneKitRenderer {
             default: // ignore
                 break
             } // switch cmd.name
+            transformSequence.append(currentState.transform)
         } // for module in lsystem.state
 
-        return scene
+        return (scene, transformSequence)
     }
 
     // MARK: - Internal
