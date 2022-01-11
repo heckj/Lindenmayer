@@ -54,7 +54,9 @@ public struct StateSelectorView: View {
                         }
                     } label: {
                         Image(systemName: "chevron.backward.square")
+                        #if os(iOS)
                             .font(.title)
+                        #endif
                     }
                     .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
                         // start the long press reverse
@@ -88,7 +90,9 @@ public struct StateSelectorView: View {
                         }
                     } label: {
                         Image(systemName: "chevron.forward.square")
+                        #if os(iOS)
                             .font(.title)
+                        #endif
                     }
                     .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
                         // start the long press forward
