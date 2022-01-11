@@ -13,7 +13,7 @@ public struct Lsystem3DView: View {
     let system: LSystem
     func generateScene() -> SCNScene {
         let x = SceneKitRenderer()
-        return x.generateScene(lsystem: system)
+        return x.generateScene(lsystem: system).0
     }
 
     public var body: some View {

@@ -15,9 +15,9 @@ public enum SummarySizes: Double, CaseIterable {
     case touchable = 44
 }
 
-struct EmptyModuleSummaryView: View {
+public struct EmptyModuleSummaryView: View {
     let size: SummarySizes
-    var body: some View {
+    public var body: some View {
         switch size {
         case .medium:
             Color.clear
@@ -33,13 +33,17 @@ struct EmptyModuleSummaryView: View {
                 .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
         }
     }
+
+    public init(size: SummarySizes) {
+        self.size = size
+    }
 }
 
 @available(macOS 12.0, iOS 15.0, *)
-struct TinyModuleSummaryView: View {
+public struct TinyModuleSummaryView: View {
     let size: SummarySizes
     let module: DebugModule
-    var body: some View {
+    public var body: some View {
         switch size {
         case .medium:
             Rectangle()
@@ -73,6 +77,11 @@ struct TinyModuleSummaryView: View {
                 .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
                 .background(module.new ? Color.green : Color.gray)
         }
+    }
+
+    public init(size: SummarySizes, module: DebugModule) {
+        self.size = size
+        self.module = module
     }
 }
 
