@@ -5,8 +5,8 @@ import PackageDescription
 let package = Package(
     name: "Lindenmayer",
     platforms: [
-        .iOS(.v14),
-        .macOS(.v11),
+        .iOS(.v15),
+        .macOS(.v12),
     ],
     products: [
         .library(
@@ -22,6 +22,10 @@ let package = Package(
             name: "Squirrel3",
             url: "https://github.com/heckj/Squirrel3.git", .upToNextMajor(from: "1.1.0")
         ),
+        .package(
+            name: "SceneKitDebugTools",
+            url: "https://github.com/heckj/SceneKitDebugTools.git", .upToNextMajor(from: "0.1.0")
+        ),
     ],
     targets: [
         .target(
@@ -30,7 +34,7 @@ let package = Package(
         ),
         .target(
             name: "LindenmayerViews",
-            dependencies: ["Lindenmayer"]
+            dependencies: ["Lindenmayer", "SceneKitDebugTools"]
         ),
         .testTarget(
             name: "LindenmayerTests",
