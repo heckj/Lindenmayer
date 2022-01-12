@@ -109,10 +109,6 @@ public struct SceneKitRenderer {
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
 
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 20)
-        cameraNode.simdLook(at: simd_float3(x: 0, y: 5, z: 0))
-
         // set up debug/sizing flooring
         addDebugFlooring(scene)
 
@@ -303,6 +299,16 @@ public struct SceneKitRenderer {
             } // switch cmd.name
             transformSequence.append(currentState.transform)
         } // for module in lsystem.state
+
+        let (boundingMin, boundingMax) = scene.rootNode.boundingBox
+        let distance = max(
+            max(boundingMin.x, boundingMax.x),
+            max(boundingMin.y, boundingMax.y),
+            max(boundingMin.z, boundingMax.z)
+        )
+        // place the camera
+        cameraNode.position = SCNVector3(x: distance, y: distance * 1.2, z: distance)
+        cameraNode.simdLook(at: simd_float3(x: 0, y: 0, z: 0))
 
         return (scene, transformSequence)
     }
