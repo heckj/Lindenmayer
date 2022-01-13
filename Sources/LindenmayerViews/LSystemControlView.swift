@@ -16,7 +16,7 @@ public struct LSystemControlView: View {
     @State private var stateIndex = 0
     @State private var autoLookAt = true
     @State private var currentNode: SCNNode? = nil
-    
+
     func lookAtNode(selectedNode: SCNNode, cameraNode: SCNNode, highlight: Bool) {
         SCNTransaction.begin()
         print("Looking at node \(selectedNode)")
@@ -30,25 +30,25 @@ public struct LSystemControlView: View {
                 SCNTransaction.completionBlock = {
                     SCNTransaction.begin()
                     SCNTransaction.animationDuration = 0.5
-#if os(OSX)
-                    material.emission.contents = NSColor.black
-#elseif os(iOS)
-                    material.emission.contents = UIColor.black
-#endif
+                    #if os(OSX)
+                        material.emission.contents = NSColor.black
+                    #elseif os(iOS)
+                        material.emission.contents = UIColor.black
+                    #endif
                     SCNTransaction.commit()
                 }
                 // and when we start, highlight with red
                 SCNTransaction.animationDuration = 0.5
-#if os(OSX)
-                material.emission.contents = NSColor.red
-#elseif os(iOS)
-                material.emission.contents = UIColor.red
-#endif
+                #if os(OSX)
+                    material.emission.contents = NSColor.red
+                #elseif os(iOS)
+                    material.emission.contents = UIColor.red
+                #endif
                 SCNTransaction.commit()
             } // if let material
         } // if highlight
     }
-    
+
     public var body: some View {
         VStack {
             HStack {
@@ -92,7 +92,7 @@ public struct LSystemControlView: View {
                 }
                 Spacer()
             }
-            
+
             StateSelectorView(system: model.system, position: $stateIndex)
                 .onChange(of: stateIndex) { newValue in
                     if autoLookAt {
@@ -122,9 +122,13 @@ public struct LSystemControlView: View {
                         } // if let cameraNode (should
                     } // if (autoLookAt)
                 } // onChange
-            
+
             DebugSceneView(scene: model.scene, node: currentNode)
         }
+    }
+
+    public init(model: LSystemModel) {
+        self.model = model
     }
 }
 

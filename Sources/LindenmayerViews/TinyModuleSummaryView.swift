@@ -1,5 +1,5 @@
 //
-//  NewModuleSummaryView.swift
+//  TinyModuleSummaryView.swift
 //
 //
 //  Created by Joseph Heck on 1/10/22.

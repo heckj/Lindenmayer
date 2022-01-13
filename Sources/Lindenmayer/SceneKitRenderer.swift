@@ -308,7 +308,7 @@ public struct SceneKitRenderer {
         )
         // place the camera
         cameraNode.position = SCNVector3(x: distance, y: distance * 1.2, z: distance)
-        cameraNode.simdLook(at: simd_float3(x: 0, y: Float(distance)/2.0, z: 0))
+        cameraNode.simdLook(at: simd_float3(x: 0, y: Float(distance) / 2.0, z: 0))
 
         return (scene, transformSequence)
     }
