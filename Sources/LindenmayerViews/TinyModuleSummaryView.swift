@@ -7,38 +7,6 @@
 import Lindenmayer
 import SwiftUI
 
-public enum SummarySizes: Double, CaseIterable {
-    case tiny = 4
-    case small = 8
-    case medium = 16
-    case large = 32
-    case touchable = 44
-}
-
-public struct EmptyModuleSummaryView: View {
-    let size: SummarySizes
-    public var body: some View {
-        switch size {
-        case .medium:
-            Color.clear
-                .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
-        case .large:
-            Color.clear
-                .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
-        case .touchable:
-            Color.clear
-                .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
-        default:
-            Color.clear
-                .frame(width: size.rawValue, height: size.rawValue, alignment: .center)
-        }
-    }
-
-    public init(size: SummarySizes) {
-        self.size = size
-    }
-}
-
 @available(macOS 12.0, iOS 15.0, *)
 public struct TinyModuleSummaryView: View {
     let size: SummarySizes

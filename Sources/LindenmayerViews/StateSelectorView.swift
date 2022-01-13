@@ -37,6 +37,9 @@ public struct StateSelectorView: View {
                                indexPosition = Int(sliderPosition)
                                proxy.scrollTo(indexPosition)
                            })
+                        .onChange(of: indexPosition) { newValue in
+                            sliderPosition = Double(newValue)
+                        }
                 }
                 Text("Position: \(Int(sliderPosition)) of \(system.state.count - 1)")
                 HStack {
