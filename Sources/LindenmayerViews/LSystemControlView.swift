@@ -16,7 +16,12 @@ public struct LSystemControlView: View {
     @State private var stateIndex = 0
     @State private var autoLookAt = true
     @State private var currentNode: SCNNode? = nil
-
+    
+    /// Adjusts the camera node to point towards another SCNNode you provide, and optionally highlight that node temporarily.
+    /// - Parameters:
+    ///   - selectedNode: The node to look at.
+    ///   - cameraNode: The camera node to manipulate.
+    ///   - highlight: A Boolean value that indicates whether to highlight the node selected.
     func lookAtNode(selectedNode: SCNNode, cameraNode: SCNNode, highlight: Bool) {
         SCNTransaction.begin()
         print("Looking at node \(selectedNode)")
@@ -48,7 +53,40 @@ public struct LSystemControlView: View {
             } // if let material
         } // if highlight
     }
-
+    
+    /// Updates the SceneKit scene to point the camera to the node with the selected state, or present a directional indicator from the state if no node is visible.
+    ///
+    /// This method has the scenekit side effects when `autoLookAt` is `true`.
+    /// - Parameter index: The index of the L-system state to inspect.
+    func autolook(at index:Int) {
+        precondition(index < model.transformSequence.count)
+        if autoLookAt {
+            let lookupName = "n\(index)"
+            if let cameraNode = model.scene.rootNode.childNode(withName: "camera", recursively: true) {
+                if let headingIndicator = model.scene.rootNode.childNode(withName: "headingIndicator", recursively: true) {
+                    if let selectedNode = model.scene.rootNode.childNode(withName: lookupName, recursively: true) {
+                        currentNode = selectedNode
+                        headingIndicator.opacity = 0
+                        headingIndicator.simdTransform = selectedNode.simdTransform
+                        lookAtNode(selectedNode: selectedNode, cameraNode: cameraNode, highlight: true)
+                    } else {
+                        currentNode = nil
+                        let currentStateTransform = model.transformSequence[index]
+                        // print("Corresponding transform: \(currentStateTransform.prettyPrintString("  "))")
+                        SCNTransaction.begin()
+                        SCNTransaction.animationDuration = 0.2
+                        headingIndicator.opacity = 1
+                        let bigger = scalingTransform(x: 2.5, y: 2.5, z: 2.5)
+                        headingIndicator.simdTransform = matrix_multiply(currentStateTransform, bigger)
+                        lookAtNode(selectedNode: headingIndicator, cameraNode: cameraNode, highlight: false)
+                        SCNTransaction.commit()
+                        currentNode = headingIndicator
+                    } // if let selectedNode (exists)/else
+                } // if let headingIndicator
+            } // if let cameraNode (should
+        } // if (autoLookAt)
+    }
+    
     public var body: some View {
         VStack {
             HStack {
@@ -60,6 +98,7 @@ public struct LSystemControlView: View {
                         model.iterations = iterations
                         stateIndex = 0
                         currentNode = nil
+                        autolook(at: stateIndex)
                     }
                 } onDecrement: {
                     if iterations > 1 {
@@ -67,6 +106,7 @@ public struct LSystemControlView: View {
                         model.iterations = iterations
                         stateIndex = 0
                         currentNode = nil
+                        autolook(at: stateIndex)
                     }
                 }
                 Toggle(isOn: $autoLookAt) {
@@ -95,33 +135,8 @@ public struct LSystemControlView: View {
 
             StateSelectorView(system: model.system, position: $stateIndex)
                 .onChange(of: stateIndex) { newValue in
-                    if autoLookAt {
-                        print(newValue)
-                        let lookupName = "n\(newValue)"
-                        if let cameraNode = model.scene.rootNode.childNode(withName: "camera", recursively: true) {
-                            if let headingIndicator = model.scene.rootNode.childNode(withName: "headingIndicator", recursively: true) {
-                                if let selectedNode = model.scene.rootNode.childNode(withName: lookupName, recursively: true) {
-                                    currentNode = selectedNode
-                                    headingIndicator.opacity = 0
-                                    headingIndicator.simdTransform = selectedNode.simdTransform
-                                    lookAtNode(selectedNode: selectedNode, cameraNode: cameraNode, highlight: true)
-                                } else {
-                                    currentNode = nil
-                                    let currentStateTransform = model.transformSequence[newValue]
-                                    // print("Corresponding transform: \(currentStateTransform.prettyPrintString("  "))")
-                                    SCNTransaction.begin()
-                                    SCNTransaction.animationDuration = 0.2
-                                    headingIndicator.opacity = 1
-                                    let bigger = scalingTransform(x: 2.5, y: 2.5, z: 2.5)
-                                    headingIndicator.simdTransform = matrix_multiply(currentStateTransform, bigger)
-                                    lookAtNode(selectedNode: headingIndicator, cameraNode: cameraNode, highlight: false)
-                                    SCNTransaction.commit()
-                                    currentNode = headingIndicator
-                                } // if let selectedNode (exists)/else
-                            } // if let headingIndicator
-                        } // if let cameraNode (should
-                    } // if (autoLookAt)
-                } // onChange
+                    autolook(at: newValue)
+                }
 
             DebugSceneView(scene: model.scene, node: currentNode)
         }
