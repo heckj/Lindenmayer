@@ -11,6 +11,7 @@ import SwiftUI
 @available(macOS 12.0, iOS 15.0, *)
 public struct StateSelectorView: View {
     let system: LSystem
+    let _withDetailView: Bool
     // state for the related views that show stuff
     @Binding var indexPosition: Int
     // state for the slider
@@ -37,9 +38,9 @@ public struct StateSelectorView: View {
                                indexPosition = Int(sliderPosition)
                                proxy.scrollTo(indexPosition)
                            })
-                        .onChange(of: indexPosition) { newValue in
-                            sliderPosition = Double(newValue)
-                        }
+                           .onChange(of: indexPosition) { newValue in
+                               sliderPosition = Double(newValue)
+                           }
                 }
                 Text("Position: \(Int(sliderPosition)) of \(system.state.count - 1)")
                 HStack {
@@ -113,12 +114,16 @@ public struct StateSelectorView: View {
                     })
                     .keyboardShortcut(KeyboardShortcut(.rightArrow))
                 }
+                if _withDetailView {
+                    ModuleDetailView(module: system.state(at: indexPosition))
+                }
             }
         }
     }
 
-    public init(system: LSystem, position: Binding<Int>) {
+    public init(system: LSystem, position: Binding<Int>, withDetailView: Bool = false) {
         self.system = system
+        _withDetailView = withDetailView
         _indexPosition = position
     }
 }
@@ -127,5 +132,6 @@ public struct StateSelectorView: View {
 struct StateSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         StateSelectorView(system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4), position: .constant(13))
+        StateSelectorView(system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4), position: .constant(13), withDetailView: true)
     }
 }

@@ -53,18 +53,21 @@ public extension Module {
         return "\(mirror.subjectType)"
     }
 
-    func xxx() -> String {
+    func children() -> [String: String] {
         let mirror = Mirror(reflecting: self)
-
-        var xx = "\(String(reflecting: self))"
-        xx += "#children:\(mirror.children.count),"
-        xx += "subjType:\(mirror.subjectType),"
-        xx += "desc:\(mirror.description),"
-        xx += "displayStyle:\(String(describing: mirror.displayStyle))\n"
+        var propertyDict: [String: String] = [:]
+//        var xx = "\(String(reflecting: self))"
+//        xx += "#children:\(mirror.children.count),"
+//        xx += "subjType:\(mirror.subjectType),"
+//        xx += "desc:\(mirror.description),"
+//        xx += "displayStyle:\(String(describing: mirror.displayStyle))\n"
         for child in mirror.children {
-            xx += "label:\(String(describing: child.label))"
-            xx += "value:\(child.value)\n"
+            if let label = child.label {
+                propertyDict[label] = "\(child.value)"
+            }
+//            xx += "label:\(String(describing: child.label))"
+//            xx += "value:\(child.value)\n"
         }
-        return xx
+        return propertyDict
     }
 }

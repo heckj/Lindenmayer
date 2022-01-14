@@ -16,7 +16,7 @@ public struct LSystemControlView: View {
     @State private var stateIndex = 0
     @State private var autoLookAt = true
     @State private var currentNode: SCNNode? = nil
-    
+
     /// Adjusts the camera node to point towards another SCNNode you provide, and optionally highlight that node temporarily.
     /// - Parameters:
     ///   - selectedNode: The node to look at.
@@ -53,12 +53,12 @@ public struct LSystemControlView: View {
             } // if let material
         } // if highlight
     }
-    
+
     /// Updates the SceneKit scene to point the camera to the node with the selected state, or present a directional indicator from the state if no node is visible.
     ///
     /// This method has the scenekit side effects when `autoLookAt` is `true`.
     /// - Parameter index: The index of the L-system state to inspect.
-    func autolook(at index:Int) {
+    func autolook(at index: Int) {
         precondition(index < model.transformSequence.count)
         if autoLookAt {
             let lookupName = "n\(index)"
@@ -86,7 +86,7 @@ public struct LSystemControlView: View {
             } // if let cameraNode (should
         } // if (autoLookAt)
     }
-    
+
     public var body: some View {
         VStack {
             HStack {
@@ -133,7 +133,7 @@ public struct LSystemControlView: View {
                 Spacer()
             }
 
-            StateSelectorView(system: model.system, position: $stateIndex)
+            StateSelectorView(system: model.system, position: $stateIndex, withDetailView: true)
                 .onChange(of: stateIndex) { newValue in
                     autolook(at: newValue)
                 }

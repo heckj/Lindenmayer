@@ -1,5 +1,5 @@
 //
-//  TinyModuleSummaryView.swift
+//  ModuleSummaryView.swift
 //
 //
 //  Created by Joseph Heck on 1/10/22.
@@ -8,7 +8,7 @@ import Lindenmayer
 import SwiftUI
 
 @available(macOS 12.0, iOS 15.0, *)
-public struct TinyModuleSummaryView: View {
+public struct ModuleSummaryView: View {
     let size: SummarySizes
     let module: DebugModule
     public var body: some View {
@@ -54,7 +54,7 @@ public struct TinyModuleSummaryView: View {
 }
 
 @available(macOS 12.0, iOS 15.0, *)
-struct TinyModuleSummaryView_Previews: PreviewProvider {
+struct ModuleSummaryView_Previews: PreviewProvider {
     static func provideModule() -> DebugModule {
         Examples3D.monopodialTree.lsystem.evolved(iterations: 4).state(at: 13)
     }
@@ -64,7 +64,7 @@ struct TinyModuleSummaryView_Previews: PreviewProvider {
         ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
             HStack(alignment: .top, spacing: 1) {
                 ForEach(0 ..< system.state.count) {
-                    TinyModuleSummaryView(size: sizeChoice, module: system.state(at: $0))
+                    ModuleSummaryView(size: sizeChoice, module: system.state(at: $0))
                 }
             }
         }

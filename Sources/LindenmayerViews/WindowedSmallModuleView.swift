@@ -20,7 +20,7 @@ public struct WindowedSmallModuleView: View {
         HStack(spacing: 1) {
             if windowSize > 7 {
                 if position - 4 >= 0 {
-                    TinyModuleSummaryView(size: size, module: system.state(at: position - 4))
+                    ModuleSummaryView(size: size, module: system.state(at: position - 4))
                         .scaleEffect(x: 0.8, y: 0.8)
                 } else {
                     EmptyModuleSummaryView(size: size)
@@ -29,7 +29,7 @@ public struct WindowedSmallModuleView: View {
             }
             if windowSize > 5 {
                 if position - 3 >= 0 {
-                    TinyModuleSummaryView(size: size, module: system.state(at: position - 3))
+                    ModuleSummaryView(size: size, module: system.state(at: position - 3))
                         .scaleEffect(x: 0.8, y: 0.8)
                 } else {
                     EmptyModuleSummaryView(size: size)
@@ -38,7 +38,7 @@ public struct WindowedSmallModuleView: View {
             }
             if windowSize > 3 {
                 if position - 2 >= 0 {
-                    TinyModuleSummaryView(size: size, module: system.state(at: position - 2))
+                    ModuleSummaryView(size: size, module: system.state(at: position - 2))
                         .scaleEffect(x: 0.8, y: 0.8)
                 } else {
                     EmptyModuleSummaryView(size: size)
@@ -47,17 +47,17 @@ public struct WindowedSmallModuleView: View {
             }
             if windowSize > 1 {
                 if position - 1 >= 0 {
-                    TinyModuleSummaryView(size: size, module: system.state(at: position - 1))
+                    ModuleSummaryView(size: size, module: system.state(at: position - 1))
                         .scaleEffect(x: 0.9, y: 0.9)
                 } else {
                     EmptyModuleSummaryView(size: size)
                         .scaleEffect(x: 0.9, y: 0.9)
                 }
             }
-            TinyModuleSummaryView(size: size, module: system.state(at: position))
+            ModuleSummaryView(size: size, module: system.state(at: position))
             if windowSize > 1 {
                 if position + 1 < system.state.count {
-                    TinyModuleSummaryView(size: size, module: system.state(at: position + 1))
+                    ModuleSummaryView(size: size, module: system.state(at: position + 1))
                         .scaleEffect(x: 0.9, y: 0.9)
                 } else {
                     EmptyModuleSummaryView(size: size)
@@ -66,7 +66,7 @@ public struct WindowedSmallModuleView: View {
             }
             if windowSize > 3 {
                 if position + 2 < system.state.count {
-                    TinyModuleSummaryView(size: size, module: system.state(at: position + 2))
+                    ModuleSummaryView(size: size, module: system.state(at: position + 2))
                         .scaleEffect(x: 0.8, y: 0.8)
                 } else {
                     EmptyModuleSummaryView(size: size)
@@ -75,7 +75,7 @@ public struct WindowedSmallModuleView: View {
             }
             if windowSize > 5 {
                 if position + 3 < system.state.count {
-                    TinyModuleSummaryView(size: size, module: system.state(at: position + 3))
+                    ModuleSummaryView(size: size, module: system.state(at: position + 3))
                         .scaleEffect(x: 0.8, y: 0.8)
                 } else {
                     EmptyModuleSummaryView(size: size)
@@ -84,7 +84,7 @@ public struct WindowedSmallModuleView: View {
             }
             if windowSize > 7 {
                 if position + 4 < system.state.count {
-                    TinyModuleSummaryView(size: size, module: system.state(at: position + 4))
+                    ModuleSummaryView(size: size, module: system.state(at: position + 4))
                         .scaleEffect(x: 0.8, y: 0.8)
                 } else {
                     EmptyModuleSummaryView(size: size)
