@@ -196,7 +196,7 @@ public enum Detailed3DExamples {
             MainBranch(growthDistance: trunk.growthDistance * params.contractionRatioForBranch,
                        diameter: trunk.diameter * params.widthContraction),
             Modules.EndBranch(),
-            Modules.TurnLeft(angle: params.divergence),
+            Modules.RollLeft(angle: params.divergence),
             Trunk(growthDistance: trunk.growthDistance * params.contractionRatioForTrunk,
                   diameter: trunk.diameter * params.widthContraction),
         ]
@@ -208,7 +208,7 @@ public enum Detailed3DExamples {
             StaticTrunk(growthDistance: branch.growthDistance, diameter: branch.diameter),
             Modules.Branch(),
 
-            Modules.RollLeft(angle: params.lateralBranchAngle),
+            Modules.TurnLeft(angle: params.lateralBranchAngle),
             Modules.LevelOut(),
             SecondaryBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
                             diameter: branch.diameter * params.widthContraction),
@@ -225,7 +225,7 @@ public enum Detailed3DExamples {
             StaticTrunk(growthDistance: branch.growthDistance, diameter: branch.diameter),
             Modules.Branch(),
 
-            Modules.RollRight(angle: params.branchAngle),
+            Modules.TurnRight(angle: params.branchAngle),
             Modules.LevelOut(),
 
             MainBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
@@ -283,11 +283,14 @@ public enum Detailed3DExamples {
         //    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
         [
             StaticTrunk(growthDistance: node.growthDistance, diameter: node.diameter),
+            
             Modules.Branch(),
             Modules.PitchDown(angle: params.a1),
             SecondaryBranch(growthDistance: node.growthDistance * params.r1, diameter: node.diameter * params.wr),
             Modules.EndBranch(),
+            
             Modules.RollLeft(angle: 180),
+            
             Modules.Branch(),
             Modules.PitchDown(angle: params.a2),
             SecondaryBranch(growthDistance: node.growthDistance * params.r2, diameter: node.diameter * params.wr),
