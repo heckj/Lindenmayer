@@ -15,7 +15,7 @@ public struct HorizontalSummarySequence: View {
     public var body: some View {
         HStack(alignment: .top, spacing: 1) {
             ForEach(0 ..< system.state.count, id: \.self) {
-                TinyModuleSummaryView(size: size, module: system.state(at: $0))
+                ModuleSummaryView(size: size, module: system.state(at: $0))
                     .id($0)
             }
         }

@@ -11,10 +11,34 @@ public class DebugModule: Identifiable {
     public let module: Module
     public let new: Bool
     public let id: Int
+    private let _filteredAndSortedKeys: [String]
+    public var mirroredProperties: [String] {
+        _filteredAndSortedKeys
+    }
+
+    public func valueOf(_ propertyKey: String) -> String? {
+        if module.children().keys.contains(propertyKey) {
+            if let value = module.children()[propertyKey] {
+                // if we can convert this over into a Double (pretty common), then reformat it down
+                // to a notably shorter string for display purposes.
+                if let asDouble = Double(value) {
+                    return asDouble.formatted(.number.precision(
+                        .integerAndFractionLength(integerLimits: 1 ... 2, fractionLimits: 0 ... 3))
+                    )
+                }
+            }
+            return module.children()[propertyKey]
+        }
+        return nil
+    }
+
     init(_ m: Module, at: Int, isNew: Bool = false) {
         id = at
         module = m
         new = isNew
+        _filteredAndSortedKeys = module.children().keys
+            .filter { $0 != "name" }
+            .sorted()
     }
 }
 
