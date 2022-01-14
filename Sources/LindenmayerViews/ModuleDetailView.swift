@@ -11,18 +11,21 @@ public struct ModuleDetailView: View {
     let module: DebugModule
     public var body: some View {
         VStack {
-//            Text("\(module.module.name)")
-//                .font(.title)
+            //            Text("\(module.module.name)")
+            //                .font(.title)
             if module.mirroredProperties.count > 0 {
-                VStack(alignment: .leading) {
+                LazyVGrid(columns: [
+                    GridItem(.flexible(minimum: 10, maximum: 150), spacing: 5, alignment: .trailing),
+                    GridItem(.flexible(minimum: 10, maximum: 50), spacing: 5, alignment: .leading),
+                ]) {
                     ForEach(module.mirroredProperties, id: \.self) { key in
-                        HStack {
-                            Text("\(key):")
-                            Text(module.valueOf(key) ?? "")
-                        }
+                        Text("\(key):")
+                        Text(module.valueOf(key) ?? "")
                     }
                 }
             }
+
+            Text("render: \(String(describing: module.module.render3D))")
         }
         .frame(minWidth: 100, maxWidth: 300, minHeight: 50, maxHeight: 50)
         .padding(4)
