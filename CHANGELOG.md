@@ -12,7 +12,7 @@ This edition is suitable for experimentation, and I certainly welcome feedback i
 
 ## [0.7.0](https://github.com/heckj/Lindenmayer/releases/tag/0.7.0) (2022-1-2)
 
-**BREAKING CHANGES** 
+**BREAKING CHANGES**
 
 Writing rules ergonomic updates:
 
@@ -20,3 +20,10 @@ The process of writing LSystems has been improved by including factory/wrapper m
 
 The rules all now also have additional evaluation criteria enabled through an optional (typed) closure so that you can choose if rules are activated not only by the types they match, but in addition with a closure that you provide that can interrogate the modules that were matched.
 
+## [0.7.1](https://github.com/heckj/Lindenmayer/releases/tag/0.7.1) (2022-1-13)
+
+* module cleanup, normalizing rendering commands in https://github.com/heckj/Lindenmayer/pull/23
+* Faster iteration in https://github.com/heckj/Lindenmayer/pull/24
+* Debug view in https://github.com/heckj/Lindenmayer/pull/28
+
+**Full Changelog**: https://github.com/heckj/Lindenmayer/compare/0.7.0...0.7.1
