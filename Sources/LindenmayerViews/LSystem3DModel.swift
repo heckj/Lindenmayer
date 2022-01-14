@@ -1,5 +1,5 @@
 //
-//  LSystemModels.swift
+//  LSystem3DModel.swift
 //  X5336
 //
 //  Created by Joseph Heck on 1/8/22.
@@ -12,7 +12,7 @@ import SceneKit
 import SceneKitDebugTools
 import SwiftUI
 
-public class LSystemModel: ObservableObject {
+public class LSystem3DModel: ObservableObject {
     @Published public var system: LSystem
     let renderer = SceneKitRenderer()
     let _baseSystem = Detailed3DExamples.sympodialTree
@@ -48,7 +48,17 @@ public class LSystemModel: ObservableObject {
             _scene.rootNode.addChildNode(headingIndicator)
         }
     }
-
+    
+    /// Creates a new L-System model with the L-System you provide.
+    /// - Parameter system: The L-System to expose and control with the model.
+    public init(system: LSystem) {
+        self.system = system
+        (_scene, _transformSequence) = renderer.generateScene(lsystem: _baseSystem)
+        let headingIndicator = headingIndicator()
+        _scene.rootNode.addChildNode(headingIndicator)
+    }
+    
+    /// Creates a default L-System model using the sympodial tree example.
     public init() {
         system = _baseSystem
         (_scene, _transformSequence) = renderer.generateScene(lsystem: _baseSystem)

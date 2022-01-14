@@ -10,8 +10,8 @@ import SceneKit
 import SceneKitDebugTools
 import SwiftUI
 
-public struct LSystemControlView: View {
-    var model: LSystemModel
+public struct LSystem3DControlView: View {
+    var model: LSystem3DModel
     @State private var iterations = 1
     @State private var stateIndex = 0
     @State private var autoLookAt = true
@@ -142,13 +142,13 @@ public struct LSystemControlView: View {
         }
     }
 
-    public init(model: LSystemModel) {
+    public init(model: LSystem3DModel) {
         self.model = model
     }
 }
 
 struct LSystemControlView_Previews: PreviewProvider {
     static var previews: some View {
-        LSystemControlView(model: LSystemModel())
+        LSystem3DControlView(model: LSystem3DModel())
     }
 }
