@@ -122,7 +122,7 @@ public struct SceneKitRenderer {
             let cmd = module.render3D
             switch cmd.name {
             case TurtleCodes.pitchUp.rawValue:
-                // positive values pitch nose up
+                // positive values pitch nose up (positive rotation around X axis)
                 if let cmd = cmd as? RenderCommand.PitchUp {
                     let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
                     let pitchTransform = rotationAroundXAxisTransform(angle: directionAngleInRadians)
@@ -131,7 +131,7 @@ public struct SceneKitRenderer {
                 }
 
             case TurtleCodes.pitchDown.rawValue:
-                // negative values pitch nose down
+                // negative values pitch nose down (negative rotation around X axis)
                 if let cmd = cmd as? RenderCommand.PitchDown {
                     let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
                     let pitchTransform = rotationAroundXAxisTransform(angle: directionAngleInRadians)
@@ -140,42 +140,41 @@ public struct SceneKitRenderer {
                 }
 
             case TurtleCodes.rollLeft.rawValue:
-                // negative values pitch nose down
                 if let cmd = cmd as? RenderCommand.RollLeft {
-                    // positive values roll to the left
-                    let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
-                    let yawTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
-                    currentState = currentState.applyingTransform(yawTransform)
-                    print("Roll (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+                    // negative values roll to the left (negative rotation around Y axis)
+                    let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
+                    let rollTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(rollTransform)
+                    print("Roll (rotate around -Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
-                
+
             case TurtleCodes.rollRight.rawValue:
                 if let cmd = cmd as? RenderCommand.RollRight {
-                    // negative values roll to the right
-                    let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
-                    let yawTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
-                    currentState = currentState.applyingTransform(yawTransform)
-                    print("Roll (rotate around -Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+                    // positive values roll to the right (positive rotation around Y axis)
+                    let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
+                    let rollTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(rollTransform)
+                    print("Roll (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.leftTurn.rawValue:
                 if let cmd = cmd as? RenderCommand.TurnLeft {
-                    // positive values turn to the left
+                    // positive values turn to the left (positive rotation around Z axis)
                     let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
-                    let rollTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
-                    currentState = currentState.applyingTransform(rollTransform)
-
+                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
                     print("Yaw (rotate around +Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
+
             case TurtleCodes.rightTurn.rawValue:
                 if let cmd = cmd as? RenderCommand.TurnRight {
-                    // negative values turn to the right
+                    // negative values turn to the right (negative rotation around Z axis)
                     let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
-                    let rollTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
-                    currentState = currentState.applyingTransform(rollTransform)
-
+                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
                     print("Yaw (rotate around -Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
+
             case TurtleCodes.spinToHorizontal.rawValue:
                 // Angle is the computed difference between the current heading and straight "up".
                 let angle = currentState.transform.angleFromVertical()
@@ -287,10 +286,6 @@ public struct SceneKitRenderer {
 
                     scene.rootNode.addChildNode(node)
                     currentState.nodeRef = node
-
-                    // Move the origin of the where to put the next object at the "end" of this node.
-                    let moveStateTransform = translationTransform(x: 0, y: Float(cmd.radius), z: 0)
-                    currentState = currentState.applyingTransform(moveStateTransform)
 
                     print("Added sphere (r=\(cmd.radius)) at \(String(describing: node.simdTransform))")
                     //                print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")

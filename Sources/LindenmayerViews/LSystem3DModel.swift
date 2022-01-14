@@ -48,7 +48,7 @@ public class LSystem3DModel: ObservableObject {
             _scene.rootNode.addChildNode(headingIndicator)
         }
     }
-    
+
     /// Creates a new L-System model with the L-System you provide.
     /// - Parameter system: The L-System to expose and control with the model.
     public init(system: LSystem) {
@@ -57,7 +57,7 @@ public class LSystem3DModel: ObservableObject {
         let headingIndicator = headingIndicator()
         _scene.rootNode.addChildNode(headingIndicator)
     }
-    
+
     /// Creates a default L-System model using the sympodial tree example.
     public init() {
         system = _baseSystem
