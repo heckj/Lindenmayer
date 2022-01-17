@@ -101,6 +101,10 @@ public struct SceneKitRenderer {
         scene.rootNode.addChildNode(flooring)
     }
 
+    public func generateScene(lsystem: LSystem) -> SCNScene {
+        generateScene(lsystem: lsystem).0
+    }
+
     public func generateScene(lsystem: LSystem) -> (SCNScene, [matrix_float4x4]) {
         let scene = SCNScene()
         // create and add a camera to the scene
@@ -127,7 +131,7 @@ public struct SceneKitRenderer {
                     let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
                     let pitchTransform = rotationAroundXAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(pitchTransform)
-                    print("Pitch (rotate around +X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+//                    print("Pitch (rotate around +X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.pitchDown.rawValue:
@@ -136,7 +140,7 @@ public struct SceneKitRenderer {
                     let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
                     let pitchTransform = rotationAroundXAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(pitchTransform)
-                    print("Pitch (rotate around -X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+//                    print("Pitch (rotate around -X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.rollLeft.rawValue:
@@ -145,7 +149,7 @@ public struct SceneKitRenderer {
                     let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
                     let rollTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(rollTransform)
-                    print("Roll (rotate around -Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+//                    print("Roll (rotate around -Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.rollRight.rawValue:
@@ -154,7 +158,7 @@ public struct SceneKitRenderer {
                     let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
                     let rollTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(rollTransform)
-                    print("Roll (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+//                    print("Roll (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.leftTurn.rawValue:
@@ -163,7 +167,7 @@ public struct SceneKitRenderer {
                     let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
                     let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(yawTransform)
-                    print("Yaw (rotate around +Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+//                    print("Yaw (rotate around +Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.rightTurn.rawValue:
@@ -172,62 +176,54 @@ public struct SceneKitRenderer {
                     let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
                     let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(yawTransform)
-                    print("Yaw (rotate around -Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
+//                    print("Yaw (rotate around -Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.spinToHorizontal.rawValue:
-                // Angle is the computed difference between the current heading and straight "up".
-                let angle = currentState.transform.angleFromVertical()
-                print("Leveling out from angle: \(angle) vs. \(Float.pi / 2)")
-                if angle < (Float.pi / 2) {
-                    print(" != No action needed - pointed above the horizon...")
-                } else {
-                    let current_rotation = simd_quatf(currentState.transform)
-                    let northpole = simd_quatf(angle: 0, axis: simd_float3(x: 0, y: 1, z: 0))
-//                        print("northpole quat: \(northpole) (angle: \(northpole.angle))")
-
-//                        print(" - Interpolated to 0: \(simd_slerp(current, northpole, 0.0)) Θ=\(simd_slerp(current, northpole, 0.0).angle)")
-//                        print(" - Interpolated to 0.1: \(simd_slerp(current, northpole, 0.1)) Θ=\(simd_slerp(current, northpole, 0.1).angle)")
-//                        print(" - Interpolated to 0.2: \(simd_slerp(current, northpole, 0.2)) Θ=\(simd_slerp(current, northpole, 0.2).angle)")
-//                        print(" - Interpolated to 0.3: \(simd_slerp(current, northpole, 0.3)) Θ=\(simd_slerp(current, northpole, 0.3).angle)")
-//                        print(" - Interpolated to 0.4: \(simd_slerp(current, northpole, 0.4)) Θ=\(simd_slerp(current, northpole, 0.4).angle)")
-//                        print(" - Interpolated to 0.5: \(simd_slerp(current, northpole, 0.5)) Θ=\(simd_slerp(current, northpole, 0.5).angle)")
-//                        print(" - Interpolated to 0.6: \(simd_slerp(current, northpole, 0.6)) Θ=\(simd_slerp(current, northpole, 0.6).angle)")
-//                        print(" - Interpolated to 0.7: \(simd_slerp(current, northpole, 0.7)) Θ=\(simd_slerp(current, northpole, 0.7).angle)")
-//                        print(" - Interpolated to 0.8: \(simd_slerp(current, northpole, 0.8)) Θ=\(simd_slerp(current, northpole, 0.8).angle)")
-//                        print(" - Interpolated to 0.9: \(simd_slerp(current, northpole, 0.9)) Θ=\(simd_slerp(current, northpole, 0.9).angle)")
-//                        print(" - Interpolated to 1.0: \(simd_slerp(current, northpole, 1.0)) Θ=\(simd_slerp(current, northpole, 1.0).angle)")
-
-                    let interpolation_percentage = .pi / 2.0 / angle
-                    print(" - Est. interpolation percentage to get horizon: \(interpolation_percentage)")
-                    let new_rotation = simd_slerp(current_rotation, northpole, interpolation_percentage)
-//                        print(" interpolated quaternion: \(new_rotation), Θ=\(new_rotation.angle)")
-                    // convert back to a rotation by creating a new SCNNode, applying the state's transform,
-                    // and then updating the rotation on the SCNNode with the new_rotation we calculated
-                    // through interpolation. Then apply that node's SCNTransform back over the current one to
-                    // apply transform that reflects the updated rotation immediately.
-                    let temp = SCNNode()
-                    temp.simdTransform = currentState.transform
-                    temp.simdOrientation = new_rotation
-                    currentState.transform = temp.simdTransform
-//                    print("Updated transform:")
-//                    print(currentState.transform.prettyPrintString("  "))
-                }
+                // The interpretation of this symbol is a tricky beast. From pg 41 of
+                // http://algorithmicbotany.org/papers/hanan.dis1992.pdf
+                // 'PARAMETRIC L-SYSTEMS AND THEIR APPLICATION TO THE MODELLING AND VISUALIZATION OF PLANTS'
+                //
+                // @V rotates the turtle around it's heading vector so that the left vector is horizontal and the y component of the up vector is positive.
+                // The initial heading of the 3D turtle vector is "upward" (in the +Y direction in SceneKit),
+                // and the "up vector" relative to that heading is a unit-vector in the +Z direction.
+                // The intention of this symbol is to take the rotation around the axis of the heading (whatever
+                // the +Y unit vector has been rotated to), and rotate/roll around that vector so that the
+                // "up" direction is as close to vertical in the world-space as possible.
+                //
+                // We implement this by pulling out just the rotation portion of the transform from the
+                // current world transform, inverting it, and applying that to the original "up" vector
+                // to get the up vector of the current state projected back into world coordinates, so that
+                // we know that the angle is on the X-Z plane.
+                let inverse_rotation = currentState.transform.rotationTransform().inverse
+                let original_heading_up_vector = simd_float3(x: 0, y: 0, z: 1)
+                let rotated_up_vector = matrix_multiply(original_heading_up_vector, inverse_rotation)
+                // should be length=1 already, but just in case...
+                let normalized = simd_normalize(rotated_up_vector)
+                // Then we calculate the between the "rotated up" vector and world-space UP (+Y in SceneKit)
+                // to get the amount of angle we should roll. We're explicitly working with normalized vectors
+                // here to make the calculation of cos-1( a • b / |a| * |b| ) easier. With unit vectors, this
+                // collapses to acos(a • b).
+                let calculated_rotation_angle = acos(simd_dot(simd_float3(0, 1, 0), normalized))
+                // print(" +++ rotation angle to apply: \(calculated_rotation_angle)")
+                // And finally, we apply that as an additional rotation transform to the current state.
+                let rotationTransform = rotationAroundYAxisTransform(angle: calculated_rotation_angle)
+                currentState = currentState.applyingTransform(rotationTransform)
 
             case TurtleCodes.move.rawValue:
                 if let cmd = cmd as? RenderCommand.Move {
                     let moveTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
                     currentState = currentState.applyingTransform(moveTransform)
-                    print("Moving forward by \(cmd.length) -> \(String(describing: currentState.transform))")
+//                    print("Moving forward by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.branch.rawValue:
                 stateStack.append(currentState)
-                print("Saving state: \(String(describing: currentState.transform))")
+//                print("Saving state: \(String(describing: currentState.transform))")
 
             case TurtleCodes.endBranch.rawValue:
                 currentState = stateStack.removeLast()
-                print("Restored state to: \(String(describing: currentState.transform))")
+//                print("Restored state to: \(String(describing: currentState.transform))")
 
             case TurtleCodes.cylinder.rawValue:
                 if let cmd = cmd as? RenderCommand.Cylinder {
@@ -249,7 +245,7 @@ public struct SceneKitRenderer {
                     let moveStateTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
                     currentState = currentState.applyingTransform(moveStateTransform)
 
-                    print("Added cylinder (r=\(cmd.radius)) by \(cmd.length) at \(String(describing: node.simdTransform))")
+//                    print("Added cylinder (r=\(cmd.radius)) by \(cmd.length) at \(String(describing: node.simdTransform))")
                     //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
             case TurtleCodes.cone.rawValue:
@@ -271,7 +267,7 @@ public struct SceneKitRenderer {
                     let moveStateTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
                     currentState = currentState.applyingTransform(moveStateTransform)
 
-                    print("Added cone (tr=\(cmd.radiusTop), br=\(cmd.radiusBottom) by \(cmd.length) at \(String(describing: node.simdTransform))")
+//                    print("Added cone (tr=\(cmd.radiusTop), br=\(cmd.radiusBottom) by \(cmd.length) at \(String(describing: node.simdTransform))")
                     //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
             case TurtleCodes.sphere.rawValue:
@@ -287,7 +283,7 @@ public struct SceneKitRenderer {
                     scene.rootNode.addChildNode(node)
                     currentState.nodeRef = node
 
-                    print("Added sphere (r=\(cmd.radius)) at \(String(describing: node.simdTransform))")
+//                    print("Added sphere (r=\(cmd.radius)) at \(String(describing: node.simdTransform))")
                     //                print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")
                 }
             default: // ignore
