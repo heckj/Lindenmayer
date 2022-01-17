@@ -15,7 +15,7 @@ public struct LSystemMetrics: View {
             Text("State size: \(system.state.count)")
             Text("\(String(describing: system.state))")
                 .font(.caption)
-                .lineLimit(5)
+                .lineLimit(3)
                 .padding(.horizontal)
         }
     }

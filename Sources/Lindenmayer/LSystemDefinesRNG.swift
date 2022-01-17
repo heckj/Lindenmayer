@@ -78,17 +78,23 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
         return LSystemDefinesRNG<PType, PRNG>(axiom: axiom, state: nil, newStateIndicators: nil, parameters: parameters, prng: prng, rules: rules)
     }
 
-    public func setSeed(seed: UInt64) {
+    @discardableResult
+    public func setSeed(seed: UInt64) -> Self {
         prng.resetRNG(seed: seed)
+        return self
     }
 
-    public func setParameters(params: PType) {
+    @discardableResult
+    public func setParameters(params: PType) -> Self {
         parameters.update(params)
+        return self
     }
 
-    public func set(seed: UInt64, params: PType) {
+    @discardableResult
+    public func set(seed: UInt64, params: PType) -> Self {
         prng.resetRNG(seed: seed)
         parameters.update(params)
+        return self
     }
 }
 

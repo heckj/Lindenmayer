@@ -20,7 +20,18 @@ extension simd_float4x4 {
         return result
     }
 
-    /// Calculate a heading vector, originally vertical, based on the 4x4 transform
+    func rotationTransform() -> matrix_float3x3 {
+        // extract the rotational component from the transform matrix
+        let (col1, col2, col3, _) = columns
+        let rotationTransform = matrix_float3x3(
+            simd_float3(x: col1.x, y: col1.y, z: col1.z),
+            simd_float3(x: col2.x, y: col2.y, z: col2.z),
+            simd_float3(x: col3.x, y: col3.y, z: col3.z)
+        )
+        return rotationTransform
+    }
+
+    /// Calculate a normalized heading vector, originally vertical, using a 4x4 state transform
     /// - Returns: a 3D unit vector of the heading
     func headingVector() -> simd_float3 {
         // extract the rotational component from the transform matrix

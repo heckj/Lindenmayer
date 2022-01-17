@@ -19,20 +19,6 @@ public struct Lsystem3DView: View {
     public var body: some View {
         VStack {
             LSystemMetrics(system: system)
-            /* Declaration:
-             /// Creates an instance with the given `scene`
-             ///
-             /// - Parameters:
-             ///     - scene: SCNScene to present
-             ///     - pointOfView: The point of view to use to render the scene.
-             ///     - options: Various options (see above) to configure the receiver.
-             ///     - preferredFramesPerSecond: sets fps to define the desired rate for current SceneView.
-             ///     Actual rate maybe limited by hardware or other software
-             ///     - antialiasingMode: desired level of antialiasing. Defaults to 4X.
-             ///     - delegate: The delegate of the receiver
-             ///     - technique: Specifies a custom post process
-             init(scene: SCNScene? = nil, pointOfView: SCNNode? = nil, options: SceneView.Options = [], preferredFramesPerSecond: Int = 60, antialiasingMode: SCNAntialiasingMode = .multisampling4X, delegate: SCNSceneRendererDelegate? = nil, technique: SCNTechnique? = nil)
-             */
             SceneView(
                 scene: generateScene(),
                 // pointOfView: generateScene().rootNode.childNode(withName: "camera", recursively: false),
