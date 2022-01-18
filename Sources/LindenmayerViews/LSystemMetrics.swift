@@ -1,6 +1,6 @@
 //
 //  LSystemMetrics.swift
-//  X5336
+//  
 //
 //  Created by Joseph Heck on 12/16/21.
 //
@@ -8,6 +8,7 @@
 import Lindenmayer
 import SwiftUI
 
+/// A view that provides the size of the state of an L-system and a textual representation of that state.
 public struct LSystemMetrics: View {
     let system: LSystem
     public var body: some View {

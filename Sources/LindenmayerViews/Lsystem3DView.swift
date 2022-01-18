@@ -1,6 +1,6 @@
 //
 //  LSystem3DView.swift
-//  X5336
+//  
 //
 //  Created by Joseph Heck on 12/18/21.
 //
@@ -9,7 +9,9 @@ import Lindenmayer
 import SceneKit
 import SwiftUI
 
+/// A view that provides a 3D rendering of the L-system provide, and optionally metrics associated with the L-system.
 public struct Lsystem3DView: View {
+    let displayMetrics: Bool
     let system: LSystem
     func generateScene() -> SCNScene {
         let x = SceneKitRenderer()
@@ -18,7 +20,9 @@ public struct Lsystem3DView: View {
 
     public var body: some View {
         VStack {
-            LSystemMetrics(system: system)
+            if (displayMetrics) {
+                LSystemMetrics(system: system)
+            }
             SceneView(
                 scene: generateScene(),
                 // pointOfView: generateScene().rootNode.childNode(withName: "camera", recursively: false),
@@ -44,13 +48,15 @@ public struct Lsystem3DView: View {
         }
     }
 
-    public init(system: LSystem) {
+    public init(system: LSystem, displayMetrics: Bool = false) {
+        self.displayMetrics = displayMetrics
         self.system = system
     }
 }
 
 struct Lsystem3DView_Previews: PreviewProvider {
     static var previews: some View {
-        Lsystem3DView(system: Examples3D.algae3D.lsystem.evolved(iterations: 3))
+        Lsystem3DView(system: Examples3D.algae3D.lsystem.evolved(iterations: 3),
+                      displayMetrics: true)
     }
 }

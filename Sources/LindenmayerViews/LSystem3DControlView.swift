@@ -1,6 +1,6 @@
 //
-//  SystemControlView.swift
-//  X5336
+//  LSystem3DControlView.swift
+//  
 //
 //  Created by Joseph Heck on 1/8/22.
 //
@@ -10,6 +10,11 @@ import SceneKit
 import SceneKitDebugTools
 import SwiftUI
 
+/// A view that displays a 3D representation of an Lsystem, allowing the person viewing it to control the 3D visualization.
+///
+/// The controls within the view allow you to select the number of iterations for the L-system.
+/// Within the resulting L-system's state, you can select each state of the L-system, which points the 3D camera at that node and highlights it.
+/// The view is intended to provide a visualization with sufficient detail about the state and its representation for debugging how an L-system is represented in 3D.
 public struct LSystem3DControlView: View {
     var model: LSystem3DModel
     @State private var iterations = 1
@@ -17,7 +22,7 @@ public struct LSystem3DControlView: View {
     @State private var autoLookAt = true
     @State private var currentNode: SCNNode? = nil
 
-    /// Adjusts the camera node to point towards another SCNNode you provide, and optionally highlight that node temporarily.
+    /// Points the node for the camera towards another node you identify, and optionally highlights it temporarily.
     /// - Parameters:
     ///   - selectedNode: The node to look at.
     ///   - cameraNode: The camera node to manipulate.

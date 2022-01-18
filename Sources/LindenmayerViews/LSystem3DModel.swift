@@ -1,6 +1,6 @@
 //
 //  LSystem3DModel.swift
-//  X5336
+//
 //
 //  Created by Joseph Heck on 1/8/22.
 //
@@ -12,6 +12,10 @@ import SceneKit
 import SceneKitDebugTools
 import SwiftUI
 
+/// A class that provides an observable model around a base L-system.
+///
+/// The module manages the number of evolutions of an L-system, and provides updated 3D SceneKit scenes as you change the number of evolutions.
+/// The model emits `ObservableObject` change notifications when the number of iterations is changed.
 public class LSystem3DModel: ObservableObject {
     @Published public var system: LSystem
     let renderer = SceneKitRenderer()
