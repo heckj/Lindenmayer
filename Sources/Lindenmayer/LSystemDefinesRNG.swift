@@ -19,7 +19,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
     public var newStateIndicators: [Bool]
 
     /// The parameters to provide to rules for evaluation and production.
-    public var parameters: PWrapper<PType>
+    public var parameters: ParametersWrapper<PType>
     let initialParameters: PType
 
     let prng: RNGWrapper<PRNG>
@@ -36,7 +36,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
     public init(axiom: [Module],
                 state: [Module]?,
                 newStateIndicators: [Bool]?,
-                parameters: PWrapper<PType>,
+                parameters: ParametersWrapper<PType>,
                 prng: RNGWrapper<PRNG>,
                 rules: [Rule] = [])
     {

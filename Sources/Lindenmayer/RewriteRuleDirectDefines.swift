@@ -12,7 +12,7 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
     public var parametricEval: ((DC, PType) -> Bool)?
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    var parameters: PWrapper<PType>
+    var parameters: ParametersWrapper<PType>
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
     public typealias singleMatchProducesList = (DC, PType) -> [Module]
@@ -29,7 +29,7 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType direct: DC.Type,
-                parameters: PWrapper<PType>,
+                parameters: ParametersWrapper<PType>,
                 where _: ((DC, PType) -> Bool)?,
                 produces singleModuleProduce: @escaping singleMatchProducesList)
     {

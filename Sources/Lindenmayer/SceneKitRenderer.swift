@@ -6,6 +6,7 @@
 //
 
 import CoreGraphics
+import SwiftUI // for `Angle`
 import Foundation
 import SceneKit
 import simd
@@ -66,7 +67,7 @@ public struct SceneKitRenderer {
     func addDebugFlooring(_ scene: SCNScene, grid: Bool = true) {
         let flooring = SCNNode(geometry: SCNPlane(width: 10, height: 10))
         flooring.geometry?.materials = [material(red: 0.1, green: 0.7, blue: 0.1, alpha: 0.5)]
-        flooring.simdEulerAngles = simd_float3(x: degreesToRadians(-90), y: 0, z: 0)
+        flooring.simdEulerAngles = simd_float3(x: Float(Angle(degrees: -90).radians), y: 0, z: 0)
 
         let axisMaterials = [material(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)]
 
@@ -81,10 +82,10 @@ public struct SceneKitRenderer {
         let zaxis = SCNNode(geometry: lowresCyl)
         flooring.addChildNode(zaxis)
         let xaxis = SCNNode(geometry: lowresCyl)
-        xaxis.simdEulerAngles = simd_float3(x: 0, y: 0, z: degreesToRadians(90))
+        xaxis.simdEulerAngles = simd_float3(x: 0, y: 0, z: Float(Angle(degrees: 90).radians))
         flooring.addChildNode(xaxis)
         let yaxis = SCNNode(geometry: lowresCyl)
-        yaxis.simdEulerAngles = simd_float3(x: degreesToRadians(90), y: 0, z: 0)
+        yaxis.simdEulerAngles = simd_float3(x: Float(Angle(degrees: 90).radians), y: 0, z: 0)
         flooring.addChildNode(yaxis)
 
         if grid {
@@ -128,7 +129,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.pitchUp.rawValue:
                 // positive values pitch nose up (positive rotation around X axis)
                 if let cmd = cmd as? RenderCommand.PitchUp {
-                    let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
+                    let directionAngleInRadians = Float(cmd.angle.radians)
                     let pitchTransform = rotationAroundXAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(pitchTransform)
 //                    print("Pitch (rotate around +X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
@@ -137,7 +138,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.pitchDown.rawValue:
                 // negative values pitch nose down (negative rotation around X axis)
                 if let cmd = cmd as? RenderCommand.PitchDown {
-                    let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
+                    let directionAngleInRadians = -1.0 * Float(cmd.angle.radians)
                     let pitchTransform = rotationAroundXAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(pitchTransform)
 //                    print("Pitch (rotate around -X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
@@ -146,7 +147,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.rollLeft.rawValue:
                 if let cmd = cmd as? RenderCommand.RollLeft {
                     // negative values roll to the left (negative rotation around Y axis)
-                    let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
+                    let directionAngleInRadians = -1.0 * Float(cmd.angle.radians)
                     let rollTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(rollTransform)
 //                    print("Roll (rotate around -Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
@@ -155,7 +156,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.rollRight.rawValue:
                 if let cmd = cmd as? RenderCommand.RollRight {
                     // positive values roll to the right (positive rotation around Y axis)
-                    let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
+                    let directionAngleInRadians = Float(cmd.angle.radians)
                     let rollTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(rollTransform)
 //                    print("Roll (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
@@ -164,7 +165,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.leftTurn.rawValue:
                 if let cmd = cmd as? RenderCommand.TurnLeft {
                     // positive values turn to the left (positive rotation around Z axis)
-                    let directionAngleInRadians: Float = degreesToRadians(cmd.angle)
+                    let directionAngleInRadians = Float(cmd.angle.radians)
                     let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(yawTransform)
 //                    print("Yaw (rotate around +Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
@@ -173,13 +174,13 @@ public struct SceneKitRenderer {
             case TurtleCodes.rightTurn.rawValue:
                 if let cmd = cmd as? RenderCommand.TurnRight {
                     // negative values turn to the right (negative rotation around Z axis)
-                    let directionAngleInRadians: Float = -1.0 * degreesToRadians(cmd.angle)
+                    let directionAngleInRadians = -1.0 * Float(cmd.angle.radians)
                     let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
                     currentState = currentState.applyingTransform(yawTransform)
 //                    print("Yaw (rotate around -Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
-            case TurtleCodes.spinToHorizontal.rawValue:
+            case TurtleCodes.rollToHorizontal.rawValue:
                 // The interpretation of this symbol is a tricky beast. From pg 41 of
                 // http://algorithmicbotany.org/papers/hanan.dis1992.pdf
                 // 'PARAMETRIC L-SYSTEMS AND THEIR APPLICATION TO THE MODELLING AND VISUALIZATION OF PLANTS'
@@ -303,15 +304,5 @@ public struct SceneKitRenderer {
         cameraNode.simdLook(at: simd_float3(x: 0, y: Float(distance) / 2.0, z: 0))
 
         return (scene, transformSequence)
-    }
-
-    // MARK: - Internal
-
-    func degreesToRadians(_ value: Double) -> Float {
-        return Float(value * .pi / 180.0)
-    }
-
-    func degrees(radians: Float) -> Float {
-        return radians / .pi * 180.0
     }
 }

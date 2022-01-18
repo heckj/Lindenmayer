@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI // for the 'Angle' type
 
 /// A collection of built-in modules for use in LSystems
 public enum Modules {}
@@ -24,7 +25,7 @@ public extension Modules {
 
     struct TurnLeft: Module {
         public let name = RenderCommand.turnLeft.name
-        public let angle: Double
+        public let angle: Angle
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.TurnLeft(angle: angle)]
         }
@@ -33,14 +34,14 @@ public extension Modules {
             RenderCommand.TurnLeft(angle: angle)
         }
 
-        public init(angle: Double = 90) {
+        public init(angle: Angle = Angle.degrees(90)) {
             self.angle = angle
         }
     }
 
     struct TurnRight: Module {
         public let name = RenderCommand.turnRight.name
-        public let angle: Double
+        public let angle: Angle
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.TurnRight(angle: angle)]
         }
@@ -49,7 +50,7 @@ public extension Modules {
             RenderCommand.TurnRight(angle: angle)
         }
 
-        public init(angle: Double = 90) {
+        public init(angle: Angle = .degrees(90)) {
             self.angle = angle
         }
     }
@@ -115,7 +116,7 @@ public extension Modules {
 
     struct RollLeft: Module {
         public let name = RenderCommand.rollLeft.name
-        public let angle: Double
+        public let angle: Angle
         public var render2D: [TwoDRenderCmd] {
             []
         }
@@ -124,14 +125,14 @@ public extension Modules {
             RenderCommand.RollLeft(angle: angle)
         }
 
-        public init(angle: Double = 90) {
+        public init(angle: Angle = .degrees(90)) {
             self.angle = angle
         }
     }
 
     struct RollRight: Module {
         public let name = RenderCommand.rollRight.name
-        public let angle: Double
+        public let angle: Angle
         public var render2D: [TwoDRenderCmd] {
             []
         }
@@ -140,14 +141,14 @@ public extension Modules {
             RenderCommand.RollRight(angle: angle)
         }
 
-        public init(angle: Double = 90) {
+        public init(angle: Angle = .degrees(90)) {
             self.angle = angle
         }
     }
 
     struct PitchUp: Module {
         public let name = RenderCommand.pitchUp.name
-        public let angle: Double
+        public let angle: Angle
         public var render2D: [TwoDRenderCmd] {
             []
         }
@@ -156,14 +157,14 @@ public extension Modules {
             RenderCommand.PitchUp(angle: angle)
         }
 
-        public init(angle: Double = 90) {
+        public init(angle: Angle = .degrees(30)) {
             self.angle = angle
         }
     }
 
     struct PitchDown: Module {
         public let name = RenderCommand.pitchDown.name
-        public let angle: Double
+        public let angle: Angle
         public var render2D: [TwoDRenderCmd] {
             []
         }
@@ -171,16 +172,20 @@ public extension Modules {
         public var render3D: ThreeDRenderCmd {
             RenderCommand.PitchDown(angle: angle)
         }
+
+        public init(angle: Angle = .degrees(30)) {
+            self.angle = angle
+        }
     }
 
     struct LevelOut: Module {
-        public let name = RenderCommand.spinToFlat.name
+        public let name = RenderCommand.rollToHorizontal.name
         public var render2D: [TwoDRenderCmd] {
             []
         }
 
         public var render3D: ThreeDRenderCmd {
-            RenderCommand.SpinToFlat()
+            RenderCommand.rollToHorizontal
         }
 
         public init() {}

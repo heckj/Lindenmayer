@@ -20,7 +20,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
     let p = ParameterizedExample()
 
     func testRuleDefaults() throws {
-        let r = RewriteRuleDirectDefinesRNG(directType: ParameterizedExample.self, parameters: PWrapper(ExampleDefines()), prng: RNGWrapper(PRNG(seed: 0)), where: nil) { _, p, _ -> [Module] in
+        let r = RewriteRuleDirectDefinesRNG(directType: ParameterizedExample.self, parameters: ParametersWrapper(ExampleDefines()), prng: RNGWrapper(PRNG(seed: 0)), where: nil) { _, p, _ -> [Module] in
             [ParameterizedExample(p.value + 1.0)]
         }
 
@@ -44,7 +44,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
 
     func testRuleDefaultsWithSystemParameters() throws {
         let r = RewriteRuleDirectDefinesRNG(directType: ParameterizedExample.self,
-                                            parameters: PWrapper(ExampleDefines()),
+                                            parameters: ParametersWrapper(ExampleDefines()),
                                             prng: RNGWrapper(PRNG(seed: 0)),
                                             where: nil) { _, p, _ -> [Module] in
             [ParameterizedExample(p.value + p.value)]
