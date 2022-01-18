@@ -8,6 +8,13 @@
 import Foundation
 
 /// A basic Lindenmayer system.
+///
+/// The basic Lindenmayer system doesn't use external parameters or a seed-able random number generator within its rules.
+/// If you want to create an L-system that uses a seed-able random number generator, use ``LSystemRNG``.
+/// If you want to create an L-system that uses a set of external parameters and a seed-able random number generator, use ``LSystemDefinesRNG``.
+///
+/// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
+
 public struct LSystemBasic: LSystem {
     let axiom: [Module]
     /// The sequence of modules that represents the current state of the L-system.

@@ -6,7 +6,7 @@
 //
 import Foundation
 
-/// A module represents an element in an L-system state array, and its parameters, if any.
+/// A module that represents a state element in an L-system state array and its parameters, if any.
 public protocol Module: CustomStringConvertible {
     /// The name of the module.
     ///
