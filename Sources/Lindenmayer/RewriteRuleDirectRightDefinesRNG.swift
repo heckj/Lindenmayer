@@ -10,7 +10,7 @@ import Squirrel3
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where DC: Module, RC: Module, PRNG: SeededRandomNumberGenerator {
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    var parameters: PWrapper<PType>
+    var parameters: ParametersWrapper<PType>
 
     /// A psuedo-random number generator to use for stochastic rule productions.
     var prng: RNGWrapper<PRNG>
@@ -32,7 +32,7 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType: DC.Type, rightType: RC.Type,
-                parameters: PWrapper<PType>,
+                parameters: ParametersWrapper<PType>,
                 prng: RNGWrapper<PRNG>,
                 where _: ((DC, RC, PType) -> Bool)?,
                 produces produceClosure: @escaping combinationMatchProducesList)

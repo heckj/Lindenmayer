@@ -13,7 +13,7 @@ public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Modul
     public var parametricEval: ((DC, PType) -> Bool)?
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    var parameters: PWrapper<PType>
+    var parameters: ParametersWrapper<PType>
 
     /// A psuedo-random number generator to use for stochastic rule productions.
     var prng: RNGWrapper<PRNG>
@@ -33,7 +33,7 @@ public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Modul
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType direct: DC.Type,
-                parameters: PWrapper<PType>,
+                parameters: ParametersWrapper<PType>,
                 prng: RNGWrapper<PRNG>,
                 where _: ((DC, PType) -> Bool)?,
                 produces singleModuleProduce: @escaping singleMatchProducesList)

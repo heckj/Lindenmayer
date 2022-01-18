@@ -7,15 +7,29 @@
 
 import Foundation
 
+/// A class that wraps an abstract Module and provides access to its internal state as formatted strings.
+///
+/// The class provides an `Identifiable` reference based on the location within an existing ``LSystem``.
+/// The internal state of the underlying ``Module`` instance is exposed using `Mirror`.
 public class DebugModule: Identifiable {
+    /// The abstract, underlying module instance with which you initialized the wrapper.
     public let module: Module
+    /// A Boolean value that indicates whether the module was newly added in the last evolution of the L-System.
     public let new: Bool
+    /// The location of the module within an L-system's state.
+    ///
+    /// Don't use this value to identify modules from multiple L-systems.
+    /// The identifiable capabilities are only valid for a single L-system.
     public let id: Int
     private let _filteredAndSortedKeys: [String]
+    /// An array that contains the string values for each of the properties within the wrapped module.
     public var mirroredProperties: [String] {
         _filteredAndSortedKeys
     }
-
+    
+    /// Returns the value of the property you identify from the wrapped Module  as a String.
+    /// - Parameter propertyKey: The property to return.
+    /// - Returns: A string that represents the property, or `nil` if that property doesn't exist.
     public func valueOf(_ propertyKey: String) -> String? {
         if module.children().keys.contains(propertyKey) {
             if let value = module.children()[propertyKey] {
@@ -31,7 +45,12 @@ public class DebugModule: Identifiable {
         }
         return nil
     }
-
+    
+    /// Creates a new debug module.
+    /// - Parameters:
+    ///   - m: The module to use to initialize the debug module.
+    ///   - at: The location within the state of an L-system.
+    ///   - isNew: A Boolean value that indicates the module was created in the last evolution.
     init(_ m: Module, at: Int, isNew: Bool = false) {
         id = at
         module = m
@@ -43,12 +62,21 @@ public class DebugModule: Identifiable {
 }
 
 extension DebugModule: Equatable {
+    /// Compares two debug modules based on their location within an L-system and their name.
+    /// - Returns: A Boolean value that indicates whether the two values are equal.
+    ///
+    /// Do not use this method to compare two debug modules from different L-systems.
     public static func == (lhs: DebugModule, rhs: DebugModule) -> Bool {
         lhs.id == rhs.id && lhs.module.name == rhs.module.name
     }
 }
 
 public extension LSystem {
+    /// Returns a debug module wrapping the module at the state position you provide.
+    /// - Parameter at: The location of the state within the L-systems state array.
+    /// - Returns: A ``DebugModule`` initialized with the state at the location you provide.
+    ///
+    /// This method crashes (using `precondition`) if you attempt to access state outside the bounds of the L-system's state array.
     func state(at: Int) -> DebugModule {
         precondition(at >= 0 && at < state.count && at < newStateIndicators.count)
         return DebugModule(state[at], at: at, isNew: newStateIndicators[at])

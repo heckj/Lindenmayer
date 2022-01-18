@@ -6,19 +6,19 @@
 //
 
 import CoreGraphics
-import SwiftUI
+import SwiftUI // for `Angle`
 
 struct PathState {
-    var angle: Double
+    var angle: Angle
     var position: CGPoint
     var lineWidth: Double
     var lineColor: ColorRepresentation
 
     init() {
-        self.init(-90, .zero, 1.0, ColorRepresentation.black)
+        self.init(Angle(degrees: -90), .zero, 1.0, ColorRepresentation.black)
     }
 
-    init(_ angle: Double, _ position: CGPoint, _ lineWidth: Double, _ lineColor: ColorRepresentation) {
+    init(_ angle: Angle, _ position: CGPoint, _ lineWidth: Double, _ lineColor: ColorRepresentation) {
         self.angle = angle
         self.position = position
         self.lineWidth = lineWidth
@@ -238,13 +238,9 @@ public struct GraphicsContextRenderer {
 
     // MARK: - Private
 
-    func degreesToRadians(_ value: Double) -> Double {
-        return value * .pi / 180.0
-    }
-
     func updatedStateByMoving(_ state: PathState, distance: Double) -> PathState {
-        let x = state.position.x + CGFloat(distance * cos(degreesToRadians(state.angle)))
-        let y = state.position.y + CGFloat(distance * sin(degreesToRadians(state.angle)))
+        let x = state.position.x + CGFloat(distance * cos(state.angle.radians))
+        let y = state.position.y + CGFloat(distance * sin(state.angle.radians))
 
         return PathState(state.angle, CGPoint(x: x, y: y), state.lineWidth, state.lineColor)
     }
@@ -257,7 +253,7 @@ public struct GraphicsContextRenderer {
         return PathState(state.angle, state.position, state.lineWidth, lineColor)
     }
 
-    func updatedStateByTurning(_ state: PathState, angle: Double, direction: TurnDirection)
+    func updatedStateByTurning(_ state: PathState, angle: Angle, direction: TurnDirection)
         -> PathState
     {
         if direction == .left {

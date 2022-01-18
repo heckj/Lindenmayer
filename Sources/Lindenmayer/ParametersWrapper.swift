@@ -1,5 +1,5 @@
 //
-//  PWrapper.swift
+//  ParametersWrapper.swift
 //
 //
 //  Created by Joseph Heck on 1/4/22.
@@ -8,8 +8,8 @@
 import Foundation
 import Squirrel3
 
-/// A class that provides reference semantics to accessing an parameters value type.
-public final class PWrapper<PType> {
+/// A class that provides reference semantics to access an underlying parameter value type that you provide.
+public final class ParametersWrapper<PType> {
     private var _parameters: PType
 
     public func update(_ p: PType) {
