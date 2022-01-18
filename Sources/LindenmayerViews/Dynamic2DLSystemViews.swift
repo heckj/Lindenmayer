@@ -1,6 +1,6 @@
 //
-//  SwiftUIView.swift
-//  X5336
+//  Dynamic2DLSystemViews.swift
+//
 //
 //  Created by Joseph Heck on 12/15/21.
 //
@@ -8,8 +8,9 @@
 import Lindenmayer
 import SwiftUI
 
+/// A view that allows you to choose from a collection of the built-in 2D L-systems and display the 2D representation of the L-system at the number of iterations that you select in the view.
 @available(macOS 12.0, iOS 15.0, *)
-public struct DynamicLSystemView: View {
+public struct Dynamic2DLSystemViews: View {
     @State private var evolutions: Double = 0
     @State private var selectedSystem = Examples2D.fractalTree
     public var body: some View {
@@ -33,14 +34,15 @@ public struct DynamicLSystemView: View {
                 }
             }
             .padding()
-            Lsystem2DView(system: selectedSystem.lsystem.evolved(iterations: Int(evolutions)))
+            Lsystem2DView(system: selectedSystem.lsystem.evolved(iterations: Int(evolutions)),
+                          displayMetrics: false)
         }
     }
 }
 
 @available(macOS 12.0, iOS 15.0, *)
-struct DynamicLSystemView_Previews: PreviewProvider {
+struct Dynamic2DLSystemViews_Previews: PreviewProvider {
     static var previews: some View {
-        DynamicLSystemView()
+        Dynamic2DLSystemViews()
     }
 }

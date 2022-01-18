@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  WindowedSmallModuleView.swift
 //
 //
 //  Created by Joseph Heck on 1/10/22.
@@ -8,6 +8,9 @@
 import Lindenmayer
 import SwiftUI
 
+/// A view that displays a window of a set of modules at the index location and window size that you choose for the L-system you provide.
+///
+/// The window sizes supported ranges from `1` to `9`.
 @available(macOS 12.0, iOS 15.0, *)
 public struct WindowedSmallModuleView: View {
     let size: SummarySizes

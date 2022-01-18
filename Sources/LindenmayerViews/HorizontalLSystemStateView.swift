@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  HorizontalLSystemStateView.swift
 //
 //
 //  Created by Joseph Heck on 1/11/22.
@@ -8,8 +8,9 @@
 import Lindenmayer
 import SwiftUI
 
+/// A view that displays a horizontal collection of summary of the modules of an Lsystem at the size choice you provide.
 @available(macOS 12.0, iOS 15.0, *)
-public struct HorizontalSummarySequence: View {
+public struct HorizontalLSystemStateView: View {
     let size: SummarySizes
     let system: LSystem
     public var body: some View {
@@ -28,11 +29,11 @@ public struct HorizontalSummarySequence: View {
 }
 
 @available(macOS 12.0, iOS 15.0, *)
-struct HorizontalSummarySequence_Previews: PreviewProvider {
+struct HorizontalLSystemStateView_Previews: PreviewProvider {
     static var previews: some View {
         let system = Examples3D.monopodialTree.lsystem.evolved(iterations: 4)
         ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
-            HorizontalSummarySequence(size: sizeChoice, system: system)
+            HorizontalLSystemStateView(size: sizeChoice, system: system)
         }
     }
 }

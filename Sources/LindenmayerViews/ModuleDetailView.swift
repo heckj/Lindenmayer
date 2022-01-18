@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  ModuleDetailView.swift
 //
 //
 //  Created by Joseph Heck on 1/10/22.
@@ -7,6 +7,9 @@
 import Lindenmayer
 import SwiftUI
 
+/// A view that provides a detailed view of a module.
+///
+/// The parameters (if any) of the module, and their values, as displayed above a string representation of the 3D rendering command associated with the module.
 public struct ModuleDetailView: View {
     let module: DebugModule
     public var body: some View {

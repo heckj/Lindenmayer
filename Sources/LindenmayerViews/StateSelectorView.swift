@@ -8,6 +8,7 @@
 import Lindenmayer
 import SwiftUI
 
+/// A view that provides a visual representation of the states of an L-system and allows the person viewing it to select an index position from that L-system's state.
 @available(macOS 12.0, iOS 15.0, *)
 public struct StateSelectorView: View {
     let system: LSystem
@@ -27,7 +28,7 @@ public struct StateSelectorView: View {
         VStack {
             ScrollViewReader { proxy in
                 ScrollView(.horizontal, showsIndicators: true) {
-                    HorizontalSummarySequence(size: .medium, system: system)
+                    HorizontalLSystemStateView(size: .medium, system: system)
                 }
                 if system.state.count > 1 {
                     // a slider can't be 0 ... 0 - "max stride must be positive"

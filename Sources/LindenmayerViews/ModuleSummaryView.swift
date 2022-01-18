@@ -7,6 +7,7 @@
 import Lindenmayer
 import SwiftUI
 
+/// A view that represents a summary view of a single debug module from an L-system at the size you choose.
 @available(macOS 12.0, iOS 15.0, *)
 public struct ModuleSummaryView: View {
     let size: SummarySizes
