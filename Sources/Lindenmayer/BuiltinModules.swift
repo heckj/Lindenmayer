@@ -1,6 +1,6 @@
 //
 //  BuiltinModules.swift
-//  X5336
+//
 //
 //  Created by Joseph Heck on 12/12/21.
 //
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI // for the 'Angle' type
 
-/// A collection of built-in modules for use in LSystems
+/// A namespace for a collection of built-in modules for use in L-systems.
 public enum Modules {}
 
 public extension Modules {
@@ -23,6 +23,7 @@ public extension Modules {
 
     // MARK: - Built-in Modules that are effectively wrappers around specific rendering commands
 
+    /// A module that informs a renderer to turn left while rendering the L-system.
     struct TurnLeft: Module {
         public let name = RenderCommand.turnLeft.name
         public let angle: Angle
@@ -39,6 +40,7 @@ public extension Modules {
         }
     }
 
+    /// A module that informs a renderer to turn right while rendering the L-system.
     struct TurnRight: Module {
         public let name = RenderCommand.turnRight.name
         public let angle: Angle
@@ -55,6 +57,7 @@ public extension Modules {
         }
     }
 
+    /// A module that informs a renderer to draw a line along the current heading while rendering the L-system.
     struct Draw: Module {
         public let name = RenderCommand.draw.name
         public let length: Double
@@ -71,6 +74,7 @@ public extension Modules {
         }
     }
 
+    /// A module that informs a renderer to move forward along the current heading without other representation while rendering the L-system.
     struct Move: Module {
         public let name = RenderCommand.move.name
         public let length: Double
@@ -87,6 +91,7 @@ public extension Modules {
         }
     }
 
+    /// A module that informs a renderer that the L-system representation should branch.
     struct Branch: Module {
         public let name = RenderCommand.branch.name
         public var render2D: [TwoDRenderCmd] {
@@ -100,6 +105,7 @@ public extension Modules {
         public init() {}
     }
 
+    /// A module that informs a renderer that the branch of the L-system branch representation is complete.
     struct EndBranch: Module {
         public let name = RenderCommand.endBranch.name
 
@@ -114,6 +120,7 @@ public extension Modules {
         public init() {}
     }
 
+    /// A module that informs a renderer to change the heading by rolling around the current axis to the left.
     struct RollLeft: Module {
         public let name = RenderCommand.rollLeft.name
         public let angle: Angle
@@ -130,6 +137,7 @@ public extension Modules {
         }
     }
 
+    /// A module that informs a renderer to change the heading by rolling around the current axis to the right.
     struct RollRight: Module {
         public let name = RenderCommand.rollRight.name
         public let angle: Angle
@@ -146,6 +154,7 @@ public extension Modules {
         }
     }
 
+    /// A module that informs a renderer to change the heading by pitching up.
     struct PitchUp: Module {
         public let name = RenderCommand.pitchUp.name
         public let angle: Angle
@@ -162,6 +171,7 @@ public extension Modules {
         }
     }
 
+    /// A module that informs a renderer to change the heading by pitching down.
     struct PitchDown: Module {
         public let name = RenderCommand.pitchDown.name
         public let angle: Angle
@@ -178,14 +188,15 @@ public extension Modules {
         }
     }
 
-    struct LevelOut: Module {
-        public let name = RenderCommand.rollToHorizontal.name
+    /// A module that informs the renderer to roll around its current heading so that the upward vector is as vertical as possible.
+    struct RollUpToVertical: Module {
+        public let name = RenderCommand.rollUpToVertical.name
         public var render2D: [TwoDRenderCmd] {
             []
         }
 
         public var render3D: ThreeDRenderCmd {
-            RenderCommand.rollToHorizontal
+            RenderCommand.rollUpToVertical
         }
 
         public init() {}

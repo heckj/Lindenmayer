@@ -6,10 +6,10 @@
 //
 
 import CoreGraphics
-import SwiftUI // for `Angle`
 import Foundation
 import SceneKit
 import simd
+import SwiftUI // for `Angle`
 
 struct GrowthState {
     var transform: simd_float4x4
@@ -103,7 +103,7 @@ public struct SceneKitRenderer {
 
         scene.rootNode.addChildNode(flooring)
     }
-    
+
     /// Generates a SceneKit scene from the L-system that you provide.
     /// - Parameter lsystem: The L-system to render into a 3D scene.
     /// - Returns: A SceneKit scene rendered from the L-system.
@@ -112,7 +112,7 @@ public struct SceneKitRenderer {
     public func generateScene(lsystem: LSystem) -> SCNScene {
         generateScene(lsystem: lsystem).0
     }
-    
+
     /// Generates a SceneKit scene from the L-system that you provide.
     /// - Parameter lsystem: The L-system to render into a 3D scene.
     /// - Returns: A tuple of the rendered SceneKit scene and an array of transforms that represent each module's state transition while rendering the scene.
@@ -192,7 +192,7 @@ public struct SceneKitRenderer {
 //                    print("Yaw (rotate around -Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
-            case TurtleCodes.rollToHorizontal.rawValue:
+            case TurtleCodes.rollUpToVertical.rawValue:
                 // The interpretation of this symbol is a tricky beast. From pg 41 of
                 // http://algorithmicbotany.org/papers/hanan.dis1992.pdf
                 // 'PARAMETRIC L-SYSTEMS AND THEIR APPLICATION TO THE MODELLING AND VISUALIZATION OF PLANTS'

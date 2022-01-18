@@ -1,6 +1,6 @@
 //
 //  LSystem3DView.swift
-//  
+//
 //
 //  Created by Joseph Heck on 12/18/21.
 //
@@ -20,7 +20,7 @@ public struct Lsystem3DView: View {
 
     public var body: some View {
         VStack {
-            if (displayMetrics) {
+            if displayMetrics {
                 LSystemMetrics(system: system)
             }
             SceneView(

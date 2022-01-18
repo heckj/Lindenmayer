@@ -1,6 +1,6 @@
 //
 //  GraphicsContextRenderer.swift
-//  X5336
+//
 //
 //  Created by Joseph Heck on 12/12/21.
 //
@@ -42,7 +42,7 @@ public struct GraphicsContextRenderer {
         case left
         case right
     }
-    
+
     /// Creates a new graphics context renderer with a base length of 1.
     /// - Parameter unitLength: A value that scales move and draw rendering commands.
     public init(unitLength: Double = 1) {

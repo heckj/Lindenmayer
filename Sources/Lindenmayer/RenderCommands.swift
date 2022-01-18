@@ -15,7 +15,7 @@ public struct ColorRepresentation: Equatable {
     let green: Double
     let blue: Double
     let alpha: Double
-    
+
     /// Creates a new color representation using the RGB values you provide.
     /// - Parameters:
     ///   - r: The red value, from 0 to 1.0.
@@ -28,7 +28,7 @@ public struct ColorRepresentation: Equatable {
         blue = b
         alpha = 1.0
     }
-    
+
     /// Creates a new color representation using the red, green, blue and alpha values you provide.
     /// - Parameters:
     ///   - red: The red value, from 0 to 1.0.
@@ -47,7 +47,6 @@ public struct ColorRepresentation: Equatable {
         return ColorRepresentation(r: 0, g: 0, b: 0)
     }
 }
-
 
 /// An enumeration that identifies the types of turtle commands and provides a raw string value associated with those types.
 ///
@@ -70,7 +69,7 @@ public enum TurtleCodes: String {
     case rollRight = "/"
     case pitchUp = "^"
     case pitchDown = "&"
-    case rollToHorizontal = "$" // aka @V
+    case rollUpToVertical = "$" // aka @V
     case spinVerticalTropism = "e" // NOTE(heckj): un-implemented
     // extensions for 3D objects
     case cylinder = "||"
@@ -79,7 +78,6 @@ public enum TurtleCodes: String {
 }
 
 // MARK: - RENDERING COMMAND PROTOCOLS -
-
 
 /// A type that represents a 2D rendered representation or a renderer command for a module within an L-System.
 ///
@@ -102,7 +100,7 @@ public protocol ThreeDRenderCmd {
 /// A collection of render commands, both 2D and 3D, built into Lindenmayer.
 public enum RenderCommand {
     // MARK: - BUILT-IN 2D & 3D FOCUSED MODULES -
-    
+
     /// A value that indicates the start of a branch.
     ///
     /// Renderers typically use this as a marker to save the current state on a stack.
@@ -110,7 +108,7 @@ public enum RenderCommand {
         public var name: String = TurtleCodes.branch.rawValue
         public init() {}
     }
-    
+
     /// A value that indicates the end of a branch.
     ///
     /// Renderers typically use this as a marker to pop back to the previously stored state.
@@ -118,7 +116,7 @@ public enum RenderCommand {
         public var name: String = TurtleCodes.endBranch.rawValue
         public init() {}
     }
-    
+
     /// A value that indicates the state of the drawing should move forward in it's current heading by the amount you provide.
     public struct Move: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.move.rawValue
@@ -128,7 +126,7 @@ public enum RenderCommand {
             self.length = length
         }
     }
-    
+
     /// A value that indicates to draw a line forward by the length you provide.
     public struct Draw: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.draw.rawValue
@@ -138,7 +136,7 @@ public enum RenderCommand {
             self.length = length
         }
     }
-    
+
     /// A value that indicates the state of the drawing should turn left by the angle you provide.
     public struct TurnLeft: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.leftTurn.rawValue
@@ -158,13 +156,13 @@ public enum RenderCommand {
             self.angle = angle
         }
     }
-    
+
     /// A value that indicates the state of the drawing should ignore this module.
     public struct Ignore: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.ignore.rawValue
         public init() {}
     }
-    
+
     /// A value that indicates the state of the drawing should update it's drawing width to the value you provide.
     public struct SetLineWidth: TwoDRenderCmd {
         public let name = TurtleCodes.setLineWidth.rawValue
@@ -173,7 +171,7 @@ public enum RenderCommand {
             self.width = width
         }
     }
-    
+
     /// A value that indicates the state of the drawing should update it's drawing color to the color representation you provide.
     public struct SetColor: TwoDRenderCmd {
         public let name = TurtleCodes.setColor.rawValue
@@ -182,7 +180,7 @@ public enum RenderCommand {
             self.representation = representation
         }
     }
-    
+
     /// A value that indicates the state of the renderer should pitch upward from its current heading by the angle you provide.
     public struct PitchUp: ThreeDRenderCmd {
         public let name = TurtleCodes.pitchUp.rawValue
@@ -218,12 +216,12 @@ public enum RenderCommand {
             self.angle = angle
         }
     }
-    
+
     /// A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.
-    public struct RollToHorizontal: ThreeDRenderCmd {
-        public let name = TurtleCodes.rollToHorizontal.rawValue
+    public struct RollUpToVertical: ThreeDRenderCmd {
+        public let name = TurtleCodes.rollUpToVertical.rawValue
     }
-    
+
     /// A value that indicates the renderer should create a 3D cylinder of the radius, length, and color representation that you provide.
     ///
     /// The renderer is expected to also move forward, updating it's state to a position at the end of the cylinder.
@@ -255,7 +253,7 @@ public enum RenderCommand {
             self.color = color
         }
     }
-    
+
     /// A value that indicates the rendered should create a 3D sphere of the radius you provide at the current location.
     public struct Sphere: ThreeDRenderCmd {
         public let name = TurtleCodes.sphere.rawValue
@@ -278,7 +276,7 @@ public enum RenderCommand {
     public static var move = Move(length: 1.0)
     /// A value that indicates the renderer should draw a line forward at a length of 1.0.
     public static var draw = Draw(length: 1.0)
-    
+
     /// A value that indicates the renderer should turn left by 90°.
     public static var turnLeft = TurnLeft(angle: .degrees(90))
     /// A value that indicates the renderer should turn right by 90°.
@@ -300,7 +298,7 @@ public enum RenderCommand {
     public static var rollLeft = RollLeft(angle: .degrees(90))
 
     /// A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.
-    public static var rollToHorizontal = RollToHorizontal()
+    public static var rollUpToVertical = RollUpToVertical()
 
     /// A value that indicates the renderer should display a cylinder of length 1.0 and radius 0.1, moving forward by 1.0.
     public static var cylinder = Cylinder(length: 1, radius: 0.1)
