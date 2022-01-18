@@ -83,8 +83,8 @@ public enum Detailed2DExamples {
     static var fractalTree = Lindenmayer.basic(leaf)
         .rewrite(Leaf.self) { leaf in
             [stem,
-             Modules.Branch(), Modules.TurnLeft(angle: Angle(degrees:45)), leaf, Modules.EndBranch(),
-             Modules.TurnRight(angle: Angle(degrees:45)), leaf]
+             Modules.Branch(), Modules.TurnLeft(angle: Angle(degrees: 45)), leaf, Modules.EndBranch(),
+             Modules.TurnRight(angle: Angle(degrees: 45)), leaf]
         }
         .rewrite(Stem.self) { stem in
             [stem, stem]
@@ -94,10 +94,10 @@ public enum Detailed2DExamples {
 
     static var kochCurve = Lindenmayer.basic(Modules.Draw(length: 10))
         .rewrite(Modules.Draw.self) { _ in
-            [Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees:90)),
-             Modules.Draw(length: 10), Modules.TurnRight(angle: Angle(degrees:90)),
-             Modules.Draw(length: 10), Modules.TurnRight(angle: Angle(degrees:90)),
-             Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees:90)),
+            [Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees: 90)),
+             Modules.Draw(length: 10), Modules.TurnRight(angle: Angle(degrees: 90)),
+             Modules.Draw(length: 10), Modules.TurnRight(angle: Angle(degrees: 90)),
+             Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees: 90)),
              Modules.Draw(length: 10)]
         }
 
@@ -118,15 +118,15 @@ public enum Detailed2DExamples {
     static var g = G()
 
     static var sierpinskiTriangle = Lindenmayer.basic(
-        [f, Modules.TurnRight(angle: Angle(degrees:120)),
-         g, Modules.TurnRight(angle: Angle(degrees:120)),
-         g, Modules.TurnRight(angle: Angle(degrees:120))]
+        [f, Modules.TurnRight(angle: Angle(degrees: 120)),
+         g, Modules.TurnRight(angle: Angle(degrees: 120)),
+         g, Modules.TurnRight(angle: Angle(degrees: 120))]
     )
     .rewrite(F.self) { _ in
-        [f, Modules.TurnRight(angle: Angle(degrees:120)),
-         g, Modules.TurnLeft(angle: Angle(degrees:120)),
-         f, Modules.TurnLeft(angle: Angle(degrees:120)),
-         g, Modules.TurnRight(angle: Angle(degrees:120)),
+        [f, Modules.TurnRight(angle: Angle(degrees: 120)),
+         g, Modules.TurnLeft(angle: Angle(degrees: 120)),
+         f, Modules.TurnLeft(angle: Angle(degrees: 120)),
+         g, Modules.TurnRight(angle: Angle(degrees: 120)),
          f]
     }
     .rewrite(G.self) { _ in
@@ -137,10 +137,10 @@ public enum Detailed2DExamples {
 
     static var dragonCurve = Lindenmayer.basic(f)
         .rewrite(F.self) { _ in
-            [f, Modules.TurnLeft(angle: Angle(degrees:90)), g]
+            [f, Modules.TurnLeft(angle: Angle(degrees: 90)), g]
         }
         .rewrite(G.self) { _ in
-            [f, Modules.TurnRight(angle: Angle(degrees:90)), g]
+            [f, Modules.TurnRight(angle: Angle(degrees: 90)), g]
         }
 
     // - MARK: Barnsley fern example
@@ -153,14 +153,14 @@ public enum Detailed2DExamples {
 
     static var barnsleyFern = Lindenmayer.basic(x)
         .rewrite(X.self) { _ in
-            [f, Modules.TurnLeft(angle: Angle(degrees:25)),
+            [f, Modules.TurnLeft(angle: Angle(degrees: 25)),
              Modules.Branch(),
              Modules.Branch(), x, Modules.EndBranch(),
-             Modules.TurnRight(angle: Angle(degrees:25)), x,
+             Modules.TurnRight(angle: Angle(degrees: 25)), x,
              Modules.EndBranch(),
-             Modules.TurnRight(angle: Angle(degrees:25)), f,
-             Modules.Branch(), Modules.TurnRight(angle: Angle(degrees:25)), f, x, Modules.EndBranch(),
-             Modules.TurnLeft(angle: Angle(degrees:25)), x]
+             Modules.TurnRight(angle: Angle(degrees: 25)), f,
+             Modules.Branch(), Modules.TurnRight(angle: Angle(degrees: 25)), f, x, Modules.EndBranch(),
+             Modules.TurnLeft(angle: Angle(degrees: 25)), x]
         }
         .rewrite(F.self) { _ in
             [f, f]

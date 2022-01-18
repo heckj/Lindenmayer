@@ -26,7 +26,7 @@ public class DebugModule: Identifiable {
     public var mirroredProperties: [String] {
         _filteredAndSortedKeys
     }
-    
+
     /// Returns the value of the property you identify from the wrapped Module  as a String.
     /// - Parameter propertyKey: The property to return.
     /// - Returns: A string that represents the property, or `nil` if that property doesn't exist.
@@ -45,7 +45,7 @@ public class DebugModule: Identifiable {
         }
         return nil
     }
-    
+
     /// Creates a new debug module.
     /// - Parameters:
     ///   - m: The module to use to initialize the debug module.

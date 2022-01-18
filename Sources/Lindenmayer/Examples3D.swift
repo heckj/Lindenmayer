@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI // for `Angle`
 import Squirrel3
+import SwiftUI // for `Angle`
 
 /// A collection of three-dimensional example L-systems.
 public enum Examples3D: String, CaseIterable, Identifiable {
@@ -210,7 +210,7 @@ public enum Detailed3DExamples {
             Modules.Branch(),
 
             Modules.TurnLeft(angle: Angle(degrees: params.lateralBranchAngle)),
-            Modules.LevelOut(),
+            Modules.RollUpToVertical(),
             SecondaryBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
                             diameter: branch.diameter * params.widthContraction),
 
@@ -227,7 +227,7 @@ public enum Detailed3DExamples {
             Modules.Branch(),
 
             Modules.TurnRight(angle: Angle(degrees: params.branchAngle)),
-            Modules.LevelOut(),
+            Modules.RollUpToVertical(),
 
             MainBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
                        diameter: branch.diameter * params.widthContraction),
@@ -304,12 +304,12 @@ public enum Detailed3DExamples {
             StaticTrunk(growthDistance: node.growthDistance, diameter: node.diameter),
             Modules.Branch(),
             Modules.TurnRight(angle: Angle(degrees: params.a1)),
-            Modules.LevelOut(),
+            Modules.RollUpToVertical(),
             SecondaryBranch(growthDistance: node.growthDistance * params.r1, diameter: node.diameter * params.wr),
             Modules.EndBranch(),
             Modules.Branch(),
             Modules.TurnLeft(angle: Angle(degrees: params.a2)),
-            Modules.LevelOut(),
+            Modules.RollUpToVertical(),
             SecondaryBranch(growthDistance: node.growthDistance * params.r2, diameter: node.diameter * params.wr),
             Modules.EndBranch(),
         ]
