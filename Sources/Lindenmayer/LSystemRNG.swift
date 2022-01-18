@@ -10,6 +10,10 @@ import Squirrel3
 
 /// A stochastic Lindenmayer system.
 ///
+/// A stochastic Lindenmayer system uses a seed-able random number generator and exposes it to the rules you create, but doesn't use external parameters.
+/// If you want to create an L-system doesn't use uses a seed-able random number generator, use ``LSystemBasic``.
+/// If you want to create an L-system that uses a set of external parameters and a seed-able random number generator, use ``LSystemDefinesRNG``.
+///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct LSystemRNG<PRNG>: LSystem where PRNG: SeededRandomNumberGenerator {
     let axiom: [Module]

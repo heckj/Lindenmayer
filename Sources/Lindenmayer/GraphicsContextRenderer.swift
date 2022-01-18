@@ -28,11 +28,13 @@ struct PathState {
 
 // convenience for making a SwiftUI Color from the Color Representation struct
 extension ColorRepresentation {
+    /// The SwiftUI color from the color representation.
     var color: SwiftUI.Color {
         Color(red: red, green: green, blue: blue, opacity: alpha)
     }
 }
 
+/// A renderer that generates a 2D graphical representation of an L-system.
 public struct GraphicsContextRenderer {
     let unitLength: Double
 
@@ -40,12 +42,14 @@ public struct GraphicsContextRenderer {
         case left
         case right
     }
-
+    
+    /// Creates a new graphics context renderer with a base length of 1.
+    /// - Parameter unitLength: A value that scales move and draw rendering commands.
     public init(unitLength: Double = 1) {
         self.unitLength = unitLength
     }
 
-    /// Draws the L-System into the provided GraphicsContext.
+    /// Draws the L-System into the SwiftUI graphics context you provide.
     ///
     /// - Parameters:
     ///   - lsystem: The L-System to draw.

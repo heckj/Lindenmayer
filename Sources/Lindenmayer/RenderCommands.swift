@@ -81,7 +81,7 @@ public enum TurtleCodes: String {
 // MARK: - RENDERING COMMAND PROTOCOLS -
 
 
-/// A type that represents a module to provide a 2D representation of an L-system.
+/// A type that represents a 2D rendered representation or a renderer command for a module within an L-System.
 ///
 /// The ``GraphicsContextRenderer`` uses 2D render commands to draw onto a canvas.
 public protocol TwoDRenderCmd {
@@ -89,7 +89,7 @@ public protocol TwoDRenderCmd {
     var name: String { get }
 }
 
-/// A type that represents a module to provide a 3D representation of an L-system.
+/// A type that represents a 3D rendered representation or a renderer command for a module within an L-System.
 ///
 /// The ``SceneKitRenderer`` uses 3D render commands to draw onto a canvas.
 public protocol ThreeDRenderCmd {

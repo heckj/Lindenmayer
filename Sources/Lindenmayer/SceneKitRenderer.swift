@@ -48,6 +48,7 @@ struct GrowthState {
 }
 
 extension ColorRepresentation {
+    /// Provides a SceneKit material based on the color representation values.
     var material: SCNMaterial {
         let material = SCNMaterial()
         material.diffuse.contents = CGColor(red: red, green: green, blue: blue, alpha: alpha)
@@ -55,6 +56,7 @@ extension ColorRepresentation {
     }
 }
 
+/// A renderer that generates a 3D graphical representation of an L-system using SceneKit.
 public struct SceneKitRenderer {
     public init() {}
 
@@ -101,11 +103,21 @@ public struct SceneKitRenderer {
 
         scene.rootNode.addChildNode(flooring)
     }
-
+    
+    /// Generates a SceneKit scene from the L-system that you provide.
+    /// - Parameter lsystem: The L-system to render into a 3D scene.
+    /// - Returns: A SceneKit scene rendered from the L-system.
+    ///
+    /// The scene includes a camera node identified as `camera`, and a plane to represent the floor and scale of the scene.
     public func generateScene(lsystem: LSystem) -> SCNScene {
         generateScene(lsystem: lsystem).0
     }
-
+    
+    /// Generates a SceneKit scene from the L-system that you provide.
+    /// - Parameter lsystem: The L-system to render into a 3D scene.
+    /// - Returns: A tuple of the rendered SceneKit scene and an array of transforms that represent each module's state transition while rendering the scene.
+    ///
+    /// The scene includes a camera node identified as `camera`, and a plane to represent the floor and scale of the scene.
     public func generateScene(lsystem: LSystem) -> (SCNScene, [matrix_float4x4]) {
         let scene = SCNScene()
         // create and add a camera to the scene
