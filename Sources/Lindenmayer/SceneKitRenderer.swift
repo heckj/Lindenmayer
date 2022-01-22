@@ -203,24 +203,59 @@ public struct SceneKitRenderer {
                 // The intention of this symbol is to take the rotation around the axis of the heading (whatever
                 // the +Y unit vector has been rotated to), and rotate/roll around that vector so that the
                 // "up" direction is as close to vertical in the world-space as possible.
-                //
+                
                 // We implement this by pulling out just the rotation portion of the transform from the
-                // current world transform, inverting it, and applying that to the original "up" vector
-                // to get the up vector of the current state projected back into world coordinates, so that
-                // we know that the angle is on the X-Z plane.
-                let inverse_rotation = currentState.transform.rotationTransform().inverse
+                // current world transform and applying that to the original "up" vector to get the up vector
+                // rotated to match the current state of the heading.
+
+                let rotation_transform = currentState.transform.rotationTransform
                 let original_heading_up_vector = simd_float3(x: 0, y: 0, z: 1)
-                let rotated_up_vector = matrix_multiply(original_heading_up_vector, inverse_rotation)
-                // should be length=1 already, but just in case...
-                let normalized = simd_normalize(rotated_up_vector)
-                // Then we calculate the between the "rotated up" vector and world-space UP (+Y in SceneKit)
-                // to get the amount of angle we should roll. We're explicitly working with normalized vectors
-                // here to make the calculation of cos-1( a • b / |a| * |b| ) easier. With unit vectors, this
-                // collapses to acos(a • b).
-                let calculated_rotation_angle = acos(simd_dot(simd_float3(0, 1, 0), normalized))
-                // print(" +++ rotation angle to apply: \(calculated_rotation_angle)")
-                // And finally, we apply that as an additional rotation transform to the current state.
-                let rotationTransform = rotationAroundYAxisTransform(angle: calculated_rotation_angle)
+                let rotated_up_vector = matrix_multiply(rotation_transform, original_heading_up_vector)
+
+                // Now we need to project this onto the rotated X,Z plane - which is most conveniently defined
+                // as the normal vector from that plane - otherwise known as our heading vector.
+                
+                let heading_vector = currentState.transform.headingVector()
+                
+                // These two vector should be 90° difference from each other, so let's double check that by
+                // computing the angle between the rotated heading and rotated up vectors:
+                //
+                // let double_check_angle = acos(
+                //     simd_dot(heading_vector, rotated_up_vector) /
+                //     ( simd_length(heading_vector) * simd_length(rotated_up_vector) )
+                // )
+                // XCTAssertEqual(Float.pi/2, double_check_angle, accuracy: 0.00001)
+                
+                // Now we need to project the world +y Vector onto the plane represented by the heading vector
+                // as a normal to that plane. The resulting vector will be limited to that plane, and that's what
+                // we can use to compare the angle to the rotated up vector, which is also on that plane, as we
+                // just verified.
+                
+                // The formula for projecting a vector onto a plane:
+                //
+                // vec_projected = vector - ( ( vector • plane_normal ) / plane_normal.length^2 ) * plane_normal
+                //
+                // You can look at this conceptually as taking the vector you want to project and subtracting from it
+                // the portion of the vector that corresponds to the normal vector, which leaves you with just the
+                // component that's aligned on the plane.
+                //
+                // 🎩 to Greg Titus, who referred me to:
+                // https://www.maplesoft.com/support/help/maple/view.aspx?path=MathApps%2FProjectionOfVectorOntoPlane
+                
+                let component_of_normal = ( simd_dot(original_heading_up_vector, heading_vector) / simd_length_squared(heading_vector) ) * heading_vector
+                let projected_vector = original_heading_up_vector - component_of_normal
+                
+                // Finally, we calculate the angle between this projected vector and the world-space UP (+Y in SceneKit)
+                // vector to get the angle we'll want to roll to make everything "aligned" as closely as possible.
+                // It's worth noting that if the projected vector is really small, this might be a little insane.
+                // That means that the plane around which we're rotating is nearly perfectly aligned with the
+                // world's X-Z coordinate plane, and there's just not a whole lot we can do. (the maths go to crap)
+                
+                let resulting_angle = acos(
+                    simd_dot(projected_vector, original_heading_up_vector) /
+                    ( simd_length(projected_vector) * simd_length(rotated_up_vector) )
+                )
+                let rotationTransform = rotationAroundYAxisTransform(angle: resulting_angle)
                 currentState = currentState.applyingTransform(rotationTransform)
 
             case TurtleCodes.move.rawValue:
