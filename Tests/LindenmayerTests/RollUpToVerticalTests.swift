@@ -5,7 +5,7 @@
 //  Created by Joseph Heck on 1/18/22.
 //
 
-import Lindenmayer
+@testable import Lindenmayer
 import SceneKit
 import SwiftUI // for `Angle`
 import simd
@@ -22,6 +22,8 @@ final class RollUpToVerticalTests: XCTestCase {
         simd_float4(-0.44651538, 2.458165, -0.08971556, 0.0),
         simd_float4(4.4409075, 13.833499, 8.220964, 1.0)
     )
+    
+    static var renderer = SceneKitRenderer()
 
     func testMatchingEulerAngles() throws {
         let node = SCNNode()
@@ -80,11 +82,93 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(rotation_first_result.z, 0, accuracy: 0.00001)
     }
     
+    func testHeadingVectorIdentity() throws {
+        XCTAssertEqual(matrix_identity_float4x4.headingVector(), simd_float3(0,1,0))
+        //print(matrix_identity_float4x4.prettyPrintString())
+    }
+    
+    
+    func testHeadingVectorRotating45degToRight() throws {
+        // This rotation is a "right turn" from the starting position, straight up. We rotation 45° around
+        // the Z axis - negative rotation to make it to the right.
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: -Float.pi/4))
+        print(state_transform.prettyPrintString())
+//        [0.7071068, 0.70710677, 0.0, 0.0]
+//        [-0.70710677, 0.7071068, 0.0, 0.0]
+//        [0.0, 0.0, 1.0, 0.0]
+//        [0.0, 0.0, 0.0, 1.0]
+        // print(state_transform) // <- prints in columnar order
+        let heading_vector = state_transform.headingVector()
+        XCTAssertEqual(heading_vector.x, 0.7071067, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.y, 0.7071067, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.z, 0, accuracy: 0.0001)
+    }
+
+    func testHeadingVectorRotating45degToLeft() throws {
+        // This rotation is a "right turn" from the starting position, straight up.
+        // We rotate 45° around the Z axis - negative rotation to make it to the right.
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Float.pi/4))
+//        print(state_transform.prettyPrintString())
+//        [0.7071068, -0.70710677, 0.0, 0.0]
+//        [0.70710677, 0.7071068, 0.0, 0.0]
+//        [0.0, 0.0, 1.0, 0.0]
+//        [0.0, 0.0, 0.0, 1.0]
+        let heading_vector = state_transform.headingVector()
+        XCTAssertEqual(heading_vector.x, -0.7071067, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.y, 0.7071067, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.z, 0, accuracy: 0.0001)
+    }
+
+    func testHeadingVectorRotating45degPitchDown() throws {
+        // This rotation is a "pitch up" from the starting position, straight up.
+        // We rotate 45° around the X axis - negative rotation to make it pitch 'down'.
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: -Float.pi/4))
+        print(state_transform.prettyPrintString())
+        let heading_vector = state_transform.headingVector()
+        XCTAssertEqual(heading_vector.x, 0, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.y, 0.7071067, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.z, -0.7071067, accuracy: 0.0001)
+    }
+
+    func testHeadingVectorRotating45degPitchUp() throws {
+        // This rotation is a "pitch down" from the starting position, straight up.
+        // We rotate 45° around the X axis - positive rotation to make it to pitch 'up'.
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Float.pi/4))
+        let heading_vector = state_transform.headingVector()
+        XCTAssertEqual(heading_vector.x, 0, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.y, 0.7071067, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.z, 0.7071067, accuracy: 0.0001)
+    }
+
+    func testHeadingVectorRotating45degYaw() throws {
+        // This rotation is a "pitch down" from the starting position, straight up.
+        // We rotate 45° around the X axis - positive rotation to make it to pitch 'up'.
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundYAxisTransform(angle: Float.pi/4))
+        let heading_vector = state_transform.headingVector()
+        XCTAssertEqual(heading_vector.x, 0, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.y, 1, accuracy: 0.0001)
+        XCTAssertEqual(heading_vector.z, 0, accuracy: 0.0001)
+    }
+
+    func testUpVectorAfterRotation() throws {
+        let original_up_vector = simd_float3(x: 0, y: 0, z: 1)
+        // roll to the right
+        let rotationAffineTransform = rotationAroundYAxisTransform(angle: Float.pi/4)
+        let rotated_up = matrix_multiply(rotationAffineTransform.rotationTransform, original_up_vector)
+        XCTAssertEqual(rotated_up.x, 0.7071067, accuracy: 0.0001)
+        XCTAssertEqual(rotated_up.y, 0, accuracy: 0.0001)
+        XCTAssertEqual(rotated_up.z, 0.7071067, accuracy: 0.0001)
+    }
+
+    // MARK: - testing rotation angle calculations
+    
+    
     func testRotatingIdentityMatrix() throws {
         // Identity state vector indicates we've not moved from start, so the forward vector is +Y and the
         // up vector is +Z. No amount of rotation will do us any good, since the plane we're rotating on (the X-Z plane)
         // can't get any closer to +Y.
-        let rotation_on_XZ_plane = try rotationToVerticalTestCode(matrix_identity_float4x4)
+        let r = RollUpToVerticalTests.renderer
+        let rotation_on_XZ_plane = r.rotateAroundHeadingToVertical(matrix_identity_float4x4)
         XCTAssertEqual(0, rotation_on_XZ_plane)
     }
 
@@ -94,8 +178,9 @@ final class RollUpToVerticalTests: XCTestCase {
         // The resulting rotation plane is tilted 45° to the right as well, so should result in a rotation
         // of -90° on that plane to get the "up" vector as close to +Y as possible.
         let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: -Float.pi/4))
-        let rotation_on_plane = try rotationToVerticalTestCode(state_transform)
-        XCTAssertEqual(-Float.pi/2, rotation_on_plane, accuracy: 0.0001)
+        let r = RollUpToVerticalTests.renderer
+        let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
+        XCTAssertEqual(Float.pi/2, rotation_on_plane, accuracy: 0.0001)
     }
 
     func testRotating45degToLeftMatrix() throws {
@@ -104,8 +189,9 @@ final class RollUpToVerticalTests: XCTestCase {
         // The resulting rotation plane is tilted 45° to the right as well, so should result in a rotation
         // of -90° on that plane to get the "up" vector as close to +Y as possible.
         let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Float.pi/4))
-        let rotation_on_plane = try rotationToVerticalTestCode(state_transform)
-        XCTAssertEqual(Float.pi/2, rotation_on_plane, accuracy: 0.0001)
+        let r = RollUpToVerticalTests.renderer
+        let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
+        XCTAssertEqual(-Float.pi/2, rotation_on_plane, accuracy: 0.0001)
     }
 
     func testRotating45degPitchUpMatrix() throws {
@@ -113,8 +199,9 @@ final class RollUpToVerticalTests: XCTestCase {
         // the X axis - negative rotation to make it pitch 'up'.
         // The resulting rotation plane is tilted 45° up towards -Z, so should result in a rotation
         // of 180° on that plane to get the "up" vector as close to +Y as possible.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: -Float.pi/4))
-        let rotation_on_plane = try rotationToVerticalTestCode(state_transform)
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Float.pi/4))
+        let r = RollUpToVerticalTests.renderer
+        let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(Float.pi, rotation_on_plane, accuracy: 0.0001)
     }
 
@@ -123,8 +210,9 @@ final class RollUpToVerticalTests: XCTestCase {
         // the X axis - positive rotation to make it to pitch 'down'.
         // The resulting rotation plane is tilted 45° up towards the +z, so should result in a rotation
         // of 0° on that plane to get the "up" vector as close to +Y as possible.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Float.pi/4))
-        let rotation_on_plane = try rotationToVerticalTestCode(state_transform)
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: -Float.pi/4))
+        let r = RollUpToVerticalTests.renderer
+        let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(0, rotation_on_plane, accuracy: 0.0001)
     }
 
@@ -132,11 +220,42 @@ final class RollUpToVerticalTests: XCTestCase {
         // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
         // with the "up" vector now rotated to point pretty much straight in the -Y direction.
         let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Float.pi/2))
-        let rotation_on_plane = try rotationToVerticalTestCode(state_transform)
+        let r = RollUpToVerticalTests.renderer
+        let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(Float.pi, rotation_on_plane, accuracy: 0.0001)
     }
 
-    func rotationToVerticalTestCode(_ full_transform: simd_float4x4) throws -> Float {
+    func testRotating90degPitchDownMatrix() throws {
+        // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
+        // with the "up" vector now rotated to point pretty much straight in the -Y direction.
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: -Float.pi/2))
+        let r = RollUpToVerticalTests.renderer
+        let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
+        XCTAssertEqual(0, rotation_on_plane, accuracy: 0.0001)
+    }
+
+    func testRotating90degToRight() throws {
+        // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
+        // with the "up" vector now rotated to point pretty much straight in the -Y direction.
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: -Float.pi/2))
+        let r = RollUpToVerticalTests.renderer
+        let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
+        XCTAssertEqual(Float.pi/2, rotation_on_plane, accuracy: 0.0001)
+    }
+
+    func testRotating90degToLeft() throws {
+        // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
+        // with the "up" vector now rotated to point pretty much straight in the -Y direction.
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Float.pi/2))
+        let r = RollUpToVerticalTests.renderer
+        let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
+        XCTAssertEqual(-Float.pi/2, rotation_on_plane, accuracy: 0.0001)
+    }
+    
+    func rotationToVerticalTestCodeOriginal(_ full_transform: simd_float4x4) throws -> Float {
+        // NOTE(heckj): Leaving this here - but the implementation doesn't pass the tests
+        // because it's not returning the correct "rotation angle" (positive/negative).
+        
         // The interpretation of this symbol is a tricky beast. From pg 41 of
         // http://algorithmicbotany.org/papers/hanan.dis1992.pdf
         // 'PARAMETRIC L-SYSTEMS AND THEIR APPLICATION TO THE MODELLING AND VISUALIZATION OF PLANTS'
@@ -152,9 +271,9 @@ final class RollUpToVerticalTests: XCTestCase {
         // current world transform and applying that to the original "up" vector to get the up vector
         // rotated to match the current state of the heading.
         let original_heading_up_vector = simd_float3(x: 0, y: 0, z: 1)
-        let north_pole_vector = simd_float3(x: 0,y: 1,z: 0)
+        let north_pole_vector = simd_float3(x: 0, y: 1, z: 0)
         let rotated_up_vector = matrix_multiply(full_transform.rotationTransform, original_heading_up_vector)
-        print("rotated up vector: \(rotated_up_vector), length: \(simd_length(rotated_up_vector))")
+        print("rotated heading-up vector: \(rotated_up_vector), length: \(simd_length(rotated_up_vector))")
         
         // Now we need to project this onto the rotated X,Z plane - which is most conveniently defined
         // as the normal vector from that plane - otherwise known as our heading vector.
@@ -198,17 +317,68 @@ final class RollUpToVerticalTests: XCTestCase {
         // acos(1.0) => 0
         // acos(0.5) => 60° (1.0471976)
         // acos(0.0) => 90° (1.5707963)
-        
-        print("projected_vector • rotated_up_vector = \(simd_dot(projected_vector, rotated_up_vector))")
-        let resulting_angle = acos(
-            simd_dot(rotated_up_vector, projected_vector) /
-            ( simd_length(projected_vector) * simd_length(rotated_up_vector) )
-        )
+        let intermediate: Float
+        if (simd_length(projected_vector) == 0.0 || simd_length(component_of_normal) == 0.0) {
+            // Since one of the lengths is 0, the resulting computation would be NaN, so we return it as 1.0,
+            // which results in no angle to roll.
+            intermediate = 1.0
+        } else {
+            print("projected_vector • rotated_up_vector = \(simd_dot(projected_vector, rotated_up_vector))")
+            print("prior to invoking acos: \(simd_dot(rotated_up_vector, projected_vector) / ( simd_length(projected_vector) * simd_length(rotated_up_vector) ))")
+            intermediate = simd_dot(rotated_up_vector, projected_vector) /
+                ( simd_length(projected_vector) * simd_length(rotated_up_vector) )
 
-        // I think I need to determine a +/- value to this rotation, as the angle isn't signed - it's not directional.
+        }
+        // .clamped() is important for the rounding errors, otherwise we easily end up with NaN in edge cases
+        print("Result after clamping: \(intermediate.clamped(to: -1.0...1.0))")
+        let resulting_angle = acos(intermediate.clamped(to: -1.0...1.0))
+
         print("And the resulting angle: \(resulting_angle) (\(Angle(radians: Double(resulting_angle)).degrees)°)")
         return resulting_angle
     }
 
+    func rotationToVerticalTestCode(_ full_transform: simd_float4x4) throws -> Float {
+        // The interpretation of this symbol is a tricky beast. From pg 41 of
+        // http://algorithmicbotany.org/papers/hanan.dis1992.pdf
+        // 'PARAMETRIC L-SYSTEMS AND THEIR APPLICATION TO THE MODELLING AND VISUALIZATION OF PLANTS'
+        //
+        // @V rotates the turtle around it's heading vector so that the left vector is horizontal and the y component of the up vector is positive.
+        // The initial heading of the 3D turtle vector is "upward" (in the +Y direction in SceneKit),
+        // and the "up vector" relative to that heading is a unit-vector in the +Z direction.
+        // The intention of this symbol is to take the rotation around the axis of the heading (whatever
+        // the +Y unit vector has been rotated to), and rotate/roll around that vector so that the
+        // "up" direction is as close to vertical in the world-space as possible.
+        
+        // Huge thank you (🎩-tip) to [DMGregory](https://twitter.com/D_M_Gregory) for his help this
+        // (improved) solution.
+        // https://gamedev.stackexchange.com/questions/198977/how-to-solve-for-the-angle-of-a-axis-angle-rotation-that-gets-me-closest-to-a-sp/199027#199027
+        let heading = full_transform.headingVector()
+        print("heading vector of transform: \(heading), length: \(simd_length(heading))")
+        let worldUp = simd_float3(x: 0, y: 1, z: 0)
+        
+        if (simd_dot(heading, worldUp) > 0.999999 || simd_dot(heading, worldUp) < -0.999999) {
+            return 0
+        }
+        
+        // Numerical explosion when heading is directly up or down in this case
+        print("Two vectors that represent the plane normal to the current heading:")
+        let planeRight = simd_normalize(simd_cross(heading, worldUp));
+        print("  planeRight vector: \(planeRight), length: \(simd_length(planeRight))")
+        let planeUp = simd_cross(planeRight, heading);
+        print("  planeUp vector: \(planeUp), length: \(simd_length(planeUp))")
+                             
+        let rotated_up_vector = matrix_multiply(full_transform.rotationTransform, simd_float3(x: 0, y: 0, z: 1))
+        print("the 'up' vector as rotated by the transform: \(rotated_up_vector), length: \(simd_length(rotated_up_vector))")
+        // Numerically more stable version of the roll angle using the inverse tangent of the
+        // dot products between the rotated up vector and the plane that represents the base
+        // of the heading.
+        // Think of the dot products as getting the X and Y coordinates of our current
+        // vector on the rotated plane, and from that the two-argument arctangent gets us
+        // the angle of the vector from the positive X-axis in that plane.
+        let resulting_angle = atan2(simd_dot(rotated_up_vector, planeRight), simd_dot(rotated_up_vector, planeUp));
+        
+        print("And the resulting angle: \(resulting_angle) (\(Angle(radians: Double(resulting_angle)).degrees)°)")
+        return resulting_angle
+    }
 }
 

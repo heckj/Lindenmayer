@@ -103,6 +103,49 @@ public struct SceneKitRenderer {
 
         scene.rootNode.addChildNode(flooring)
     }
+    
+    func rotateAroundHeadingToVertical(_ full_transform: simd_float4x4) -> Float {
+        // The interpretation of this symbol is a tricky beast. From pg 41 of
+        // http://algorithmicbotany.org/papers/hanan.dis1992.pdf
+        // 'PARAMETRIC L-SYSTEMS AND THEIR APPLICATION TO THE MODELLING AND VISUALIZATION OF PLANTS'
+        //
+        // @V rotates the turtle around it's heading vector so that the left vector is horizontal and the y component of the up vector is positive.
+        // The initial heading of the 3D turtle vector is "upward" (in the +Y direction in SceneKit),
+        // and the "up vector" relative to that heading is a unit-vector in the +Z direction.
+        // The intention of this symbol is to take the rotation around the axis of the heading (whatever
+        // the +Y unit vector has been rotated to), and rotate/roll around that vector so that the
+        // "up" direction is as close to vertical in the world-space as possible.
+        
+        // Huge thank you (🎩-tip) to [DMGregory](https://twitter.com/D_M_Gregory) for his help this
+        // (improved) solution.
+        // https://gamedev.stackexchange.com/questions/198977/how-to-solve-for-the-angle-of-a-axis-angle-rotation-that-gets-me-closest-to-a-sp/199027#199027
+        let heading = full_transform.headingVector()
+        //print("heading vector of transform: \(heading), length: \(simd_length(heading))")
+        let worldUp = simd_float3(x: 0, y: 1, z: 0)
+        
+        if (simd_dot(heading, worldUp) > 0.999999 || simd_dot(heading, worldUp) < -0.999999) {
+            return 0
+        }
+        
+        // Numerical explosion when heading is directly up or down in this case
+        //print("Two vectors that represent the plane normal to the current heading:")
+        let planeRight = simd_normalize(simd_cross(heading, worldUp));
+        //print("  planeRight vector: \(planeRight), length: \(simd_length(planeRight))")
+        let planeUp = simd_cross(planeRight, heading);
+        //print("  planeUp vector: \(planeUp), length: \(simd_length(planeUp))")
+                             
+        let rotated_up_vector = matrix_multiply(full_transform.rotationTransform, simd_float3(x: 0, y: 0, z: 1))
+        //print("the 'up' vector as rotated by the transform: \(rotated_up_vector), length: \(simd_length(rotated_up_vector))")
+        // Numerically more stable version of the roll angle using the inverse tangent of the
+        // dot products between the rotated up vector and the plane that represents the base
+        // of the heading.
+        // Think of the dot products as getting the X and Y coordinates of our current
+        // vector on the rotated plane, and from that the two-argument arctangent gets us
+        // the angle of the vector from the positive X-axis in that plane.
+        let resulting_angle = atan2(simd_dot(rotated_up_vector, planeRight), simd_dot(rotated_up_vector, planeUp));
+        //print("And the resulting angle: \(resulting_angle) (\(Angle(radians: Double(resulting_angle)).degrees)°)")
+        return resulting_angle
+    }
 
     /// Generates a SceneKit scene from the L-system that you provide.
     /// - Parameter lsystem: The L-system to render into a 3D scene.
@@ -193,68 +236,7 @@ public struct SceneKitRenderer {
                 }
 
             case TurtleCodes.rollUpToVertical.rawValue:
-                // The interpretation of this symbol is a tricky beast. From pg 41 of
-                // http://algorithmicbotany.org/papers/hanan.dis1992.pdf
-                // 'PARAMETRIC L-SYSTEMS AND THEIR APPLICATION TO THE MODELLING AND VISUALIZATION OF PLANTS'
-                //
-                // @V rotates the turtle around it's heading vector so that the left vector is horizontal and the y component of the up vector is positive.
-                // The initial heading of the 3D turtle vector is "upward" (in the +Y direction in SceneKit),
-                // and the "up vector" relative to that heading is a unit-vector in the +Z direction.
-                // The intention of this symbol is to take the rotation around the axis of the heading (whatever
-                // the +Y unit vector has been rotated to), and rotate/roll around that vector so that the
-                // "up" direction is as close to vertical in the world-space as possible.
-                
-                // We implement this by pulling out just the rotation portion of the transform from the
-                // current world transform and applying that to the original "up" vector to get the up vector
-                // rotated to match the current state of the heading.
-
-                let rotation_transform = currentState.transform.rotationTransform
-                let original_heading_up_vector = simd_float3(x: 0, y: 0, z: 1)
-                let rotated_up_vector = matrix_multiply(rotation_transform, original_heading_up_vector)
-
-                // Now we need to project this onto the rotated X,Z plane - which is most conveniently defined
-                // as the normal vector from that plane - otherwise known as our heading vector.
-                
-                let heading_vector = currentState.transform.headingVector()
-                
-                // These two vector should be 90° difference from each other, so let's double check that by
-                // computing the angle between the rotated heading and rotated up vectors:
-                //
-                // let double_check_angle = acos(
-                //     simd_dot(heading_vector, rotated_up_vector) /
-                //     ( simd_length(heading_vector) * simd_length(rotated_up_vector) )
-                // )
-                // XCTAssertEqual(Float.pi/2, double_check_angle, accuracy: 0.00001)
-                
-                // Now we need to project the world +y Vector onto the plane represented by the heading vector
-                // as a normal to that plane. The resulting vector will be limited to that plane, and that's what
-                // we can use to compare the angle to the rotated up vector, which is also on that plane, as we
-                // just verified.
-                
-                // The formula for projecting a vector onto a plane:
-                //
-                // vec_projected = vector - ( ( vector • plane_normal ) / plane_normal.length^2 ) * plane_normal
-                //
-                // You can look at this conceptually as taking the vector you want to project and subtracting from it
-                // the portion of the vector that corresponds to the normal vector, which leaves you with just the
-                // component that's aligned on the plane.
-                //
-                // 🎩 to Greg Titus, who referred me to:
-                // https://www.maplesoft.com/support/help/maple/view.aspx?path=MathApps%2FProjectionOfVectorOntoPlane
-                
-                let component_of_normal = ( simd_dot(original_heading_up_vector, heading_vector) / simd_length_squared(heading_vector) ) * heading_vector
-                let projected_vector = original_heading_up_vector - component_of_normal
-                
-                // Finally, we calculate the angle between this projected vector and the world-space UP (+Y in SceneKit)
-                // vector to get the angle we'll want to roll to make everything "aligned" as closely as possible.
-                // It's worth noting that if the projected vector is really small, this might be a little insane.
-                // That means that the plane around which we're rotating is nearly perfectly aligned with the
-                // world's X-Z coordinate plane, and there's just not a whole lot we can do. (the maths go to crap)
-                
-                let resulting_angle = acos(
-                    simd_dot(projected_vector, original_heading_up_vector) /
-                    ( simd_length(projected_vector) * simd_length(rotated_up_vector) )
-                )
+                let resulting_angle = rotateAroundHeadingToVertical(currentState.transform)
                 let rotationTransform = rotationAroundYAxisTransform(angle: resulting_angle)
                 currentState = currentState.applyingTransform(rotationTransform)
 

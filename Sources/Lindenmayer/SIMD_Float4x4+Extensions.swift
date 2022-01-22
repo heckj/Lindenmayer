@@ -13,10 +13,10 @@ extension simd_float4x4 {
     /// - Parameter indent: If provided, the string to use as a prefix for each line.
     public func prettyPrintString(_ indent: String = "") -> String {
         var result = ""
-        result += "\(indent)[\(columns.0.x), \(columns.0.y), \(columns.0.z), \(columns.0.w)]\n"
-        result += "\(indent)[\(columns.1.x), \(columns.1.y), \(columns.1.z), \(columns.1.w)]\n"
-        result += "\(indent)[\(columns.2.x), \(columns.2.y), \(columns.2.z), \(columns.2.w)]\n"
-        result += "\(indent)[\(columns.3.x), \(columns.3.y), \(columns.3.z), \(columns.3.w)]\n"
+        result += "\(indent)[\(columns.0.x), \(columns.1.x), \(columns.2.x), \(columns.3.x)]\n"
+        result += "\(indent)[\(columns.0.y), \(columns.1.y), \(columns.2.y), \(columns.3.y)]\n"
+        result += "\(indent)[\(columns.0.z), \(columns.1.z), \(columns.2.z), \(columns.3.z)]\n"
+        result += "\(indent)[\(columns.0.w), \(columns.1.w), \(columns.2.w), \(columns.3.w)]\n"
         return result
     }
 
@@ -34,9 +34,14 @@ extension simd_float4x4 {
     /// Calculate a normalized heading vector, originally vertical, using a 4x4 state transform
     /// - Returns: a 3D unit vector of the heading
     public func headingVector() -> simd_float3 {
-        let original_heading_vector = simd_float3(x: 0, y: 1, z: 0)
-        let rotated_heading = matrix_multiply(self.rotationTransform, original_heading_vector)
-        return rotated_heading
+//        // full affine method
+//        let original_heading_vector = simd_float4(x: 0, y: 1, z: 0, w: 1)
+//        let rotated_heading_4 = matrix_multiply(self, original_heading_vector)
+//        return simd_float3(x: rotated_heading_4.x, y: rotated_heading_4.y, z:rotated_heading_4.z)
+        // pulling just the transform out:
+        let short_heading_vector = simd_float3(x: 0, y: 1, z: 0)
+        let rotated_heading_3 = matrix_multiply(self.rotationTransform, short_heading_vector)
+        return rotated_heading_3
     }
 
     public func angleFromVertical() -> Float {
@@ -45,5 +50,11 @@ extension simd_float4x4 {
         let dot = simd_dot(northpole, heading)
         let calc_angle = acos(dot) / (simd_length(heading) * simd_length(northpole))
         return calc_angle
+    }
+}
+
+public extension Comparable {
+    func clamped(to limits: ClosedRange<Self>) -> Self {
+        return min(max(self, limits.lowerBound), limits.upperBound)
     }
 }
