@@ -9,7 +9,7 @@ The library provides types and APIs enable you to create L-systems with rules an
 
 The 2D renderer uses [Canvas](http://developer.apple.com/documentation/swiftui/Canvas) and [GraphicsContext](https://developer.apple.com/documentation/swiftui/graphicscontext) from [SwiftUI](https://developer.apple.com/documentation/swiftui) on Apple platforms.
 The 3D renderer uses [SceneKit](https://developer.apple.com/documentation/scenekit) on Apple platforms.
-The related package ``LindenmayerViews`` provides SwiftUI views that present the results of the renderers.
+The related package `LindenmayerViews` provides SwiftUI views that present the results of the renderers.
 
 The API provides support for both context free and context sensitive L-system grammars, as well as parametric grammars.
 
