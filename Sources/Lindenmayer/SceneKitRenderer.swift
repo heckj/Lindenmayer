@@ -237,7 +237,7 @@ public struct SceneKitRenderer {
 
             case TurtleCodes.rollUpToVertical.rawValue:
                 let resulting_angle = rotateAroundHeadingToVertical(currentState.transform)
-                let rotationTransform = rotationAroundYAxisTransform(angle: resulting_angle)
+                let rotationTransform = rotationAroundYAxisTransform(angle: -resulting_angle)
                 currentState = currentState.applyingTransform(rotationTransform)
 
             case TurtleCodes.move.rawValue:
