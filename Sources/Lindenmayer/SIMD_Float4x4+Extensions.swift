@@ -20,6 +20,7 @@ extension simd_float4x4 {
         return result
     }
 
+    /// Returns the 3x3 rotation matrix transform components of a 4x4 homogeneous transform matrix as used by SceneKit.
     public var rotationTransform: matrix_float3x3 {
         // extract the rotational component from the transform matrix
         let (col1, col2, col3, _) = columns
@@ -44,7 +45,8 @@ extension simd_float4x4 {
         return rotated_heading_3
     }
 
-    public func angleFromVertical() -> Float {
+    /// Returns the angle between the current heading vector that this transform represents and the +Y direction vector.
+    func angleFromVertical() -> Float {
         let northpole = simd_float3(x: 0, y: 1, z: 0)
         let heading = headingVector()
         let dot = simd_dot(northpole, heading)

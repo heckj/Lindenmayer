@@ -8,6 +8,7 @@
 import CoreGraphics
 import Foundation
 import SceneKit
+import SceneKitDebugTools
 import simd
 import SwiftUI // for `Angle`
 
@@ -20,7 +21,7 @@ struct GrowthState {
         nodeRef = node
     }
 
-    /// A convenience initializer that locates the growth state at the origin, and without a defined material.
+    /// A convenience initializer that locates the growth state at the origin and with no rotations.
     init(node: SCNNode) {
         self.init(node: node,
                   transform: matrix_identity_float4x4)
@@ -48,7 +49,7 @@ struct GrowthState {
 }
 
 extension ColorRepresentation {
-    /// Provides a SceneKit material based on the color representation values.
+    /// The SceneKit material that corresponds to the color representation values.
     var material: SCNMaterial {
         let material = SCNMaterial()
         material.diffuse.contents = CGColor(red: red, green: green, blue: blue, alpha: alpha)
@@ -58,51 +59,8 @@ extension ColorRepresentation {
 
 /// A renderer that generates a 3D graphical representation of an L-system using SceneKit.
 public struct SceneKitRenderer {
+    /// Creates a new SceneKit rendering engine for L-systems.
     public init() {}
-
-    func material(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> SCNMaterial {
-        let material = SCNMaterial()
-        material.diffuse.contents = CGColor(red: red, green: green, blue: blue, alpha: alpha)
-        return material
-    }
-
-    func addDebugFlooring(_ scene: SCNScene, grid: Bool = true) {
-        let flooring = SCNNode(geometry: SCNPlane(width: 10, height: 10))
-        flooring.geometry?.materials = [material(red: 0.1, green: 0.7, blue: 0.1, alpha: 0.5)]
-        flooring.simdEulerAngles = simd_float3(x: Float(Angle(degrees: -90).radians), y: 0, z: 0)
-
-        let axisMaterials = [material(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)]
-
-        let dot3D = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 0)
-        dot3D.materials = axisMaterials
-
-        let lowresCyl = SCNCylinder(radius: 0.01, height: 10)
-        lowresCyl.radialSegmentCount = 8
-        lowresCyl.heightSegmentCount = 1
-        lowresCyl.materials = axisMaterials
-
-        let zaxis = SCNNode(geometry: lowresCyl)
-        flooring.addChildNode(zaxis)
-        let xaxis = SCNNode(geometry: lowresCyl)
-        xaxis.simdEulerAngles = simd_float3(x: 0, y: 0, z: Float(Angle(degrees: 90).radians))
-        flooring.addChildNode(xaxis)
-        let yaxis = SCNNode(geometry: lowresCyl)
-        yaxis.simdEulerAngles = simd_float3(x: Float(Angle(degrees: 90).radians), y: 0, z: 0)
-        flooring.addChildNode(yaxis)
-
-        if grid {
-            let loc: [Float] = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
-            for i in loc {
-                for j in loc {
-                    let dot = SCNNode(geometry: dot3D)
-                    dot.simdPosition = simd_float3(x: Float(i), y: Float(j), z: 0)
-                    flooring.addChildNode(dot)
-                }
-            }
-        }
-
-        scene.rootNode.addChildNode(flooring)
-    }
     
     func rotateAroundHeadingToVertical(_ full_transform: simd_float4x4) -> Float {
         // The interpretation of this symbol is a tricky beast. From pg 41 of
@@ -147,20 +105,17 @@ public struct SceneKitRenderer {
         return resulting_angle
     }
 
-    /// Generates a SceneKit scene from the L-system that you provide.
-    /// - Parameter lsystem: The L-system to render into a 3D scene.
-    /// - Returns: A SceneKit scene rendered from the L-system.
-    ///
-    /// The scene includes a camera node identified as `camera`, and a plane to represent the floor and scale of the scene.
+    /// Returns a new SceneKit scene by rendering the states of the L-system you provide into a 3D model.
+    /// - Parameter lsystem: The L-System to be displayed.
     public func generateScene(lsystem: LSystem) -> SCNScene {
         generateScene(lsystem: lsystem).0
     }
 
-    /// Generates a SceneKit scene from the L-system that you provide.
-    /// - Parameter lsystem: The L-system to render into a 3D scene.
-    /// - Returns: A tuple of the rendered SceneKit scene and an array of transforms that represent each module's state transition while rendering the scene.
+    /// Returns a new SceneKit scene and a collection of the state transforms by rendering the states of the L-system you provide into a 3D model.
+    /// - Parameter lsystem: The L-System to be displayed.
     ///
-    /// The scene includes a camera node identified as `camera`, and a plane to represent the floor and scale of the scene.
+    /// This method is intended to be used for visualizing the state elements.
+    /// The sequence of transforms is generated from the updates to the rotations and translations that occur during the rendering process.
     public func generateScene(lsystem: LSystem) -> (SCNScene, [matrix_float4x4]) {
         let scene = SCNScene()
         // create and add a camera to the scene
@@ -170,7 +125,7 @@ public struct SceneKitRenderer {
         scene.rootNode.addChildNode(cameraNode)
 
         // set up debug/sizing flooring
-        addDebugFlooring(scene)
+        scene.rootNode.addChildNode(debugFlooring())
 
         var transformSequence: [matrix_float4x4] = []
 

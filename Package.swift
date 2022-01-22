@@ -30,7 +30,7 @@ let package = Package(
     targets: [
         .target(
             name: "Lindenmayer",
-            dependencies: ["Squirrel3"]
+            dependencies: ["Squirrel3", "SceneKitDebugTools"]
         ),
         .target(
             name: "LindenmayerViews",
@@ -38,7 +38,7 @@ let package = Package(
         ),
         .testTarget(
             name: "LindenmayerTests",
-            dependencies: ["Lindenmayer", "Squirrel3"]
+            dependencies: ["Lindenmayer", "Squirrel3", "SceneKitDebugTools"]
         ),
     ]
 )
