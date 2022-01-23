@@ -11,7 +11,6 @@ import SwiftUI
 /// A view that allows you to choose from a collection of the built-in 2D L-systems and display the 2D representation of the L-system at the number of iterations that you select in the view.
 @available(macOS 12.0, iOS 15.0, *)
 public struct Dynamic2DLSystemViews: View {
-
     enum TwoDExamples: String, CaseIterable, Identifiable {
         case algae
         case sierpinskiTriangle
@@ -38,10 +37,10 @@ public struct Dynamic2DLSystemViews: View {
             }
         }
     }
-    
+
     @State private var evolutions: Double = 0
     @State private var selectedSystem = TwoDExamples.fractalTree
-    
+
     public var body: some View {
         VStack {
             Picker("L-System", selection: $selectedSystem) {
@@ -68,7 +67,7 @@ public struct Dynamic2DLSystemViews: View {
                 .padding()
         }
     }
-    
+
     public init() {}
 }
 

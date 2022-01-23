@@ -10,7 +10,6 @@ import Foundation
 ///
 /// The collection examples were inspired by the Wikipedia page [L-system](https://en.wikipedia.org/wiki/L-system).
 public enum Examples2D {
-
     // MARK: - An Example module -
 
     struct Internode: Module {
@@ -32,7 +31,7 @@ public enum Examples2D {
     }
 
     static var b = B()
-    
+
     /// An L-system that describes the growth of algae.
     ///
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_1:_Algae)
@@ -110,7 +109,6 @@ public enum Examples2D {
 
     static var g = G()
 
-
     /// An L-system that describes a fractal sierpinski triangle.
     ///
     /// ![An image displaying a sierpinski triangle fractcal.](sierpinski_triangle_6)
@@ -132,7 +130,6 @@ public enum Examples2D {
     }
 
     // - MARK: dragon curve example
-
 
     /// An L-system that describes a fractal dragon curve.
     ///
