@@ -1,23 +1,22 @@
 //
 //  Angel.swift
-//  
+//
 //
 //  Created by Joseph Heck on 1/22/22.
 //
 
 import Foundation
 #if canImport(SwiftUI)
-import SwiftUI
-/// A geometric angle whose value you access in either radians or degrees.
-public typealias Angle = SwiftUI.Angle
+    import SwiftUI
+    /// A geometric angle whose value you access in either radians or degrees.
+    public typealias Angle = SwiftUI.Angle
 #else
-/// A geometric angle whose value you access in either radians or degrees.
-public typealias Angle = SimpleAngle
+    /// A geometric angle whose value you access in either radians or degrees.
+    public typealias Angle = SimpleAngle
 #endif
 
 /// A geometric angle whose value you access in either radians or degrees.
 @frozen public struct SimpleAngle {
-    
     /// The value of the angle in radians.
     public var radians: Double
 

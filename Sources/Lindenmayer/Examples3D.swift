@@ -52,7 +52,7 @@ public enum Detailed3DExamples {
         )
     }
 
-    public static var algae3D = Lindenmayer.create(Cyl())
+    public static var algae3D = LSystem.create(Cyl())
         .rewrite(Cyl.self) { _ in
             [Cyl(), S()]
         }
@@ -174,7 +174,7 @@ public enum Detailed3DExamples {
     public static let figure2_6C = Definitions(r1: 0.9, r2: 0.8, a0: 45, a2: 45)
     public static let figure2_6D = Definitions(r1: 0.9, r2: 0.7, a0: 30, a2: -30)
 
-    public static var monopodialTree = Lindenmayer.create(
+    public static var monopodialTree = LSystem.create(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
         with: PRNG(seed: 42),
         using: defines
@@ -275,7 +275,7 @@ public enum Detailed3DExamples {
     public static let figure2_7C = SympodialDefn(r1: 0.9, r2: 0.8, a1: 20, a2: 50)
     public static let figure2_7D = SympodialDefn(r1: 0.9, r2: 0.8, a1: 35, a2: 35)
 
-    public static let sympodialTree = Lindenmayer.create(
+    public static let sympodialTree = LSystem.create(
         MainBranch(growthDistance: 10, diameter: 1),
         with: PRNG(seed: 0),
         using: figure2_7A
@@ -340,7 +340,7 @@ public enum Detailed3DExamples {
         }
     }
 
-    public static var randomBush = Lindenmayer.create(Stem2(length: 1), with: PRNG(seed: 42))
+    public static var randomBush = LSystem.create(Stem2(length: 1), with: PRNG(seed: 42))
         .rewriteWithRNG(directContext: Stem2.self) { stem, rng -> [Module] in
 
             let upper: Float = 45.0
@@ -361,7 +361,7 @@ public enum Detailed3DExamples {
             }
         }
 
-    static var experiment2 = Lindenmayer.create(Stem2(length: 1))
+    static var experiment2 = LSystem.create(Stem2(length: 1))
         .rewrite(Stem2.self, where: { stem in
             stem.length < 5
         }, produces: { stem in

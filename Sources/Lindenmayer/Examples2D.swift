@@ -50,7 +50,7 @@ public enum Detailed2DExamples {
 
     static var b = B()
 
-    static var algae = Lindenmayer.create([a])
+    static var algae = LSystem.create([a])
         .rewrite(A.self) { _ in
             [a, b]
         }
@@ -79,7 +79,7 @@ public enum Detailed2DExamples {
 
     static var stem = Stem()
 
-    static var fractalTree = Lindenmayer.create(leaf)
+    static var fractalTree = LSystem.create(leaf)
         .rewrite(Leaf.self) { leaf in
             [stem,
              Modules.Branch(), Modules.TurnLeft(angle: Angle(degrees: 45)), leaf, Modules.EndBranch(),
@@ -91,7 +91,7 @@ public enum Detailed2DExamples {
 
     // - MARK: Koch curve example
 
-    static var kochCurve = Lindenmayer.create(Modules.Draw(length: 10))
+    static var kochCurve = LSystem.create(Modules.Draw(length: 10))
         .rewrite(Modules.Draw.self) { _ in
             [Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees: 90)),
              Modules.Draw(length: 10), Modules.TurnRight(angle: Angle(degrees: 90)),
@@ -116,7 +116,7 @@ public enum Detailed2DExamples {
 
     static var g = G()
 
-    static var sierpinskiTriangle = Lindenmayer.create(
+    static var sierpinskiTriangle = LSystem.create(
         [f, Modules.TurnRight(angle: Angle(degrees: 120)),
          g, Modules.TurnRight(angle: Angle(degrees: 120)),
          g, Modules.TurnRight(angle: Angle(degrees: 120))]
@@ -134,7 +134,7 @@ public enum Detailed2DExamples {
 
     // - MARK: dragon curve example
 
-    static var dragonCurve = Lindenmayer.create(f)
+    static var dragonCurve = LSystem.create(f)
         .rewrite(F.self) { _ in
             [f, Modules.TurnLeft(angle: Angle(degrees: 90)), g]
         }
@@ -150,7 +150,7 @@ public enum Detailed2DExamples {
 
     static var x = X()
 
-    static var barnsleyFern = Lindenmayer.create(x)
+    static var barnsleyFern = LSystem.create(x)
         .rewrite(X.self) { _ in
             [f, Modules.TurnLeft(angle: Angle(degrees: 25)),
              Modules.Branch(),
