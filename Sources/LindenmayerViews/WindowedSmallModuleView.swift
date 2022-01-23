@@ -14,7 +14,7 @@ import SwiftUI
 @available(macOS 12.0, iOS 15.0, *)
 public struct WindowedSmallModuleView: View {
     let size: SummarySizes
-    let system: LSystem
+    let system: LindenmayerSystem
     let position: Int
     let windowSize: Int
 
@@ -97,7 +97,7 @@ public struct WindowedSmallModuleView: View {
         }
     }
 
-    public init(size: SummarySizes, system: LSystem, position: Int, windowSize: Int = 9) {
+    public init(size: SummarySizes, system: LindenmayerSystem, position: Int, windowSize: Int = 9) {
         self.size = size
         self.system = system
         self.position = position

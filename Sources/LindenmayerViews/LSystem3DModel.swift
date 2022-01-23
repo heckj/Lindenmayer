@@ -17,7 +17,7 @@ import SwiftUI
 /// The module manages the number of evolutions of an L-system, and provides updated 3D SceneKit scenes as you change the number of evolutions.
 /// The model emits `ObservableObject` change notifications when the number of iterations is changed.
 public class LSystem3DModel: ObservableObject {
-    @Published public var system: LSystem
+    @Published public var system: LindenmayerSystem
     let renderer = SceneKitRenderer()
     let _baseSystem = Detailed3DExamples.sympodialTree
 
@@ -55,7 +55,7 @@ public class LSystem3DModel: ObservableObject {
 
     /// Creates a new L-System model with the L-System you provide.
     /// - Parameter system: The L-System to expose and control with the model.
-    public init(system: LSystem) {
+    public init(system: LindenmayerSystem) {
         self.system = system
         (_scene, _transformSequence) = renderer.generateScene(lsystem: _baseSystem)
         let headingIndicator = headingIndicator()

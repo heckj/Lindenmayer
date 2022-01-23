@@ -18,7 +18,7 @@ public enum Examples2D: String, CaseIterable, Identifiable {
     case barnsleyFern
     public var id: String { rawValue }
     /// The example seed L-system
-    public var lsystem: LSystem {
+    public var lsystem: LindenmayerSystem {
         switch self {
         case .algae:
             return Detailed2DExamples.algae
@@ -50,7 +50,7 @@ public enum Detailed2DExamples {
 
     static var b = B()
 
-    static var algae = Lindenmayer.basic([a])
+    static var algae = Lindenmayer.create([a])
         .rewrite(A.self) { _ in
             [a, b]
         }
@@ -79,7 +79,7 @@ public enum Detailed2DExamples {
 
     static var stem = Stem()
 
-    static var fractalTree = Lindenmayer.basic(leaf)
+    static var fractalTree = Lindenmayer.create(leaf)
         .rewrite(Leaf.self) { leaf in
             [stem,
              Modules.Branch(), Modules.TurnLeft(angle: Angle(degrees: 45)), leaf, Modules.EndBranch(),
@@ -91,7 +91,7 @@ public enum Detailed2DExamples {
 
     // - MARK: Koch curve example
 
-    static var kochCurve = Lindenmayer.basic(Modules.Draw(length: 10))
+    static var kochCurve = Lindenmayer.create(Modules.Draw(length: 10))
         .rewrite(Modules.Draw.self) { _ in
             [Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees: 90)),
              Modules.Draw(length: 10), Modules.TurnRight(angle: Angle(degrees: 90)),
@@ -116,7 +116,7 @@ public enum Detailed2DExamples {
 
     static var g = G()
 
-    static var sierpinskiTriangle = Lindenmayer.basic(
+    static var sierpinskiTriangle = Lindenmayer.create(
         [f, Modules.TurnRight(angle: Angle(degrees: 120)),
          g, Modules.TurnRight(angle: Angle(degrees: 120)),
          g, Modules.TurnRight(angle: Angle(degrees: 120))]
@@ -134,7 +134,7 @@ public enum Detailed2DExamples {
 
     // - MARK: dragon curve example
 
-    static var dragonCurve = Lindenmayer.basic(f)
+    static var dragonCurve = Lindenmayer.create(f)
         .rewrite(F.self) { _ in
             [f, Modules.TurnLeft(angle: Angle(degrees: 90)), g]
         }
@@ -150,7 +150,7 @@ public enum Detailed2DExamples {
 
     static var x = X()
 
-    static var barnsleyFern = Lindenmayer.basic(x)
+    static var barnsleyFern = Lindenmayer.create(x)
         .rewrite(X.self) { _ in
             [f, Modules.TurnLeft(angle: Angle(degrees: 25)),
              Modules.Branch(),

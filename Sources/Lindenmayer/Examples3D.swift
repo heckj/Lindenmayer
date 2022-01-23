@@ -17,7 +17,7 @@ public enum Examples3D: String, CaseIterable, Identifiable {
     case randomBush
     public var id: String { rawValue }
     /// The example seed L-system
-    public var lsystem: LSystem {
+    public var lsystem: LindenmayerSystem {
         switch self {
         case .monopodialTree:
             return Detailed3DExamples.monopodialTree
@@ -52,7 +52,7 @@ public enum Detailed3DExamples {
         )
     }
 
-    public static var algae3D = Lindenmayer.basic(Cyl())
+    public static var algae3D = Lindenmayer.create(Cyl())
         .rewrite(Cyl.self) { _ in
             [Cyl(), S()]
         }
@@ -174,10 +174,10 @@ public enum Detailed3DExamples {
     public static let figure2_6C = Definitions(r1: 0.9, r2: 0.8, a0: 45, a2: 45)
     public static let figure2_6D = Definitions(r1: 0.9, r2: 0.7, a0: 30, a2: -30)
 
-    public static var monopodialTree = Lindenmayer.withDefines(
+    public static var monopodialTree = Lindenmayer.create(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
-        prng: PRNG(seed: 42),
-        parameters: defines
+        with: PRNG(seed: 42),
+        using: defines
     )
     .rewriteWithParams(directContext: Trunk.self) { trunk, params in
 
@@ -275,10 +275,10 @@ public enum Detailed3DExamples {
     public static let figure2_7C = SympodialDefn(r1: 0.9, r2: 0.8, a1: 20, a2: 50)
     public static let figure2_7D = SympodialDefn(r1: 0.9, r2: 0.8, a1: 35, a2: 35)
 
-    public static let sympodialTree = Lindenmayer.withDefines(
+    public static let sympodialTree = Lindenmayer.create(
         MainBranch(growthDistance: 10, diameter: 1),
-        prng: PRNG(seed: 0),
-        parameters: figure2_7A
+        with: PRNG(seed: 0),
+        using: figure2_7A
     ).rewriteWithParams(directContext: MainBranch.self) { node, params in
         //    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
         [
@@ -340,7 +340,7 @@ public enum Detailed3DExamples {
         }
     }
 
-    public static var randomBush = Lindenmayer.withRNG(Stem2(length: 1), prng: PRNG(seed: 42))
+    public static var randomBush = Lindenmayer.create(Stem2(length: 1), with: PRNG(seed: 42))
         .rewriteWithRNG(directContext: Stem2.self) { stem, rng -> [Module] in
 
             let upper: Float = 45.0
@@ -361,7 +361,7 @@ public enum Detailed3DExamples {
             }
         }
 
-    static var experiment2 = Lindenmayer.basic(Stem2(length: 1))
+    static var experiment2 = Lindenmayer.create(Stem2(length: 1))
         .rewrite(Stem2.self, where: { stem in
             stem.length < 5
         }, produces: { stem in
