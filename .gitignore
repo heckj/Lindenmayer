@@ -49,7 +49,7 @@ Package.resolved
 .build/
 .swiftpm
 .vscode
-
+.docc-build/
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
