@@ -119,12 +119,12 @@ struct WindowedSmallModuleView_Previews: PreviewProvider {
         ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
             WindowedSmallModuleView(
                 size: sizeChoice,
-                system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4),
+                system: Examples3D.monopodialTree.evolved(iterations: 4),
                 position: 13
             )
         }
         ForEach([0, 3, 5, 7, 11], id: \.self) { windowSizeChoice in
-            WindowedSmallModuleView(size: .medium, system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4), position: 13, windowSize: windowSizeChoice)
+            WindowedSmallModuleView(size: .medium, system: Examples3D.monopodialTree.evolved(iterations: 4), position: 13, windowSize: windowSizeChoice)
         }
     }
 }

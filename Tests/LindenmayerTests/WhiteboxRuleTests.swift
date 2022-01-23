@@ -4,7 +4,7 @@ import XCTest
 
 final class WhiteboxRuleTests: XCTestCase {
     func testRuleDefaults() throws {
-        let r = RewriteRuleDirect(direct: Modules.Internode.self,
+        let r = RewriteRuleDirect(direct: Examples2D.Internode.self,
                                   where: nil) { ctx in
             [ctx]
         }
@@ -16,12 +16,12 @@ final class WhiteboxRuleTests: XCTestCase {
     }
 
     func testRuleProduction() throws {
-        let r = RewriteRuleDirectRNG(directType: Modules.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), where: nil) { _, _ in
-            [Modules.Internode()]
+        let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), where: nil) { _, _ in
+            [Examples2D.Internode()]
         }
         XCTAssertNotNil(r)
 
-        let set = ModuleSet(directInstance: Modules.Internode())
+        let set = ModuleSet(directInstance: Examples2D.Internode())
         // Verify produce returns an Internode
         let newModule = r.produce(set)
         XCTAssertEqual(newModule.count, 1)

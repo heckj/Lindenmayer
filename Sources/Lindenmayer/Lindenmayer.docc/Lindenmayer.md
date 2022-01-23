@@ -22,10 +22,11 @@ To get support for using this package, see the [Discussions on Github](https://g
 
 - <doc:Creating_L-systems>
 
+- ``LSystem``
 - ``ContextualLSystem``
 - ``RandomContextualLSystem``
-- ``ParameterizedRandonContextualLSystem``
-- ``LSystem``
+- ``ParameterizedRandomContextualLSystem``
+- ``LindenmayerSystem``
 - ``ModuleSet``
 - ``RNGWrapper``
 - ``ParametersWrapper``
@@ -74,6 +75,4 @@ To get support for using this package, see the [Discussions on Github](https://g
 ### Example L-systems
 
 - ``Examples2D``
-- ``Detailed2DExamples``
 - ``Examples3D``
-- ``Detailed3DExamples``

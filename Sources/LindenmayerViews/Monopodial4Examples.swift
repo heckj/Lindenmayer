@@ -32,17 +32,17 @@ public struct Monopodial4Examples: View {
     }
 
     public init() {
-        system1 = Detailed3DExamples.monopodialTree
-            .setParameters(params: Detailed3DExamples.figure2_6A)
+        system1 = Examples3D.monopodialTree
+            .setParameters(params: Examples3D.figure2_6A)
             .evolved(iterations: 10)
-        system2 = Detailed3DExamples.monopodialTree
-            .setParameters(params: Detailed3DExamples.figure2_6B)
+        system2 = Examples3D.monopodialTree
+            .setParameters(params: Examples3D.figure2_6B)
             .evolved(iterations: 10)
-        system3 = Detailed3DExamples.monopodialTree
-            .setParameters(params: Detailed3DExamples.figure2_6C)
+        system3 = Examples3D.monopodialTree
+            .setParameters(params: Examples3D.figure2_6C)
             .evolved(iterations: 10)
-        system4 = Detailed3DExamples.monopodialTree
-            .setParameters(params: Detailed3DExamples.figure2_6D)
+        system4 = Examples3D.monopodialTree
+            .setParameters(params: Examples3D.figure2_6D)
             .evolved(iterations: 10)
     }
 }

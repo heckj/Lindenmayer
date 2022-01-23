@@ -1,10 +1,10 @@
-import Lindenmayer
+@testable import Lindenmayer
 import Squirrel3
 import XCTest
 
 final class LSystemTests: XCTestCase {
     func testLSystemDefault() throws {
-        let x = RandomContextualLSystem<PRNG>(axiom: [Modules.Internode()], state: nil, newStateIndicators: nil, prng: RNGWrapper(PRNG(seed: 0)))
+        let x = RandomContextualLSystem<PRNG>(axiom: [Examples2D.Internode()], state: nil, newStateIndicators: nil, prng: RNGWrapper(PRNG(seed: 0)))
         XCTAssertNotNil(x)
 
         let result = x.state
@@ -20,12 +20,12 @@ final class LSystemTests: XCTestCase {
         let updated = x.evolve()
         XCTAssertEqual(updated.state.count, 1)
         XCTAssertEqual(updated.state.count, updated.newStateIndicators.count)
-        let downcast = updated.state[0] as! Modules.Internode
+        let downcast = updated.state[0] as! Examples2D.Internode
         XCTAssertEqual(downcast.description, "I")
     }
 
     func testAlgaeLSystem_evolve1() throws {
-        let algae = Examples2D.algae.lsystem
+        let algae = Examples2D.algae
         XCTAssertNotNil(algae)
         XCTAssertEqual(algae.state.count, 1)
         XCTAssertEqual(algae.state.map { $0.description }.joined(), "A")
@@ -43,7 +43,7 @@ final class LSystemTests: XCTestCase {
 
     func testAlgaeLSystem_evolve2() throws {
         var resultSequence = ""
-        let algae = Examples2D.algae.lsystem
+        let algae = Examples2D.algae
         let iter2 = algae.evolve()
         resultSequence = iter2.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "AB")
@@ -55,7 +55,7 @@ final class LSystemTests: XCTestCase {
 
     func testAlgaeLSystem_evolve3() throws {
         var resultSequence = ""
-        let algae = Examples2D.algae.lsystem
+        let algae = Examples2D.algae
         let evolution = algae.evolved(iterations: 3)
         resultSequence = evolution.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "ABAAB")
@@ -66,7 +66,7 @@ final class LSystemTests: XCTestCase {
     }
 
     func testFractalTree_evolve2() throws {
-        let tree = Examples2D.fractalTree.lsystem
+        let tree = Examples2D.fractalTree
         let evo1 = tree.evolve()
         XCTAssertEqual(evo1.state.map { $0.description }.joined(), "I[+L]-L")
         XCTAssertEqual(evo1.newStateIndicators, [true, true, true, true, true, true, true])
@@ -75,7 +75,7 @@ final class LSystemTests: XCTestCase {
     }
 
     func testLSystem_kochCurve() throws {
-        let tree = Examples2D.kochCurve.lsystem
+        let tree = Examples2D.kochCurve
         let evo1 = tree.evolved(iterations: 3)
         XCTAssertEqual(evo1.state.map { $0.description }.joined(),
                        "F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F")

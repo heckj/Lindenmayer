@@ -4,7 +4,7 @@ import XCTest
 final class GraphicsContextRendererTests: XCTestCase {
     func testLSystem_boundingRectCalc() throws {
         let tree = Examples2D.kochCurve
-        let evo1 = tree.lsystem.evolved(iterations: 3)
+        let evo1 = tree.evolved(iterations: 3)
         let path: CGRect = GraphicsContextRenderer().calcBoundingRect(system: evo1)
         // print(path)
         // print("Size: \(path.size) -> height: \(path.size.height), width: \(path.size.width)")

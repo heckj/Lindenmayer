@@ -11,14 +11,6 @@ import Foundation
 public enum Modules {}
 
 public extension Modules {
-    // MARK: - An Example module -
-
-    struct Internode: Module {
-        // This is the kind of thing that I want external developers using the library to be able to create to represent elements within their L-system.
-        public var name = "I"
-        public var render2D: [TwoDRenderCmd] = [RenderCommand.Draw(length: 10)] // draws a line 10 units long
-        public init() {}
-    }
 
     // MARK: - Built-in Modules that are effectively wrappers around specific rendering commands
 

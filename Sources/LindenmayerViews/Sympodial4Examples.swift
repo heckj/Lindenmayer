@@ -32,17 +32,17 @@ public struct Sympodial4Examples: View {
     }
 
     public init() {
-        system1 = Detailed3DExamples.sympodialTree
-            .setParameters(params: Detailed3DExamples.figure2_7A)
+        system1 = Examples3D.sympodialTree
+            .setParameters(params: Examples3D.figure2_7A)
             .evolved(iterations: 10)
-        system2 = Detailed3DExamples.sympodialTree
-            .setParameters(params: Detailed3DExamples.figure2_7B)
+        system2 = Examples3D.sympodialTree
+            .setParameters(params: Examples3D.figure2_7B)
             .evolved(iterations: 10)
-        system3 = Detailed3DExamples.sympodialTree
-            .setParameters(params: Detailed3DExamples.figure2_7C)
+        system3 = Examples3D.sympodialTree
+            .setParameters(params: Examples3D.figure2_7C)
             .evolved(iterations: 10)
-        system4 = Detailed3DExamples.sympodialTree
-            .setParameters(params: Detailed3DExamples.figure2_7D)
+        system4 = Examples3D.sympodialTree
+            .setParameters(params: Examples3D.figure2_7D)
             .evolved(iterations: 10)
     }
 }
