@@ -7,7 +7,6 @@
 
 import Foundation
 import Squirrel3
-import SwiftUI // for `Angle`
 
 /// A collection of three-dimensional example L-systems.
 public enum Examples3D: String, CaseIterable, Identifiable {

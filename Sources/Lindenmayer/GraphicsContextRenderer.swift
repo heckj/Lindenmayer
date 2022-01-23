@@ -6,7 +6,7 @@
 //
 
 import CoreGraphics
-import SwiftUI // for `Angle`
+import SwiftUI
 
 struct PathState {
     var angle: Angle

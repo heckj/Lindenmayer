@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI // for the 'Angle' type
 
 /// A namespace for a collection of built-in modules for use in L-systems.
 public enum Modules {}
