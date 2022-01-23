@@ -24,7 +24,7 @@ To get support for using this package, see the [Discussions on Github](https://g
 
 - ``LSystemBasic``
 - ``LSystemRNG``
-- ``LSystemDefinesRNG``
+- ``ParameterizedRandonContextualLSystem``
 - ``LSystem``
 - ``ModuleSet``
 - ``RNGWrapper``
