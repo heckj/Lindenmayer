@@ -36,6 +36,9 @@ To get support for using this package, see the [Discussions on Github](https://g
 - ``Modules``
 - ``Module``
 - ``DebugModule``
+
+### Rendering Commands
+
 - ``RenderCommand``
 - ``TurtleCodes``
 - ``TwoDRenderCmd``
@@ -52,15 +55,21 @@ To get support for using this package, see the [Discussions on Github](https://g
 - ``RewriteRuleDirectRight``
 - ``RewriteRuleLeftDirectRight``
 
+### Rules with Randomness
+
 - ``RewriteRuleDirectRNG``
 - ``RewriteRuleLeftDirectRNG``
 - ``RewriteRuleDirectRightRNG``
 - ``RewriteRuleLeftDirectRightRNG``
 
+### Rules with Parameters
+
 - ``RewriteRuleDirectDefines``
 - ``RewriteRuleLeftDirectDefines``
 - ``RewriteRuleDirectRightDefines``
 - ``RewriteRuleLeftDirectRightDefines``
+
+### Rules with Randomness and Parameters
 
 - ``RewriteRuleDirectDefinesRNG``
 - ``RewriteRuleLeftDirectDefinesRNG``

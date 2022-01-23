@@ -81,7 +81,7 @@ public struct LSystem3DControlView: View {
                         SCNTransaction.begin()
                         SCNTransaction.animationDuration = 0.2
                         headingIndicator.opacity = 1
-                        let bigger = scalingTransform(x: 2.5, y: 2.5, z: 2.5)
+                        let bigger = SceneKitRenderer.scalingTransform(x: 2.5, y: 2.5, z: 2.5)
                         headingIndicator.simdTransform = matrix_multiply(currentStateTransform, bigger)
                         lookAtNode(selectedNode: headingIndicator, cameraNode: cameraNode, highlight: false)
                         SCNTransaction.commit()
@@ -119,7 +119,7 @@ public struct LSystem3DControlView: View {
                 }
                 Button("camera up") {
                     if let cameraNode = model.scene.rootNode.childNode(withName: "camera", recursively: true) {
-                        let moveUp = translationTransform(x: 0, y: 2, z: 0)
+                        let moveUp = SceneKitRenderer.translationTransform(x: 0, y: 2, z: 0)
                         SCNTransaction.begin()
                         SCNTransaction.animationDuration = 0.2
                         cameraNode.simdTransform = matrix_multiply(cameraNode.simdTransform, moveUp)
@@ -128,7 +128,7 @@ public struct LSystem3DControlView: View {
                 }
                 Button("camera down") {
                     if let cameraNode = model.scene.rootNode.childNode(withName: "camera", recursively: true) {
-                        let moveDown = translationTransform(x: 0, y: -2, z: 0)
+                        let moveDown = SceneKitRenderer.translationTransform(x: 0, y: -2, z: 0)
                         SCNTransaction.begin()
                         SCNTransaction.animationDuration = 0.2
                         cameraNode.simdTransform = matrix_multiply(cameraNode.simdTransform, moveDown)
