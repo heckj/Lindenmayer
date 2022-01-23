@@ -7,6 +7,8 @@
 import Foundation
 
 /// A module that represents a state element in an L-system state array and its parameters, if any.
+///
+/// The modules include 2D and 3D representations that can be interpretted by the provided ``GraphicsContextRenderer`` to draw into a SwiftUI canvas, or ``SceneKitRenderer`` to generate and SceneKit 3D scene.
 public protocol Module: CustomStringConvertible {
     /// The name of the module.
     ///
@@ -48,25 +50,20 @@ public extension Module {
 }
 
 public extension Module {
+    /// Returns the name of the type of the instance conforming to the module protocol.
     func namedType() -> String {
         let mirror = Mirror(reflecting: self)
         return "\(mirror.subjectType)"
     }
-
+    
+    /// Returns a dictionary of strings that provide the properties and associated values for the instance.
     func children() -> [String: String] {
         let mirror = Mirror(reflecting: self)
         var propertyDict: [String: String] = [:]
-//        var xx = "\(String(reflecting: self))"
-//        xx += "#children:\(mirror.children.count),"
-//        xx += "subjType:\(mirror.subjectType),"
-//        xx += "desc:\(mirror.description),"
-//        xx += "displayStyle:\(String(describing: mirror.displayStyle))\n"
         for child in mirror.children {
             if let label = child.label {
                 propertyDict[label] = "\(child.value)"
             }
-//            xx += "label:\(String(describing: child.label))"
-//            xx += "value:\(child.value)\n"
         }
         return propertyDict
     }

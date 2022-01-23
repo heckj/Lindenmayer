@@ -44,6 +44,8 @@ public protocol LSystem {
     func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self
 }
 
+// MARK: - default implementations
+
 public extension LSystem {
     /// Returns a set of modules around the index location you provide.
     /// - Parameter atIndex: The index location of the state of the current L-system.
