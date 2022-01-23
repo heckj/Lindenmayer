@@ -6,8 +6,6 @@
 	<string>LindenmayerViews</string>
 	<key>CFBundleDisplayName</key>
 	<string>LindenmayerViews</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.rhonabwy.lindenmayerviews</string>
 	<key>CDDefaultCodeListingLanguage</key>
 	<string>swift</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -18,10 +16,6 @@
 	<string>DocumentationIcon</string>
 	<key>CFBundlePackageType</key>
 	<string>DOCS</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.1.0</string>
-	<key>CFBundleVersion</key>
-	<string>0.1.0</string>
 	<key>CDDefaultModuleKind</key>
 	<string>Library</string>
 </dict>
