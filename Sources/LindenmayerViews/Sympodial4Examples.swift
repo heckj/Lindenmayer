@@ -13,10 +13,10 @@ import SwiftUI
 ///
 /// The set of trees match the example in figure 2.7 of [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf) on page 59.
 public struct Sympodial4Examples: View {
-    let system1: LSystem
-    let system2: LSystem
-    let system3: LSystem
-    let system4: LSystem
+    let system1: LindenmayerSystem
+    let system2: LindenmayerSystem
+    let system3: LindenmayerSystem
+    let system4: LindenmayerSystem
     let renderer = SceneKitRenderer()
     public var body: some View {
         VStack {

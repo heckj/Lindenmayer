@@ -12,7 +12,7 @@ import SwiftUI
 @available(macOS 12.0, iOS 15.0, *)
 public struct HorizontalLSystemStateView: View {
     let size: SummarySizes
-    let system: LSystem
+    let system: LindenmayerSystem
     public var body: some View {
         HStack(alignment: .top, spacing: 1) {
             ForEach(0 ..< system.state.count, id: \.self) {
@@ -22,7 +22,7 @@ public struct HorizontalLSystemStateView: View {
         }
     }
 
-    public init(size: SummarySizes, system: LSystem) {
+    public init(size: SummarySizes, system: LindenmayerSystem) {
         self.size = size
         self.system = system
     }

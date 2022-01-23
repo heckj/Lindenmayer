@@ -12,7 +12,7 @@ import SwiftUI
 @available(macOS 12.0, iOS 15.0, *)
 public struct Lsystem2DView: View {
     let displayMetrics: Bool
-    let system: LSystem
+    let system: LindenmayerSystem
     let renderer = GraphicsContextRenderer()
     public var body: some View {
         VStack {
@@ -25,7 +25,7 @@ public struct Lsystem2DView: View {
         }
     }
 
-    public init(system: LSystem, displayMetrics: Bool = false) {
+    public init(system: LindenmayerSystem, displayMetrics: Bool = false) {
         self.system = system
         self.displayMetrics = displayMetrics
     }

@@ -15,10 +15,10 @@ import Squirrel3
 /// If you want to create an L-system that doesn't use a set of external parameters, but does include a seed-able random number generator, use ``LSystemRNG``.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNumberGenerator {
+public struct LSystemDefinesRNG<PType, PRNG>: LindenmayerSystem where PRNG: SeededRandomNumberGenerator {
     let axiom: [Module]
 
-    /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
+    /// The current state of the L-system, expressed as a sequence of elements that conform to Module.
     public let state: [Module]
     public var newStateIndicators: [Bool]
 
@@ -70,7 +70,7 @@ public struct LSystemDefinesRNG<PType, PRNG>: LSystem where PRNG: SeededRandomNu
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules.
     ///
-    /// This function is called from the common LSystem protocol's default implementation to generate an updated
+    /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
     public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
         return LSystemDefinesRNG<PType, PRNG>(axiom: axiom, state: state, newStateIndicators: newItemIndicators, parameters: parameters, prng: prng, rules: rules)

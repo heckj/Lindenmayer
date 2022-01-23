@@ -16,7 +16,7 @@ final class PWrapperTests: XCTestCase {
         }
         let initialP = P(value: 10)
 
-        let f = Lindenmayer.withDefines(Modules.Internode(), prng: PRNG(seed: 0), parameters: initialP)
+        let f = Lindenmayer.create(Modules.Internode(), with: PRNG(seed: 0), using: initialP)
             .rewriteWithParams(directContext: Modules.Internode.self) { m, params in
                 XCTAssertEqual(params.value, 10)
                 return [m]
@@ -32,7 +32,7 @@ final class PWrapperTests: XCTestCase {
         }
         let initialP = P(value: 10)
 
-        let f = Lindenmayer.withDefines(Modules.Internode(), prng: PRNG(seed: 0), parameters: initialP)
+        let f = Lindenmayer.create(Modules.Internode(), with: PRNG(seed: 0), using: initialP)
             .rewriteWithParams(directContext: Modules.Internode.self) { m, params in
                 XCTAssertEqual(params.value, 13)
                 return [m]

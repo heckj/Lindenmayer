@@ -15,7 +15,7 @@ import Foundation
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 
-public struct LSystemBasic: LSystem {
+public struct LSystemBasic: LindenmayerSystem {
     let axiom: [Module]
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
@@ -56,7 +56,7 @@ public struct LSystemBasic: LSystem {
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules.
     ///
-    /// This function is called from the common LSystem protocol's default implementation to generate an updated
+    /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
     public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
         return LSystemBasic(axiom, state: state, newStateIndicators: newItemIndicators, rules: rules)

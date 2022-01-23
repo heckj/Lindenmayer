@@ -20,7 +20,7 @@ final class PerformanceTests: XCTestCase {
     }
 
     func X_testPerfBoundingRectCalc() {
-        let evo1: LSystem?
+        let evo1: LindenmayerSystem?
         // 20.675 seconds
         let tree = Examples2D.barnsleyFern.lsystem
         evo1 = tree.evolved(iterations: 10)

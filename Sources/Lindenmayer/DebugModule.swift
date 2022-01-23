@@ -9,7 +9,7 @@ import Foundation
 
 /// A class that wraps an abstract Module and provides access to its internal state as formatted strings.
 ///
-/// The class provides an `Identifiable` reference based on the location within an existing ``LSystem``.
+/// The class provides an `Identifiable` reference based on the location within an existing ``LindenmayerSystem``.
 /// The internal state of the underlying ``Module`` instance is exposed using `Mirror`.
 public class DebugModule: Identifiable {
     /// The abstract, underlying module instance with which you initialized the wrapper.
@@ -71,7 +71,7 @@ extension DebugModule: Equatable {
     }
 }
 
-public extension LSystem {
+public extension LindenmayerSystem {
     /// Returns a debug module wrapping the module at the state position you provide.
     /// - Parameter at: The location of the state within the L-systems state array.
     /// - Returns: A ``DebugModule`` initialized with the state at the location you provide.

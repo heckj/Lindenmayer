@@ -11,7 +11,7 @@ import SwiftUI
 /// A view that provides a visual representation of the states of an L-system and allows the person viewing it to select an index position from that L-system's state.
 @available(macOS 12.0, iOS 15.0, *)
 public struct StateSelectorView: View {
-    let system: LSystem
+    let system: LindenmayerSystem
     let _withDetailView: Bool
     // state for the related views that show stuff
     @Binding var indexPosition: Int
@@ -122,7 +122,7 @@ public struct StateSelectorView: View {
         }
     }
 
-    public init(system: LSystem, position: Binding<Int>, withDetailView: Bool = false) {
+    public init(system: LindenmayerSystem, position: Binding<Int>, withDetailView: Bool = false) {
         self.system = system
         _withDetailView = withDetailView
         _indexPosition = position

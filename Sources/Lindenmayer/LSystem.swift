@@ -1,5 +1,5 @@
 //
-//  LSystem.swift
+//  LindenmayerSystem.swift
 //
 //
 //  Created by Joseph Heck on 12/28/21.
@@ -10,7 +10,7 @@ import Foundation
 /// A type that represents a Lindenmayer system and how it evolves.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public protocol LSystem {
+public protocol LindenmayerSystem {
     /// The sequence of modules that represents the current state of the L-system.
     var state: [Module] { get }
     var newStateIndicators: [Bool] { get }
@@ -39,14 +39,14 @@ public protocol LSystem {
     /// - Parameter state: The sequence of modules that represent the new state.
     /// - Returns: A new L-system with the updated state that has the same rules.
     ///
-    /// This function is called from the common LSystem protocol's default implementation to generate an updated
+    /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
     func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self
 }
 
 // MARK: - default implementations
 
-public extension LSystem {
+public extension LindenmayerSystem {
     /// Returns a set of modules around the index location you provide.
     /// - Parameter atIndex: The index location of the state of the current L-system.
     /// - Returns: a set of three modules representing the module at the index, and to the left and right.
