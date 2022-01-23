@@ -60,7 +60,7 @@ extension ColorRepresentation {
 public struct SceneKitRenderer {
     /// Creates a new SceneKit rendering engine for L-systems.
     public init() {}
-    
+
     func rotateAroundHeadingToVertical(_ full_transform: simd_float4x4) -> Float {
         // The interpretation of this symbol is a tricky beast. From pg 41 of
         // http://algorithmicbotany.org/papers/hanan.dis1992.pdf
@@ -72,25 +72,25 @@ public struct SceneKitRenderer {
         // The intention of this symbol is to take the rotation around the axis of the heading (whatever
         // the +Y unit vector has been rotated to), and rotate/roll around that vector so that the
         // "up" direction is as close to vertical in the world-space as possible.
-        
+
         // Huge thank you (🎩-tip) to [DMGregory](https://twitter.com/D_M_Gregory) for his help this
         // (improved) solution.
         // https://gamedev.stackexchange.com/questions/198977/how-to-solve-for-the-angle-of-a-axis-angle-rotation-that-gets-me-closest-to-a-sp/199027#199027
         let heading = full_transform.headingVector()
         print("heading vector of transform: \(heading), length: \(simd_length(heading))")
         let worldUp = simd_float3(x: 0, y: 1, z: 0)
-        
-        if (simd_dot(heading, worldUp) > 0.999999 || simd_dot(heading, worldUp) < -0.999999) {
+
+        if simd_dot(heading, worldUp) > 0.999999 || simd_dot(heading, worldUp) < -0.999999 {
             return 0
         }
-        
+
         // Numerical explosion when heading is directly up or down in this case
         print("Two vectors that represent the plane normal to the current heading:")
-        let planeRight = simd_normalize(simd_cross(heading, worldUp));
+        let planeRight = simd_normalize(simd_cross(heading, worldUp))
         print("  planeRight vector: \(planeRight), length: \(simd_length(planeRight))")
-        let planeUp = simd_cross(planeRight, heading);
+        let planeUp = simd_cross(planeRight, heading)
         print("  planeUp vector: \(planeUp), length: \(simd_length(planeUp))")
-                             
+
         let rotated_up_vector = matrix_multiply(full_transform.rotationTransform, simd_float3(x: 0, y: 0, z: 1))
         print("the 'up' vector as rotated by the transform: \(rotated_up_vector), length: \(simd_length(rotated_up_vector))")
         // Numerically more stable version of the roll angle using the inverse tangent of the
@@ -99,7 +99,7 @@ public struct SceneKitRenderer {
         // Think of the dot products as getting the X and Y coordinates of our current
         // vector on the rotated plane, and from that the two-argument arctangent gets us
         // the angle of the vector from the positive X-axis in that plane.
-        let resulting_angle = atan2(simd_dot(rotated_up_vector, planeRight), simd_dot(rotated_up_vector, planeUp));
+        let resulting_angle = atan2(simd_dot(rotated_up_vector, planeRight), simd_dot(rotated_up_vector, planeUp))
         print("And the resulting angle: \(resulting_angle) (\(Angle(radians: Double(resulting_angle)).degrees)°)")
         return resulting_angle
     }

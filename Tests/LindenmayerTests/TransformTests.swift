@@ -10,7 +10,6 @@ import simd
 import XCTest
 
 final class TransformTests: XCTestCase {
-
     func testTranslationTransformMatchesSceneKit() throws {
         let node = SCNNode()
         let x = 1.5

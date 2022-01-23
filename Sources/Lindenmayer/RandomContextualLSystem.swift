@@ -15,7 +15,7 @@ import Squirrel3
 /// If you want to create an L-system that uses a set of external parameters and a seed-able random number generator, use ``LSystemDefinesRNG``.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
-public struct LSystemRNG<PRNG>: LindenmayerSystem where PRNG: SeededRandomNumberGenerator {
+public struct RandomContextualLSystem<PRNG>: LindenmayerSystem where PRNG: SeededRandomNumberGenerator {
     let axiom: [Module]
 
     /// The sequence of modules that represents the current state of the L-system.
@@ -64,12 +64,12 @@ public struct LSystemRNG<PRNG>: LindenmayerSystem where PRNG: SeededRandomNumber
     /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
     public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newItemIndicators, prng: prng, rules: rules)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newItemIndicators, prng: prng, rules: rules)
     }
 
     public func reset() -> Self {
         prng.resetRNG(seed: prng.seed)
-        return LSystemRNG(axiom: axiom, state: nil, newStateIndicators: nil, prng: prng, rules: rules)
+        return RandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, prng: prng, rules: rules)
     }
 
     public func evolve(with seed: UInt64) -> Self {
@@ -80,7 +80,7 @@ public struct LSystemRNG<PRNG>: LindenmayerSystem where PRNG: SeededRandomNumber
 
 // - MARK: Rewrite rules including PRNG from the LSystem
 
-public extension LSystemRNG {
+public extension RandomContextualLSystem {
     /// Adds a rewriting rule to the L-System.
     /// - Parameters:
     ///   - left: An optional type of module that the rule matches to the left of the main module.
@@ -104,7 +104,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -128,7 +128,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -153,7 +153,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -176,7 +176,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -202,7 +202,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -225,7 +225,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -249,7 +249,7 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -271,13 +271,13 @@ public extension LSystemRNG {
         )
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [rule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 }
 
 // - MARK: Rewrite rules for the LSystem
 
-public extension LSystemRNG {
+public extension RandomContextualLSystem {
     /// Adds a rewriting rule to the L-System.
     /// - Parameters:
     ///   - direct: The type of module that the rule matches
@@ -291,7 +291,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -305,7 +305,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -321,7 +321,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -335,7 +335,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -351,7 +351,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -365,7 +365,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -381,7 +381,7 @@ public extension LSystemRNG {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -395,6 +395,6 @@ public extension LSystemRNG {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemRNG(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
+        return RandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, prng: prng, rules: newRuleSet)
     }
 }

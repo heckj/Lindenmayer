@@ -55,7 +55,7 @@ public extension Module {
         let mirror = Mirror(reflecting: self)
         return "\(mirror.subjectType)"
     }
-    
+
     /// Returns a dictionary of strings that provide the properties and associated values for the instance.
     func children() -> [String: String] {
         let mirror = Mirror(reflecting: self)

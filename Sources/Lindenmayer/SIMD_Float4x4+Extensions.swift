@@ -8,10 +8,10 @@
 import Foundation
 import simd
 
-extension simd_float4x4 {
+public extension simd_float4x4 {
     /// Returns a multi-line string that represents the simd4x4 matrix for easier visual reading.
     /// - Parameter indent: If provided, the string to use as a prefix for each line.
-    public func prettyPrintString(_ indent: String = "") -> String {
+    func prettyPrintString(_ indent: String = "") -> String {
         var result = ""
         result += "\(indent)[\(columns.0.x), \(columns.1.x), \(columns.2.x), \(columns.3.x)]\n"
         result += "\(indent)[\(columns.0.y), \(columns.1.y), \(columns.2.y), \(columns.3.y)]\n"
@@ -21,7 +21,7 @@ extension simd_float4x4 {
     }
 
     /// Returns the 3x3 rotation matrix transform components of a 4x4 homogeneous transform matrix as used by SceneKit.
-    public var rotationTransform: matrix_float3x3 {
+    var rotationTransform: matrix_float3x3 {
         // extract the rotational component from the transform matrix
         let (col1, col2, col3, _) = columns
         let rotationTransform = matrix_float3x3(
@@ -34,19 +34,19 @@ extension simd_float4x4 {
 
     /// Calculate a normalized heading vector, originally vertical, using a 4x4 state transform
     /// - Returns: a 3D unit vector of the heading
-    public func headingVector() -> simd_float3 {
+    func headingVector() -> simd_float3 {
 //        // full affine method
 //        let original_heading_vector = simd_float4(x: 0, y: 1, z: 0, w: 1)
 //        let rotated_heading_4 = matrix_multiply(self, original_heading_vector)
 //        return simd_float3(x: rotated_heading_4.x, y: rotated_heading_4.y, z:rotated_heading_4.z)
         // pulling just the transform out:
         let short_heading_vector = simd_float3(x: 0, y: 1, z: 0)
-        let rotated_heading_3 = matrix_multiply(self.rotationTransform, short_heading_vector)
+        let rotated_heading_3 = matrix_multiply(rotationTransform, short_heading_vector)
         return rotated_heading_3
     }
 
     /// Returns the angle between the current heading vector that this transform represents and the +Y direction vector.
-    func angleFromVertical() -> Float {
+    internal func angleFromVertical() -> Float {
         let northpole = simd_float3(x: 0, y: 1, z: 0)
         let heading = headingVector()
         let dot = simd_dot(northpole, heading)

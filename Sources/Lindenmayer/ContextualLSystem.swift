@@ -15,7 +15,7 @@ import Foundation
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 
-public struct LSystemBasic: LindenmayerSystem {
+public struct ContextualLSystem: LindenmayerSystem {
     let axiom: [Module]
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
@@ -59,15 +59,15 @@ public struct LSystemBasic: LindenmayerSystem {
     /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
     public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
-        return LSystemBasic(axiom, state: state, newStateIndicators: newItemIndicators, rules: rules)
+        return ContextualLSystem(axiom, state: state, newStateIndicators: newItemIndicators, rules: rules)
     }
 
     public func reset() -> Self {
-        return LSystemBasic(axiom, state: nil, newStateIndicators: newStateIndicators, rules: rules)
+        return ContextualLSystem(axiom, state: nil, newStateIndicators: newStateIndicators, rules: rules)
     }
 }
 
-public extension LSystemBasic {
+public extension ContextualLSystem {
     /// Adds a rewriting rule to the L-System.
     /// - Parameters:
     ///   - direct: The type of module that the rule matches
@@ -81,7 +81,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
+        return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -95,7 +95,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
+        return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -111,7 +111,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
+        return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -125,7 +125,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
+        return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -141,7 +141,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
+        return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -155,7 +155,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
+        return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -171,7 +171,7 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
+        return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 
     /// Adds a rewriting rule to the L-System.
@@ -185,6 +185,6 @@ public extension LSystemBasic {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
-        return LSystemBasic(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
+        return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
 }
