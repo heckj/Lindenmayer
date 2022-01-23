@@ -11,7 +11,6 @@ import Foundation
 public enum Modules {}
 
 public extension Modules {
-
     // MARK: - Built-in Modules that are effectively wrappers around specific rendering commands
 
     /// A module that informs a renderer to turn left while rendering the L-system.
