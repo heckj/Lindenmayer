@@ -18,7 +18,7 @@ final class TransformTests: XCTestCase {
 
         node.simdPosition = simd_float3(x: Float(x), y: Float(y), z: Float(z))
 
-        let transform = translationTransform(x: Float(x), y: Float(y), z: Float(z))
+        let transform = SceneKitRenderer.translationTransform(x: Float(x), y: Float(y), z: Float(z))
 
         XCTAssertEqual(transform, node.simdTransform)
     }
@@ -31,7 +31,7 @@ final class TransformTests: XCTestCase {
 
         node.simdScale = simd_float3(x: Float(x), y: Float(y), z: Float(z))
 
-        let transform = scalingTransform(x: Float(x), y: Float(y), z: Float(z))
+        let transform = SceneKitRenderer.scalingTransform(x: Float(x), y: Float(y), z: Float(z))
 
         XCTAssertEqual(transform, node.simdTransform)
     }
@@ -42,7 +42,7 @@ final class TransformTests: XCTestCase {
         // pitch, yaw, roll
         node.simdEulerAngles = simd_float3(x: 0, y: 0, z: Float(angle.radians))
 
-        let transform = rotationAroundZAxisTransform(angle: angle)
+        let transform = SceneKitRenderer.rotationAroundZAxisTransform(angle: angle)
 
         XCTAssertEqual(transform, node.simdTransform)
     }
@@ -53,7 +53,7 @@ final class TransformTests: XCTestCase {
         // pitch, yaw, roll
         node.simdEulerAngles = simd_float3(x: 0, y: Float(angle.radians), z: 0)
 
-        let transform = rotationAroundYAxisTransform(angle: angle)
+        let transform = SceneKitRenderer.rotationAroundYAxisTransform(angle: angle)
 
         XCTAssertEqual(transform, node.simdTransform)
     }
@@ -64,7 +64,7 @@ final class TransformTests: XCTestCase {
         // pitch, yaw, roll
         node.simdEulerAngles = simd_float3(x: Float(angle.radians), y: 0, z: 0)
 
-        let transform = rotationAroundXAxisTransform(angle: angle)
+        let transform = SceneKitRenderer.rotationAroundXAxisTransform(angle: angle)
 
         XCTAssertEqual(transform, node.simdTransform)
     }

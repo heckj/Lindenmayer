@@ -47,7 +47,7 @@ public class LSystem3DModel: ObservableObject {
             (_scene, _transformSequence) = renderer.generateScene(lsystem: system)
             let headingIndicator = headingIndicator()
             headingIndicator.opacity = 0
-            let bigger = scalingTransform(x: 2.5, y: 2.5, z: 2.5)
+            let bigger = SceneKitRenderer.scalingTransform(x: 2.5, y: 2.5, z: 2.5)
             headingIndicator.simdTransform = matrix_multiply(headingIndicator.simdTransform, bigger)
             _scene.rootNode.addChildNode(headingIndicator)
         }

@@ -138,7 +138,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.pitchUp.rawValue:
                 // positive values pitch nose up (positive rotation around X axis)
                 if let cmd = cmd as? RenderCommand.PitchUp {
-                    let pitchTransform = rotationAroundXAxisTransform(angle: cmd.angle)
+                    let pitchTransform = SceneKitRenderer.rotationAroundXAxisTransform(angle: cmd.angle)
                     currentState = currentState.applyingTransform(pitchTransform)
 //                    print("Pitch (rotate around +X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -147,7 +147,7 @@ public struct SceneKitRenderer {
                 // negative values pitch nose down (negative rotation around X axis)
                 if let cmd = cmd as? RenderCommand.PitchDown {
                     let directionAngle = Angle(radians: -1.0 * cmd.angle.radians)
-                    let pitchTransform = rotationAroundXAxisTransform(angle: directionAngle)
+                    let pitchTransform = SceneKitRenderer.rotationAroundXAxisTransform(angle: directionAngle)
                     currentState = currentState.applyingTransform(pitchTransform)
 //                    print("Pitch (rotate around -X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -156,7 +156,7 @@ public struct SceneKitRenderer {
                 if let cmd = cmd as? RenderCommand.RollLeft {
                     // negative values roll to the left (negative rotation around Y axis)
                     let directionAngle = Angle(radians: -1.0 * cmd.angle.radians)
-                    let rollTransform = rotationAroundYAxisTransform(angle: directionAngle)
+                    let rollTransform = SceneKitRenderer.rotationAroundYAxisTransform(angle: directionAngle)
                     currentState = currentState.applyingTransform(rollTransform)
 //                    print("Roll (rotate around -Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -164,7 +164,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.rollRight.rawValue:
                 if let cmd = cmd as? RenderCommand.RollRight {
                     // positive values roll to the right (positive rotation around Y axis)
-                    let rollTransform = rotationAroundYAxisTransform(angle: cmd.angle)
+                    let rollTransform = SceneKitRenderer.rotationAroundYAxisTransform(angle: cmd.angle)
                     currentState = currentState.applyingTransform(rollTransform)
 //                    print("Roll (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -172,7 +172,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.leftTurn.rawValue:
                 if let cmd = cmd as? RenderCommand.TurnLeft {
                     // positive values turn to the left (positive rotation around Z axis)
-                    let yawTransform = rotationAroundZAxisTransform(angle: cmd.angle)
+                    let yawTransform = SceneKitRenderer.rotationAroundZAxisTransform(angle: cmd.angle)
                     currentState = currentState.applyingTransform(yawTransform)
 //                    print("Yaw (rotate around +Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -181,19 +181,19 @@ public struct SceneKitRenderer {
                 if let cmd = cmd as? RenderCommand.TurnRight {
                     // negative values turn to the right (negative rotation around Z axis)
                     let directionAngle = Angle(radians: -1.0 * cmd.angle.radians)
-                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngle)
+                    let yawTransform = SceneKitRenderer.rotationAroundZAxisTransform(angle: directionAngle)
                     currentState = currentState.applyingTransform(yawTransform)
 //                    print("Yaw (rotate around -Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.rollUpToVertical.rawValue:
                 let resulting_angle = Angle(radians: -1.0 * Double(rotateAroundHeadingToVertical(currentState.transform)))
-                let rotationTransform = rotationAroundYAxisTransform(angle: resulting_angle)
+                let rotationTransform = SceneKitRenderer.rotationAroundYAxisTransform(angle: resulting_angle)
                 currentState = currentState.applyingTransform(rotationTransform)
 
             case TurtleCodes.move.rawValue:
                 if let cmd = cmd as? RenderCommand.Move {
-                    let moveTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
+                    let moveTransform = SceneKitRenderer.translationTransform(x: 0, y: Float(cmd.length), z: 0)
                     currentState = currentState.applyingTransform(moveTransform)
 //                    print("Moving forward by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
@@ -215,7 +215,7 @@ public struct SceneKitRenderer {
                     node.name = "n\(index)"
 
                     // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
-                    let nudgeOriginTransform = translationTransform(x: 0, y: Float(cmd.length / 2.0), z: 0)
+                    let nudgeOriginTransform = SceneKitRenderer.translationTransform(x: 0, y: Float(cmd.length / 2.0), z: 0)
                     //                print(" - calc nudgeTransform: \(nudgeOriginTransform)")
                     node.simdTransform = matrix_multiply(currentState.transform, nudgeOriginTransform)
 
@@ -223,7 +223,7 @@ public struct SceneKitRenderer {
                     currentState.nodeRef = node
 
                     // Move the origin of the where to put the next object at the "end" of this node.
-                    let moveStateTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
+                    let moveStateTransform = SceneKitRenderer.translationTransform(x: 0, y: Float(cmd.length), z: 0)
                     currentState = currentState.applyingTransform(moveStateTransform)
 
 //                    print("Added cylinder (r=\(cmd.radius)) by \(cmd.length) at \(String(describing: node.simdTransform))")
@@ -238,14 +238,14 @@ public struct SceneKitRenderer {
                     node.name = "n\(index)"
 
                     // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
-                    let nudgeOriginTransform = translationTransform(x: 0, y: Float(cmd.length / 2.0), z: 0)
+                    let nudgeOriginTransform = SceneKitRenderer.translationTransform(x: 0, y: Float(cmd.length / 2.0), z: 0)
                     node.simdTransform = matrix_multiply(currentState.transform, nudgeOriginTransform)
 
                     scene.rootNode.addChildNode(node)
                     currentState.nodeRef = node
 
                     // Move the origin of the where to put the next object at the "end" of this node.
-                    let moveStateTransform = translationTransform(x: 0, y: Float(cmd.length), z: 0)
+                    let moveStateTransform = SceneKitRenderer.translationTransform(x: 0, y: Float(cmd.length), z: 0)
                     currentState = currentState.applyingTransform(moveStateTransform)
 
 //                    print("Added cone (tr=\(cmd.radiusTop), br=\(cmd.radiusBottom) by \(cmd.length) at \(String(describing: node.simdTransform))")
