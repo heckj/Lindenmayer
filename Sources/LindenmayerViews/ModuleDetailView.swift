@@ -42,7 +42,7 @@ public struct ModuleDetailView: View {
 
 struct ModuleDetailView_Previews: PreviewProvider {
     static func provideModule() -> DebugModule {
-        Examples3D.monopodialTree.lsystem.evolved(iterations: 4).state(at: 3)
+        Examples3D.monopodialTree.evolved(iterations: 4).state(at: 3)
     }
 
     static var previews: some View {

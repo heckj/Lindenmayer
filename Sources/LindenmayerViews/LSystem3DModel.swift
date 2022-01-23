@@ -19,7 +19,7 @@ import SwiftUI
 public class LSystem3DModel: ObservableObject {
     @Published public var system: LindenmayerSystem
     let renderer = SceneKitRenderer()
-    let _baseSystem = Detailed3DExamples.sympodialTree
+    let _baseSystem = Examples3D.sympodialTree
 
     var _scene: SCNScene
     var _transformSequence: [matrix_float4x4]

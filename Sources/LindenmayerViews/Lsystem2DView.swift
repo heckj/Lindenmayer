@@ -34,7 +34,7 @@ public struct Lsystem2DView: View {
 @available(macOS 12.0, iOS 15.0, *)
 struct Lsystem2DView_Previews: PreviewProvider {
     static var previews: some View {
-        Lsystem2DView(system: Examples2D.barnsleyFern.lsystem.evolved(iterations: 4),
+        Lsystem2DView(system: TwoDExamples.barnsleyFern.lsystem.evolved(iterations: 4),
                       displayMetrics: true)
     }
 }

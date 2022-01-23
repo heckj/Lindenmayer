@@ -9,34 +9,17 @@ import Foundation
 /// A collection of two-dimensional example L-systems.
 ///
 /// The collection examples were inspired by the Wikipedia page [L-system](https://en.wikipedia.org/wiki/L-system).
-public enum Examples2D: String, CaseIterable, Identifiable {
-    case algae
-    case sierpinskiTriangle
-    case kochCurve
-    case dragonCurve
-    case fractalTree
-    case barnsleyFern
-    public var id: String { rawValue }
-    /// The example seed L-system
-    public var lsystem: LindenmayerSystem {
-        switch self {
-        case .algae:
-            return Detailed2DExamples.algae
-        case .sierpinskiTriangle:
-            return Detailed2DExamples.sierpinskiTriangle
-        case .kochCurve:
-            return Detailed2DExamples.kochCurve
-        case .dragonCurve:
-            return Detailed2DExamples.dragonCurve
-        case .fractalTree:
-            return Detailed2DExamples.fractalTree
-        case .barnsleyFern:
-            return Detailed2DExamples.barnsleyFern
-        }
-    }
-}
+public enum Examples2D {
 
-public enum Detailed2DExamples {
+    // MARK: - An Example module -
+
+    struct Internode: Module {
+        // This is the kind of thing that I want external developers using the library to be able to create to represent elements within their L-system.
+        public var name = "I"
+        public var render2D: [TwoDRenderCmd] = [RenderCommand.Draw(length: 10)] // draws a line 10 units long
+        public init() {}
+    }
+
     // - MARK: Algae example
 
     struct A: Module {
@@ -49,8 +32,11 @@ public enum Detailed2DExamples {
     }
 
     static var b = B()
-
-    static var algae = LSystem.create([a])
+    
+    /// An L-system that describes the growth of algae.
+    ///
+    /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_1:_Algae)
+    public static var algae = LSystem.create([a])
         .rewrite(A.self) { _ in
             [a, b]
         }
@@ -79,7 +65,10 @@ public enum Detailed2DExamples {
 
     static var stem = Stem()
 
-    static var fractalTree = LSystem.create(leaf)
+    /// An L-system that describes a fractal, or binary, tree.
+    ///
+    /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_2:_Fractal_(binary)_tree)
+    public static var fractalTree = LSystem.create(leaf)
         .rewrite(Leaf.self) { leaf in
             [stem,
              Modules.Branch(), Modules.TurnLeft(angle: Angle(degrees: 45)), leaf, Modules.EndBranch(),
@@ -91,7 +80,10 @@ public enum Detailed2DExamples {
 
     // - MARK: Koch curve example
 
-    static var kochCurve = LSystem.create(Modules.Draw(length: 10))
+    /// An L-system that describes a fractal koch curve.
+    ///
+    /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_4:_Koch_curve)
+    public static var kochCurve = LSystem.create(Modules.Draw(length: 10))
         .rewrite(Modules.Draw.self) { _ in
             [Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees: 90)),
              Modules.Draw(length: 10), Modules.TurnRight(angle: Angle(degrees: 90)),
@@ -116,7 +108,11 @@ public enum Detailed2DExamples {
 
     static var g = G()
 
-    static var sierpinskiTriangle = LSystem.create(
+
+    /// An L-system that describes a fractal sierpinski triangle.
+    ///
+    /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_5:_Sierpinski_triangle)
+    public static var sierpinskiTriangle = LSystem.create(
         [f, Modules.TurnRight(angle: Angle(degrees: 120)),
          g, Modules.TurnRight(angle: Angle(degrees: 120)),
          g, Modules.TurnRight(angle: Angle(degrees: 120))]
@@ -134,7 +130,11 @@ public enum Detailed2DExamples {
 
     // - MARK: dragon curve example
 
-    static var dragonCurve = LSystem.create(f)
+
+    /// An L-system that describes a fractal dragon curve.
+    ///
+    /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_6:_Dragon_curve)
+    public static var dragonCurve = LSystem.create(f)
         .rewrite(F.self) { _ in
             [f, Modules.TurnLeft(angle: Angle(degrees: 90)), g]
         }
@@ -150,7 +150,10 @@ public enum Detailed2DExamples {
 
     static var x = X()
 
-    static var barnsleyFern = LSystem.create(x)
+    /// An L-system that describes a fractal plant, also known as the Barnsley Fern.
+    ///
+    /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_7:_Fractal_plant)
+    public static var barnsleyFern = LSystem.create(x)
         .rewrite(X.self) { _ in
             [f, Modules.TurnLeft(angle: Angle(degrees: 25)),
              Modules.Branch(),

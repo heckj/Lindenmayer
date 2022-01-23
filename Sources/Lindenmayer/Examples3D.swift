@@ -9,29 +9,9 @@ import Foundation
 import Squirrel3
 
 /// A collection of three-dimensional example L-systems.
-public enum Examples3D: String, CaseIterable, Identifiable {
-    /// A tree branching L-system based on L-system 6 in the model provided in Algorithmic Beauty of Plants.
-    case monopodialTree
-    case sympodialTree
-    case algae3D
-    case randomBush
-    public var id: String { rawValue }
-    /// The example seed L-system
-    public var lsystem: LindenmayerSystem {
-        switch self {
-        case .monopodialTree:
-            return Detailed3DExamples.monopodialTree
-        case .sympodialTree:
-            return Detailed3DExamples.sympodialTree
-        case .algae3D:
-            return Detailed3DExamples.algae3D
-        case .randomBush:
-            return Detailed3DExamples.randomBush
-        }
-    }
-}
-
-public enum Detailed3DExamples {
+///
+/// Some of the collection examples were inspired by the [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+public enum Examples3D {
     // - MARK: 3D Algae test
 
     struct Cyl: Module {

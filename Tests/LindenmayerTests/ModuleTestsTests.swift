@@ -4,7 +4,6 @@ import XCTest
 
 final class ModuleTests: XCTestCase {
     func testBuiltins() {
-        XCTAssertNotNil(Modules.Internode())
         XCTAssertNotNil(Modules.Draw())
         XCTAssertNotNil(Modules.Move())
         XCTAssertNotNil(Modules.Branch())

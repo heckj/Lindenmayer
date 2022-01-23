@@ -1,5 +1,5 @@
 //
-//  NonParametericLSystem.swift
+//  RandomContextualLSystem.swift
 //
 //
 //  Created by Joseph Heck on 12/28/21.
@@ -12,7 +12,7 @@ import Squirrel3
 ///
 /// A stochastic Lindenmayer system uses a seed-able random number generator and exposes it to the rules you create, but doesn't use external parameters.
 /// If you want to create an L-system doesn't use uses a seed-able random number generator, use ``ContextualLSystem``.
-/// If you want to create an L-system that uses a set of external parameters and a seed-able random number generator, use ``ParameterizedRandonContextualLSystem``.
+/// If you want to create an L-system that uses a set of external parameters and a seed-able random number generator, use ``ParameterizedRandomContextualLSystem``.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct RandomContextualLSystem<PRNG>: LindenmayerSystem where PRNG: SeededRandomNumberGenerator {

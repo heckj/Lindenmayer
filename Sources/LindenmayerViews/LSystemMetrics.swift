@@ -28,6 +28,6 @@ public struct LSystemMetrics: View {
 
 struct LSystemMetrics_Previews: PreviewProvider {
     static var previews: some View {
-        LSystemMetrics(system: Examples3D.monopodialTree.lsystem.evolved(iterations: 4))
+        LSystemMetrics(system: Examples3D.monopodialTree.evolved(iterations: 4))
     }
 }
