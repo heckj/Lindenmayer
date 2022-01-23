@@ -22,8 +22,8 @@ To get support for using this package, see the [Discussions on Github](https://g
 
 - <doc:Creating_L-systems>
 
-- ``LSystemBasic``
-- ``LSystemRNG``
+- ``ContextualLSystem``
+- ``RandomContextualLSystem``
 - ``ParameterizedRandonContextualLSystem``
 - ``LSystem``
 - ``ModuleSet``

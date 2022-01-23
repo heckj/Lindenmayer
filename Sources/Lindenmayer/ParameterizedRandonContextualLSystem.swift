@@ -11,8 +11,8 @@ import Squirrel3
 /// A parameterized, stochastic Lindenmayer system.
 ///
 /// A parameterized, stochastic Lindenmayer system uses both external parameters and a seed-able random number generator, exposing both to the rules you create.
-/// If you want to create an L-system doesn't use parameters or a seed-able random number generator, use ``LSystemBasic``.
-/// If you want to create an L-system that doesn't use a set of external parameters, but does include a seed-able random number generator, use ``LSystemRNG``.
+/// If you want to create an L-system doesn't use parameters or a seed-able random number generator, use ``ContextualLSystem``.
+/// If you want to create an L-system that doesn't use a set of external parameters, but does include a seed-able random number generator, use ``RandomContextualLSystem``.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct ParameterizedRandonContextualLSystem<PType, PRNG>: LindenmayerSystem where PRNG: SeededRandomNumberGenerator {
