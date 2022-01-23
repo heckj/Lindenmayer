@@ -58,7 +58,7 @@ final class RollUpToVerticalTests: XCTestCase {
 
     func testApplyingKnownTransformsToA3DPoint() throws {
         let pt = simd_float3(0, 0, 1) // x=0, y=0, z=1
-        let rotate_90_around_Y = rotationAroundYAxisTransform(angle: Float.pi/2).rotationTransform
+        let rotate_90_around_Y = rotationAroundYAxisTransform(angle: Angle(degrees: 90)).rotationTransform
         
         // DUH tests - identity should be equivalent in either direction
         XCTAssertEqual(matrix_multiply(matrix_identity_float3x3, pt), pt)
@@ -91,7 +91,7 @@ final class RollUpToVerticalTests: XCTestCase {
     func testHeadingVectorRotating45degToRight() throws {
         // This rotation is a "right turn" from the starting position, straight up. We rotation 45° around
         // the Z axis - negative rotation to make it to the right.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: -Float.pi/4))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Angle(degrees: -45)))
         print(state_transform.prettyPrintString())
 //        [0.7071068, 0.70710677, 0.0, 0.0]
 //        [-0.70710677, 0.7071068, 0.0, 0.0]
@@ -107,7 +107,7 @@ final class RollUpToVerticalTests: XCTestCase {
     func testHeadingVectorRotating45degToLeft() throws {
         // This rotation is a "right turn" from the starting position, straight up.
         // We rotate 45° around the Z axis - negative rotation to make it to the right.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Float.pi/4))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Angle(degrees: 45)))
 //        print(state_transform.prettyPrintString())
 //        [0.7071068, -0.70710677, 0.0, 0.0]
 //        [0.70710677, 0.7071068, 0.0, 0.0]
@@ -122,7 +122,7 @@ final class RollUpToVerticalTests: XCTestCase {
     func testHeadingVectorRotating45degPitchDown() throws {
         // This rotation is a "pitch up" from the starting position, straight up.
         // We rotate 45° around the X axis - negative rotation to make it pitch 'down'.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: -Float.pi/4))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Angle(degrees: -45)))
         print(state_transform.prettyPrintString())
         let heading_vector = state_transform.headingVector()
         XCTAssertEqual(heading_vector.x, 0, accuracy: 0.0001)
@@ -133,7 +133,7 @@ final class RollUpToVerticalTests: XCTestCase {
     func testHeadingVectorRotating45degPitchUp() throws {
         // This rotation is a "pitch down" from the starting position, straight up.
         // We rotate 45° around the X axis - positive rotation to make it to pitch 'up'.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Float.pi/4))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Angle(degrees: 45)))
         let heading_vector = state_transform.headingVector()
         XCTAssertEqual(heading_vector.x, 0, accuracy: 0.0001)
         XCTAssertEqual(heading_vector.y, 0.7071067, accuracy: 0.0001)
@@ -143,7 +143,7 @@ final class RollUpToVerticalTests: XCTestCase {
     func testHeadingVectorRotating45degYaw() throws {
         // This rotation is a "pitch down" from the starting position, straight up.
         // We rotate 45° around the X axis - positive rotation to make it to pitch 'up'.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundYAxisTransform(angle: Float.pi/4))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundYAxisTransform(angle: Angle(degrees: 45)))
         let heading_vector = state_transform.headingVector()
         XCTAssertEqual(heading_vector.x, 0, accuracy: 0.0001)
         XCTAssertEqual(heading_vector.y, 1, accuracy: 0.0001)
@@ -153,7 +153,7 @@ final class RollUpToVerticalTests: XCTestCase {
     func testUpVectorAfterRotation() throws {
         let original_up_vector = simd_float3(x: 0, y: 0, z: 1)
         // roll to the right
-        let rotationAffineTransform = rotationAroundYAxisTransform(angle: Float.pi/4)
+        let rotationAffineTransform = rotationAroundYAxisTransform(angle: Angle(degrees: 45))
         let rotated_up = matrix_multiply(rotationAffineTransform.rotationTransform, original_up_vector)
         XCTAssertEqual(rotated_up.x, 0.7071067, accuracy: 0.0001)
         XCTAssertEqual(rotated_up.y, 0, accuracy: 0.0001)
@@ -177,7 +177,7 @@ final class RollUpToVerticalTests: XCTestCase {
         // the Z axis - negative rotation to make it to the right.
         // The resulting rotation plane is tilted 45° to the right as well, so should result in a rotation
         // of -90° on that plane to get the "up" vector as close to +Y as possible.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: -Float.pi/4))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Angle(degrees: -45)))
         let r = RollUpToVerticalTests.renderer
         let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(Float.pi/2, rotation_on_plane, accuracy: 0.0001)
@@ -188,7 +188,7 @@ final class RollUpToVerticalTests: XCTestCase {
         // the Z axis - negative rotation to make it to the right.
         // The resulting rotation plane is tilted 45° to the right as well, so should result in a rotation
         // of -90° on that plane to get the "up" vector as close to +Y as possible.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Float.pi/4))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Angle(degrees: 45)))
         let r = RollUpToVerticalTests.renderer
         let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(-Float.pi/2, rotation_on_plane, accuracy: 0.0001)
@@ -199,7 +199,7 @@ final class RollUpToVerticalTests: XCTestCase {
         // the X axis - negative rotation to make it pitch 'up'.
         // The resulting rotation plane is tilted 45° up towards -Z, so should result in a rotation
         // of 180° on that plane to get the "up" vector as close to +Y as possible.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Float.pi/4))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Angle(degrees: 45)))
         let r = RollUpToVerticalTests.renderer
         let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(Float.pi, rotation_on_plane, accuracy: 0.0001)
@@ -210,7 +210,7 @@ final class RollUpToVerticalTests: XCTestCase {
         // the X axis - positive rotation to make it to pitch 'down'.
         // The resulting rotation plane is tilted 45° up towards the +z, so should result in a rotation
         // of 0° on that plane to get the "up" vector as close to +Y as possible.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: -Float.pi/4))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Angle(degrees: -45)))
         let r = RollUpToVerticalTests.renderer
         let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(0, rotation_on_plane, accuracy: 0.0001)
@@ -219,16 +219,17 @@ final class RollUpToVerticalTests: XCTestCase {
     func testRotating90degPitchUpMatrix() throws {
         // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
         // with the "up" vector now rotated to point pretty much straight in the -Y direction.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Float.pi/2))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Angle(degrees: 90)))
         let r = RollUpToVerticalTests.renderer
         let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
-        XCTAssertEqual(Float.pi, rotation_on_plane, accuracy: 0.0001)
+        // this one could be -.pi or pi, depending on rounding issues - so check absolute value for this one
+        XCTAssertEqual(Float.pi, abs(rotation_on_plane), accuracy: 0.0001)
     }
 
     func testRotating90degPitchDownMatrix() throws {
         // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
         // with the "up" vector now rotated to point pretty much straight in the -Y direction.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: -Float.pi/2))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundXAxisTransform(angle: Angle(degrees: -90)))
         let r = RollUpToVerticalTests.renderer
         let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(0, rotation_on_plane, accuracy: 0.0001)
@@ -237,7 +238,7 @@ final class RollUpToVerticalTests: XCTestCase {
     func testRotating90degToRight() throws {
         // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
         // with the "up" vector now rotated to point pretty much straight in the -Y direction.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: -Float.pi/2))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Angle(degrees: -90)))
         let r = RollUpToVerticalTests.renderer
         let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(Float.pi/2, rotation_on_plane, accuracy: 0.0001)
@@ -246,7 +247,7 @@ final class RollUpToVerticalTests: XCTestCase {
     func testRotating90degToLeft() throws {
         // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
         // with the "up" vector now rotated to point pretty much straight in the -Y direction.
-        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Float.pi/2))
+        let state_transform = matrix_multiply(matrix_identity_float4x4, rotationAroundZAxisTransform(angle: Angle(degrees: 90)))
         let r = RollUpToVerticalTests.renderer
         let rotation_on_plane = r.rotateAroundHeadingToVertical(state_transform)
         XCTAssertEqual(-Float.pi/2, rotation_on_plane, accuracy: 0.0001)

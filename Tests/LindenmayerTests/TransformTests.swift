@@ -10,9 +10,6 @@ import simd
 import XCTest
 
 final class TransformTests: XCTestCase {
-    func degreesToRadians(_ value: Double) -> Double {
-        return value * .pi / 180.0
-    }
 
     func testTranslationTransformMatchesSceneKit() throws {
         let node = SCNNode()
@@ -42,33 +39,33 @@ final class TransformTests: XCTestCase {
 
     func testRollTransformMatchesSceneKit() throws {
         let node = SCNNode()
-        let angle = degreesToRadians(30)
+        let angle = Angle(degrees: 30)
         // pitch, yaw, roll
-        node.simdEulerAngles = simd_float3(x: 0, y: 0, z: Float(angle))
+        node.simdEulerAngles = simd_float3(x: 0, y: 0, z: Float(angle.radians))
 
-        let transform = rotationAroundZAxisTransform(angle: Float(angle))
+        let transform = rotationAroundZAxisTransform(angle: angle)
 
         XCTAssertEqual(transform, node.simdTransform)
     }
 
     func testYawTransformMatchesSceneKit() throws {
         let node = SCNNode()
-        let angle = degreesToRadians(30)
+        let angle = Angle(degrees: 30)
         // pitch, yaw, roll
-        node.simdEulerAngles = simd_float3(x: 0, y: Float(angle), z: 0)
+        node.simdEulerAngles = simd_float3(x: 0, y: Float(angle.radians), z: 0)
 
-        let transform = rotationAroundYAxisTransform(angle: Float(angle))
+        let transform = rotationAroundYAxisTransform(angle: angle)
 
         XCTAssertEqual(transform, node.simdTransform)
     }
 
     func testPitchTransformMatchesSceneKit() throws {
         let node = SCNNode()
-        let angle = degreesToRadians(30)
+        let angle = Angle(degrees: 30)
         // pitch, yaw, roll
-        node.simdEulerAngles = simd_float3(x: Float(angle), y: 0, z: 0)
+        node.simdEulerAngles = simd_float3(x: Float(angle.radians), y: 0, z: 0)
 
-        let transform = rotationAroundXAxisTransform(angle: Float(angle))
+        let transform = rotationAroundXAxisTransform(angle: angle)
 
         XCTAssertEqual(transform, node.simdTransform)
     }

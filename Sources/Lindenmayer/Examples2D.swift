@@ -5,7 +5,6 @@
 //
 
 import Foundation
-import SwiftUI // for `Angle`
 
 /// A collection of two-dimensional example L-systems.
 ///

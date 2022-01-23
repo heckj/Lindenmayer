@@ -10,7 +10,6 @@ import Foundation
 import SceneKit
 import SceneKitDebugTools
 import simd
-import SwiftUI // for `Angle`
 
 struct GrowthState {
     var transform: simd_float4x4
@@ -78,7 +77,7 @@ public struct SceneKitRenderer {
         // (improved) solution.
         // https://gamedev.stackexchange.com/questions/198977/how-to-solve-for-the-angle-of-a-axis-angle-rotation-that-gets-me-closest-to-a-sp/199027#199027
         let heading = full_transform.headingVector()
-        //print("heading vector of transform: \(heading), length: \(simd_length(heading))")
+        print("heading vector of transform: \(heading), length: \(simd_length(heading))")
         let worldUp = simd_float3(x: 0, y: 1, z: 0)
         
         if (simd_dot(heading, worldUp) > 0.999999 || simd_dot(heading, worldUp) < -0.999999) {
@@ -86,14 +85,14 @@ public struct SceneKitRenderer {
         }
         
         // Numerical explosion when heading is directly up or down in this case
-        //print("Two vectors that represent the plane normal to the current heading:")
+        print("Two vectors that represent the plane normal to the current heading:")
         let planeRight = simd_normalize(simd_cross(heading, worldUp));
-        //print("  planeRight vector: \(planeRight), length: \(simd_length(planeRight))")
+        print("  planeRight vector: \(planeRight), length: \(simd_length(planeRight))")
         let planeUp = simd_cross(planeRight, heading);
-        //print("  planeUp vector: \(planeUp), length: \(simd_length(planeUp))")
+        print("  planeUp vector: \(planeUp), length: \(simd_length(planeUp))")
                              
         let rotated_up_vector = matrix_multiply(full_transform.rotationTransform, simd_float3(x: 0, y: 0, z: 1))
-        //print("the 'up' vector as rotated by the transform: \(rotated_up_vector), length: \(simd_length(rotated_up_vector))")
+        print("the 'up' vector as rotated by the transform: \(rotated_up_vector), length: \(simd_length(rotated_up_vector))")
         // Numerically more stable version of the roll angle using the inverse tangent of the
         // dot products between the rotated up vector and the plane that represents the base
         // of the heading.
@@ -101,7 +100,7 @@ public struct SceneKitRenderer {
         // vector on the rotated plane, and from that the two-argument arctangent gets us
         // the angle of the vector from the positive X-axis in that plane.
         let resulting_angle = atan2(simd_dot(rotated_up_vector, planeRight), simd_dot(rotated_up_vector, planeUp));
-        //print("And the resulting angle: \(resulting_angle) (\(Angle(radians: Double(resulting_angle)).degrees)°)")
+        print("And the resulting angle: \(resulting_angle) (\(Angle(radians: Double(resulting_angle)).degrees)°)")
         return resulting_angle
     }
 
@@ -139,8 +138,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.pitchUp.rawValue:
                 // positive values pitch nose up (positive rotation around X axis)
                 if let cmd = cmd as? RenderCommand.PitchUp {
-                    let directionAngleInRadians = Float(cmd.angle.radians)
-                    let pitchTransform = rotationAroundXAxisTransform(angle: directionAngleInRadians)
+                    let pitchTransform = rotationAroundXAxisTransform(angle: cmd.angle)
                     currentState = currentState.applyingTransform(pitchTransform)
 //                    print("Pitch (rotate around +X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -148,8 +146,8 @@ public struct SceneKitRenderer {
             case TurtleCodes.pitchDown.rawValue:
                 // negative values pitch nose down (negative rotation around X axis)
                 if let cmd = cmd as? RenderCommand.PitchDown {
-                    let directionAngleInRadians = -1.0 * Float(cmd.angle.radians)
-                    let pitchTransform = rotationAroundXAxisTransform(angle: directionAngleInRadians)
+                    let directionAngle = Angle(radians: -1.0 * cmd.angle.radians)
+                    let pitchTransform = rotationAroundXAxisTransform(angle: directionAngle)
                     currentState = currentState.applyingTransform(pitchTransform)
 //                    print("Pitch (rotate around -X Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -157,8 +155,8 @@ public struct SceneKitRenderer {
             case TurtleCodes.rollLeft.rawValue:
                 if let cmd = cmd as? RenderCommand.RollLeft {
                     // negative values roll to the left (negative rotation around Y axis)
-                    let directionAngleInRadians = -1.0 * Float(cmd.angle.radians)
-                    let rollTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
+                    let directionAngle = Angle(radians: -1.0 * cmd.angle.radians)
+                    let rollTransform = rotationAroundYAxisTransform(angle: directionAngle)
                     currentState = currentState.applyingTransform(rollTransform)
 //                    print("Roll (rotate around -Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -166,8 +164,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.rollRight.rawValue:
                 if let cmd = cmd as? RenderCommand.RollRight {
                     // positive values roll to the right (positive rotation around Y axis)
-                    let directionAngleInRadians = Float(cmd.angle.radians)
-                    let rollTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
+                    let rollTransform = rotationAroundYAxisTransform(angle: cmd.angle)
                     currentState = currentState.applyingTransform(rollTransform)
 //                    print("Roll (rotate around +Y Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -175,8 +172,7 @@ public struct SceneKitRenderer {
             case TurtleCodes.leftTurn.rawValue:
                 if let cmd = cmd as? RenderCommand.TurnLeft {
                     // positive values turn to the left (positive rotation around Z axis)
-                    let directionAngleInRadians = Float(cmd.angle.radians)
-                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    let yawTransform = rotationAroundZAxisTransform(angle: cmd.angle)
                     currentState = currentState.applyingTransform(yawTransform)
 //                    print("Yaw (rotate around +Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
@@ -184,15 +180,15 @@ public struct SceneKitRenderer {
             case TurtleCodes.rightTurn.rawValue:
                 if let cmd = cmd as? RenderCommand.TurnRight {
                     // negative values turn to the right (negative rotation around Z axis)
-                    let directionAngleInRadians = -1.0 * Float(cmd.angle.radians)
-                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    let directionAngle = Angle(radians: -1.0 * cmd.angle.radians)
+                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngle)
                     currentState = currentState.applyingTransform(yawTransform)
 //                    print("Yaw (rotate around -Z Axis) by \(cmd.angle)° -> \(String(describing: currentState.transform))")
                 }
 
             case TurtleCodes.rollUpToVertical.rawValue:
-                let resulting_angle = rotateAroundHeadingToVertical(currentState.transform)
-                let rotationTransform = rotationAroundYAxisTransform(angle: -resulting_angle)
+                let resulting_angle = Angle(radians: -1.0 * Double(rotateAroundHeadingToVertical(currentState.transform)))
+                let rotationTransform = rotationAroundYAxisTransform(angle: resulting_angle)
                 currentState = currentState.applyingTransform(rotationTransform)
 
             case TurtleCodes.move.rawValue:

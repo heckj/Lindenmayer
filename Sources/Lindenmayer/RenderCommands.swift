@@ -5,7 +5,6 @@
 //
 
 import Foundation
-import SwiftUI // for the `Angle` type
 
 // MARK: - REPRESENTATION TYPES FOR RENDERING -
 
