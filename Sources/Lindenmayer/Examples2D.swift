@@ -66,7 +66,7 @@ public enum Examples2D {
 
     /// An L-system that describes a fractal, or binary, tree.
     ///
-    /// ![An image displaying a binary tree.](fractal_tree_6)
+    /// ![An image displaying a binary tree.](fractal_tree_6@2x.png)
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_2:_Fractal_(binary)_tree), rendered at `6` evolutions.
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var fractalTree = LSystem.create(leaf)
@@ -83,7 +83,7 @@ public enum Examples2D {
 
     /// An L-system that describes a fractal koch curve.
     ///
-    /// ![An image displaying a sierpinski triangle fractcal.](koch_curve_6)
+    /// ![An image displaying a sierpinski triangle fractcal.](koch_curve_6@2x.png)
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_4:_Koch_curve), rendered at `6` evolutions.
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var kochCurve = LSystem.create(Modules.Draw(length: 10))
@@ -113,7 +113,7 @@ public enum Examples2D {
 
     /// An L-system that describes a fractal sierpinski triangle.
     ///
-    /// ![An image displaying a sierpinski triangle fractcal.](sierpinski_triangle_6)
+    /// ![An image displaying a sierpinski triangle fractcal.](sierpinski_triangle_6@2x.png)
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_5:_Sierpinski_triangle), rendered at `6` evolutions.
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var sierpinskiTriangle = LSystem.create(
@@ -136,7 +136,7 @@ public enum Examples2D {
 
     /// An L-system that describes a fractal dragon curve.
     ///
-    /// ![An image displaying a dragon curve fractal.](dragon_curve_9)
+    /// ![An image displaying a dragon curve fractal.](dragon_curve_9@2x.png)
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_6:_Dragon_curve), rendered at `9` evolutions.
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var dragonCurve = LSystem.create(f)
@@ -157,7 +157,7 @@ public enum Examples2D {
 
     /// An L-system that describes a fractal plant, also known as the Barnsley Fern.
     ///
-    /// ![An image displaying a fractal plant.](barnsley_fern_7)
+    /// ![An image displaying a fractal plant.](barnsley_fern_7@2x.png)
     /// The example above is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_7:_Fractal_plant), rendered at `7` evolutions.
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var barnsleyFern = LSystem.create(x)
