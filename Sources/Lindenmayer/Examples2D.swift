@@ -31,16 +31,16 @@ public enum Examples2D {
     }
 
     static var b = B()
-
+    
     /// An L-system that describes the growth of algae.
     ///
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_1:_Algae)
-    public static var algae = LSystem.create([a])
+    public static let algae = LSystem.create(A())
         .rewrite(A.self) { _ in
-            [a, b]
+            [A(), B()]
         }
         .rewrite(B.self) { _ in
-            [a]
+            [A()]
         }
 
     // - MARK: Fractal tree example
