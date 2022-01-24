@@ -56,7 +56,7 @@ public struct Lsystem3DView: View {
 
 struct Lsystem3DView_Previews: PreviewProvider {
     static var previews: some View {
-        Lsystem3DView(system: Examples3D.monopodialTree.evolved(iterations: 3),
+        Lsystem3DView(system: Examples3D.algae3D.evolved(iterations: 4),
                       displayMetrics: true)
     }
 }

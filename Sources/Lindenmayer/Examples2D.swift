@@ -68,6 +68,7 @@ public enum Examples2D {
     ///
     /// ![An image displaying a binary tree.](fractal_tree_6)
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_2:_Fractal_(binary)_tree), rendered at `6` evolutions.
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var fractalTree = LSystem.create(leaf)
         .rewrite(Leaf.self) { leaf in
             [stem,
@@ -84,6 +85,7 @@ public enum Examples2D {
     ///
     /// ![An image displaying a sierpinski triangle fractcal.](koch_curve_6)
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_4:_Koch_curve), rendered at `6` evolutions.
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var kochCurve = LSystem.create(Modules.Draw(length: 10))
         .rewrite(Modules.Draw.self) { _ in
             [Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees: 90)),
@@ -113,6 +115,7 @@ public enum Examples2D {
     ///
     /// ![An image displaying a sierpinski triangle fractcal.](sierpinski_triangle_6)
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_5:_Sierpinski_triangle), rendered at `6` evolutions.
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var sierpinskiTriangle = LSystem.create(
         [f, Modules.TurnRight(angle: Angle(degrees: 120)),
          g, Modules.TurnRight(angle: Angle(degrees: 120)),
@@ -135,6 +138,7 @@ public enum Examples2D {
     ///
     /// ![An image displaying a dragon curve fractal.](dragon_curve_9)
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_6:_Dragon_curve), rendered at `9` evolutions.
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var dragonCurve = LSystem.create(f)
         .rewrite(F.self) { _ in
             [f, Modules.TurnLeft(angle: Angle(degrees: 90)), g]
@@ -155,6 +159,7 @@ public enum Examples2D {
     ///
     /// ![An image displaying a fractal plant.](barnsley_fern_7)
     /// The example above is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_7:_Fractal_plant), rendered at `7` evolutions.
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var barnsleyFern = LSystem.create(x)
         .rewrite(X.self) { _ in
             [f, Modules.TurnLeft(angle: Angle(degrees: 25)),

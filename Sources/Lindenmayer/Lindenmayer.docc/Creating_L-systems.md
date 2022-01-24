@@ -73,3 +73,57 @@ The ``GraphicsContextRenderer`` reads the `render2D` property, and draws the rep
 The ``SceneKitRenderer`` reads the `render3D` property, adding the 3D element and/or updating the state of the renderer, to generate the SceneKit scene.
 Lindenmayer comes with a number of built-in modules that you can use, either as a representation of your own modules as a ``RenderCommand``, or by including them in the set of modules returned by one of your rules.
 See ``Modules`` for the set of 2D and 3D built-in modules that the library includes.
+
+In the example above, the modules we created have no representation in either 2D or 3D, so the renderers can't produce a visual display.
+
+To get a 3D display, extend the modules to provide a 3D rendering command from the property `render3D`:
+
+
+```
+struct A: Module {
+    public var name = "A"
+    public var render3D: ThreeDRenderCmd = RenderCommand.Cylinder(
+        length: 10,
+        radius: 1,
+        color: ColorRepresentation(red: 1.0, green: 0.1, blue: 0.1, alpha: 1.0)
+    )
+}
+
+struct B: Module {
+    public var name = "B"
+    public var render3D: ThreeDRenderCmd = RenderCommand.Cylinder(
+        length: 5,
+        radius: 2,
+        color: ColorRepresentation(red: 0.1, green: 1.0, blue: 0.1, alpha: 1.0)
+    )
+}
+```
+
+The two segments are sized and colored differently to make them easy to distinguish for this example.
+With the modules, updated, you use the SceneKit renderer to generate a scene:
+
+```
+let renderer = SceneKitRenderer()
+let scene = renderer.generateScene(lsystem: algae.evolved(4))
+```
+
+The resulting scene, rendered in a SceneKit view:
+![A screenshot of a 3D rendering of the algae L-system evolved to display 3 short green segments connected by 2 longer red seegments.](algae_4)
+
+The sister library to Lindenmayer, `LindenmayerViews`, provides SwiftUI views that you can use to quickly display either 2D or 3D representations of the L-systems you create.
+The source for this library is open source, and includes a number of example L-systems.
+
+2D Example L-systems:
+
+- ``Examples2D/fractalTree``
+- ``Examples2D/kochCurve``
+- ``Examples2D/sierpinskiTriangle``
+- ``Examples2D/dragonCurve``
+- ``Examples2D/barnsleyFern``
+
+3D Example L-systems:
+
+- ``Examples3D/algae3D``
+- ``Examples3D/monopodialTree``
+- ``Examples3D/sympodialTree``
+
