@@ -11,6 +11,32 @@ import Squirrel3
 /// A collection of three-dimensional example L-systems.
 ///
 /// Some of the collection examples were inspired by the [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+/// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
+///
+/// ## Topics
+///
+/// ### Algae L-system
+///
+/// - ``Examples3D/algae3D``
+///
+/// ### Monopodial Tree L-systems
+///
+/// - ``Examples3D/monopodialTree``
+/// - ``Examples3D/MonopodialDefn``
+/// - ``Examples3D/figure2_6A``
+/// - ``Examples3D/figure2_6B``
+/// - ``Examples3D/figure2_6C``
+/// - ``Examples3D/figure2_6D``
+///
+/// ### Sympodial Tree L-systems
+///
+/// - ``Examples3D/sympodialTree``
+/// - ``Examples3D/SympodialDefn``
+/// - ``Examples3D/figure2_7A``
+/// - ``Examples3D/figure2_7B``
+/// - ``Examples3D/figure2_7C``
+/// - ``Examples3D/figure2_7D``
+///
 public enum Examples3D {
     // - MARK: 3D Algae test
 
@@ -32,6 +58,13 @@ public enum Examples3D {
         )
     }
 
+    /// An example of a L-system that produces a tree with monopodial structure.
+    ///
+    /// A 3D L-system translated from Wikipedia's Algae example L-system.
+    ///
+    /// ![A screenshot of a 3D rendering of the algae L-system evolved to display 3 short green segments connected by 2 longer red seegments.](algae_4)
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static var algae3D = LSystem.create(Cyl())
         .rewrite(Cyl.self) { _ in
             [Cyl(), S()]
@@ -126,7 +159,10 @@ public enum Examples3D {
         let diameter: Double
     }
 
-    public struct Definitions: Codable, Equatable {
+    /// A structure that provides parameters for example monopodial trees in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
+    public struct MonopodialDefn: Codable, Equatable {
         var contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
         var contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
         var branchAngle: Double = 45 /* Branching angle from the trunk */
@@ -148,12 +184,41 @@ public enum Examples3D {
         }
     }
 
-    static let defines = Definitions()
+    static let defines = MonopodialDefn()
+    
+    /// The parameter definitions for Figure 2.6 A from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_6A = defines
-    public static let figure2_6B = Definitions(r1: 0.9, r2: 0.9, a0: 45, a2: 45)
-    public static let figure2_6C = Definitions(r1: 0.9, r2: 0.8, a0: 45, a2: 45)
-    public static let figure2_6D = Definitions(r1: 0.9, r2: 0.7, a0: 30, a2: -30)
+    
+    /// The parameter definitions for Figure 2.6 B from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
+    public static let figure2_6B = MonopodialDefn(r1: 0.9, r2: 0.9, a0: 45, a2: 45)
+    
+    /// The parameter definitions for Figure 2.6 C from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
+    public static let figure2_6C = MonopodialDefn(r1: 0.9, r2: 0.8, a0: 45, a2: 45)
+    
+    /// The parameter definitions for Figure 2.6 D from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
+    public static let figure2_6D = MonopodialDefn(r1: 0.9, r2: 0.7, a0: 30, a2: -30)
 
+    /// An example of a L-system that produces a tree with monopodial structure.
+    ///
+    /// A 3D L-system translated from an example in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The L-system and the definitions match Fig 2.6 from the book, along with the parameter defintions for each of the 4 figures defined here:
+    /// - ``Examples3D/figure2_6A``
+    /// - ``Examples3D/figure2_6B``
+    /// - ``Examples3D/figure2_6C``
+    /// - ``Examples3D/figure2_6D``
+    ///
+    /// ![A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.6](rendered_2_6_trees)
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static var monopodialTree = LSystem.create(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
         with: PRNG(seed: 42),
@@ -231,6 +296,9 @@ public enum Examples3D {
     //    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
     //    p2 : B(l,w) : * → !(w)F(l)[+(a1)$B(l*r1,w*wr)] [-(a2 )$B(l*r2 ,w*wr )]
 
+    /// A structure that provides parameters for example sympodial trees in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public struct SympodialDefn: Codable, Equatable {
         var r1: Double
         var r2: Double
@@ -250,11 +318,38 @@ public enum Examples3D {
         }
     }
 
+    /// The parameter definitions for Figure 2.7 A from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_7A = SympodialDefn(r1: 0.9, r2: 0.7, a1: 5, a2: 65)
+    
+    /// The parameter definitions for Figure 2.7 B from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_7B = SympodialDefn(r1: 0.9, r2: 0.7, a1: 10, a2: 60)
+    
+    /// The parameter definitions for Figure 2.7 C from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_7C = SympodialDefn(r1: 0.9, r2: 0.8, a1: 20, a2: 50)
+    
+    /// The parameter definitions for Figure 2.7 D from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_7D = SympodialDefn(r1: 0.9, r2: 0.8, a1: 35, a2: 35)
 
+    /// An example of a L-system that produces a tree with sympodial structure.
+    ///
+    /// A 3D L-system translated from an example in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
+    /// The L-system and the definitions match Fig 2.6 from the book, along with the parameter defintions for each of the 4 figures defined here:
+    /// - ``Examples3D/figure2_7A``
+    /// - ``Examples3D/figure2_7B``
+    /// - ``Examples3D/figure2_7C``
+    /// - ``Examples3D/figure2_7D``
+    ///
+    /// ![A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.7](rendered_2_7_trees)
+    ///
+    /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let sympodialTree = LSystem.create(
         MainBranch(growthDistance: 10, diameter: 1),
         with: PRNG(seed: 0),
