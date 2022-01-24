@@ -9,6 +9,26 @@ import Foundation
 import Squirrel3
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
+///
+/// ## Topics
+///
+/// ### Creating a Direct Rewrite Rule
+///
+/// - ``init(leftType:directType:parameters:prng:where:produces:)``
+///
+/// ### Evaluating if the Rule Applies
+///
+/// - ``evaluate(_:)``
+/// - ``parametricEval``
+/// - ``matchingTypes``
+///
+/// ### Invoking the Rule
+///
+/// - ``produce(_:)``
+/// - ``produceClosure``
+/// - ``combinationMatchProducesList``
+///
+
 public struct RewriteRuleLeftDirectDefinesRNG<LC, DC, PType, PRNG>: Rule where LC: Module, DC: Module, PRNG: SeededRandomNumberGenerator {
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: ParametersWrapper<PType>
