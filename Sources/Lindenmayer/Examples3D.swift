@@ -62,7 +62,7 @@ public enum Examples3D {
     ///
     /// A 3D L-system translated from Wikipedia's Algae example L-system.
     ///
-    /// ![A screenshot of a 3D rendering of the algae L-system evolved to display 3 short green segments connected by 2 longer red seegments.](algae_4)
+    /// ![A screenshot of a 3D rendering of the algae L-system evolved to display 3 short green segments connected by 2 longer red seegments.](algae_4@2x.png)
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static var algae3D = LSystem.create(Cyl())
@@ -216,7 +216,7 @@ public enum Examples3D {
     /// - ``Examples3D/figure2_6C``
     /// - ``Examples3D/figure2_6D``
     ///
-    /// ![A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.6](rendered_2_6_trees)
+    /// ![A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.6](rendered_2_6_trees@2x.png)
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static var monopodialTree = LSystem.create(
@@ -347,7 +347,7 @@ public enum Examples3D {
     /// - ``Examples3D/figure2_7C``
     /// - ``Examples3D/figure2_7D``
     ///
-    /// ![A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.7](rendered_2_7_trees)
+    /// ![A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.7](rendered_2_7_trees@2x.png)
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let sympodialTree = LSystem.create(
