@@ -14,11 +14,51 @@ import Foundation
 /// If you want to create an L-system that uses a set of external parameters and a seed-able random number generator, use ``ParameterizedRandomContextualLSystem``.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
+///
+/// ## Topics
+///
+/// ### Creating and Updating L-systems
+///
+/// - ``ContextualLSystem/init(_:state:newStateIndicators:rules:)``
+/// - ``ContextualLSystem/updatedLSystem(with:newItemIndicators:)``
+///
+/// ### Inspecting L-systems
+///
+/// - ``ContextualLSystem/state``
+/// - ``ContextualLSystem/state(at:)``
+/// - ``ContextualLSystem/newStateIndicators``
+///
+/// ### Adding Rules to an L-system
+///
+/// - ``ContextualLSystem/rewrite(_:produces:)``
+/// - ``ContextualLSystem/rewrite(_:where:produces:)``
+/// - ``ContextualLSystem/rules``
+///
+/// ### Adding Contextual Rules to an L-system
+///
+/// - ``ContextualLSystem/rewrite(leftContext:directContext:produces:)``
+/// - ``ContextualLSystem/rewrite(directContext:rightContext:produces:)``
+/// - ``ContextualLSystem/rewrite(leftContext:directContext:rightContext:produces:)``
+///
+/// ### Adding Contextual Rules with an evaluation closure to an L-system
+///
+/// - ``ContextualLSystem/rewrite(leftContext:directContext:where:produces:)``
+/// - ``ContextualLSystem/rewrite(directContext:rightContext:where:produces:)``
+/// - ``ContextualLSystem/rewrite(leftContext:directContext:rightContext:where:produces:)``
+///
+/// ### Resetting L-systems to their initial state
+///
+/// - ``ContextualLSystem/reset()``
 
 public struct ContextualLSystem: LindenmayerSystem {
     let axiom: [Module]
+    
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
+    
+    /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
+    ///
+    /// This array is primarily used for debugging purposes
     public var newStateIndicators: [Bool]
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
@@ -30,6 +70,8 @@ public struct ContextualLSystem: LindenmayerSystem {
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
+    ///
+    /// Convenient initializers for creating contextual L-systems uses ``LSystem``, calling ``LSystem/create(_:)-632a3``, or ``LSystem/create(_:)-12ubu``.
     public init(_ axiom: [Module],
                 state: [Module]?,
                 newStateIndicators: [Bool]?,
@@ -61,7 +103,9 @@ public struct ContextualLSystem: LindenmayerSystem {
     public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
         return ContextualLSystem(axiom, state: state, newStateIndicators: newItemIndicators, rules: rules)
     }
-
+    
+    /// Resets the L-system to it's initial state, wiping out an existing state while keeping the rules.
+    /// - Returns: A new L-system with it's state reset to the initial state you set when you created the L-system.
     public func reset() -> Self {
         return ContextualLSystem(axiom, state: nil, newStateIndicators: newStateIndicators, rules: rules)
     }

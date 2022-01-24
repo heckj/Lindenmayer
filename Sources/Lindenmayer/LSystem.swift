@@ -19,6 +19,24 @@ import Squirrel3
 ///
 /// The type ``ParameterizedRandomContextualLSystem`` includes a seed-able random number generator as well as a type that you provide that gets provided to the closures you write when defining rules.
 /// This type can contain any number of parameters that you can use when within the closures for your rules, and makes a convenient container for common values used in multiple rules.
+///
+/// ## Topics
+///
+/// ### Creating a Contextual L-system
+///
+/// - ``LSystem/create(_:)-632a3``
+/// - ``LSystem/create(_:)-12ubu``
+///
+/// ### Creating a Contextual L-system with Randomness
+///
+/// - ``LSystem/create(_:with:)-8xbbx``
+/// - ``LSystem/create(_:with:)-1otrb``
+///
+/// ### Creating a Contextual L-system with Randomness and Parameters
+///
+/// - ``LSystem/create(_:with:using:)-49uk9``
+/// - ``LSystem/create(_:with:using:)-49uk9``
+/// 
 public enum LSystem {
     /// Creates a new Lindenmayer system from an initial state.
     /// - Parameters:
