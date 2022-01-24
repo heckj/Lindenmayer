@@ -10,9 +10,35 @@ import Foundation
 /// A type that represents a Lindenmayer system and how it evolves.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
+///
+/// ## Topics
+///
+/// ### Inspecting L-systems
+///
+/// - ``LindenmayerSystem/state``
+/// - ``LindenmayerSystem/state(at:)``
+/// - ``LindenmayerSystem/newStateIndicators``
+/// - ``LindenmayerSystem/rules``
+/// - ``LindenmayerSystem/modules(atIndex:)-1v113``
+///
+/// ### Evolving L-Systems
+///
+/// - ``LindenmayerSystem/evolve()-9uqn7``
+/// - ``LindenmayerSystem/evolve()-3md66``
+/// - ``LindenmayerSystem/evolved(iterations:)-3x4ko``
+/// - ``LindenmayerSystem/evolved(iterations:)-679jh``
+/// - ``LindenmayerSystem/updatedLSystem(with:newItemIndicators:)``
+///
+/// ### Resetting L-systems
+///
+/// - ``LindenmayerSystem/reset()``
 public protocol LindenmayerSystem {
     /// The sequence of modules that represents the current state of the L-system.
     var state: [Module] { get }
+    
+    /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
+    ///
+    /// This array is primarily used for debugging purposes
     var newStateIndicators: [Bool] { get }
 
     /// The sequence of rules that the L-system uses to process and evolve its state.

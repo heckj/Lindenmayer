@@ -9,6 +9,22 @@ import Foundation
 import Squirrel3
 
 /// A class that provides probabilistic functions based on the seedable psuedo-random number generator used to create it.
+///
+/// ## Topics
+///
+/// ### Creating a Random Number Generator Wrapper
+///
+/// - ``RNGWrapper/init(_:)``
+///
+/// ### Inspecting a Random Number Generator Wrapper
+///
+/// - ``RNGWrapper/seed``
+/// - ``RNGWrapper/position``
+///
+/// ### Resetting the Seed of a Random Number Generator Wrapper
+///
+/// - ``RNGWrapper/resetRNG(seed:)``
+///
 public final class RNGWrapper<PRNG> where PRNG: SeededRandomNumberGenerator {
     private var _prng: PRNG
     #if DEBUG

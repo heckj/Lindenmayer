@@ -8,7 +8,24 @@ import Foundation
 
 /// A module that represents a state element in an L-system state array and its parameters, if any.
 ///
-/// The modules include 2D and 3D representations that can be interpretted by the provided ``GraphicsContextRenderer`` to draw into a SwiftUI canvas, or ``SceneKitRenderer`` to generate and SceneKit 3D scene.
+/// The modules include 2D and 3D representations that can be interpreted by the provided ``GraphicsContextRenderer`` to draw into a SwiftUI canvas, or ``SceneKitRenderer`` to generate and SceneKit 3D scene.
+///
+/// ## Topics
+///
+/// ### Inspecting a Module
+///
+/// - ``Module/name``
+/// - ``Module/description``
+/// - ``Module/namedType()``
+/// - ``Module/children()``
+///
+/// ### Retrieving a Modules Render Commands
+///
+/// - ``Module/render2D-4ul98``
+/// - ``Module/render2D-1c1hi``
+/// - ``Module/render3D-14ry0``
+/// - ``Module/render3D-2t57p``
+///
 public protocol Module: CustomStringConvertible {
     /// The name of the module.
     ///
@@ -37,7 +54,7 @@ public extension Module {
 // MARK: - CustomStringConvertible default implementation
 
 public extension Module {
-    /// Returns a string description for this module.
+    /// A string representation of the module.
     var description: String {
         let resovledName: String
         if name != "" {

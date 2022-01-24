@@ -10,6 +10,14 @@ import Foundation
 /// The set of modules found in sequence while processing the state of an L-system.
 ///
 /// The set is made up of the current module, and its left and right neighbors, if available; otherwise, `nil`.
+///
+/// ## Topics
+///
+/// ### Creating a ModuleSet
+///
+/// - ``ModuleSet/init(directInstance:)``
+/// - ``ModuleSet/init(leftInstance:directInstance:rightInstance:)``
+/// 
 public struct ModuleSet {
     /// The module to the left (earlier) in the L-systems's state sequence.
     var leftInstance: Module?

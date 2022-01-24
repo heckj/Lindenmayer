@@ -9,6 +9,14 @@ import Foundation
 // MARK: - REPRESENTATION TYPES FOR RENDERING -
 
 /// A struct that represents a color using red, green, blue, and alpha values.
+///
+/// ## Topics
+///
+/// ### Creating a Color Representation
+///
+/// - ``init(r:g:b:)``
+/// - ``init(red:green:blue:alpha:)``
+/// 
 public struct ColorRepresentation: Equatable {
     let red: Double
     let green: Double
@@ -50,29 +58,85 @@ public struct ColorRepresentation: Equatable {
 /// An enumeration that identifies the types of turtle commands and provides a raw string value associated with those types.
 ///
 /// The values for these strings was inspired by the turtle commands as described in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf) in the appendix, page 209.
+///
+/// ## Topics
+///
+/// ### Common Codes
+///
+/// - ``move``
+/// - ``draw``
+/// - ``branch``
+/// - ``endBranch``
+/// - ``leftTurn``
+/// - ``rightTurn``
+/// - ``ignore``
+/// - ``prune``
+///
+/// ### 2D Specific Codes
+///
+/// - ``setColor``
+/// - ``setLineWidth``
+///
+/// ### 3D Specific Movement Codes
+///
+/// - ``pitchUp``
+/// - ``pitchDown``
+/// - ``rollLeft``
+/// - ``rollRight``
+/// - ``rollUpToVertical``
+/// - ``spinVerticalTropism``
+/// - ``spinGravityTropism``
+///
+/// ### 3D Specific Object Codes
+///
+/// - ``cylinder``
+/// - ``cone``
+/// - ``sphere``
+///
 public enum TurtleCodes: String {
     // 2D
+    /// The string representation for ``RenderCommand/SetLineWidth-swift.struct``
     case setLineWidth = "!"
+    /// The string representation for ``RenderCommand/SetColor-swift.struct``
     case setColor = "'"
     // 2D & 3D
+    /// The string representation for ``RenderCommand/Branch-swift.struct``
     case branch = "["
+    /// The string representation for ``RenderCommand/EndBranch-swift.struct``
     case endBranch = "]"
+    /// The string representation for ``RenderCommand/Move-swift.struct``
     case move = "f"
+    /// The string representation for ``RenderCommand/Draw-swift.struct``
     case draw = "F"
+    /// The string representation for ``RenderCommand/TurnRight-swift.struct``
     case rightTurn = "-"
+    /// The string representation for ``RenderCommand/TurnLeft-swift.struct``
     case leftTurn = "+"
+    /// The string representation for ``RenderCommand/Ignore``
     case ignore = " "
+    /// The reserved string representation for an unimplemented render command.
     case prune = "%" // NOTE(heckj): un-implemented
     // 3D
+    /// The string representation for ``RenderCommand/RollLeft-swift.struct``
     case rollLeft = "\\"
+    /// The string representation for ``RenderCommand/RollRight-swift.struct``
     case rollRight = "/"
+    /// The string representation for ``RenderCommand/PitchUp-swift.struct``
     case pitchUp = "^"
+    /// The string representation for ``RenderCommand/PitchDown-swift.struct``
     case pitchDown = "&"
+    /// The string representation for ``RenderCommand/RollUpToVertical-swift.struct``
     case rollUpToVertical = "$" // aka @V
+    /// The reserved string representation for an unimplemented render command.
     case spinVerticalTropism = "e" // NOTE(heckj): un-implemented
+    /// The reserved string representation for an unimplemented render command.
+    case spinGravityTropism = "v" // NOTE(heckj): un-implemented
     // extensions for 3D objects
+    /// The string representation for ``RenderCommand/Cylinder-swift.struct``
     case cylinder = "||"
+    /// The string representation for ``RenderCommand/Cone-swift.struct``
     case cone = "/\\"
+    /// The string representation for ``RenderCommand/Sphere-swift.struct``
     case sphere = "o"
 }
 
@@ -80,7 +144,14 @@ public enum TurtleCodes: String {
 
 /// A type that represents a 2D rendered representation or a renderer command for a module within an L-System.
 ///
-/// The ``GraphicsContextRenderer`` uses 2D render commands to draw onto a canvas.
+/// The ``GraphicsContextRenderer`` uses ``RenderCommand`` instances that are marked with this protocol as  2D render commands to draw onto a canvas.
+///
+/// ## Topics
+///
+/// ### Inspecting a 2D Render Command
+///
+/// - ``name``
+///
 public protocol TwoDRenderCmd {
     /// Use a single character or very short string for the name, as it's used in textual descriptions of the state of an L-system.
     var name: String { get }
@@ -88,7 +159,14 @@ public protocol TwoDRenderCmd {
 
 /// A type that represents a 3D rendered representation or a renderer command for a module within an L-System.
 ///
-/// The ``SceneKitRenderer`` uses 3D render commands to draw onto a canvas.
+/// The ``SceneKitRenderer`` uses ``RenderCommand`` instances that are marked with this protocol as 3D render commands to draw into a scene..
+///
+/// ## Topics
+///
+/// ### Inspecting a 2D Render Command
+///
+/// - ``name``
+///
 public protocol ThreeDRenderCmd {
     /// Use a single character or very short string for the name, as it's used in textual descriptions of the state of an L-system.
     var name: String { get }
@@ -97,6 +175,54 @@ public protocol ThreeDRenderCmd {
 // MARK: - RENDERING COMMANDS -
 
 /// A collection of render commands, both 2D and 3D, built into Lindenmayer.
+///
+/// ## Topics
+///
+/// ### Common 2D and 3D Render Commands
+///
+/// - ``RenderCommand/Draw-swift.struct``
+/// - ``RenderCommand/draw-swift.type.property``
+/// - ``RenderCommand/Move-swift.struct``
+/// - ``RenderCommand/move-swift.type.property``
+/// - ``RenderCommand/Branch-swift.struct``
+/// - ``RenderCommand/branch-swift.type.property``
+/// - ``RenderCommand/EndBranch-swift.struct``
+/// - ``RenderCommand/endBranch-swift.type.property``
+/// - ``RenderCommand/TurnLeft-swift.struct``
+/// - ``RenderCommand/turnLeft-swift.type.property``
+/// - ``RenderCommand/TurnRight-swift.struct``
+/// - ``RenderCommand/turnRight-swift.type.property``
+/// - ``RenderCommand/Ignore``
+///
+/// ### 2D Render Commands
+///
+/// - ``RenderCommand/SetColor-swift.struct``
+/// - ``RenderCommand/setColor-swift.type.property``
+/// - ``RenderCommand/SetLineWidth-swift.struct``
+/// - ``RenderCommand/setLineWidth-swift.type.property``
+///
+/// ### 3D Render Movement Commands
+///
+/// - ``RenderCommand/PitchUp-swift.struct``
+/// - ``RenderCommand/pitchUp-swift.type.property``
+/// - ``RenderCommand/PitchDown-swift.struct``
+/// - ``RenderCommand/pitchDown-swift.type.property``
+/// - ``RenderCommand/RollLeft-swift.struct``
+/// - ``RenderCommand/rollLeft-swift.type.property``
+/// - ``RenderCommand/RollRight-swift.struct``
+/// - ``RenderCommand/rollRight-swift.type.property``
+/// - ``RenderCommand/RollUpToVertical-swift.struct``
+/// - ``RenderCommand/rollUpToVertical-swift.type.property``
+///
+/// ### 3D Render Object Commands
+///
+/// - ``RenderCommand/Cylinder-swift.struct``
+/// - ``RenderCommand/cylinder-swift.type.property``
+/// - ``RenderCommand/Cone-swift.struct``
+/// - ``RenderCommand/cone-swift.type.property``
+/// - ``RenderCommand/Sphere-swift.struct``
+/// - ``RenderCommand/sphere-swift.type.property``
+
 public enum RenderCommand {
     // MARK: - BUILT-IN 2D & 3D FOCUSED MODULES -
 

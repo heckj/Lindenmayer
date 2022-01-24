@@ -9,6 +9,21 @@ import Foundation
 import Squirrel3
 
 /// A class that provides reference semantics to access an underlying parameter value type that you provide.
+///
+/// ## Topics
+///
+/// ### Creating a Parameter Type Wrapper
+///
+/// - ``ParametersWrapper/init(_:)``
+///
+/// ### Inspecting a Parameter Type Wrapper
+///
+/// - ``ParametersWrapper/unwrap()``
+///
+/// ### Updating a Parameter Type Wrapper
+///
+/// - ``ParametersWrapper/update(_:)``
+///
 public final class ParametersWrapper<PType> {
     private var _parameters: PType
 

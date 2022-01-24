@@ -16,6 +16,22 @@ import Foundation
 #endif
 
 /// A geometric angle whose value you access in either radians or degrees.
+///
+/// ## Topics
+///
+/// ### Creating an Angle
+///
+/// - ``degrees(_:)``
+/// - ``radians(_:)``
+/// - ``init(degrees:)``
+/// - ``init(radians:)``
+/// - ``init()``
+///
+/// ### Inspecting the value of an Angle
+///
+/// - ``degrees``
+/// - ``radians``
+///
 @frozen public struct SimpleAngle {
     /// The value of the angle in radians.
     public var radians: Double
