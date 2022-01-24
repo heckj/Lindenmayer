@@ -46,10 +46,14 @@ import Foundation
 /// - ``ContextualLSystem/rewrite(directContext:rightContext:where:produces:)``
 /// - ``ContextualLSystem/rewrite(leftContext:directContext:rightContext:where:produces:)``
 ///
+/// ### Evolving the L-system
+///
+/// - ``ContextualLSystem/evolve()``
+/// - ``ContextualLSystem/evolved(iterations:)``
+///
 /// ### Resetting L-systems to their initial state
 ///
 /// - ``ContextualLSystem/reset()``
-
 public struct ContextualLSystem: LindenmayerSystem {
     let axiom: [Module]
     
