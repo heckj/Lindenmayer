@@ -35,6 +35,19 @@ extension ColorRepresentation {
 }
 
 /// A renderer that generates a 2D graphical representation of an L-system.
+///
+/// ## Topics
+///
+/// ### Creating a Direct Rewrite Rule
+///
+/// - ``init(unitLength:)``
+///
+/// ### Rendering an L-system
+///
+/// - ``calcBoundingRect(system:)``
+/// - ``draw(_:into:ofSize:)``
+///
+
 public struct GraphicsContextRenderer {
     let unitLength: Double
 

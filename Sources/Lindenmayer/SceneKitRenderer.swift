@@ -57,6 +57,27 @@ extension ColorRepresentation {
 }
 
 /// A renderer that generates a 3D graphical representation of an L-system using SceneKit.
+///
+/// ## Topics
+///
+/// ### Creating a Direct Rewrite Rule
+///
+/// - ``init()``
+///
+/// ### Rendering an L-system
+///
+/// - ``generateScene(lsystem:)-4i8nr``
+/// - ``generateScene(lsystem:)-5b948``
+///
+/// ### Creating 3D Affine Transforms
+///
+/// - ``translationTransform(x:y:z:)``
+/// - ``scalingTransform(x:y:z:)``
+/// - ``rotationAroundXAxisTransform(angle:)``
+/// - ``rotationAroundYAxisTransform(angle:)``
+/// - ``rotationAroundZAxisTransform(angle:)``
+/// 
+
 public struct SceneKitRenderer {
     /// Creates a new SceneKit rendering engine for L-systems.
     public init() {}

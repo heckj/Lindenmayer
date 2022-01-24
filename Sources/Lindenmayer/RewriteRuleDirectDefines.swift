@@ -8,6 +8,26 @@
 import Foundation
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
+///
+/// ## Topics
+///
+/// ### Creating a Direct Rewrite Rule
+///
+/// - ``init(directType:parameters:where:produces:)``
+///
+/// ### Evaluating if the Rule Applies
+///
+/// - ``evaluate(_:)``
+/// - ``parametricEval``
+/// - ``matchingType``
+///
+/// ### Invoking the Rule
+///
+/// - ``produce(_:)``
+/// - ``produceClosure``
+/// - ``singleMatchProducesList``
+///
+
 public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
     /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
     public var parametricEval: ((DC, PType) -> Bool)?

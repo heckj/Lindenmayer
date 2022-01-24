@@ -28,7 +28,6 @@ import Squirrel3
 /// - ``produceClosure``
 /// - ``combinationMatchProducesList``
 ///
-
 public struct RewriteRuleLeftDirectRightRNG<LC, DC, RC, PRNG>: Rule where LC: Module, DC: Module, RC: Module, PRNG: SeededRandomNumberGenerator {
     /// A psuedo-random number generator to use for stochastic rule productions.
     var prng: RNGWrapper<PRNG>
