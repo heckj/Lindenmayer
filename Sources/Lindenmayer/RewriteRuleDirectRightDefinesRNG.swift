@@ -16,6 +16,7 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
     /// A psuedo-random number generator to use for stochastic rule productions.
     var prng: RNGWrapper<PRNG>
 
+    /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
     public var parametricEval: ((DC, RC, PType) -> Bool)?
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
