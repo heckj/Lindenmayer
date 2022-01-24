@@ -9,6 +9,17 @@ import Foundation
 /// A type that represents a rewriting rule used by an L-system to process its modules.
 ///
 /// The rules support context, providing the modules — and their parameters — to the left or right of the current module being rewritten.
+///
+/// ## Topics
+///
+/// ### Evaluating a Rule
+///
+/// - ``Rule/evaluate(_:)``
+///
+/// ### Invoking a Rule
+///
+/// - ``Rule/produce(_:)``
+///
 public protocol Rule {
     /// Returns a Boolean value that indicates whether the rule applies to the set of modules you provide.
     func evaluate(_ matchSet: ModuleSet) -> Bool

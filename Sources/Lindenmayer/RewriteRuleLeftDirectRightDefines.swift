@@ -12,6 +12,7 @@ public struct RewriteRuleLeftDirectRightDefines<LC, DC, RC, PType>: Rule where L
     /// The set of parameters provided by the L-system for rule evaluation and production.
     var parameters: ParametersWrapper<PType>
 
+    /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
     public var parametricEval: ((LC, DC, RC, PType) -> Bool)?
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
