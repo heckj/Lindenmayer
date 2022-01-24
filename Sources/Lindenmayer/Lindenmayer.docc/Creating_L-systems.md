@@ -67,7 +67,7 @@ Be aware that many L-systems extend the length of the state geometrically as the
 
 Two renderers are included with the Lindenmayer library, ``GraphicsContextRenderer`` for rendering into a SwiftUI [`Canvas`](https://developer.apple.com/documentation/swiftui/Canvas) view, and ``SceneKitRenderer`` for generating a SceneKit [`SCNScene`](https://developer.apple.com/documentation/scenekit/scnscene).
 Pass an instance of the L-system to a renderer, which reads through the `state` and generates a visual representation based on the relevant ``RenderCommand`` that are associated with each Module.
-The default implementation for either `render2D` or `render3D` of ``Module`` is ``RenderCommand/Ignore``, which both renderers ignore.
+The default implementation for either ``Module/render2D-1c1hi`` or ``Module/render3D-2t57p`` of ``Module`` is ``RenderCommand/Ignore``, which renderers ignore.
 
 The ``GraphicsContextRenderer`` reads the `render2D` property, and draws the representation by using the ``RenderCommand`` returned from the property as turtle graphics commands.
 The ``SceneKitRenderer`` reads the `render3D` property, adding the 3D element and/or updating the state of the renderer, to generate the SceneKit scene.
