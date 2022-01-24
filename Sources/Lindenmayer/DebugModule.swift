@@ -11,6 +11,28 @@ import Foundation
 ///
 /// The class provides an `Identifiable` reference based on the location within an existing ``LindenmayerSystem``.
 /// The internal state of the underlying ``Module`` instance is exposed using `Mirror`.
+///
+/// Retrieve an instance of a `DebugModule` by calling ``LindenmayerSystem/state(at:)``:
+/// ```
+/// let system = Examples2D.barnsleyFern.evolved(iterations: 4)
+/// let debugModuleInstance = system.state(at: 14)
+/// print("ID: \(debugModuleInstance.id), name: \(debugModuleInstance.module.name)")
+/// 
+/// // ID: 14, name: F
+/// ```
+///
+/// ## Topics
+///
+/// ### Inspecting a DebugModule
+///
+/// - ``DebugModule/new``
+/// - ``DebugModule/module``
+///
+/// ### Retrieving the Underlying Module Properties
+///
+/// - ``DebugModule/mirroredProperties``
+/// - ``DebugModule/valueOf(_:)``
+///
 public class DebugModule: Identifiable {
     /// The abstract, underlying module instance with which you initialized the wrapper.
     public let module: Module

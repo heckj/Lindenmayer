@@ -76,6 +76,14 @@ public struct ContextualLSystem: LindenmayerSystem {
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     ///
     /// Convenient initializers for creating contextual L-systems uses ``LSystem``, calling ``LSystem/create(_:)-632a3``, or ``LSystem/create(_:)-12ubu``.
+    /// For example:
+    /// ```
+    /// struct A: Module {
+    ///     public var name = "A"
+    /// }
+    ///
+    /// let algae = Lsystem.create(A())
+    /// ```
     public init(_ axiom: [Module],
                 state: [Module]?,
                 newStateIndicators: [Bool]?,

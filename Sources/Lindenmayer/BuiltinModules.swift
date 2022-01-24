@@ -8,6 +8,24 @@
 import Foundation
 
 /// A namespace for a collection of built-in modules for use in L-systems.
+///
+///
+/// ## Topics
+///
+/// ### Built-in Modules
+///
+/// - ``Modules/Move``
+/// - ``Modules/Draw``
+/// - ``Modules/Branch``
+/// - ``Modules/EndBranch``
+/// - ``Modules/TurnLeft``
+/// - ``Modules/TurnRight``
+/// - ``Modules/PitchUp``
+/// - ``Modules/PitchDown``
+/// - ``Modules/RollLeft``
+/// - ``Modules/RollRight``
+/// - ``Modules/RollUpToVertical``
+///
 public enum Modules {}
 
 public extension Modules {
