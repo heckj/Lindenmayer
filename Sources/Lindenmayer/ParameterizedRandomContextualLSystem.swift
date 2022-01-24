@@ -15,15 +15,90 @@ import Squirrel3
 /// If you want to create an L-system that doesn't use a set of external parameters, but does include a seed-able random number generator, use ``RandomContextualLSystem``.
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
+///
+/// ## Topics
+///
+/// ### Creating and Updating L-systems
+///
+/// - ``ParameterizedRandomContextualLSystem/init(axiom:state:newStateIndicators:parameters:prng:rules:)``
+/// - ``ParameterizedRandomContextualLSystem/updatedLSystem(with:newItemIndicators:)``
+///
+/// ### Inspecting L-systems
+///
+/// - ``ParameterizedRandomContextualLSystem/state``
+/// - ``ParameterizedRandomContextualLSystem/state(at:)``
+/// - ``ParameterizedRandomContextualLSystem/newStateIndicators``
+///
+/// ### Adding Rules to an L-system
+///
+/// - ``ParameterizedRandomContextualLSystem/rewrite(_:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewrite(_:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithRNG(directContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithRNG(directContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithParams(directContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithParams(directContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithAll(directContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithAll(directContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rules``
+///
+/// ### Adding Contextual Rules to an L-system
+///
+/// - ``ParameterizedRandomContextualLSystem/rewrite(leftContext:directContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewrite(directContext:rightContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewrite(leftContext:directContext:rightContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithRNG(leftContext:directContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithRNG(directContext:rightContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithRNG(leftContext:directContext:rightContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithParams(leftContext:directContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithParams(directContext:rightContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithParams(leftContext:directContext:rightContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithAll(leftContext:directContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithAll(directContext:rightContext:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithAll(leftContext:directContext:rightContext:produces:)``
+///
+/// ### Adding Contextual Rules with an evaluation closure to an L-system
+///
+/// - ``ParameterizedRandomContextualLSystem/rewrite(leftContext:directContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewrite(directContext:rightContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewrite(leftContext:directContext:rightContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithRNG(leftContext:directContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithRNG(directContext:rightContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithRNG(leftContext:directContext:rightContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithParams(leftContext:directContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithParams(directContext:rightContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithParams(leftContext:directContext:rightContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithAll(leftContext:directContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithAll(directContext:rightContext:where:produces:)``
+/// - ``ParameterizedRandomContextualLSystem/rewriteWithAll(leftContext:directContext:rightContext:where:produces:)``
+///
+/// ### Updating the L-system
+///
+/// - ``ParameterizedRandomContextualLSystem/setSeed(seed:)``
+/// - ``ParameterizedRandomContextualLSystem/setParameters(params:)``
+/// - ``ParameterizedRandomContextualLSystem/set(seed:params:)``
+///
+/// ### Evolving the L-system
+///
+/// - ``ParameterizedRandomContextualLSystem/evolve()``
+/// - ``ParameterizedRandomContextualLSystem/evolved(iterations:)``
+///
+/// ### Resetting L-systems to their initial state
+///
+/// - ``ParameterizedRandomContextualLSystem/reset()``
+///
 public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSystem where PRNG: SeededRandomNumberGenerator {
     let axiom: [Module]
 
     /// The current state of the L-system, expressed as a sequence of elements that conform to Module.
     public let state: [Module]
+    
+    /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
+    ///
+    /// This array is primarily used for debugging purposes
     public var newStateIndicators: [Bool]
 
     /// The parameters to provide to rules for evaluation and production.
-    public var parameters: ParametersWrapper<PType>
+    var parameters: ParametersWrapper<PType>
     let initialParameters: PType
 
     let prng: RNGWrapper<PRNG>
@@ -37,6 +112,8 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
+    ///
+    /// Convenient initializers for creating contextual L-systems uses ``LSystem``, calling ``LSystem/create(_:with:using:)-30rc3``, or ``LSystem/create(_:with:using:)-49uk9``.
     public init(axiom: [Module],
                 state: [Module]?,
                 newStateIndicators: [Bool]?,
@@ -82,18 +159,29 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
         return ParameterizedRandomContextualLSystem<PType, PRNG>(axiom: axiom, state: nil, newStateIndicators: nil, parameters: parameters, prng: prng, rules: rules)
     }
 
+    /// Sets the seed for the pseudo-random number generator to the value you provide.
+    /// - Parameter seed: The seed value to set within the pseudo-random generator.
+    /// - Returns: The L-system with the seed value updated.
     @discardableResult
     public func setSeed(seed: UInt64) -> Self {
         prng.resetRNG(seed: seed)
         return self
     }
 
+    /// Sets the parameters for the L-system to the value you provide.
+    /// - Parameter params: The updated value for the parameter type of the L-system.
+    /// - Returns: The L-system with the parameters value updated.
     @discardableResult
     public func setParameters(params: PType) -> Self {
         parameters.update(params)
         return self
     }
 
+    /// Sets the seed for the pseudo-random number generator and the parameters for the L-system to the value you provide.
+    /// - Parameters:
+    ///   - seed: The seed value to set within the pseudo-random generator.
+    ///   - params: The updated value for the parameter type of the L-system.
+    /// - Returns: The L-system with the seed value and parameters value updated.
     @discardableResult
     public func set(seed: UInt64, params: PType) -> Self {
         prng.resetRNG(seed: seed)

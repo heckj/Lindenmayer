@@ -74,7 +74,6 @@ public extension LindenmayerSystem {
     ///
     /// The Lindermayer system iterates through the rules provided, applying the first rule that matches the state from the rule to the current state of the system.
     /// When applying the rule, the element that matched is replaced with what the rule returns from ``Rule/produce(_:)``.
-    /// The types of errors that may be thrown is defined by any errors referenced and thrown within the set of rules you provide.
     /// - Returns: An updated Lindenmayer system.
     func evolve() -> Self {
         // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
