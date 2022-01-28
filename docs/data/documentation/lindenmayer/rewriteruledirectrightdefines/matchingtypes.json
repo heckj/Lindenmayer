@@ -1,0 +1,356 @@
+{
+  "abstract" : [
+    {
+      "text" : "The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines\/matchingTypes"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer29RewriteRuleDirectRightDefinesV13matchingTypesxm_q_mtvp",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "let"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "matchingTypes"
+      },
+      {
+        "kind" : "text",
+        "text" : ": ("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "DC"
+      },
+      {
+        "kind" : "text",
+        "text" : ".Type, "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "RC"
+      },
+      {
+        "kind" : "text",
+        "text" : ".Type)"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "matchingTypes"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "let"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "matchingTypes"
+            },
+            {
+              "kind" : "text",
+              "text" : ": ("
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "DC"
+            },
+            {
+              "kind" : "text",
+              "text" : ".Type, "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "RC"
+            },
+            {
+              "kind" : "text",
+              "text" : ".Type)"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines\/evaluate(_:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines\/parametricEval"
+      ],
+      "title" : "Evaluating if the Rule Applies"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/rewriteruledirectrightdefines\/matchingtypes"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectRightDefines": {
+  "abstract" : [
+    {
+      "text" : "A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleDirectRightDefines"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleDirectRightDefines"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RewriteRuleDirectRightDefines",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectrightdefines"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectRightDefines/evaluate(_:)": {
+  "abstract" : [
+    {
+      "text" : "Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "evaluate"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer9ModuleSetV",
+      "text" : "ModuleSet"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines\/evaluate(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "evaluate(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectrightdefines\/evaluate(_:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectRightDefines/matchingTypes": {
+  "abstract" : [
+    {
+      "text" : "The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "matchingTypes"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ".Type, "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RC"
+    },
+    {
+      "kind" : "text",
+      "text" : ".Type)"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines\/matchingTypes",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "matchingTypes",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectrightdefines\/matchingtypes"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectRightDefines/parametricEval": {
+  "abstract" : [
+    {
+      "text" : "An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "parametricEval"
+    },
+    {
+      "kind" : "text",
+      "text" : ": (("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")?"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines\/parametricEval",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "parametricEval",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectrightdefines\/parametriceval"
+}
+}
+}

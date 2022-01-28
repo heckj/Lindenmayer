@@ -1,0 +1,366 @@
+{
+  "abstract" : [
+    {
+      "text" : "An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRNG"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRNG\/parametricEval"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer24RewriteRuleLeftDirectRNGV14parametricEvalSbx_q_tcSgvp",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "var"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "parametricEval"
+      },
+      {
+        "kind" : "text",
+        "text" : ": (("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "LC"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "DC"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:Sb",
+        "text" : "Bool"
+      },
+      {
+        "kind" : "text",
+        "text" : ")?"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "parametricEval"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "var"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "parametricEval"
+            },
+            {
+              "kind" : "text",
+              "text" : ": (("
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "LC"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "DC"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:Sb",
+              "text" : "Bool"
+            },
+            {
+              "kind" : "text",
+              "text" : ")?"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRNG\/evaluate(_:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRNG\/matchingTypes"
+      ],
+      "title" : "Evaluating if the Rule Applies"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/rewriteruleleftdirectrng\/parametriceval"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectRNG": {
+  "abstract" : [
+    {
+      "text" : "A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleLeftDirectRNG"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRNG",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleLeftDirectRNG"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RewriteRuleLeftDirectRNG",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectrng"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectRNG/evaluate(_:)": {
+  "abstract" : [
+    {
+      "text" : "Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "evaluate"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer9ModuleSetV",
+      "text" : "ModuleSet"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRNG\/evaluate(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "evaluate(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectrng\/evaluate(_:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectRNG/matchingTypes": {
+  "abstract" : [
+    {
+      "text" : "The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "matchingTypes"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "LC"
+    },
+    {
+      "kind" : "text",
+      "text" : ".Type, "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ".Type)"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRNG\/matchingTypes",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "matchingTypes",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectrng\/matchingtypes"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectRNG/parametricEval": {
+  "abstract" : [
+    {
+      "text" : "An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "parametricEval"
+    },
+    {
+      "kind" : "text",
+      "text" : ": (("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "LC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")?"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRNG\/parametricEval",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "parametricEval",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectrng\/parametriceval"
+}
+}
+}

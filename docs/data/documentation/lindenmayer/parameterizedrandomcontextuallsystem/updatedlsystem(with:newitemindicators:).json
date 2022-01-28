@@ -1,0 +1,669 @@
+{
+  "abstract" : [
+    {
+      "text" : "Returns a new L-system with the provided state.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/updatedLSystem(with:newItemIndicators:)"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV07updatedE04with17newItemIndicatorsACyxq_GSayAA6Module_pG_SaySbGtF",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "func"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "updatedLSystem"
+      },
+      {
+        "kind" : "text",
+        "text" : "("
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "with"
+      },
+      {
+        "kind" : "text",
+        "text" : ": ["
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+        "text" : "Module"
+      },
+      {
+        "kind" : "text",
+        "text" : "], "
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "newItemIndicators"
+      },
+      {
+        "kind" : "text",
+        "text" : ": ["
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:Sb",
+        "text" : "Bool"
+      },
+      {
+        "kind" : "text",
+        "text" : "]) -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+        "text" : "ParameterizedRandomContextualLSystem"
+      },
+      {
+        "kind" : "text",
+        "text" : "<"
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "PType"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "PRNG"
+      },
+      {
+        "kind" : "text",
+        "text" : ">"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Method",
+    "symbolKind" : "method",
+    "title" : "updatedLSystem(with:newItemIndicators:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "func"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "updatedLSystem"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "with"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "internalParam",
+              "text" : "state"
+            },
+            {
+              "kind" : "text",
+              "text" : ": ["
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+              "text" : "Module"
+            },
+            {
+              "kind" : "text",
+              "text" : "], "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "newItemIndicators"
+            },
+            {
+              "kind" : "text",
+              "text" : ": ["
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:Sb",
+              "text" : "Bool"
+            },
+            {
+              "kind" : "text",
+              "text" : "]) -> "
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+              "text" : "ParameterizedRandomContextualLSystem"
+            },
+            {
+              "kind" : "text",
+              "text" : "<"
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "PType"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "PRNG"
+            },
+            {
+              "kind" : "text",
+              "text" : ">"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "return-value",
+          "level" : 2,
+          "text" : "Return Value",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "A new L-system with the updated state that has the same rules.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    },
+    {
+      "kind" : "parameters",
+      "parameters" : [
+        {
+          "content" : [
+            {
+              "inlineContent" : [
+                {
+                  "text" : "The sequence of modules that represent the new state.",
+                  "type" : "text"
+                }
+              ],
+              "type" : "paragraph"
+            }
+          ],
+          "name" : "state"
+        }
+      ]
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "This function is called from the common ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " protocol’s default implementation to generate an updated",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "L-system with a set of new modules.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/init(axiom:state:newStateIndicators:parameters:prng:rules:)"
+      ],
+      "title" : "Creating and Updating L-systems"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem\/updatedlsystem(with:newitemindicators:)"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a Lindenmayer system and how it evolves.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "LindenmayerSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "LindenmayerSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "LindenmayerSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Module": {
+  "abstract" : [
+    {
+      "text" : "A module that represents a state element in an L-system state array and its parameters, if any.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Module",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/module"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem": {
+  "abstract" : [
+    {
+      "text" : "A parameterized, stochastic Lindenmayer system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ParameterizedRandomContextualLSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem/init(axiom:state:newStateIndicators:parameters:prng:rules:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Lindenmayer system from an initial state sequence and rules you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "axiom"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "state"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "]?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "newStateIndicators"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : "]?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "parameters"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ParametersWrapperC",
+      "text" : "ParametersWrapper"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "prng"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10RNGWrapperC",
+      "text" : "RNGWrapper"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PRNG"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "rules"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer4RuleP",
+      "text" : "Rule"
+    },
+    {
+      "kind" : "text",
+      "text" : "])"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/init(axiom:state:newStateIndicators:parameters:prng:rules:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(axiom:state:newStateIndicators:parameters:prng:rules:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem\/init(axiom:state:newstateindicators:parameters:prng:rules:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem/updatedLSystem(with:newItemIndicators:)": {
+  "abstract" : [
+    {
+      "text" : "Returns a new L-system with the provided state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updatedLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "newItemIndicators"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : "]) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+      "text" : "ParameterizedRandomContextualLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PRNG"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/updatedLSystem(with:newItemIndicators:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "updatedLSystem(with:newItemIndicators:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem\/updatedlsystem(with:newitemindicators:)"
+}
+}
+}

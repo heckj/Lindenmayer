@@ -1,0 +1,397 @@
+{
+  "abstract" : [
+    {
+      "text" : "The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG\/produceClosure"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer27RewriteRuleDirectDefinesRNGV14produceClosureySayAA6Module_pGx_q_AA10RNGWrapperCyq0_Gtcvp",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "let"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "produceClosure"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer27RewriteRuleDirectDefinesRNGV",
+        "text" : "RewriteRuleDirectDefinesRNG"
+      },
+      {
+        "kind" : "text",
+        "text" : "<"
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "DC"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "PType"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "PRNG"
+      },
+      {
+        "kind" : "text",
+        "text" : ">."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer27RewriteRuleDirectDefinesRNGV23singleMatchProducesLista",
+        "text" : "singleMatchProducesList"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "produceClosure"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "let"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "produceClosure"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer27RewriteRuleDirectDefinesRNGV",
+              "text" : "RewriteRuleDirectDefinesRNG"
+            },
+            {
+              "kind" : "text",
+              "text" : "<"
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "DC"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "PType"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "PRNG"
+            },
+            {
+              "kind" : "text",
+              "text" : ">."
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG\/singleMatchProducesList",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer27RewriteRuleDirectDefinesRNGV23singleMatchProducesLista",
+              "text" : "singleMatchProducesList"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG\/produce(_:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG\/singleMatchProducesList"
+      ],
+      "title" : "Invoking the Rule"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/rewriteruledirectdefinesrng\/produceclosure"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectDefinesRNG": {
+  "abstract" : [
+    {
+      "text" : "A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleDirectDefinesRNG"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleDirectDefinesRNG"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RewriteRuleDirectDefinesRNG",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectdefinesrng"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectDefinesRNG/produce(_:)": {
+  "abstract" : [
+    {
+      "text" : "Invokes the rule’s produce closure with the modules provided.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "produce"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer9ModuleSetV",
+      "text" : "ModuleSet"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG\/produce(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "produce(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectdefinesrng\/produce(_:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectDefinesRNG/produceClosure": {
+  "abstract" : [
+    {
+      "text" : "The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "produceClosure"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer27RewriteRuleDirectDefinesRNGV",
+      "text" : "RewriteRuleDirectDefinesRNG"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PRNG"
+    },
+    {
+      "kind" : "text",
+      "text" : ">."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer27RewriteRuleDirectDefinesRNGV23singleMatchProducesLista",
+      "text" : "singleMatchProducesList"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG\/produceClosure",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "produceClosure",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectdefinesrng\/produceclosure"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectDefinesRNG/singleMatchProducesList": {
+  "abstract" : [
+    {
+      "text" : "The signature of the produce closure that provides a module and expects a sequence of modules.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "singleMatchProducesList"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefinesRNG\/singleMatchProducesList",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "singleMatchProducesList"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RewriteRuleDirectDefinesRNG.singleMatchProducesList",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectdefinesrng\/singlematchproduceslist"
+}
+}
+}

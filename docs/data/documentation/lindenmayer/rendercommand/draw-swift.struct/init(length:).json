@@ -1,0 +1,246 @@
+{
+  "abstract" : [
+    {
+      "text" : "No overview available.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Draw-swift.struct"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Draw-swift.struct\/init(length:)"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer13RenderCommandO4DrawV6lengthAESd_tcfc",
+    "fragments" : [
+      {
+        "kind" : "identifier",
+        "text" : "init"
+      },
+      {
+        "kind" : "text",
+        "text" : "("
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "length"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:Sd",
+        "text" : "Double"
+      },
+      {
+        "kind" : "text",
+        "text" : ")"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init(length:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "init"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "length"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:Sd",
+              "text" : "Double"
+            },
+            {
+              "kind" : "text",
+              "text" : ")"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/rendercommand\/draw-swift.struct\/init(length:)"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand": {
+  "abstract" : [
+    {
+      "text" : "A collection of render commands, both 2D and 3D, built into Lindenmayer.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Draw-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates to draw a line forward by the length you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Draw"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Draw-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Draw"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Draw",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/draw-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Draw-swift.struct/init(length:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "length"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Draw-swift.struct\/init(length:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(length:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/draw-swift.struct\/init(length:)"
+}
+}
+}

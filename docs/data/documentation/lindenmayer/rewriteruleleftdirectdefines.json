@@ -1,0 +1,944 @@
+{
+  "abstract" : [
+    {
+      "text" : "A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer28RewriteRuleLeftDirectDefinesV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "RewriteRuleLeftDirectDefines"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "RewriteRuleLeftDirectDefines"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "RewriteRuleLeftDirectDefines"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "RewriteRuleLeftDirectDefines"
+            },
+            {
+              "kind" : "text",
+              "text" : "<"
+            },
+            {
+              "kind" : "genericParameter",
+              "text" : "LC"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "genericParameter",
+              "text" : "DC"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "genericParameter",
+              "text" : "PType"
+            },
+            {
+              "kind" : "text",
+              "text" : "> "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "where"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "LC"
+            },
+            {
+              "kind" : "text",
+              "text" : " : "
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+              "text" : "Module"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "DC"
+            },
+            {
+              "kind" : "text",
+              "text" : " : "
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+              "text" : "Module"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Rule",
+        "doc:\/\/Lindenmayer\/s23CustomStringConvertibleP"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefines",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRightDefines"
+      ],
+      "title" : "Rules with Parameters"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/init(leftType:directType:parameters:where:produces:)"
+      ],
+      "title" : "Creating a Direct Rewrite Rule"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/evaluate(_:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/parametricEval",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/matchingTypes"
+      ],
+      "title" : "Evaluating if the Rule Applies"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/produce(_:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/produceClosure",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/combinationMatchProducesList"
+      ],
+      "title" : "Invoking the Rule"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/CustomStringConvertible-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Module": {
+  "abstract" : [
+    {
+      "text" : "A module that represents a state element in an L-system state array and its parameters, if any.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Module",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/module"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectDefines": {
+  "abstract" : [
+    {
+      "text" : "A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleDirectDefines"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectDefines",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleDirectDefines"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RewriteRuleDirectDefines",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectdefines"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleDirectRightDefines": {
+  "abstract" : [
+    {
+      "text" : "A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleDirectRightDefines"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleDirectRightDefines",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleDirectRightDefines"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RewriteRuleDirectRightDefines",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruledirectrightdefines"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectDefines": {
+  "abstract" : [
+    {
+      "text" : "A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleLeftDirectDefines"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleLeftDirectDefines"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RewriteRuleLeftDirectDefines",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectDefines/CustomStringConvertible-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/CustomStringConvertible-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "CustomStringConvertible Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines\/customstringconvertible-implementations"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectDefines/combinationMatchProducesList": {
+  "abstract" : [
+    {
+      "text" : "The signature of the produce closure that provides a module and expects a sequence of modules.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "combinationMatchProducesList"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/combinationMatchProducesList",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "combinationMatchProducesList"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RewriteRuleLeftDirectDefines.combinationMatchProducesList",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines\/combinationmatchproduceslist"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectDefines/evaluate(_:)": {
+  "abstract" : [
+    {
+      "text" : "Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "evaluate"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer9ModuleSetV",
+      "text" : "ModuleSet"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/evaluate(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "evaluate(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines\/evaluate(_:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectDefines/init(leftType:directType:parameters:where:produces:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new rule to match the state element you provide along with a closures that results in a list of state elements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "leftType"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "LC"
+    },
+    {
+      "kind" : "text",
+      "text" : ".Type, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "directType"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ".Type, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "parameters"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ParametersWrapperC",
+      "text" : "ParametersWrapper"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "where"
+    },
+    {
+      "kind" : "text",
+      "text" : ": (("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "LC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "produces"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer28RewriteRuleLeftDirectDefinesV",
+      "text" : "RewriteRuleLeftDirectDefines"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "LC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer28RewriteRuleLeftDirectDefinesV28combinationMatchProducesLista",
+      "text" : "combinationMatchProducesList"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/init(leftType:directType:parameters:where:produces:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(leftType:directType:parameters:where:produces:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines\/init(lefttype:directtype:parameters:where:produces:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectDefines/matchingTypes": {
+  "abstract" : [
+    {
+      "text" : "The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "matchingTypes"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "LC"
+    },
+    {
+      "kind" : "text",
+      "text" : ".Type, "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ".Type)"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/matchingTypes",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "matchingTypes",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines\/matchingtypes"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectDefines/parametricEval": {
+  "abstract" : [
+    {
+      "text" : "An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "parametricEval"
+    },
+    {
+      "kind" : "text",
+      "text" : ": (("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "LC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")?"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/parametricEval",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "parametricEval",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines\/parametriceval"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectDefines/produce(_:)": {
+  "abstract" : [
+    {
+      "text" : "Invokes the rule’s produce closure with the modules provided.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "produce"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer9ModuleSetV",
+      "text" : "ModuleSet"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/produce(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "produce(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines\/produce(_:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectDefines/produceClosure": {
+  "abstract" : [
+    {
+      "text" : "The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "produceClosure"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer28RewriteRuleLeftDirectDefinesV",
+      "text" : "RewriteRuleLeftDirectDefines"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "LC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "DC"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer28RewriteRuleLeftDirectDefinesV28combinationMatchProducesLista",
+      "text" : "combinationMatchProducesList"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectDefines\/produceClosure",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "produceClosure",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectdefines\/produceclosure"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RewriteRuleLeftDirectRightDefines": {
+  "abstract" : [
+    {
+      "text" : "A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleLeftDirectRightDefines"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RewriteRuleLeftDirectRightDefines",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RewriteRuleLeftDirectRightDefines"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RewriteRuleLeftDirectRightDefines",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rewriteruleleftdirectrightdefines"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Rule": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a rewriting rule used by an L-system to process its modules.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Rule"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Rule",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Rule"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Rule",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rule"
+},
+"doc://Lindenmayer/s23CustomStringConvertibleP": {
+  "identifier" : "doc:\/\/Lindenmayer\/s23CustomStringConvertibleP",
+  "title" : "Swift.CustomStringConvertible",
+  "type" : "unresolvable"
+}
+}
+}

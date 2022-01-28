@@ -1,0 +1,700 @@
+{
+  "abstract" : [
+    {
+      "text" : "A geometric angle whose value you access in either radians or degrees.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer11SimpleAngleV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "SimpleAngle"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "SimpleAngle"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "SimpleAngle"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "attribute",
+              "text" : "@frozen"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "SimpleAngle"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/s8SendableP"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TwoDRenderCmd",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ThreeDRenderCmd",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Angle"
+      ],
+      "title" : "Rendering Commands"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/degrees(_:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/radians(_:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init(degrees:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init(radians:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init()"
+      ],
+      "title" : "Creating an Angle"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/degrees",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/radians"
+      ],
+      "title" : "Inspecting the value of an Angle"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/simpleangle"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Angle": {
+  "abstract" : [
+    {
+      "text" : "A geometric angle whose value you access in either radians or degrees.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Angle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Angle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Angle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Angle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/angle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ColorRepresentation": {
+  "abstract" : [
+    {
+      "text" : "A struct that represents a color using red, green, blue, and alpha values.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ColorRepresentation"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ColorRepresentation"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ColorRepresentation",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/colorrepresentation"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand": {
+  "abstract" : [
+    {
+      "text" : "A collection of render commands, both 2D and 3D, built into Lindenmayer.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle": {
+  "abstract" : [
+    {
+      "text" : "A geometric angle whose value you access in either radians or degrees.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SimpleAngle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SimpleAngle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SimpleAngle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/degrees": {
+  "abstract" : [
+    {
+      "text" : "The value of the angle in degrees.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "degrees"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/degrees",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "degrees",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/degrees"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/degrees(_:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle with the value of degrees you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "degrees"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/degrees(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "degrees(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/degrees(_:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/init()": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle of zero radians.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/init()"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/init(degrees:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle with the value of degrees you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "degrees"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init(degrees:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(degrees:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/init(degrees:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/init(radians:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle with the value of radians you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "radians"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init(radians:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(radians:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/init(radians:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/radians": {
+  "abstract" : [
+    {
+      "text" : "The value of the angle in radians.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "radians"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/radians",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "radians",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/radians"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/radians(_:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle with the value of radians you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "radians"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/radians(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "radians(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/radians(_:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ThreeDRenderCmd": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a 3D rendered representation or a renderer command for a module within an L-System.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ThreeDRenderCmd",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ThreeDRenderCmd",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/threedrendercmd"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes": {
+  "abstract" : [
+    {
+      "text" : "An enumeration that identifies the types of turtle commands and provides a raw string value associated with those types.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TurtleCodes",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TwoDRenderCmd": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a 2D rendered representation or a renderer command for a module within an L-System.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TwoDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TwoDRenderCmd",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TwoDRenderCmd"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TwoDRenderCmd",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/twodrendercmd"
+},
+"doc://Lindenmayer/s8SendableP": {
+  "identifier" : "doc:\/\/Lindenmayer\/s8SendableP",
+  "title" : "Swift.Sendable",
+  "type" : "unresolvable"
+}
+}
+}

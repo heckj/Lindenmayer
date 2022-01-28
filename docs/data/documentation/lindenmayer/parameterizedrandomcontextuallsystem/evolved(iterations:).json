@@ -1,0 +1,351 @@
+{
+  "abstract" : [
+    {
+      "text" : "The L-system evolved by a number of iterations you provide.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem"
+      ],
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/LindenmayerSystem-Implementations"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/evolved(iterations:)"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "extendedModule" : "Lindenmayer",
+    "externalID" : "s:11Lindenmayer0A6SystemPAAE7evolved10iterationsxSi_tF::SYNTHESIZED::s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "func"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "evolved"
+      },
+      {
+        "kind" : "text",
+        "text" : "("
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "iterations"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:Si",
+        "text" : "Int"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Self"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Method",
+    "symbolKind" : "method",
+    "title" : "evolved(iterations:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "func"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "evolved"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "iterations"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:Si",
+              "text" : "Int"
+            },
+            {
+              "kind" : "text",
+              "text" : " = 1) -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Self"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "return-value",
+          "level" : 2,
+          "text" : "Return Value",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The updated L-system from the number of evolutions you provided.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    },
+    {
+      "kind" : "parameters",
+      "parameters" : [
+        {
+          "content" : [
+            {
+              "inlineContent" : [
+                {
+                  "text" : "The number of times to evolve the L-system.",
+                  "type" : "text"
+                }
+              ],
+              "type" : "paragraph"
+            }
+          ],
+          "name" : "iterations"
+        }
+      ]
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/evolve()"
+      ],
+      "title" : "Evolving the L-system"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem\/evolved(iterations:)"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem": {
+  "abstract" : [
+    {
+      "text" : "A parameterized, stochastic Lindenmayer system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ParameterizedRandomContextualLSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem/LindenmayerSystem-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/LindenmayerSystem-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "LindenmayerSystem Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem\/lindenmayersystem-implementations"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem/evolve()": {
+  "abstract" : [
+    {
+      "text" : "Processes the current state against its rules to provide an updated L-system",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "evolve"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/evolve()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "evolve()",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem\/evolve()"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem/evolved(iterations:)": {
+  "abstract" : [
+    {
+      "text" : "The L-system evolved by a number of iterations you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "evolved"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "iterations"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem\/evolved(iterations:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "evolved(iterations:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem\/evolved(iterations:)"
+}
+}
+}

@@ -1,0 +1,743 @@
+{
+  "abstract" : [
+    {
+      "text" : "A renderer that generates a 3D graphical representation of an L-system using SceneKit.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer16SceneKitRendererV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "SceneKitRenderer"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "SceneKitRenderer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "SceneKitRenderer"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "SceneKitRenderer"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/GraphicsContextRenderer"
+      ],
+      "title" : "Renderers"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/init()"
+      ],
+      "title" : "Creating a Direct Rewrite Rule"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/generateScene(lsystem:)-4i8nr",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/generateScene(lsystem:)-5b948"
+      ],
+      "title" : "Rendering an L-system"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/translationTransform(x:y:z:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/scalingTransform(x:y:z:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundXAxisTransform(angle:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundYAxisTransform(angle:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundZAxisTransform(angle:)"
+      ],
+      "title" : "Creating 3D Affine Transforms"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/scenekitrenderer"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/GraphicsContextRenderer": {
+  "abstract" : [
+    {
+      "text" : "A renderer that generates a 2D graphical representation of an L-system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GraphicsContextRenderer"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/GraphicsContextRenderer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GraphicsContextRenderer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GraphicsContextRenderer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/graphicscontextrenderer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer": {
+  "abstract" : [
+    {
+      "text" : "A renderer that generates a 3D graphical representation of an L-system using SceneKit.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SceneKitRenderer"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SceneKitRenderer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SceneKitRenderer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/generateScene(lsystem:)-4i8nr": {
+  "abstract" : [
+    {
+      "text" : "Returns a new SceneKit scene and a collection of the state transforms by rendering the states of the L-system you provide into a 3D model.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "generateScene"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "lsystem"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer0A6SystemP",
+      "text" : "LindenmayerSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)SCNScene",
+      "text" : "SCNScene"
+    },
+    {
+      "kind" : "text",
+      "text" : ", ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@matrix_float4x4",
+      "text" : "matrix_float4x4"
+    },
+    {
+      "kind" : "text",
+      "text" : "])"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/generateScene(lsystem:)-4i8nr",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "generateScene(lsystem:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/generatescene(lsystem:)-4i8nr"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/generateScene(lsystem:)-5b948": {
+  "abstract" : [
+    {
+      "text" : "Returns a new SceneKit scene by rendering the states of the L-system you provide into a 3D model.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "generateScene"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "lsystem"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer0A6SystemP",
+      "text" : "LindenmayerSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)SCNScene",
+      "text" : "SCNScene"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/generateScene(lsystem:)-5b948",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "generateScene(lsystem:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/generatescene(lsystem:)-5b948"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/init()": {
+  "abstract" : [
+    {
+      "text" : "Creates a new SceneKit rendering engine for L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/init()"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/rotationAroundXAxisTransform(angle:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D rotation transform that rotates around the X axis by the angle that you provide",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rotationAroundXAxisTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundXAxisTransform(angle:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rotationAroundXAxisTransform(angle:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/rotationaroundxaxistransform(angle:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/rotationAroundYAxisTransform(angle:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D rotation transform that rotates around the Y axis by the angle that you provide",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rotationAroundYAxisTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundYAxisTransform(angle:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rotationAroundYAxisTransform(angle:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/rotationaroundyaxistransform(angle:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/rotationAroundZAxisTransform(angle:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D rotation transform that rotates around the Z axis by the angle that you provide",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rotationAroundZAxisTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundZAxisTransform(angle:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rotationAroundZAxisTransform(angle:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/rotationaroundzaxistransform(angle:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/scalingTransform(x:y:z:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D scaling transform that scales by the values you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "scalingTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "x"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "y"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "z"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/scalingTransform(x:y:z:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "scalingTransform(x:y:z:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/scalingtransform(x:y:z:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/translationTransform(x:y:z:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D translation transform that scales by the values you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "translationTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "x"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "y"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "z"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/translationTransform(x:y:z:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "translationTransform(x:y:z:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/translationtransform(x:y:z:)"
+}
+}
+}

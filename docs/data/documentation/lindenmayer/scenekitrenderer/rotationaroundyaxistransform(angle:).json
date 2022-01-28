@@ -1,0 +1,680 @@
+{
+  "abstract" : [
+    {
+      "text" : "Creates a 3D rotation transform that rotates around the Y axis by the angle that you provide",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundYAxisTransform(angle:)"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "extendedModule" : "Lindenmayer",
+    "externalID" : "s:11Lindenmayer16SceneKitRendererV28rotationAroundYAxisTransform5angleSo13simd_float4x4a7SwiftUI5AngleV_tFZ",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "static"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "keyword",
+        "text" : "func"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "rotationAroundYAxisTransform"
+      },
+      {
+        "kind" : "text",
+        "text" : "("
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "angle"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+        "text" : "Angle"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "c:@SA@simd_float4x4",
+        "text" : "simd_float4x4"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Type Method",
+    "symbolKind" : "method",
+    "title" : "rotationAroundYAxisTransform(angle:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "static"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "func"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "rotationAroundYAxisTransform"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "angle"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Angle",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+              "text" : "Angle"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "c:@SA@simd_float4x4",
+              "text" : "simd_float4x4"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "return-value",
+          "level" : 2,
+          "text" : "Return Value",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "A Y-axis rotation transform.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    },
+    {
+      "kind" : "parameters",
+      "parameters" : [
+        {
+          "content" : [
+            {
+              "inlineContent" : [
+                {
+                  "text" : "The amount (in radians) to rotate around the Y axis.",
+                  "type" : "text"
+                }
+              ],
+              "type" : "paragraph"
+            }
+          ],
+          "name" : "angle"
+        }
+      ]
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/translationTransform(x:y:z:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/scalingTransform(x:y:z:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundXAxisTransform(angle:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundZAxisTransform(angle:)"
+      ],
+      "title" : "Creating 3D Affine Transforms"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/scenekitrenderer\/rotationaroundyaxistransform(angle:)"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Angle": {
+  "abstract" : [
+    {
+      "text" : "A geometric angle whose value you access in either radians or degrees.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Angle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Angle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Angle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Angle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/angle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer": {
+  "abstract" : [
+    {
+      "text" : "A renderer that generates a 3D graphical representation of an L-system using SceneKit.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SceneKitRenderer"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SceneKitRenderer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SceneKitRenderer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/rotationAroundXAxisTransform(angle:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D rotation transform that rotates around the X axis by the angle that you provide",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rotationAroundXAxisTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundXAxisTransform(angle:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rotationAroundXAxisTransform(angle:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/rotationaroundxaxistransform(angle:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/rotationAroundYAxisTransform(angle:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D rotation transform that rotates around the Y axis by the angle that you provide",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rotationAroundYAxisTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundYAxisTransform(angle:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rotationAroundYAxisTransform(angle:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/rotationaroundyaxistransform(angle:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/rotationAroundZAxisTransform(angle:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D rotation transform that rotates around the Z axis by the angle that you provide",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rotationAroundZAxisTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/rotationAroundZAxisTransform(angle:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rotationAroundZAxisTransform(angle:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/rotationaroundzaxistransform(angle:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/scalingTransform(x:y:z:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D scaling transform that scales by the values you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "scalingTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "x"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "y"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "z"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/scalingTransform(x:y:z:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "scalingTransform(x:y:z:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/scalingtransform(x:y:z:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer/translationTransform(x:y:z:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a 3D translation transform that scales by the values you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "translationTransform"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "x"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "y"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "z"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@SA@simd_float4x4",
+      "text" : "simd_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer\/translationTransform(x:y:z:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "translationTransform(x:y:z:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer\/translationtransform(x:y:z:)"
+}
+}
+}

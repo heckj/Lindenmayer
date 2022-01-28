@@ -1,0 +1,519 @@
+{
+  "abstract" : [
+    {
+      "text" : "A collection of two-dimensional example L-systems.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer10Examples2DO",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "enum"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "Examples2D"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "Examples2D"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Enumeration",
+    "symbolKind" : "enum",
+    "title" : "Examples2D"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "enum"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "Examples2D"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The collection examples were inspired by the Wikipedia page ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "https:\/\/en.wikipedia.org\/wiki\/L-system",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ".",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D"
+      ],
+      "title" : "Example L-systems"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/algae",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/barnsleyFern",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/dragonCurve",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/fractalTree",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/kochCurve",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/sierpinskiTriangle"
+      ],
+      "title" : "Type Properties"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/examples2d"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D": {
+  "abstract" : [
+    {
+      "text" : "A collection of two-dimensional example L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Examples2D"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Examples2D"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Examples2D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/algae": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes the growth of algae.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "algae"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/algae",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "algae",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/algae"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/barnsleyFern": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal plant, also known as the Barnsley Fern.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "barnsleyFern"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/barnsleyFern",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "barnsleyFern",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/barnsleyfern"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/dragonCurve": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal dragon curve.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "dragonCurve"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/dragonCurve",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "dragonCurve",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/dragoncurve"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/fractalTree": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal, or binary, tree.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "fractalTree"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/fractalTree",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "fractalTree",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/fractaltree"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/kochCurve": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal koch curve.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "kochCurve"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/kochCurve",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "kochCurve",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/kochcurve"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/sierpinskiTriangle": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal sierpinski triangle.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "sierpinskiTriangle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/sierpinskiTriangle",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "sierpinskiTriangle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/sierpinskitriangle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D": {
+  "abstract" : [
+    {
+      "text" : "A collection of three-dimensional example L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Examples3D"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Examples3D"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Examples3D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d"
+},
+"https://en.wikipedia.org/wiki/L-system": {
+  "identifier" : "https:\/\/en.wikipedia.org\/wiki\/L-system",
+  "title" : "L-system",
+  "titleInlineContent" : [
+    {
+      "text" : "L-system",
+      "type" : "text"
+    }
+  ],
+  "type" : "link",
+  "url" : "https:\/\/en.wikipedia.org\/wiki\/L-system"
+}
+}
+}

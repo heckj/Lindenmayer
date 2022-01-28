@@ -1,0 +1,614 @@
+{
+  "abstract" : [
+    {
+      "text" : "Returns a debug module wrapping the module at the state position you provide.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/state(at:)"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "extendedModule" : "Lindenmayer",
+    "externalID" : "s:11Lindenmayer0A6SystemPAAE5state2atAA11DebugModuleCSi_tF",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "func"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "state"
+      },
+      {
+        "kind" : "text",
+        "text" : "("
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "at"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:Si",
+        "text" : "Int"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer11DebugModuleC",
+        "text" : "DebugModule"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Method",
+    "symbolKind" : "method",
+    "title" : "state(at:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "func"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "state"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "at"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:Si",
+              "text" : "Int"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/DebugModule",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer11DebugModuleC",
+              "text" : "DebugModule"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "return-value",
+          "level" : 2,
+          "text" : "Return Value",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "A ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/DebugModule",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " initialized with the state at the location you provide.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    },
+    {
+      "kind" : "parameters",
+      "parameters" : [
+        {
+          "content" : [
+            {
+              "inlineContent" : [
+                {
+                  "text" : "The location of the state within the L-systems state array.",
+                  "type" : "text"
+                }
+              ],
+              "type" : "paragraph"
+            }
+          ],
+          "name" : "at"
+        }
+      ]
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "This method crashes (using ",
+              "type" : "text"
+            },
+            {
+              "code" : "precondition",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ") if you attempt to access state outside the bounds of the L-system’s state array.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/state",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/newStateIndicators",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/rules",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/modules(atIndex:)-1v113",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/modules(atIndex:)-7jg4t"
+      ],
+      "title" : "Inspecting L-systems"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/lindenmayersystem\/state(at:)"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/DebugModule": {
+  "abstract" : [
+    {
+      "text" : "A class that wraps an abstract Module and provides access to its internal state as formatted strings.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "DebugModule"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/DebugModule",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "DebugModule"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "DebugModule",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/debugmodule"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a Lindenmayer system and how it evolves.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "LindenmayerSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "LindenmayerSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "LindenmayerSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem/modules(atIndex:)-1v113": {
+  "abstract" : [
+    {
+      "text" : "Returns a set of modules around the index location you provide.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "modules"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "atIndex"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer9ModuleSetV",
+      "text" : "ModuleSet"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/modules(atIndex:)-1v113",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "modules(atIndex:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem\/modules(atindex:)-1v113"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem/modules(atIndex:)-7jg4t": {
+  "abstract" : [
+    {
+      "text" : "Returns a set of modules around the index location you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "modules"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "atIndex"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer9ModuleSetV",
+      "text" : "ModuleSet"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/modules(atIndex:)-7jg4t",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "modules(atIndex:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem\/modules(atindex:)-7jg4t"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem/newStateIndicators": {
+  "abstract" : [
+    {
+      "text" : "An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "newStateIndicators"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/newStateIndicators",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "newStateIndicators",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem\/newstateindicators"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem/rules": {
+  "abstract" : [
+    {
+      "text" : "The sequence of rules that the L-system uses to process and evolve its state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rules"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer4RuleP",
+      "text" : "Rule"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/rules",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "rules",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem\/rules"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem/state": {
+  "abstract" : [
+    {
+      "text" : "The sequence of modules that represents the current state of the L-system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "state"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/state",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "state",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem\/state"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem/state(at:)": {
+  "abstract" : [
+    {
+      "text" : "Returns a debug module wrapping the module at the state position you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "state"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "at"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer11DebugModuleC",
+      "text" : "DebugModule"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem\/state(at:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "state(at:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem\/state(at:)"
+}
+}
+}

@@ -1,0 +1,363 @@
+{
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Cylinder-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/cylinder"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer11TurtleCodesO8cylinderyA2CmF",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "case"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "cylinder"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Case",
+    "symbolKind" : "case",
+    "title" : "TurtleCodes.cylinder"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "case"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "cylinder"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/cone",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/sphere"
+      ],
+      "title" : "3D Specific Object Codes"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/turtlecodes\/cylinder"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Cone-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should create a 3D cylinder of the length, top radius, bottom radius, and color representation that you provide at the current location.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Cone"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Cone-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Cone"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Cone",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/cone-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Cylinder-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should create a 3D cylinder of the radius, length, and color representation that you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Cylinder"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Cylinder-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Cylinder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Cylinder",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/cylinder-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Sphere-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the rendered should create a 3D sphere of the radius you provide at the current location.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Sphere"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Sphere-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Sphere"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Sphere",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/sphere-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes": {
+  "abstract" : [
+    {
+      "text" : "An enumeration that identifies the types of turtle commands and provides a raw string value associated with those types.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TurtleCodes",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/cone": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Cone-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "cone"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/cone",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.cone",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/cone"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/cylinder": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Cylinder-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "cylinder"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/cylinder",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.cylinder",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/cylinder"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/sphere": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Sphere-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "sphere"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/sphere",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.sphere",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/sphere"
+}
+}
+}

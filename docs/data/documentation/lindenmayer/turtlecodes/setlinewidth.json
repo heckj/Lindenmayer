@@ -1,0 +1,295 @@
+{
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/SetLineWidth-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/setLineWidth"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer11TurtleCodesO12setLineWidthyA2CmF",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "case"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "setLineWidth"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Case",
+    "symbolKind" : "case",
+    "title" : "TurtleCodes.setLineWidth"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "case"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "setLineWidth"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/setColor"
+      ],
+      "title" : "2D Specific Codes"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/turtlecodes\/setlinewidth"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/SetColor-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the drawing should update it’s drawing color to the color representation you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SetColor"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/SetColor-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SetColor"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.SetColor",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/setcolor-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/SetLineWidth-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the drawing should update it’s drawing width to the value you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SetLineWidth"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/SetLineWidth-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SetLineWidth"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.SetLineWidth",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/setlinewidth-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes": {
+  "abstract" : [
+    {
+      "text" : "An enumeration that identifies the types of turtle commands and provides a raw string value associated with those types.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TurtleCodes",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/setColor": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/SetColor-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setColor"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/setColor",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.setColor",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/setcolor"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/setLineWidth": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/SetLineWidth-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setLineWidth"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/setLineWidth",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.setLineWidth",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/setlinewidth"
+}
+}
+}

@@ -1,0 +1,365 @@
+{
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle of zero radians.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init()"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer11SimpleAngleVACycfc",
+    "fragments" : [
+      {
+        "kind" : "identifier",
+        "text" : "init"
+      },
+      {
+        "kind" : "text",
+        "text" : "()"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init()"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "init"
+            },
+            {
+              "kind" : "text",
+              "text" : "()"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/degrees(_:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/radians(_:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init(degrees:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init(radians:)"
+      ],
+      "title" : "Creating an Angle"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/simpleangle\/init()"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle": {
+  "abstract" : [
+    {
+      "text" : "A geometric angle whose value you access in either radians or degrees.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SimpleAngle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SimpleAngle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SimpleAngle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/degrees(_:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle with the value of degrees you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "degrees"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/degrees(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "degrees(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/degrees(_:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/init()": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle of zero radians.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/init()"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/init(degrees:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle with the value of degrees you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "degrees"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init(degrees:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(degrees:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/init(degrees:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/init(radians:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle with the value of radians you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "radians"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/init(radians:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(radians:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/init(radians:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle/radians(_:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Angle with the value of radians you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "radians"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle\/radians(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "radians(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle\/radians(_:)"
+}
+}
+}

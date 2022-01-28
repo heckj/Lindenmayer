@@ -1,0 +1,305 @@
+{
+  "abstract" : [
+    {
+      "text" : "The sequence of two-dimensional oriented rendering commands that you use to represent the module.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollRight",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollRight\/Module-Implementations"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollRight\/render2D-5001h"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "extendedModule" : "Lindenmayer",
+    "externalID" : "s:11Lindenmayer6ModulePAAE8render2DSayAA13TwoDRenderCmd_pGvp::SYNTHESIZED::s:11Lindenmayer7ModulesO9RollRightV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "var"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "render2D"
+      },
+      {
+        "kind" : "text",
+        "text" : ": ["
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer13TwoDRenderCmdP",
+        "text" : "TwoDRenderCmd"
+      },
+      {
+        "kind" : "text",
+        "text" : "]"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "render2D"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "var"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "render2D"
+            },
+            {
+              "kind" : "text",
+              "text" : ": ["
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TwoDRenderCmd",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer13TwoDRenderCmdP",
+              "text" : "TwoDRenderCmd"
+            },
+            {
+              "kind" : "text",
+              "text" : "] { "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "get"
+            },
+            {
+              "kind" : "text",
+              "text" : " }"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/modules\/rollright\/render2d-5001h"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules": {
+  "abstract" : [
+    {
+      "text" : "A namespace for a collection of built-in modules for use in L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Modules"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Modules"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollRight": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to change the heading by rolling around the current axis to the right.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollRight",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.RollRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollright"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollRight/Module-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollRight\/Module-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Module Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollright\/module-implementations"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollRight/render2D-5001h": {
+  "abstract" : [
+    {
+      "text" : "The sequence of two-dimensional oriented rendering commands that you use to represent the module.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "render2D"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13TwoDRenderCmdP",
+      "text" : "TwoDRenderCmd"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollRight\/render2D-5001h",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "render2D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollright\/render2d-5001h"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TwoDRenderCmd": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a 2D rendered representation or a renderer command for a module within an L-System.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TwoDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TwoDRenderCmd",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TwoDRenderCmd"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TwoDRenderCmd",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/twodrendercmd"
+}
+}
+}

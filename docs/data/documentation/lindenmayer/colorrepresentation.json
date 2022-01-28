@@ -1,0 +1,579 @@
+{
+  "abstract" : [
+    {
+      "text" : "A struct that represents a color using red, green, blue, and alpha values.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer19ColorRepresentationV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "ColorRepresentation"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "ColorRepresentation"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "ColorRepresentation"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "ColorRepresentation"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/SQ"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TwoDRenderCmd",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ThreeDRenderCmd",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Angle"
+      ],
+      "title" : "Rendering Commands"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation\/init(r:g:b:)",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation\/init(red:green:blue:alpha:)"
+      ],
+      "title" : "Creating a Color Representation"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation\/Equatable-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/colorrepresentation"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/SQ": {
+  "identifier" : "doc:\/\/Lindenmayer\/SQ",
+  "title" : "Swift.Equatable",
+  "type" : "unresolvable"
+},
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Angle": {
+  "abstract" : [
+    {
+      "text" : "A geometric angle whose value you access in either radians or degrees.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Angle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Angle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Angle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Angle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/angle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ColorRepresentation": {
+  "abstract" : [
+    {
+      "text" : "A struct that represents a color using red, green, blue, and alpha values.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ColorRepresentation"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ColorRepresentation"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ColorRepresentation",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/colorrepresentation"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ColorRepresentation/Equatable-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation\/Equatable-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Equatable Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/colorrepresentation\/equatable-implementations"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ColorRepresentation/init(r:g:b:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new color representation using the RGB values you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "r"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "g"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "b"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation\/init(r:g:b:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(r:g:b:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/colorrepresentation\/init(r:g:b:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ColorRepresentation/init(red:green:blue:alpha:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new color representation using the red, green, blue and alpha values you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "red"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "green"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "blue"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "alpha"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation\/init(red:green:blue:alpha:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(red:green:blue:alpha:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/colorrepresentation\/init(red:green:blue:alpha:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand": {
+  "abstract" : [
+    {
+      "text" : "A collection of render commands, both 2D and 3D, built into Lindenmayer.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle": {
+  "abstract" : [
+    {
+      "text" : "A geometric angle whose value you access in either radians or degrees.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SimpleAngle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SimpleAngle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SimpleAngle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ThreeDRenderCmd": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a 3D rendered representation or a renderer command for a module within an L-System.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ThreeDRenderCmd",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ThreeDRenderCmd",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/threedrendercmd"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes": {
+  "abstract" : [
+    {
+      "text" : "An enumeration that identifies the types of turtle commands and provides a raw string value associated with those types.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TurtleCodes",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TwoDRenderCmd": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a 2D rendered representation or a renderer command for a module within an L-System.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TwoDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TwoDRenderCmd",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TwoDRenderCmd"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TwoDRenderCmd",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/twodrendercmd"
+}
+}
+}

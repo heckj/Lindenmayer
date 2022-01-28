@@ -1,0 +1,809 @@
+{
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to change the heading by rolling around the current axis to the left.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "extendedModule" : "Lindenmayer",
+    "externalID" : "s:11Lindenmayer7ModulesO8RollLeftV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "RollLeft"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "RollLeft"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "Modules.RollLeft"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "RollLeft"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+        "doc:\/\/Lindenmayer\/s23CustomStringConvertibleP"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/Move",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/Draw",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/Branch",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/EndBranch",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/TurnLeft",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/TurnRight",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/PitchUp",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/PitchDown",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollRight",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollUpToVertical"
+      ],
+      "title" : "Built-in Modules"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/init(angle:)"
+      ],
+      "title" : "Initializers"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/angle",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/name",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/render2D-2bg01",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/render3D-5wdpm"
+      ],
+      "title" : "Instance Properties"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/Module-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/modules\/rollleft"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Module": {
+  "abstract" : [
+    {
+      "text" : "A module that represents a state element in an L-system state array and its parameters, if any.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Module",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/module"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules": {
+  "abstract" : [
+    {
+      "text" : "A namespace for a collection of built-in modules for use in L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Modules"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Modules"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/Branch": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer that the L-system representation should branch.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Branch"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/Branch",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Branch"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.Branch",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/branch"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/Draw": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to draw a line along the current heading while rendering the L-system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Draw"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/Draw",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Draw"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.Draw",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/draw"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/EndBranch": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer that the branch of the L-system branch representation is complete.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EndBranch"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/EndBranch",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EndBranch"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.EndBranch",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/endbranch"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/Move": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to move forward along the current heading without other representation while rendering the L-system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Move"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/Move",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Move"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.Move",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/move"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/PitchDown": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to change the heading by pitching down.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PitchDown"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/PitchDown",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PitchDown"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.PitchDown",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/pitchdown"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/PitchUp": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to change the heading by pitching up.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PitchUp"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/PitchUp",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PitchUp"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.PitchUp",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/pitchup"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollLeft": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to change the heading by rolling around the current axis to the left.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollLeft"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.RollLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollleft"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollLeft/Module-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/Module-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Module Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollleft\/module-implementations"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollLeft/angle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/angle",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "angle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollleft\/angle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollLeft/init(angle:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer5Anglea",
+      "text" : "Angle"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/init(angle:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(angle:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollleft\/init(angle:)"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollLeft/name": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "name"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/name",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "name",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollleft\/name"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollLeft/render2D-2bg01": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "render2D"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13TwoDRenderCmdP",
+      "text" : "TwoDRenderCmd"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/render2D-2bg01",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "render2D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollleft\/render2d-2bg01"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollLeft/render3D-5wdpm": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "render3D"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer15ThreeDRenderCmdP",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollLeft\/render3D-5wdpm",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "render3D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollleft\/render3d-5wdpm"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollRight": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to change the heading by rolling around the current axis to the right.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollRight",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.RollRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rollright"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/RollUpToVertical": {
+  "abstract" : [
+    {
+      "text" : "A module that informs the renderer to roll around its current heading so that the upward vector is as vertical as possible.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/RollUpToVertical",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.RollUpToVertical",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/rolluptovertical"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/TurnLeft": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to turn left while rendering the L-system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurnLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/TurnLeft",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurnLeft"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.TurnLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/turnleft"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules/TurnRight": {
+  "abstract" : [
+    {
+      "text" : "A module that informs a renderer to turn right while rendering the L-system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurnRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules\/TurnRight",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurnRight"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules.TurnRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules\/turnright"
+},
+"doc://Lindenmayer/s23CustomStringConvertibleP": {
+  "identifier" : "doc:\/\/Lindenmayer\/s23CustomStringConvertibleP",
+  "title" : "Swift.CustomStringConvertible",
+  "type" : "unresolvable"
+}
+}
+}

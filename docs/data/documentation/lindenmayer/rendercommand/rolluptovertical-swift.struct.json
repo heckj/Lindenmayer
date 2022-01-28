@@ -1,0 +1,723 @@
+{
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer13RenderCommandO16RollUpToVerticalV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "RollUpToVertical"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "RollUpToVertical"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "RenderCommand.RollUpToVertical"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "RollUpToVertical"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ThreeDRenderCmd"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchUp-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/pitchUp-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchDown-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/pitchDown-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollLeft-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollLeft-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollRight-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollRight-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollUpToVertical-swift.type.property"
+      ],
+      "title" : "3D Render Movement Commands"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct\/init()"
+      ],
+      "title" : "Creating a Move Command"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct\/name"
+      ],
+      "title" : "Inspecting a Move Command"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/rendercommand\/rolluptovertical-swift.struct"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand": {
+  "abstract" : [
+    {
+      "text" : "A collection of render commands, both 2D and 3D, built into Lindenmayer.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/PitchDown-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should pitch downward from its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PitchDown"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchDown-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PitchDown"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.PitchDown",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchdown-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/PitchUp-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should pitch upward from its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PitchUp"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchUp-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PitchUp"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.PitchUp",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchup-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollLeft-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll to the left around its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollLeft-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollLeft"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.RollLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollleft-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollRight-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll to the right around its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollRight-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.RollRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollright-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollUpToVertical-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.RollUpToVertical",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rolluptovertical-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollUpToVertical-swift.struct/init()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rolluptovertical-swift.struct\/init()"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollUpToVertical-swift.struct/name": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "name"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct\/name",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "name",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rolluptovertical-swift.struct\/name"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/pitchDown-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should pitch down by 30°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "pitchDown"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO9PitchDownV",
+      "text" : "PitchDown"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/pitchDown-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "pitchDown",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchdown-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/pitchUp-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should pitch up by 30°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "pitchUp"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO7PitchUpV",
+      "text" : "PitchUp"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/pitchUp-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "pitchUp",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchup-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/rollLeft-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should roll left by 90°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rollLeft"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO8RollLeftV",
+      "text" : "RollLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollLeft-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rollLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollleft-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/rollRight-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should roll right by 90°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rollRight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO9RollRightV",
+      "text" : "RollRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollRight-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rollRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollright-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/rollUpToVertical-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rollUpToVertical"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO16RollUpToVerticalV",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollUpToVertical-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rollUpToVertical",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rolluptovertical-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ThreeDRenderCmd": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a 3D rendered representation or a renderer command for a module within an L-System.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ThreeDRenderCmd",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ThreeDRenderCmd",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/threedrendercmd"
+}
+}
+}

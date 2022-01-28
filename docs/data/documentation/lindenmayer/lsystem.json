@@ -1,0 +1,1158 @@
+{
+  "abstract" : [
+    {
+      "text" : "A type that provides convenient initializers for L-systems.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer7LSystemO",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "enum"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "LSystem"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "LSystem"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Enumeration",
+    "symbolKind" : "enum",
+    "title" : "LSystem"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "enum"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "LSystem"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The basic L-system is a ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ContextualLSystem",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ", which you create with a starting point made up of one or more instances of a type that conforms to ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ".",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The type ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RandomContextualLSystem",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " includes a seed-able random number generator, to support including randomness in the rule rewriting.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The and seed-able nature of the random number generator allows the L-system to be explicitly deterministic.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "To create an L-system that includes a random number generator, call ",
+              "type" : "text"
+            },
+            {
+              "code" : "create(_:with:)",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " with an instance of a seed-able random number generator.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "If you pass ",
+              "type" : "text"
+            },
+            {
+              "code" : "nil",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ", the L-system will be created with a pseudo-random number generator using the ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "https:\/\/github.com\/heckj\/Squirrel3",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " swift package.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The type ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " includes a seed-able random number generator as well as a type that you provide that gets provided to the closures you write when defining rules.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "This type can contain any number of parameters that you can use when within the closures for your rules, and makes a convenient container for common values used in multiple rules.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Creating_L-systems",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ContextualLSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RandomContextualLSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ModuleSet",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RNGWrapper",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParametersWrapper"
+      ],
+      "title" : "Lindenmayer systems"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:)-632a3",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:)-12ubu"
+      ],
+      "title" : "Creating a Contextual L-system"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:with:)-8xbbx",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:with:)-1otrb"
+      ],
+      "title" : "Creating a Contextual L-system with Randomness"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:with:using:)-49uk9",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:with:using:)-49uk9"
+      ],
+      "title" : "Creating a Contextual L-system with Randomness and Parameters"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:with:using:)-30rc3"
+      ],
+      "title" : "Type Methods"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/lsystem"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ContextualLSystem": {
+  "abstract" : [
+    {
+      "text" : "A basic Lindenmayer system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ContextualLSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ContextualLSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/contextuallsystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Creating_L-systems": {
+  "abstract" : [
+    {
+      "text" : "Create systems that grow and evolve.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Creating_L-systems",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Creating L-systems",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/creating_l-systems"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LSystem": {
+  "abstract" : [
+    {
+      "text" : "A type that provides convenient initializers for L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "LSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "LSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "LSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lsystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LSystem/create(_:)-12ubu": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Lindenmayer system from an initial state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "create"
+    },
+    {
+      "kind" : "text",
+      "text" : "(["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "]) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:)-12ubu",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "create(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lsystem\/create(_:)-12ubu"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LSystem/create(_:)-632a3": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Lindenmayer system from an initial state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "create"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:)-632a3",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "create(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lsystem\/create(_:)-632a3"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LSystem/create(_:with:)-1otrb": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Lindenmayer system from an initial state and using the random number generator you provide..",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "create"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">(["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : "?) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer23RandomContextualLSystemV",
+      "text" : "RandomContextualLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:with:)-1otrb",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "create(_:with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lsystem\/create(_:with:)-1otrb"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LSystem/create(_:with:)-8xbbx": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Lindenmayer system from an initial state and using the random number generator you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "create"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : "?) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer23RandomContextualLSystemV",
+      "text" : "RandomContextualLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:with:)-8xbbx",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "create(_:with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lsystem\/create(_:with:)-8xbbx"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LSystem/create(_:with:using:)-30rc3": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Lindenmayer system from an initial state, using the random number generator and parameter instance that you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "create"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "using"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+      "text" : "ParameterizedRandomContextualLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:with:using:)-30rc3",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "create(_:with:using:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lsystem\/create(_:with:using:)-30rc3"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LSystem/create(_:with:using:)-49uk9": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Lindenmayer system from an initial state, using the random number generator and parameter instance that you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "create"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">(["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "using"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+      "text" : "ParameterizedRandomContextualLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "PType"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RNGType"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:with:using:)-49uk9",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "create(_:with:using:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lsystem\/create(_:with:using:)-49uk9"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a Lindenmayer system and how it evolves.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "LindenmayerSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "LindenmayerSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "LindenmayerSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Module": {
+  "abstract" : [
+    {
+      "text" : "A module that represents a state element in an L-system state array and its parameters, if any.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Module",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/module"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ModuleSet": {
+  "abstract" : [
+    {
+      "text" : "The set of modules found in sequence while processing the state of an L-system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ModuleSet"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ModuleSet",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ModuleSet"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ModuleSet",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/moduleset"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem": {
+  "abstract" : [
+    {
+      "text" : "A parameterized, stochastic Lindenmayer system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ParameterizedRandomContextualLSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParametersWrapper": {
+  "abstract" : [
+    {
+      "text" : "A class that provides reference semantics to access an underlying parameter value type that you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ParametersWrapper"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParametersWrapper",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ParametersWrapper"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ParametersWrapper",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterswrapper"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RNGWrapper": {
+  "abstract" : [
+    {
+      "text" : "A class that provides probabilistic functions based on the seedable psuedo-random number generator used to create it.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RNGWrapper"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RNGWrapper",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RNGWrapper"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RNGWrapper",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rngwrapper"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RandomContextualLSystem": {
+  "abstract" : [
+    {
+      "text" : "A stochastic Lindenmayer system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RandomContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RandomContextualLSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RandomContextualLSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RandomContextualLSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/randomcontextuallsystem"
+},
+"https://github.com/heckj/Squirrel3": {
+  "identifier" : "https:\/\/github.com\/heckj\/Squirrel3",
+  "title" : "Squirrel3",
+  "titleInlineContent" : [
+    {
+      "code" : "Squirrel3",
+      "type" : "codeVoice"
+    }
+  ],
+  "type" : "link",
+  "url" : "https:\/\/github.com\/heckj\/Squirrel3"
+}
+}
+}

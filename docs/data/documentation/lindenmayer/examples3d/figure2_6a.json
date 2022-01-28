@@ -1,0 +1,647 @@
+{
+  "abstract" : [
+    {
+      "text" : "The parameter definitions for Figure 2.6 A from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_6A"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer10Examples3DO10figure2_6AAC14MonopodialDefnVvpZ",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "static"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "keyword",
+        "text" : "let"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "figure2_6A"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+        "text" : "Examples3D"
+      },
+      {
+        "kind" : "text",
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer10Examples3DO14MonopodialDefnV",
+        "text" : "MonopodialDefn"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Type Property",
+    "symbolKind" : "property",
+    "title" : "figure2_6A"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "static"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "let"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "figure2_6A"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+              "text" : "Examples3D"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/MonopodialDefn",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer10Examples3DO14MonopodialDefnV",
+              "text" : "MonopodialDefn"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The example source for this L-system is ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "https:\/\/github.com\/heckj\/Lindenmayer\/blob\/main\/Sources\/Lindenmayer\/Examples3D.swift",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ".",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/monopodialTree",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/MonopodialDefn",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_6B",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_6C",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_6D"
+      ],
+      "title" : "Monopodial Tree L-systems"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/examples3d\/figure2_6a"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D": {
+  "abstract" : [
+    {
+      "text" : "A collection of three-dimensional example L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Examples3D"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Examples3D"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Examples3D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/MonopodialDefn": {
+  "abstract" : [
+    {
+      "text" : "A structure that provides parameters for example monopodial trees in ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "MonopodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/MonopodialDefn",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "MonopodialDefn"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Examples3D.MonopodialDefn",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/monopodialdefn"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/figure2_6A": {
+  "abstract" : [
+    {
+      "text" : "The parameter definitions for Figure 2.6 A from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "figure2_6A"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO14MonopodialDefnV",
+      "text" : "MonopodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_6A",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "figure2_6A",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/figure2_6a"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/figure2_6B": {
+  "abstract" : [
+    {
+      "text" : "The parameter definitions for Figure 2.6 B from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "figure2_6B"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO14MonopodialDefnV",
+      "text" : "MonopodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_6B",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "figure2_6B",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/figure2_6b"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/figure2_6C": {
+  "abstract" : [
+    {
+      "text" : "The parameter definitions for Figure 2.6 C from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "figure2_6C"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO14MonopodialDefnV",
+      "text" : "MonopodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_6C",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "figure2_6C",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/figure2_6c"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/figure2_6D": {
+  "abstract" : [
+    {
+      "text" : "The parameter definitions for Figure 2.6 D from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "figure2_6D"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO14MonopodialDefnV",
+      "text" : "MonopodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_6D",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "figure2_6D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/figure2_6d"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/monopodialTree": {
+  "abstract" : [
+    {
+      "text" : "An example of a L-system that produces a tree with monopodial structure.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "monopodialTree"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+      "text" : "ParameterizedRandomContextualLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO14MonopodialDefnV",
+      "text" : "MonopodialDefn"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:9Squirrel34PRNGV",
+      "text" : "PRNG"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/monopodialTree",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "monopodialTree",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/monopodialtree"
+},
+"http://algorithmicbotany.org/papers/abop/abop.pdf": {
+  "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+  "title" : "The Algorithmic Beauty of Plants",
+  "titleInlineContent" : [
+    {
+      "text" : "The Algorithmic Beauty of Plants",
+      "type" : "text"
+    }
+  ],
+  "type" : "link",
+  "url" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf"
+},
+"https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift": {
+  "identifier" : "https:\/\/github.com\/heckj\/Lindenmayer\/blob\/main\/Sources\/Lindenmayer\/Examples3D.swift",
+  "title" : "available on GitHub",
+  "titleInlineContent" : [
+    {
+      "text" : "available on GitHub",
+      "type" : "text"
+    }
+  ],
+  "type" : "link",
+  "url" : "https:\/\/github.com\/heckj\/Lindenmayer\/blob\/main\/Sources\/Lindenmayer\/Examples3D.swift"
+}
+}
+}

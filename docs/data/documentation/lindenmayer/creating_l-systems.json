@@ -1,0 +1,2021 @@
+{
+  "abstract" : [
+    {
+      "text" : "Create systems that grow and evolve.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Creating_L-systems"
+  },
+  "kind" : "article",
+  "metadata" : {
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "article",
+    "roleHeading" : "Article",
+    "title" : "Creating L-systems"
+  },
+  "primaryContentSections" : [
+    {
+      "content" : [
+        {
+          "anchor" : "Overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The elements that make up an L-system are modules, defined in Lindenmayer as structs that conform to the ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " protocol.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "To create an L-system, you provide it with at least one module as a starting point, called ",
+              "type" : "text"
+            },
+            {
+              "code" : "axiom",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ", and one or more rules.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "An L-system maintains its state as a sequence of modules, and when you invoke ",
+              "type" : "text"
+            },
+            {
+              "code" : "evolve",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ", the L-system iterates through all of the modules in it’s state, attempting to invoke one of the rules.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The set of rules within an L-system are evaluated, and the first one matching is used.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "If no rules match, then the module is ignored and left in it’s current place.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "If a rule matches, then the L-system invokes its ",
+              "type" : "text"
+            },
+            {
+              "code" : "produce",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " closure, and replaces the module with the set of modules that closure returns.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "anchor" : "Creating-your-First-L-System",
+          "level" : 3,
+          "text" : "Creating your First L-System",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "To create an L-system, define the modules you require and call one of the ",
+              "type" : "text"
+            },
+            {
+              "code" : "create",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " initializers on ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ", such as ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:)-12ubu",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ", providing it with the module, or modules, that make up the starting set for your L-system.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The following example illustrates defining two modules, ",
+              "type" : "text"
+            },
+            {
+              "code" : "A",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " and ",
+              "type" : "text"
+            },
+            {
+              "code" : "B",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ", and providing an instance of one to start the L-system:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "struct A: Module {",
+            "    public var name = \"A\"",
+            "}",
+            "",
+            "struct B: Module {",
+            "    public var name = \"B\"",
+            "}",
+            "",
+            "var algae = Lsystem.create(A())"
+          ],
+          "syntax" : "swift",
+          "type" : "codeListing"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The working logic of an L-system is captured in its rules.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "Use the ",
+              "type" : "text"
+            },
+            {
+              "code" : "rewrite",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " function, which returns an new L-system after adding the rule you defined to its list of rules.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "When you define a rule, provide it with the type of module that it should match and a closure that produces a list of modules.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The following example adds a rule that matches to the module ",
+              "type" : "text"
+            },
+            {
+              "code" : "A",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ", and replaces any instance of ",
+              "type" : "text"
+            },
+            {
+              "code" : "A",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " with an instance of ",
+              "type" : "text"
+            },
+            {
+              "code" : "A",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " followed by an instance of ",
+              "type" : "text"
+            },
+            {
+              "code" : "B",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ":",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "algae = algae.rewrite(A.self) { _ in",
+            "    [a, b]",
+            "}"
+          ],
+          "syntax" : "swift",
+          "type" : "codeListing"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "A convenient way to define an L-system is chaining the rules one after another.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The full algae example, for example:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "let algae = LSystem.create(A())",
+            "    .rewrite(A.self) { _ in",
+            "        [A(), B()]",
+            "    }",
+            "    .rewrite(B.self) { _ in",
+            "        [A()]",
+            "    }"
+          ],
+          "syntax" : "swift",
+          "type" : "codeListing"
+        },
+        {
+          "anchor" : "Evolving-an-L-system",
+          "level" : 3,
+          "text" : "Evolving an L-system",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "When you call ",
+              "type" : "text"
+            },
+            {
+              "code" : "evolve",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " on an L-system, it iterates through its state, applying the rules, and generates a new L-system with the updated state.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "You can also call ",
+              "type" : "text"
+            },
+            {
+              "code" : "evolved(iterations:)",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " to repeatedly evolve the L-system.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Read the state of an L-system through its ",
+              "type" : "text"
+            },
+            {
+              "code" : "state",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " property, which returns an array of ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ".",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The instances returned from the array are existential types (meaning they are some type that conforms to ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : "), so expect to interact with them through the properties defined within the ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " protocol, or by converting the type to an explicit type to access any additional properties your module’s type may include.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Be aware that many L-systems extend the length of the state geometrically as they evolve, so calls to ",
+              "type" : "text"
+            },
+            {
+              "code" : "evolve",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " may be quite expensive and take noticeable, or considerable, time and memory.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "anchor" : "Displaying-an-L-system",
+          "level" : 3,
+          "text" : "Displaying an L-system",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Two renderers are included with the Lindenmayer library, ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/GraphicsContextRenderer",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " for rendering into a SwiftUI ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "https:\/\/developer.apple.com\/documentation\/swiftui\/Canvas",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " view, and ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " for generating a SceneKit ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "https:\/\/developer.apple.com\/documentation\/scenekit\/scnscene",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ".",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "Pass an instance of the L-system to a renderer, which reads through the ",
+              "type" : "text"
+            },
+            {
+              "code" : "state",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " and generates a visual representation based on the relevant ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " that are associated with each Module.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The default implementation for either ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module\/render2D-1c1hi",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " or ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module\/render3D-2t57p",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " of ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " is ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Ignore",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ", which renderers ignore.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/GraphicsContextRenderer",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " reads the ",
+              "type" : "text"
+            },
+            {
+              "code" : "render2D",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " property, and draws the representation by using the ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " returned from the property as turtle graphics commands.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " reads the ",
+              "type" : "text"
+            },
+            {
+              "code" : "render3D",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " property, adding the 3D element and\/or updating the state of the renderer, to generate the SceneKit scene.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "Lindenmayer comes with a number of built-in modules that you can use, either as a representation of your own modules as a ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ", or by including them in the set of modules returned by one of your rules.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "See ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " for the set of 2D and 3D built-in modules that the library includes.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "In the example above, the modules we created have no representation in either 2D or 3D, so the renderers can’t produce a visual display.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "To get a 3D display, extend the modules to provide a 3D rendering command from the property ",
+              "type" : "text"
+            },
+            {
+              "code" : "render3D",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ":",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "struct A: Module {",
+            "    public var name = \"A\"",
+            "    public var render3D: ThreeDRenderCmd = RenderCommand.Cylinder(",
+            "        length: 10,",
+            "        radius: 1,",
+            "        color: ColorRepresentation(red: 1.0, green: 0.1, blue: 0.1, alpha: 1.0)",
+            "    )",
+            "}",
+            "",
+            "struct B: Module {",
+            "    public var name = \"B\"",
+            "    public var render3D: ThreeDRenderCmd = RenderCommand.Cylinder(",
+            "        length: 5,",
+            "        radius: 2,",
+            "        color: ColorRepresentation(red: 0.1, green: 1.0, blue: 0.1, alpha: 1.0)",
+            "    )",
+            "}"
+          ],
+          "syntax" : "swift",
+          "type" : "codeListing"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The two segments are sized and colored differently to make them easy to distinguish for this example.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "With the modules, updated, you use the SceneKit renderer to generate a scene:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "let renderer = SceneKitRenderer()",
+            "let scene = renderer.generateScene(lsystem: algae.evolved(4))"
+          ],
+          "syntax" : "swift",
+          "type" : "codeListing"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The resulting scene, rendered in a SceneKit view:",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "algae_4",
+              "type" : "image"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The sister library to Lindenmayer, ",
+              "type" : "text"
+            },
+            {
+              "code" : "LindenmayerViews",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ", provides SwiftUI views that you can use to quickly display either 2D or 3D representations of the L-systems you create.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The source for this library is open source, and includes a number of example L-systems.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "2D Example L-systems:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "items" : [
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/fractalTree",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/kochCurve",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/sierpinskiTriangle",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/dragonCurve",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/barnsleyFern",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            }
+          ],
+          "type" : "unorderedList"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "3D Example L-systems:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "items" : [
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/algae3D",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/monopodialTree",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/sympodialTree",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            }
+          ],
+          "type" : "unorderedList"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ContextualLSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RandomContextualLSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ModuleSet",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RNGWrapper",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParametersWrapper"
+      ],
+      "title" : "Lindenmayer systems"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/creating_l-systems"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"algae_4": {
+  "alt" : "A screenshot of a 3D rendering of the algae L-system evolved to display 3 short green segments connected by 2 longer red seegments.",
+  "identifier" : "algae_4",
+  "type" : "image",
+  "variants" : [
+    {
+      "traits" : [
+        "2x",
+        "light"
+      ],
+      "url" : "\/images\/algae_4@2x.png"
+    }
+  ]
+},
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ContextualLSystem": {
+  "abstract" : [
+    {
+      "text" : "A basic Lindenmayer system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ContextualLSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ContextualLSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/contextuallsystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/barnsleyFern": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal plant, also known as the Barnsley Fern.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "barnsleyFern"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/barnsleyFern",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "barnsleyFern",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/barnsleyfern"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/dragonCurve": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal dragon curve.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "dragonCurve"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/dragonCurve",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "dragonCurve",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/dragoncurve"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/fractalTree": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal, or binary, tree.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "fractalTree"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/fractalTree",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "fractalTree",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/fractaltree"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/kochCurve": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal koch curve.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "kochCurve"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/kochCurve",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "kochCurve",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/kochcurve"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples2D/sierpinskiTriangle": {
+  "abstract" : [
+    {
+      "text" : "An L-system that describes a fractal sierpinski triangle.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "sierpinskiTriangle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples2D\/sierpinskiTriangle",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "sierpinskiTriangle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples2d\/sierpinskitriangle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/algae3D": {
+  "abstract" : [
+    {
+      "text" : "An example of a L-system that produces a tree with monopodial structure.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "algae3D"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/algae3D",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "algae3D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/algae3d"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/monopodialTree": {
+  "abstract" : [
+    {
+      "text" : "An example of a L-system that produces a tree with monopodial structure.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "monopodialTree"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+      "text" : "ParameterizedRandomContextualLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO14MonopodialDefnV",
+      "text" : "MonopodialDefn"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:9Squirrel34PRNGV",
+      "text" : "PRNG"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/monopodialTree",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "monopodialTree",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/monopodialtree"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/sympodialTree": {
+  "abstract" : [
+    {
+      "text" : "An example of a L-system that produces a tree with sympodial structure.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "sympodialTree"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+      "text" : "ParameterizedRandomContextualLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO13SympodialDefnV",
+      "text" : "SympodialDefn"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:9Squirrel34PRNGV",
+      "text" : "PRNG"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/sympodialTree",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "sympodialTree",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/sympodialtree"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/GraphicsContextRenderer": {
+  "abstract" : [
+    {
+      "text" : "A renderer that generates a 2D graphical representation of an L-system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GraphicsContextRenderer"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/GraphicsContextRenderer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GraphicsContextRenderer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GraphicsContextRenderer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/graphicscontextrenderer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LSystem": {
+  "abstract" : [
+    {
+      "text" : "A type that provides convenient initializers for L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "LSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "LSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "LSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lsystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LSystem/create(_:)-12ubu": {
+  "abstract" : [
+    {
+      "text" : "Creates a new Lindenmayer system from an initial state.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "create"
+    },
+    {
+      "kind" : "text",
+      "text" : "(["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer6ModuleP",
+      "text" : "Module"
+    },
+    {
+      "kind" : "text",
+      "text" : "]) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer17ContextualLSystemV",
+      "text" : "ContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LSystem\/create(_:)-12ubu",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "create(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lsystem\/create(_:)-12ubu"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/LindenmayerSystem": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a Lindenmayer system and how it evolves.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "LindenmayerSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/LindenmayerSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "LindenmayerSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "LindenmayerSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/lindenmayersystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Module": {
+  "abstract" : [
+    {
+      "text" : "A module that represents a state element in an L-system state array and its parameters, if any.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Module"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Module",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/module"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Module/render2D-1c1hi": {
+  "abstract" : [
+    {
+      "text" : "Returns a sequence of render commands to display the content in 2-dimensionals.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "render2D"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13TwoDRenderCmdP",
+      "text" : "TwoDRenderCmd"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module\/render2D-1c1hi",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "render2D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/module\/render2d-1c1hi"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Module/render3D-2t57p": {
+  "abstract" : [
+    {
+      "text" : "Returns a sequence of render commands to display the content in 3-dimensionals.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "render3D"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer15ThreeDRenderCmdP",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Module\/render3D-2t57p",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "render3D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/module\/render3d-2t57p"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ModuleSet": {
+  "abstract" : [
+    {
+      "text" : "The set of modules found in sequence while processing the state of an L-system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ModuleSet"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ModuleSet",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ModuleSet"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ModuleSet",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/moduleset"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Modules": {
+  "abstract" : [
+    {
+      "text" : "A namespace for a collection of built-in modules for use in L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Modules"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Modules",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Modules"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Modules",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/modules"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem": {
+  "abstract" : [
+    {
+      "text" : "A parameterized, stochastic Lindenmayer system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ParameterizedRandomContextualLSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParametersWrapper": {
+  "abstract" : [
+    {
+      "text" : "A class that provides reference semantics to access an underlying parameter value type that you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ParametersWrapper"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParametersWrapper",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ParametersWrapper"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ParametersWrapper",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterswrapper"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RNGWrapper": {
+  "abstract" : [
+    {
+      "text" : "A class that provides probabilistic functions based on the seedable psuedo-random number generator used to create it.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RNGWrapper"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RNGWrapper",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RNGWrapper"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RNGWrapper",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rngwrapper"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RandomContextualLSystem": {
+  "abstract" : [
+    {
+      "text" : "A stochastic Lindenmayer system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RandomContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RandomContextualLSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RandomContextualLSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RandomContextualLSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/randomcontextuallsystem"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand": {
+  "abstract" : [
+    {
+      "text" : "A collection of render commands, both 2D and 3D, built into Lindenmayer.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Ignore": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the drawing should ignore this module.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Ignore"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Ignore",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Ignore"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Ignore",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/ignore"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SceneKitRenderer": {
+  "abstract" : [
+    {
+      "text" : "A renderer that generates a 3D graphical representation of an L-system using SceneKit.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SceneKitRenderer"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SceneKitRenderer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SceneKitRenderer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SceneKitRenderer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/scenekitrenderer"
+},
+"https://developer.apple.com/documentation/scenekit/scnscene": {
+  "identifier" : "https:\/\/developer.apple.com\/documentation\/scenekit\/scnscene",
+  "title" : "SCNScene",
+  "titleInlineContent" : [
+    {
+      "code" : "SCNScene",
+      "type" : "codeVoice"
+    }
+  ],
+  "type" : "link",
+  "url" : "https:\/\/developer.apple.com\/documentation\/scenekit\/scnscene"
+},
+"https://developer.apple.com/documentation/swiftui/Canvas": {
+  "identifier" : "https:\/\/developer.apple.com\/documentation\/swiftui\/Canvas",
+  "title" : "Canvas",
+  "titleInlineContent" : [
+    {
+      "code" : "Canvas",
+      "type" : "codeVoice"
+    }
+  ],
+  "type" : "link",
+  "url" : "https:\/\/developer.apple.com\/documentation\/swiftui\/Canvas"
+}
+}
+}

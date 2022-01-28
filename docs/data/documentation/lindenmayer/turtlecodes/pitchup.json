@@ -1,0 +1,557 @@
+{
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchUp-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/pitchUp"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer11TurtleCodesO7pitchUpyA2CmF",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "case"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "pitchUp"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Case",
+    "symbolKind" : "case",
+    "title" : "TurtleCodes.pitchUp"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "case"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "pitchUp"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/pitchDown",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/rollLeft",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/rollRight",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/rollUpToVertical",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/spinVerticalTropism",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/spinGravityTropism"
+      ],
+      "title" : "3D Specific Movement Codes"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/turtlecodes\/pitchup"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/PitchDown-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should pitch downward from its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PitchDown"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchDown-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PitchDown"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.PitchDown",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchdown-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/PitchUp-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should pitch upward from its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PitchUp"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchUp-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PitchUp"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.PitchUp",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchup-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollLeft-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll to the left around its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollLeft-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollLeft"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.RollLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollleft-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollRight-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll to the right around its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollRight-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.RollRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollright-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollUpToVertical-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.RollUpToVertical",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rolluptovertical-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes": {
+  "abstract" : [
+    {
+      "text" : "An enumeration that identifies the types of turtle commands and provides a raw string value associated with those types.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TurtleCodes",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/pitchDown": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchDown-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "pitchDown"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/pitchDown",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.pitchDown",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/pitchdown"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/pitchUp": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchUp-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "pitchUp"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/pitchUp",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.pitchUp",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/pitchup"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/rollLeft": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollLeft-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rollLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/rollLeft",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.rollLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/rollleft"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/rollRight": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollRight-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rollRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/rollRight",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.rollRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/rollright"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/rollUpToVertical": {
+  "abstract" : [
+    {
+      "text" : "The string representation for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct",
+      "isActive" : true,
+      "type" : "reference"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rollUpToVertical"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/rollUpToVertical",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.rollUpToVertical",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/rolluptovertical"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/spinGravityTropism": {
+  "abstract" : [
+    {
+      "text" : "The reserved string representation for an unimplemented render command.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "spinGravityTropism"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/spinGravityTropism",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.spinGravityTropism",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/spingravitytropism"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes/spinVerticalTropism": {
+  "abstract" : [
+    {
+      "text" : "The reserved string representation for an unimplemented render command.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "spinVerticalTropism"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes\/spinVerticalTropism",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TurtleCodes.spinVerticalTropism",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes\/spinverticaltropism"
+}
+}
+}

@@ -1,0 +1,1867 @@
+{
+  "abstract" : [
+    {
+      "text" : "A collection of render commands, both 2D and 3D, built into Lindenmayer.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer13RenderCommandO",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "enum"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "RenderCommand"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "RenderCommand"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Enumeration",
+    "symbolKind" : "enum",
+    "title" : "RenderCommand"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "enum"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "RenderCommand"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TwoDRenderCmd",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ThreeDRenderCmd",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Angle"
+      ],
+      "title" : "Rendering Commands"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Draw-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/draw-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Move-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/move-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Branch-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/branch-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/EndBranch-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/endBranch-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/TurnLeft-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/turnLeft-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/TurnRight-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/turnRight-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Ignore"
+      ],
+      "title" : "Common 2D and 3D Render Commands"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/SetColor-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/setColor-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/SetLineWidth-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/setLineWidth-swift.type.property"
+      ],
+      "title" : "2D Render Commands"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchUp-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/pitchUp-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchDown-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/pitchDown-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollLeft-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollLeft-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollRight-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollRight-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollUpToVertical-swift.type.property"
+      ],
+      "title" : "3D Render Movement Commands"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Cylinder-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/cylinder-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Cone-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/cone-swift.type.property",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Sphere-swift.struct",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/sphere-swift.type.property"
+      ],
+      "title" : "3D Render Object Commands"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/rendercommand"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Angle": {
+  "abstract" : [
+    {
+      "text" : "A geometric angle whose value you access in either radians or degrees.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Angle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Angle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Angle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Angle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/angle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ColorRepresentation": {
+  "abstract" : [
+    {
+      "text" : "A struct that represents a color using red, green, blue, and alpha values.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ColorRepresentation"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ColorRepresentation",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ColorRepresentation"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ColorRepresentation",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/colorrepresentation"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand": {
+  "abstract" : [
+    {
+      "text" : "A collection of render commands, both 2D and 3D, built into Lindenmayer.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RenderCommand"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Branch-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the start of a branch.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Branch"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Branch-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Branch"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Branch",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/branch-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Cone-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should create a 3D cylinder of the length, top radius, bottom radius, and color representation that you provide at the current location.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Cone"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Cone-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Cone"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Cone",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/cone-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Cylinder-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should create a 3D cylinder of the radius, length, and color representation that you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Cylinder"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Cylinder-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Cylinder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Cylinder",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/cylinder-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Draw-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates to draw a line forward by the length you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Draw"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Draw-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Draw"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Draw",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/draw-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/EndBranch-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the end of a branch.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EndBranch"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/EndBranch-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EndBranch"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.EndBranch",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/endbranch-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Ignore": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the drawing should ignore this module.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Ignore"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Ignore",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Ignore"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Ignore",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/ignore"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Move-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the drawing should move forward in it’s current heading by the amount you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Move"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Move-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Move"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Move",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/move-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/PitchDown-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should pitch downward from its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PitchDown"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchDown-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PitchDown"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.PitchDown",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchdown-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/PitchUp-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should pitch upward from its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PitchUp"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/PitchUp-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PitchUp"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.PitchUp",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchup-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollLeft-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll to the left around its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollLeft-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollLeft"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.RollLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollleft-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollRight-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll to the right around its current heading by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollRight-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollRight"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.RollRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollright-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/RollUpToVertical-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/RollUpToVertical-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.RollUpToVertical",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rolluptovertical-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/SetColor-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the drawing should update it’s drawing color to the color representation you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SetColor"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/SetColor-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SetColor"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.SetColor",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/setcolor-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/SetLineWidth-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the drawing should update it’s drawing width to the value you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SetLineWidth"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/SetLineWidth-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SetLineWidth"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.SetLineWidth",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/setlinewidth-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/Sphere-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the rendered should create a 3D sphere of the radius you provide at the current location.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Sphere"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/Sphere-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Sphere"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.Sphere",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/sphere-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/TurnLeft-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the drawing should turn left by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurnLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/TurnLeft-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurnLeft"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.TurnLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/turnleft-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/TurnRight-swift.struct": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the drawing should turn right by the angle you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurnRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/TurnRight-swift.struct",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurnRight"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RenderCommand.TurnRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/turnright-swift.struct"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/branch-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the start of a branch.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "branch"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO6BranchV",
+      "text" : "Branch"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/branch-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "branch",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/branch-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/cone-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should display a cone of length 1.0, bottom radius of 0.1, top radius of 0, and moving forward by 1.0.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "cone"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO4ConeV",
+      "text" : "Cone"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/cone-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "cone",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/cone-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/cylinder-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should display a cylinder of length 1.0 and radius 0.1, moving forward by 1.0.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "cylinder"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO8CylinderV",
+      "text" : "Cylinder"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/cylinder-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "cylinder",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/cylinder-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/draw-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should draw a line forward at a length of 1.0.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "draw"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO4DrawV",
+      "text" : "Draw"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/draw-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "draw",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/draw-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/endBranch-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the end of a branch.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "endBranch"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO9EndBranchV",
+      "text" : "EndBranch"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/endBranch-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "endBranch",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/endbranch-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/move-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should move forward by a length of 1.0.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "move"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO4MoveV",
+      "text" : "Move"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/move-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "move",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/move-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/pitchDown-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should pitch down by 30°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "pitchDown"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO9PitchDownV",
+      "text" : "PitchDown"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/pitchDown-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "pitchDown",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchdown-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/pitchUp-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should pitch up by 30°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "pitchUp"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO7PitchUpV",
+      "text" : "PitchUp"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/pitchUp-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "pitchUp",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/pitchup-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/rollLeft-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should roll left by 90°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rollLeft"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO8RollLeftV",
+      "text" : "RollLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollLeft-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rollLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollleft-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/rollRight-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should roll right by 90°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rollRight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO9RollRightV",
+      "text" : "RollRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollRight-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rollRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rollright-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/rollUpToVertical-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rollUpToVertical"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO16RollUpToVerticalV",
+      "text" : "RollUpToVertical"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/rollUpToVertical-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rollUpToVertical",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/rolluptovertical-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/setColor-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates to set the color representation for the renderer to black.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setColor"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO8SetColorV",
+      "text" : "SetColor"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/setColor-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "setColor",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/setcolor-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/setLineWidth-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates to set the line width of the renderer to 1.0.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setLineWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO12SetLineWidthV",
+      "text" : "SetLineWidth"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/setLineWidth-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "setLineWidth",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/setlinewidth-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/sphere-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should display a sphere of radius 0.1.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "sphere"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO6SphereV",
+      "text" : "Sphere"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/sphere-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "sphere",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/sphere-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/turnLeft-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should turn left by 90°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "turnLeft"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO8TurnLeftV",
+      "text" : "TurnLeft"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/turnLeft-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "turnLeft",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/turnleft-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/RenderCommand/turnRight-swift.type.property": {
+  "abstract" : [
+    {
+      "text" : "A value that indicates the renderer should turn right by 90°.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "turnRight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO",
+      "text" : "RenderCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer13RenderCommandO9TurnRightV",
+      "text" : "TurnRight"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/RenderCommand\/turnRight-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "turnRight",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/rendercommand\/turnright-swift.type.property"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/SimpleAngle": {
+  "abstract" : [
+    {
+      "text" : "A geometric angle whose value you access in either radians or degrees.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SimpleAngle"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/SimpleAngle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SimpleAngle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SimpleAngle",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/simpleangle"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ThreeDRenderCmd": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a 3D rendered representation or a renderer command for a module within an L-System.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ThreeDRenderCmd",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ThreeDRenderCmd"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ThreeDRenderCmd",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/threedrendercmd"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TurtleCodes": {
+  "abstract" : [
+    {
+      "text" : "An enumeration that identifies the types of turtle commands and provides a raw string value associated with those types.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TurtleCodes",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TurtleCodes"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TurtleCodes",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/turtlecodes"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/TwoDRenderCmd": {
+  "abstract" : [
+    {
+      "text" : "A type that represents a 2D rendered representation or a renderer command for a module within an L-System.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TwoDRenderCmd"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/TwoDRenderCmd",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TwoDRenderCmd"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TwoDRenderCmd",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/twodrendercmd"
+}
+}
+}

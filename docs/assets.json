@@ -1,0 +1,136 @@
+{
+  "downloads" : [
+
+  ],
+  "images" : [
+    {
+      "alt" : "A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.6",
+      "identifier" : "rendered_2_6_trees.png",
+      "type" : "image",
+      "variants" : [
+        {
+          "traits" : [
+            "2x",
+            "light"
+          ],
+          "url" : "\/images\/rendered_2_6_trees@2x.png"
+        }
+      ]
+    },
+    {
+      "alt" : "An image displaying a fractal plant.",
+      "identifier" : "barnsley_fern_7.png",
+      "type" : "image",
+      "variants" : [
+        {
+          "traits" : [
+            "2x",
+            "light"
+          ],
+          "url" : "\/images\/barnsley_fern_7@2x.png"
+        }
+      ]
+    },
+    {
+      "alt" : "An image displaying a sierpinski triangle fractcal.",
+      "identifier" : "sierpinski_triangle_6.png",
+      "type" : "image",
+      "variants" : [
+        {
+          "traits" : [
+            "2x",
+            "light"
+          ],
+          "url" : "\/images\/sierpinski_triangle_6@2x.png"
+        }
+      ]
+    },
+    {
+      "alt" : "A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.7",
+      "identifier" : "rendered_2_7_trees.png",
+      "type" : "image",
+      "variants" : [
+        {
+          "traits" : [
+            "2x",
+            "light"
+          ],
+          "url" : "\/images\/rendered_2_7_trees@2x.png"
+        }
+      ]
+    },
+    {
+      "alt" : "A screenshot of a 3D rendering of the algae L-system evolved to display 3 short green segments connected by 2 longer red seegments.",
+      "identifier" : "algae_4",
+      "type" : "image",
+      "variants" : [
+        {
+          "traits" : [
+            "2x",
+            "light"
+          ],
+          "url" : "\/images\/algae_4@2x.png"
+        }
+      ]
+    },
+    {
+      "alt" : "A screenshot of a 3D rendering of the algae L-system evolved to display 3 short green segments connected by 2 longer red seegments.",
+      "identifier" : "algae_4.png",
+      "type" : "image",
+      "variants" : [
+        {
+          "traits" : [
+            "2x",
+            "light"
+          ],
+          "url" : "\/images\/algae_4@2x.png"
+        }
+      ]
+    },
+    {
+      "alt" : "An image displaying a dragon curve fractal.",
+      "identifier" : "dragon_curve_9.png",
+      "type" : "image",
+      "variants" : [
+        {
+          "traits" : [
+            "2x",
+            "light"
+          ],
+          "url" : "\/images\/dragon_curve_9@2x.png"
+        }
+      ]
+    },
+    {
+      "alt" : "An image displaying a binary tree.",
+      "identifier" : "fractal_tree_6.png",
+      "type" : "image",
+      "variants" : [
+        {
+          "traits" : [
+            "2x",
+            "light"
+          ],
+          "url" : "\/images\/fractal_tree_6@2x.png"
+        }
+      ]
+    },
+    {
+      "alt" : "An image displaying a sierpinski triangle fractcal.",
+      "identifier" : "koch_curve_6.png",
+      "type" : "image",
+      "variants" : [
+        {
+          "traits" : [
+            "2x",
+            "light"
+          ],
+          "url" : "\/images\/koch_curve_6@2x.png"
+        }
+      ]
+    }
+  ],
+  "videos" : [
+
+  ]
+}

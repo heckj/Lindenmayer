@@ -1,0 +1,827 @@
+{
+  "abstract" : [
+    {
+      "text" : "An example of a L-system that produces a tree with sympodial structure.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/sympodialTree"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11Lindenmayer10Examples3DO13sympodialTreeAA36ParameterizedRandomContextualLSystemVyAC13SympodialDefnV9Squirrel34PRNGVGvpZ",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "static"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "keyword",
+        "text" : "let"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "sympodialTree"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+        "text" : "ParameterizedRandomContextualLSystem"
+      },
+      {
+        "kind" : "text",
+        "text" : "<"
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+        "text" : "Examples3D"
+      },
+      {
+        "kind" : "text",
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:11Lindenmayer10Examples3DO13SympodialDefnV",
+        "text" : "SympodialDefn"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:9Squirrel34PRNGV",
+        "text" : "PRNG"
+      },
+      {
+        "kind" : "text",
+        "text" : ">"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "Lindenmayer"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Type Property",
+    "symbolKind" : "property",
+    "title" : "sympodialTree"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "static"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "let"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "sympodialTree"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+              "text" : "ParameterizedRandomContextualLSystem"
+            },
+            {
+              "kind" : "text",
+              "text" : "<"
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+              "text" : "Examples3D"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/SympodialDefn",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:11Lindenmayer10Examples3DO13SympodialDefnV",
+              "text" : "SympodialDefn"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:9Squirrel34PRNGV",
+              "text" : "PRNG"
+            },
+            {
+              "kind" : "text",
+              "text" : ">"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "A 3D L-system translated from an example in ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ".",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "The L-system and the definitions match Fig 2.6 from the book, along with the parameter defintions for each of the 4 figures defined here:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "items" : [
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7A",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7B",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7C",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7D",
+                      "isActive" : true,
+                      "type" : "reference"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            }
+          ],
+          "type" : "unorderedList"
+        },
+        {
+          "inlineContent" : [
+            {
+              "identifier" : "rendered_2_7_trees.png",
+              "type" : "image"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The example source for this L-system is ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "https:\/\/github.com\/heckj\/Lindenmayer\/blob\/main\/Sources\/Lindenmayer\/Examples3D.swift",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ".",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/SympodialDefn",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7A",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7B",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7C",
+        "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7D"
+      ],
+      "title" : "Sympodial Tree L-systems"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/lindenmayer\/examples3d\/sympodialtree"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://Lindenmayer/documentation/Lindenmayer": {
+  "abstract" : [
+    {
+      "text" : "Lindenmayer provides a library to develop and run your own Lindenmayer Systems.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "Lindenmayer",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D": {
+  "abstract" : [
+    {
+      "text" : "A collection of three-dimensional example L-systems.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Examples3D"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Examples3D"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Examples3D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/SympodialDefn": {
+  "abstract" : [
+    {
+      "text" : "A structure that provides parameters for example sympodial trees in ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SympodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/SympodialDefn",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SympodialDefn"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Examples3D.SympodialDefn",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/sympodialdefn"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/figure2_7A": {
+  "abstract" : [
+    {
+      "text" : "The parameter definitions for Figure 2.7 A from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "figure2_7A"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO13SympodialDefnV",
+      "text" : "SympodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7A",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "figure2_7A",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/figure2_7a"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/figure2_7B": {
+  "abstract" : [
+    {
+      "text" : "The parameter definitions for Figure 2.7 B from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "figure2_7B"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO13SympodialDefnV",
+      "text" : "SympodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7B",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "figure2_7B",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/figure2_7b"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/figure2_7C": {
+  "abstract" : [
+    {
+      "text" : "The parameter definitions for Figure 2.7 C from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "figure2_7C"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO13SympodialDefnV",
+      "text" : "SympodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7C",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "figure2_7C",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/figure2_7c"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/figure2_7D": {
+  "abstract" : [
+    {
+      "text" : "The parameter definitions for Figure 2.7 D from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "figure2_7D"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO13SympodialDefnV",
+      "text" : "SympodialDefn"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/figure2_7D",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "figure2_7D",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/figure2_7d"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/Examples3D/sympodialTree": {
+  "abstract" : [
+    {
+      "text" : "An example of a L-system that produces a tree with sympodial structure.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "sympodialTree"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer36ParameterizedRandomContextualLSystemV",
+      "text" : "ParameterizedRandomContextualLSystem"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO",
+      "text" : "Examples3D"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:11Lindenmayer10Examples3DO13SympodialDefnV",
+      "text" : "SympodialDefn"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:9Squirrel34PRNGV",
+      "text" : "PRNG"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/Examples3D\/sympodialTree",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "sympodialTree",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/examples3d\/sympodialtree"
+},
+"doc://Lindenmayer/documentation/Lindenmayer/ParameterizedRandomContextualLSystem": {
+  "abstract" : [
+    {
+      "text" : "A parameterized, stochastic Lindenmayer system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "identifier" : "doc:\/\/Lindenmayer\/documentation\/Lindenmayer\/ParameterizedRandomContextualLSystem",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ParameterizedRandomContextualLSystem"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ParameterizedRandomContextualLSystem",
+  "type" : "topic",
+  "url" : "\/documentation\/lindenmayer\/parameterizedrandomcontextuallsystem"
+},
+"http://algorithmicbotany.org/papers/abop/abop.pdf": {
+  "identifier" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf",
+  "title" : "The Algorithmic Beauty of Plants",
+  "titleInlineContent" : [
+    {
+      "text" : "The Algorithmic Beauty of Plants",
+      "type" : "text"
+    }
+  ],
+  "type" : "link",
+  "url" : "http:\/\/algorithmicbotany.org\/papers\/abop\/abop.pdf"
+},
+"https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift": {
+  "identifier" : "https:\/\/github.com\/heckj\/Lindenmayer\/blob\/main\/Sources\/Lindenmayer\/Examples3D.swift",
+  "title" : "available on GitHub",
+  "titleInlineContent" : [
+    {
+      "text" : "available on GitHub",
+      "type" : "text"
+    }
+  ],
+  "type" : "link",
+  "url" : "https:\/\/github.com\/heckj\/Lindenmayer\/blob\/main\/Sources\/Lindenmayer\/Examples3D.swift"
+},
+"rendered_2_7_trees.png": {
+  "alt" : "A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.7",
+  "identifier" : "rendered_2_7_trees.png",
+  "type" : "image",
+  "variants" : [
+    {
+      "traits" : [
+        "2x",
+        "light"
+      ],
+      "url" : "\/images\/rendered_2_7_trees@2x.png"
+    }
+  ]
+}
+}
+}
