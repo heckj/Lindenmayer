@@ -27,6 +27,7 @@ import Foundation
 ///
 /// - ``DebugModule/new``
 /// - ``DebugModule/module``
+/// - ``DebugModule/id-6ifq9``
 ///
 /// ### Retrieving the Underlying Module Properties
 ///

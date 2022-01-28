@@ -229,6 +229,16 @@ public enum RenderCommand {
     /// A value that indicates the start of a branch.
     ///
     /// Renderers typically use this as a marker to save the current state on a stack.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/Branch-swift.struct/init()``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/Branch-swift.struct/name``
     public struct Branch: TwoDRenderCmd, ThreeDRenderCmd {
         public var name: String = TurtleCodes.branch.rawValue
         public init() {}
@@ -237,12 +247,33 @@ public enum RenderCommand {
     /// A value that indicates the end of a branch.
     ///
     /// Renderers typically use this as a marker to pop back to the previously stored state.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/EndBranch-swift.struct/init()``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/EndBranch-swift.struct/name``
     public struct EndBranch: TwoDRenderCmd, ThreeDRenderCmd {
         public var name: String = TurtleCodes.endBranch.rawValue
         public init() {}
     }
 
     /// A value that indicates the state of the drawing should move forward in it's current heading by the amount you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/Move-swift.struct/init(length:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/Move-swift.struct/name``
+    /// - ``RenderCommand/Move-swift.struct/length``
     public struct Move: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.move.rawValue
 
@@ -253,6 +284,17 @@ public enum RenderCommand {
     }
 
     /// A value that indicates to draw a line forward by the length you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/Draw-swift.struct/init(length:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/Draw-swift.struct/name``
+    /// - ``RenderCommand/Draw-swift.struct/length``
     public struct Draw: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.draw.rawValue
 
@@ -263,6 +305,17 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the state of the drawing should turn left by the angle you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/TurnLeft-swift.struct/init(angle:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/TurnLeft-swift.struct/name``
+    /// - ``RenderCommand/TurnLeft-swift.struct/angle``
     public struct TurnLeft: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.leftTurn.rawValue
 
@@ -273,6 +326,17 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the state of the drawing should turn right by the angle you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/TurnRight-swift.struct/init(angle:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/TurnRight-swift.struct/name``
+    /// - ``RenderCommand/TurnRight-swift.struct/angle``
     public struct TurnRight: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.rightTurn.rawValue
 
@@ -283,12 +347,34 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the state of the drawing should ignore this module.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/Ignore/init()``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/Ignore/name``
     public struct Ignore: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.ignore.rawValue
         public init() {}
     }
 
     /// A value that indicates the state of the drawing should update it's drawing width to the value you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/SetLineWidth-swift.struct/init(width:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/SetLineWidth-swift.struct/name``
+    /// - ``RenderCommand/SetLineWidth-swift.struct/width``
+    ///
     public struct SetLineWidth: TwoDRenderCmd {
         public let name = TurtleCodes.setLineWidth.rawValue
         public let width: Double
@@ -298,6 +384,17 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the state of the drawing should update it's drawing color to the color representation you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/SetColor-swift.struct/init(representation:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/SetColor-swift.struct/name``
+    /// - ``RenderCommand/SetColor-swift.struct/representation``
     public struct SetColor: TwoDRenderCmd {
         public let name = TurtleCodes.setColor.rawValue
         public let representation: ColorRepresentation
@@ -307,6 +404,17 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the state of the renderer should pitch upward from its current heading by the angle you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/PitchUp-swift.struct/init(angle:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/PitchUp-swift.struct/name``
+    /// - ``RenderCommand/PitchUp-swift.struct/angle``
     public struct PitchUp: ThreeDRenderCmd {
         public let name = TurtleCodes.pitchUp.rawValue
         public let angle: Angle
@@ -316,6 +424,17 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the state of the renderer should pitch downward from its current heading by the angle you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/PitchDown-swift.struct/init(angle:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/PitchDown-swift.struct/name``
+    /// - ``RenderCommand/PitchDown-swift.struct/angle``
     public struct PitchDown: ThreeDRenderCmd {
         public let name = TurtleCodes.pitchDown.rawValue
         public let angle: Angle
@@ -325,6 +444,17 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the state of the renderer should roll to the right around its current heading by the angle you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/RollRight-swift.struct/init(angle:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/RollRight-swift.struct/name``
+    /// - ``RenderCommand/RollRight-swift.struct/angle``
     public struct RollRight: ThreeDRenderCmd {
         public let name = TurtleCodes.rollRight.rawValue
         public let angle: Angle
@@ -334,6 +464,17 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the state of the renderer should roll to the left around its current heading by the angle you provide.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/RollLeft-swift.struct/init(angle:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/RollLeft-swift.struct/name``
+    /// - ``RenderCommand/RollLeft-swift.struct/angle``
     public struct RollLeft: ThreeDRenderCmd {
         public let name = TurtleCodes.rollLeft.rawValue
         public let angle: Angle
@@ -343,13 +484,37 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/RollUpToVertical-swift.struct/init()``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/RollUpToVertical-swift.struct/name``
     public struct RollUpToVertical: ThreeDRenderCmd {
         public let name = TurtleCodes.rollUpToVertical.rawValue
+        public init() { }
     }
 
     /// A value that indicates the renderer should create a 3D cylinder of the radius, length, and color representation that you provide.
     ///
     /// The renderer is expected to also move forward, updating it's state to a position at the end of the cylinder.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/Cylinder-swift.struct/init(length:radius:color:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/Cylinder-swift.struct/name``
+    /// - ``RenderCommand/Cylinder-swift.struct/length``
+    /// - ``RenderCommand/Cylinder-swift.struct/radius``
+    /// - ``RenderCommand/Cylinder-swift.struct/color``
     public struct Cylinder: ThreeDRenderCmd {
         public let name = TurtleCodes.cylinder.rawValue
         public let length: Double
@@ -365,6 +530,20 @@ public enum RenderCommand {
     /// A value that indicates the renderer should create a 3D cylinder of the length, top radius, bottom radius, and color representation that you provide at the current location.
     ///
     /// The renderer is expected to also move forward, updating it's state to a position at the end of the cone.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/Cone-swift.struct/init(length:radiusTop:radiusBottom:color:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/Cone-swift.struct/name``
+    /// - ``RenderCommand/Cone-swift.struct/length``
+    /// - ``RenderCommand/Cone-swift.struct/radiusTop``
+    /// - ``RenderCommand/Cone-swift.struct/radiusBottom``
+    /// - ``RenderCommand/Cone-swift.struct/color``
     public struct Cone: ThreeDRenderCmd {
         public let name = TurtleCodes.cone.rawValue
         public let length: Double
@@ -380,6 +559,18 @@ public enum RenderCommand {
     }
 
     /// A value that indicates the rendered should create a 3D sphere of the radius you provide at the current location.
+    ///
+    /// ## Topics
+    ///
+    /// ### Creating a Move Command
+    ///
+    /// - ``RenderCommand/Sphere-swift.struct/init(radius:color:)``
+    ///
+    /// ### Inspecting a Move Command
+    ///
+    /// - ``RenderCommand/Sphere-swift.struct/name``
+    /// - ``RenderCommand/Sphere-swift.struct/radius``
+    /// - ``RenderCommand/Sphere-swift.struct/color``
     public struct Sphere: ThreeDRenderCmd {
         public let name = TurtleCodes.sphere.rawValue
         public let radius: Double

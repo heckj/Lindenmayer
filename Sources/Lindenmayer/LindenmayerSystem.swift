@@ -16,10 +16,11 @@ import Foundation
 /// ### Inspecting L-systems
 ///
 /// - ``LindenmayerSystem/state``
-/// - ``LindenmayerSystem/state(at:)``
 /// - ``LindenmayerSystem/newStateIndicators``
 /// - ``LindenmayerSystem/rules``
 /// - ``LindenmayerSystem/modules(atIndex:)-1v113``
+/// - ``LindenmayerSystem/modules(atIndex:)-7jg4t``
+/// - ``LindenmayerSystem/state(at:)``
 ///
 /// ### Evolving L-Systems
 ///
