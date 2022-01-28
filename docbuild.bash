@@ -30,16 +30,16 @@ xcrun docc convert Sources/Lindenmayer/Lindenmayer.docc \
 --experimental-documentation-coverage \
 --level brief
 
-xcrun docc convert Sources/Lindenmayer/Lindenmayer.docc \
---enable-inherited-docs \
---output-path html \
---fallback-display-name Lindenmayer \
---fallback-bundle-identifier com.github.heckj.Lindenmayer \
---fallback-bundle-version 0.1.0 \
---additional-symbol-graph-dir .build/symbol-graphs \
---transform-for-static-hosting \
---hosting-base-path '/' \
---emit-digest
+#xcrun docc convert Sources/Lindenmayer/Lindenmayer.docc \
+#--enable-inherited-docs \
+#--output-path html \
+#--fallback-display-name Lindenmayer \
+#--fallback-bundle-identifier com.github.heckj.Lindenmayer \
+#--fallback-bundle-version 0.1.0 \
+#--additional-symbol-graph-dir .build/symbol-graphs \
+#--transform-for-static-hosting \
+#--hosting-base-path '/' \
+#--emit-digest
 
 # Generate a list of all the identifiers for DocC curation
 #
@@ -48,4 +48,12 @@ xcrun docc convert Sources/Lindenmayer/Lindenmayer.docc \
 
 # Swift package plugin for hosted content:
 #
-swift package --allow-writing-to-directory ./docs --target Lindenmayer generate-documentation --output-path ./docs --transform-for-static-hosting --hosting-base-path 'Lindenmayer/'
+swift package \
+    --allow-writing-to-directory ./docs \
+    --target Lindenmayer \
+    generate-documentation \
+    --output-path ./docs \
+    --emit-digest \
+    --disable-indexing \
+    --transform-for-static-hosting \
+    --hosting-base-path 'Lindenmayer'
