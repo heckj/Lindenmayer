@@ -73,7 +73,7 @@ public struct RandomContextualLSystem<PRNG>: LindenmayerSystem where PRNG: Seede
 
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
-    
+
     /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
     ///
     /// This array is primarily used for debugging purposes
@@ -132,7 +132,7 @@ public struct RandomContextualLSystem<PRNG>: LindenmayerSystem where PRNG: Seede
         prng.resetRNG(seed: prng.seed)
         return RandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, prng: prng, rules: rules)
     }
-    
+
     /// Sets the seed for the pseudo-random number generator to the value you provide.
     /// - Parameter seed: The seed value to set within the pseudo-random generator.
     /// - Returns: The L-system with the seed value updated.

@@ -56,10 +56,10 @@ import Foundation
 /// - ``ContextualLSystem/reset()``
 public struct ContextualLSystem: LindenmayerSystem {
     let axiom: [Module]
-    
+
     /// The sequence of modules that represents the current state of the L-system.
     public let state: [Module]
-    
+
     /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
     ///
     /// This array is primarily used for debugging purposes
@@ -115,7 +115,7 @@ public struct ContextualLSystem: LindenmayerSystem {
     public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
         return ContextualLSystem(axiom, state: state, newStateIndicators: newItemIndicators, rules: rules)
     }
-    
+
     /// Resets the L-system to it's initial state, wiping out an existing state while keeping the rules.
     /// - Returns: A new L-system with it's state reset to the initial state you set when you created the L-system.
     public func reset() -> Self {

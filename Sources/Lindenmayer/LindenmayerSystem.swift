@@ -36,7 +36,7 @@ import Foundation
 public protocol LindenmayerSystem {
     /// The sequence of modules that represents the current state of the L-system.
     var state: [Module] { get }
-    
+
     /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
     ///
     /// This array is primarily used for debugging purposes

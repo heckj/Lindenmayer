@@ -36,7 +36,7 @@ import Squirrel3
 ///
 /// - ``LSystem/create(_:with:using:)-49uk9``
 /// - ``LSystem/create(_:with:using:)-49uk9``
-/// 
+///
 public enum LSystem {
     /// Creates a new Lindenmayer system from an initial state.
     /// - Parameters:

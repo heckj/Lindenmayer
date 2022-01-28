@@ -16,7 +16,7 @@ import Foundation
 ///
 /// - ``init(r:g:b:)``
 /// - ``init(red:green:blue:alpha:)``
-/// 
+///
 public struct ColorRepresentation: Equatable {
     let red: Double
     let green: Double
@@ -496,7 +496,7 @@ public enum RenderCommand {
     /// - ``RenderCommand/RollUpToVertical-swift.struct/name``
     public struct RollUpToVertical: ThreeDRenderCmd {
         public let name = TurtleCodes.rollUpToVertical.rawValue
-        public init() { }
+        public init() {}
     }
 
     /// A value that indicates the renderer should create a 3D cylinder of the radius, length, and color representation that you provide.

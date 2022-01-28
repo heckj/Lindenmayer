@@ -185,22 +185,22 @@ public enum Examples3D {
     }
 
     static let defines = MonopodialDefn()
-    
+
     /// The parameter definitions for Figure 2.6 A from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_6A = defines
-    
+
     /// The parameter definitions for Figure 2.6 B from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_6B = MonopodialDefn(r1: 0.9, r2: 0.9, a0: 45, a2: 45)
-    
+
     /// The parameter definitions for Figure 2.6 C from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_6C = MonopodialDefn(r1: 0.9, r2: 0.8, a0: 45, a2: 45)
-    
+
     /// The parameter definitions for Figure 2.6 D from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
@@ -322,17 +322,17 @@ public enum Examples3D {
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_7A = SympodialDefn(r1: 0.9, r2: 0.7, a1: 5, a2: 65)
-    
+
     /// The parameter definitions for Figure 2.7 B from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_7B = SympodialDefn(r1: 0.9, r2: 0.7, a1: 10, a2: 60)
-    
+
     /// The parameter definitions for Figure 2.7 C from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let figure2_7C = SympodialDefn(r1: 0.9, r2: 0.8, a1: 20, a2: 50)
-    
+
     /// The parameter definitions for Figure 2.7 D from [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).

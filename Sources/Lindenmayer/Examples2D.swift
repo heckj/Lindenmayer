@@ -31,7 +31,7 @@ public enum Examples2D {
     }
 
     static var b = B()
-    
+
     /// An L-system that describes the growth of algae.
     ///
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_1:_Algae)

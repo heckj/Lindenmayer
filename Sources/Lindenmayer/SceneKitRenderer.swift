@@ -76,7 +76,7 @@ extension ColorRepresentation {
 /// - ``rotationAroundXAxisTransform(angle:)``
 /// - ``rotationAroundYAxisTransform(angle:)``
 /// - ``rotationAroundZAxisTransform(angle:)``
-/// 
+///
 
 public struct SceneKitRenderer {
     /// Creates a new SceneKit rendering engine for L-systems.

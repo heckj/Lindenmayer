@@ -17,7 +17,7 @@ import Foundation
 ///
 /// - ``ModuleSet/init(directInstance:)``
 /// - ``ModuleSet/init(leftInstance:directInstance:rightInstance:)``
-/// 
+///
 public struct ModuleSet {
     /// The module to the left (earlier) in the L-systems's state sequence.
     var leftInstance: Module?

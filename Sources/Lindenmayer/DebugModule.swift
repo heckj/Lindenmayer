@@ -17,7 +17,7 @@ import Foundation
 /// let system = Examples2D.barnsleyFern.evolved(iterations: 4)
 /// let debugModuleInstance = system.state(at: 14)
 /// print("ID: \(debugModuleInstance.id), name: \(debugModuleInstance.module.name)")
-/// 
+///
 /// // ID: 14, name: F
 /// ```
 ///

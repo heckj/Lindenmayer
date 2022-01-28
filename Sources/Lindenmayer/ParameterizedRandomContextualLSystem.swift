@@ -91,7 +91,7 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
 
     /// The current state of the L-system, expressed as a sequence of elements that conform to Module.
     public let state: [Module]
-    
+
     /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
     ///
     /// This array is primarily used for debugging purposes
