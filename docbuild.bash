@@ -48,4 +48,4 @@ xcrun docc convert Sources/Lindenmayer/Lindenmayer.docc \
 
 # Swift package plugin for hosted content:
 #
-# swift package --allow-writing-to-directory ./generated --target Lindenmayer generate-documentation --output-path ./generated --transform-for-static-hosting --hosting-base-path Lindenmayer
+swift package --allow-writing-to-directory ./docs --target Lindenmayer generate-documentation --output-path ./docs --transform-for-static-hosting --hosting-base-path 'Lindenmayer/'
