@@ -37,8 +37,15 @@ xcrun docc convert Sources/Lindenmayer/Lindenmayer.docc \
 --fallback-bundle-identifier com.github.heckj.Lindenmayer \
 --fallback-bundle-version 0.1.0 \
 --additional-symbol-graph-dir .build/symbol-graphs \
+--transform-for-static-hosting \
+--hosting-base-path '/' \
 --emit-digest
 
 # Generate a list of all the identifiers for DocC curation
+#
 # find html/data -name "*.json" -exec jq '.identifier.url' {} \; | sed -e 's/"//g'> html/all_identifiers.txt
 # sort html/all_identifiers.txt | sed -e 's/^/ - ``/g' | sed -e 's/$/``/g' > docc_identifiers.txt
+
+# Swift package plugin for hosted content:
+#
+# swift package --allow-writing-to-directory ./generated --target Lindenmayer generate-documentation --output-path ./generated --transform-for-static-hosting --hosting-base-path Lindenmayer

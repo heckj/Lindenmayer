@@ -26,6 +26,8 @@ let package = Package(
             name: "SceneKitDebugTools",
             url: "https://github.com/heckj/SceneKitDebugTools.git", .upToNextMajor(from: "0.1.0")
         ),
+        // Swift-DocC Plugin
+        .package(url: "https://github.com/apple/swift-docc-plugin", branch: "main"),
     ],
     targets: [
         .target(
