@@ -57,3 +57,5 @@ swift package \
     --disable-indexing \
     --transform-for-static-hosting \
     --hosting-base-path 'Lindenmayer'
+
+echo "Page will be available at https://heckj.github.io/Lindenmayer/documentation/lindenmayer/"
