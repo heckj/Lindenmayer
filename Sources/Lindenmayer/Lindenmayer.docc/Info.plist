@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>Lindenmayer</string>
+	<string>com.github.heckj.Lindenmayer</string>
 	<key>CFBundleDisplayName</key>
 	<string>Lindenmayer</string>
 	<key>CDDefaultCodeListingLanguage</key>

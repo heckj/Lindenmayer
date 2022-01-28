@@ -47,6 +47,7 @@ Package.resolved
 # .swiftpm
 
 .build/
+html/
 .swiftpm
 .vscode
 .docc-build/

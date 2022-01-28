@@ -37,7 +37,7 @@ xcrun docc convert \
 --fallback-display-name Lindenmayer \
 --fallback-bundle-identifier Lindenmayer-swift \
 --fallback-bundle-version 0.1.0 \
---additional-symbol-graph-dir .build/symbol-graphs \
+--additional-symbol-graph-dir .build/symbol-graphs
 ```
 
 To get documentation coverage details:
