@@ -159,7 +159,7 @@ public extension RandomContextualLSystem {
         where evalClosure: @escaping (LC, DC, RC) -> Bool,
         produces produceClosure: @escaping (LC, DC, RC, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
-        where LC: Module, DC: Module, RC: Module, PRNG: RandomNumberGenerator
+        where LC: Module, DC: Module, RC: Module
     {
         let rule = RewriteRuleLeftDirectRightRNG(
             leftType: leftContext, directType: directContext, rightType: rightContext,
@@ -183,7 +183,7 @@ public extension RandomContextualLSystem {
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
         produces produceClosure: @escaping (LC, DC, RC, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
-        where LC: Module, DC: Module, RC: Module, PRNG: RandomNumberGenerator
+        where LC: Module, DC: Module, RC: Module
     {
         let rule = RewriteRuleLeftDirectRightRNG(
             leftType: leftContext, directType: directContext, rightType: rightContext,

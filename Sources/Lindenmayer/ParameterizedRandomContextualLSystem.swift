@@ -206,7 +206,7 @@ public extension ParameterizedRandomContextualLSystem {
         where evalClosure: @escaping (LC, DC, RC, PType) -> Bool,
         produces produceClosure: @escaping (LC, DC, RC, PType, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
-        where LC: Module, DC: Module, RC: Module, PRNG: RandomNumberGenerator
+        where LC: Module, DC: Module, RC: Module
     {
         let rule = RewriteRuleLeftDirectRightDefinesRNG(
             leftType: leftContext, directType: directContext, rightType: rightContext,
@@ -231,7 +231,7 @@ public extension ParameterizedRandomContextualLSystem {
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
         produces produceClosure: @escaping (LC, DC, RC, PType, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
-        where LC: Module, DC: Module, RC: Module, PRNG: RandomNumberGenerator
+        where LC: Module, DC: Module, RC: Module
     {
         let rule = RewriteRuleLeftDirectRightDefinesRNG(
             leftType: leftContext, directType: directContext, rightType: rightContext,
@@ -307,7 +307,7 @@ public extension ParameterizedRandomContextualLSystem {
         where evalClosure: @escaping (DC, RC, PType) -> Bool,
         produces produceClosure: @escaping (DC, RC, PType, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
-        where DC: Module, RC: Module, PRNG: RandomNumberGenerator
+        where DC: Module, RC: Module
     {
         let rule = RewriteRuleDirectRightDefinesRNG(
             directType: directContext, rightType: rightContext,
@@ -606,7 +606,7 @@ public extension ParameterizedRandomContextualLSystem {
         where evalClosure: @escaping (LC, DC, RC) -> Bool,
         produces produceClosure: @escaping (LC, DC, RC, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
-        where LC: Module, DC: Module, RC: Module, PRNG: RandomNumberGenerator
+        where LC: Module, DC: Module, RC: Module
     {
         let rule = RewriteRuleLeftDirectRightRNG(
             leftType: leftContext, directType: directContext, rightType: rightContext,
@@ -630,7 +630,7 @@ public extension ParameterizedRandomContextualLSystem {
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
         produces produceClosure: @escaping (LC, DC, RC, RNGWrapper<PRNG>) -> [Module]
     ) -> Self
-        where LC: Module, DC: Module, RC: Module, PRNG: RandomNumberGenerator
+        where LC: Module, DC: Module, RC: Module
     {
         let rule = RewriteRuleLeftDirectRightRNG(
             leftType: leftContext, directType: directContext, rightType: rightContext,
