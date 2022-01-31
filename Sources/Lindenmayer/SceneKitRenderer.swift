@@ -145,7 +145,7 @@ public struct SceneKitRenderer {
         scene.rootNode.addChildNode(cameraNode)
 
         // set up debug/sizing flooring
-        scene.rootNode.addChildNode(debugFlooring())
+        scene.rootNode.addChildNode(DebugNodes.debugFlooring())
 
         var transformSequence: [matrix_float4x4] = []
 

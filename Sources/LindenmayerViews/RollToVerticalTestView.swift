@@ -69,7 +69,7 @@ public struct RollToVerticalTestView: View {
         cameraNode.simdLook(at: simd_float3(x: 0, y: 0, z: 0))
 
         // set up debug/sizing flooring
-        scene.rootNode.addChildNode(debugFlooring())
+        scene.rootNode.addChildNode(DebugNodes.debugFlooring())
 
         return (scene, cameraNode)
     }
@@ -127,8 +127,8 @@ public struct RollToVerticalTestView: View {
 
     public init() {
         (scene, cameraNode) = RollToVerticalTestView.generateExampleScene()
-        scene.rootNode.addChildNode(axis(length: 4, labels: true))
-        let heading = headingIndicator()
+        scene.rootNode.addChildNode(DebugNodes.axis(length: 4, labels: true))
+        let heading = DebugNodes.headingIndicator()
         scene.rootNode.addChildNode(heading)
         heading.simdTransform = RollToVerticalTestView.transform_119
         selectedNode = heading

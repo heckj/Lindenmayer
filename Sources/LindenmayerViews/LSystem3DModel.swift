@@ -45,7 +45,7 @@ public class LSystem3DModel: ObservableObject {
             objectWillChange.send()
             system = _baseSystem.evolved(iterations: _iterations)
             (_scene, _transformSequence) = renderer.generateScene(lsystem: system)
-            let headingIndicator = headingIndicator()
+            let headingIndicator = DebugNodes.headingIndicator()
             headingIndicator.opacity = 0
             let bigger = SceneKitRenderer.scalingTransform(x: 2.5, y: 2.5, z: 2.5)
             headingIndicator.simdTransform = matrix_multiply(headingIndicator.simdTransform, bigger)
@@ -58,7 +58,7 @@ public class LSystem3DModel: ObservableObject {
     public init(system: LindenmayerSystem) {
         self.system = system
         (_scene, _transformSequence) = renderer.generateScene(lsystem: _baseSystem)
-        let headingIndicator = headingIndicator()
+        let headingIndicator = DebugNodes.headingIndicator()
         _scene.rootNode.addChildNode(headingIndicator)
     }
 
@@ -66,7 +66,7 @@ public class LSystem3DModel: ObservableObject {
     public init() {
         system = _baseSystem
         (_scene, _transformSequence) = renderer.generateScene(lsystem: _baseSystem)
-        let headingIndicator = headingIndicator()
+        let headingIndicator = DebugNodes.headingIndicator()
         _scene.rootNode.addChildNode(headingIndicator)
     }
 }
