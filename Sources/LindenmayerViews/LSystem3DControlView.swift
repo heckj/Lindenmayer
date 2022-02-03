@@ -95,6 +95,9 @@ public struct LSystem3DControlView: View {
     public var body: some View {
         VStack {
             HStack {
+                #if (os(tvOS) || os(watchOS))
+                // TODO: replace this functionality for tvOS and watchOS
+                #else
                 Stepper {
                     Text("Iterations: \(iterations)")
                 } onIncrement: {
@@ -114,6 +117,7 @@ public struct LSystem3DControlView: View {
                         autolook(at: stateIndex)
                     }
                 }
+                #endif
                 Toggle(isOn: $autoLookAt) {
                     Text("Look At")
                 }

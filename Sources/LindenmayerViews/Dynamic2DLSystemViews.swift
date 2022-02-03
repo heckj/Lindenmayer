@@ -53,6 +53,9 @@ public struct Dynamic2DLSystemViews: View {
             .padding()
             HStack {
                 Text("Evolutions:")
+                #if os(tvOS)
+                // FIXME: replace this functionality for tvOS
+                #else
                 Slider(value: $evolutions, in: 0 ... 10.0, step: 1.0) {
                     Text("Evolutions")
                 } minimumValueLabel: {
@@ -60,6 +63,7 @@ public struct Dynamic2DLSystemViews: View {
                 } maximumValueLabel: {
                     Text("10")
                 }
+                #endif
             }
             .padding()
             Lsystem2DView(system: selectedSystem.lsystem.evolved(iterations: Int(evolutions)),

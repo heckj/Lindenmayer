@@ -30,6 +30,9 @@ public struct StateSelectorView: View {
                 ScrollView(.horizontal, showsIndicators: true) {
                     HorizontalLSystemStateView(size: .medium, system: system)
                 }
+                #if os(tvOS)
+                // TODO: replace the control mechanism for tvOS
+                #else
                 if system.state.count > 1 {
                     // a slider can't be 0 ... 0 - "max stride must be positive"
                     Slider(value: $sliderPosition,
@@ -43,8 +46,26 @@ public struct StateSelectorView: View {
                                sliderPosition = Double(newValue)
                            }
                 }
+                #endif
                 Text("Position: \(Int(sliderPosition)) of \(system.state.count - 1)")
                 HStack {
+                    #if (os(tvOS) || os(watchOS))
+                    Button {
+                        // ending the long press
+                        if self.isLongPressingReverse {
+                            self.isLongPressingReverse.toggle()
+                            self.reverseTimer?.invalidate()
+                        } else {
+                            if sliderPosition >= 1.0 {
+                                sliderPosition -= 1
+                                indexPosition -= 1
+                                proxy.scrollTo(indexPosition)
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "chevron.backward.square")
+                    }
+                    #else
                     Button {
                         // ending the long press
                         if self.isLongPressingReverse {
@@ -78,9 +99,27 @@ public struct StateSelectorView: View {
                         })
                     })
                     .keyboardShortcut(KeyboardShortcut(.leftArrow))
+                    #endif
                     Spacer()
                     WindowedSmallModuleView(size: .touchable, system: system, position: indexPosition, windowSize: 7)
                     Spacer()
+                    #if (os(tvOS) || os(watchOS))
+                    Button {
+                        // ending the long press forward
+                        if self.isLongPressingForward {
+                            self.isLongPressingForward.toggle()
+                            self.forwardTimer?.invalidate()
+                        } else {
+                            if sliderPosition < Double(system.state.count - 1) {
+                                sliderPosition += 1
+                                indexPosition += 1
+                                proxy.scrollTo(indexPosition)
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "chevron.forward.square")
+                    }
+                    #else
                     Button {
                         // ending the long press forward
                         if self.isLongPressingForward {
@@ -114,6 +153,7 @@ public struct StateSelectorView: View {
                         })
                     })
                     .keyboardShortcut(KeyboardShortcut(.rightArrow))
+                    #endif
                 }
                 if _withDetailView {
                     ModuleDetailView(module: system.state(at: indexPosition))
