@@ -10,7 +10,7 @@ export DOCC_JSON_PRETTYPRINT=YES
 #
 xcrun swift package \
     --allow-writing-to-directory ./docs \
-    --target MeshGenerator \
+    --target Lindenmayer \
     generate-documentation \
     --output-path ./docs \
     --emit-digest \
