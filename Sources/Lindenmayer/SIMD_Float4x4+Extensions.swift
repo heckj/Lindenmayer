@@ -35,14 +35,10 @@ public extension simd_float4x4 {
     /// Calculate a normalized heading vector, originally vertical, using a 4x4 state transform
     /// - Returns: a 3D unit vector of the heading
     func headingVector() -> simd_float3 {
-//        // full affine method
-//        let original_heading_vector = simd_float4(x: 0, y: 1, z: 0, w: 1)
-//        let rotated_heading_4 = matrix_multiply(self, original_heading_vector)
-//        return simd_float3(x: rotated_heading_4.x, y: rotated_heading_4.y, z:rotated_heading_4.z)
-        // pulling just the transform out:
         let short_heading_vector = simd_float3(x: 0, y: 1, z: 0)
-        let rotated_heading_3 = matrix_multiply(rotationTransform, short_heading_vector)
-        return rotated_heading_3
+        // pulling just the transform out:
+        let rotated_heading = matrix_multiply(rotationTransform, short_heading_vector)
+        return rotated_heading
     }
 
     /// Returns the angle between the current heading vector that this transform represents and the +Y direction vector.
