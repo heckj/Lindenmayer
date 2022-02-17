@@ -3,9 +3,6 @@
 set -e
 set -x
 
-rm -rf html
-mkdir -p html
-
 rm -rf .build
 mkdir -p .build/symbol-graphs
 
@@ -21,18 +18,11 @@ swift build --target Lindenmayer \
 # cull the non-Lindenmayer specific builds from the symbol graph files
 rm -f .build/symbol-graphs/SceneKitDebug* .build/symbol-graphs/Squirrel3*
 
-export DOCC_JSON_PRETTYPRINT=YES
-
 xcrun docc convert Sources/Lindenmayer/Lindenmayer.docc \
-    --output-path Lindenmayer.doccarchive \
-    --enable-inherited-docs \
-    --fallback-display-name Lindenmayer \
-    --fallback-bundle-identifier com.github.heckj.Lindenmayer \
-    --fallback-bundle-version 0.1.0 \
-    --additional-symbol-graph-dir .build/symbol-graphs
-
-#--emit-digest
-#--output-path html \
-# Generate a list of all the identifiers for DocC curation
-# find html/data -name "*.json" -exec jq '.identifier.url' {} \; | sed -e 's/"//g'> html/all_identifiers.txt
-# sort html/all_identifiers.txt | sed -e 's/^/ - ``/g' | sed -e 's/$/``/g' > docc_identifiers.txt
+--analyze \
+--fallback-display-name Lindenmayer \
+--fallback-bundle-identifier com.github.heckj.Lindenmayer \
+--fallback-bundle-version 0.1.0 \
+--additional-symbol-graph-dir .build/symbol-graphs \
+--experimental-documentation-coverage \
+--level brief
