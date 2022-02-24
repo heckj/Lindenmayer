@@ -54,15 +54,31 @@ public struct Dynamic2DLSystemViews: View {
             HStack {
                 Text("Evolutions:")
                 #if os(tvOS)
-                // FIXME: replace this functionality for tvOS
+                    HStack {
+                        Button {
+                            if evolutions > 0.9 {
+                                evolutions -= 1
+                            }
+                        } label: {
+                            Image(systemName: "minus.square")
+                        }
+                        ProgressView(value: evolutions)
+                        Button {
+                            if evolutions < 9.0 {
+                                evolutions += 1
+                            }
+                        } label: {
+                            Image(systemName: "plus.square")
+                        }
+                    }
                 #else
-                Slider(value: $evolutions, in: 0 ... 10.0, step: 1.0) {
-                    Text("Evolutions")
-                } minimumValueLabel: {
-                    Text("0")
-                } maximumValueLabel: {
-                    Text("10")
-                }
+                    Slider(value: $evolutions, in: 0 ... 10.0, step: 1.0) {
+                        Text("Evolutions")
+                    } minimumValueLabel: {
+                        Text("0")
+                    } maximumValueLabel: {
+                        Text("10")
+                    }
                 #endif
             }
             .padding()

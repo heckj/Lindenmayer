@@ -95,28 +95,51 @@ public struct LSystem3DControlView: View {
     public var body: some View {
         VStack {
             HStack {
-                #if (os(tvOS) || os(watchOS))
-                // TODO: replace this functionality for tvOS and watchOS
+                #if os(tvOS) || os(watchOS)
+                    VStack {
+                        Button {
+                            if iterations < 15 {
+                                iterations += 1
+                                model.iterations = iterations
+                                stateIndex = 0
+                                currentNode = nil
+                                autolook(at: stateIndex)
+                            }
+                        } label: {
+                            Image(systemName: "plus.square")
+                        }
+                        Button {
+                            if iterations > 1 {
+                                iterations -= 1
+                                model.iterations = iterations
+                                stateIndex = 0
+                                currentNode = nil
+                                autolook(at: stateIndex)
+                            }
+                        } label: {
+                            Image(systemName: "minus.square")
+                        }
+                    }.padding()
                 #else
-                Stepper {
-                    Text("Iterations: \(iterations)")
-                } onIncrement: {
-                    if iterations < 15 {
-                        iterations += 1
-                        model.iterations = iterations
-                        stateIndex = 0
-                        currentNode = nil
-                        autolook(at: stateIndex)
+                    Stepper {
+                        Text("Iterations: \(iterations)")
+                    } onIncrement: {
+                        if iterations < 15 {
+                            iterations += 1
+                            model.iterations = iterations
+                            stateIndex = 0
+                            currentNode = nil
+                            autolook(at: stateIndex)
+                        }
+                    } onDecrement: {
+                        if iterations > 1 {
+                            iterations -= 1
+                            model.iterations = iterations
+                            stateIndex = 0
+                            currentNode = nil
+                            autolook(at: stateIndex)
+                        }
                     }
-                } onDecrement: {
-                    if iterations > 1 {
-                        iterations -= 1
-                        model.iterations = iterations
-                        stateIndex = 0
-                        currentNode = nil
-                        autolook(at: stateIndex)
-                    }
-                }
                 #endif
                 Toggle(isOn: $autoLookAt) {
                     Text("Look At")

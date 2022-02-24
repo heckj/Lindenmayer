@@ -31,128 +31,145 @@ public struct StateSelectorView: View {
                     HorizontalLSystemStateView(size: .medium, system: system)
                 }
                 #if os(tvOS)
-                // TODO: replace the control mechanism for tvOS
+                    VStack {
+                        Button {
+                            if indexPosition < system.state.count - 1 {
+                                indexPosition += 1
+                                proxy.scrollTo(indexPosition)
+                            }
+                        } label: {
+                            Image(systemName: "plus.square")
+                        }
+                        Button {
+                            if indexPosition > 1 {
+                                indexPosition -= 1
+                                proxy.scrollTo(indexPosition)
+                            }
+                        } label: {
+                            Image(systemName: "minus.square")
+                        }
+                    }.padding()
                 #else
-                if system.state.count > 1 {
-                    // a slider can't be 0 ... 0 - "max stride must be positive"
-                    Slider(value: $sliderPosition,
-                           in: 0 ... Double(system.state.count - 1),
-                           step: 1,
-                           onEditingChanged: { _ in
-                               indexPosition = Int(sliderPosition)
-                               proxy.scrollTo(indexPosition)
-                           })
-                           .onChange(of: indexPosition) { newValue in
-                               sliderPosition = Double(newValue)
-                           }
-                }
+                    if system.state.count > 1 {
+                        // a slider can't be 0 ... 0 - "max stride must be positive"
+                        Slider(value: $sliderPosition,
+                               in: 0 ... Double(system.state.count - 1),
+                               step: 1,
+                               onEditingChanged: { _ in
+                                   indexPosition = Int(sliderPosition)
+                                   proxy.scrollTo(indexPosition)
+                               })
+                               .onChange(of: indexPosition) { newValue in
+                                   sliderPosition = Double(newValue)
+                               }
+                    }
                 #endif
                 Text("Position: \(Int(sliderPosition)) of \(system.state.count - 1)")
                 HStack {
-                    #if (os(tvOS) || os(watchOS))
-                    Button {
-                        // ending the long press
-                        if self.isLongPressingReverse {
-                            self.isLongPressingReverse.toggle()
-                            self.reverseTimer?.invalidate()
-                        } else {
-                            if sliderPosition >= 1.0 {
-                                sliderPosition -= 1
-                                indexPosition -= 1
-                                proxy.scrollTo(indexPosition)
+                    #if os(tvOS) || os(watchOS)
+                        Button {
+                            // ending the long press
+                            if self.isLongPressingReverse {
+                                self.isLongPressingReverse.toggle()
+                                self.reverseTimer?.invalidate()
+                            } else {
+                                if sliderPosition >= 1.0 {
+                                    sliderPosition -= 1
+                                    indexPosition -= 1
+                                    proxy.scrollTo(indexPosition)
+                                }
                             }
+                        } label: {
+                            Image(systemName: "chevron.backward.square")
                         }
-                    } label: {
-                        Image(systemName: "chevron.backward.square")
-                    }
                     #else
-                    Button {
-                        // ending the long press
-                        if self.isLongPressingReverse {
-                            self.isLongPressingReverse.toggle()
-                            self.reverseTimer?.invalidate()
-                        } else {
-                            if sliderPosition >= 1.0 {
-                                sliderPosition -= 1
-                                indexPosition -= 1
-                                proxy.scrollTo(indexPosition)
+                        Button {
+                            // ending the long press
+                            if self.isLongPressingReverse {
+                                self.isLongPressingReverse.toggle()
+                                self.reverseTimer?.invalidate()
+                            } else {
+                                if sliderPosition >= 1.0 {
+                                    sliderPosition -= 1
+                                    indexPosition -= 1
+                                    proxy.scrollTo(indexPosition)
+                                }
                             }
+                        } label: {
+                            Image(systemName: "chevron.backward.square")
+                            #if os(iOS)
+                                .font(.title)
+                            #endif
                         }
-                    } label: {
-                        Image(systemName: "chevron.backward.square")
-                        #if os(iOS)
-                            .font(.title)
-                        #endif
-                    }
-                    .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
-                        // start the long press reverse
-                        self.isLongPressingReverse = true
-                        self.isLongPressingForward = false
-                        self.forwardTimer?.invalidate()
-                        // or fastforward has started to start the timer
-                        self.reverseTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
-                            if sliderPosition >= 1.0 {
-                                sliderPosition -= 1
-                                indexPosition -= 1
-                                proxy.scrollTo(indexPosition)
-                            }
+                        .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
+                            // start the long press reverse
+                            self.isLongPressingReverse = true
+                            self.isLongPressingForward = false
+                            self.forwardTimer?.invalidate()
+                            // or fastforward has started to start the timer
+                            self.reverseTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+                                if sliderPosition >= 1.0 {
+                                    sliderPosition -= 1
+                                    indexPosition -= 1
+                                    proxy.scrollTo(indexPosition)
+                                }
+                            })
                         })
-                    })
-                    .keyboardShortcut(KeyboardShortcut(.leftArrow))
+                        .keyboardShortcut(KeyboardShortcut(.leftArrow))
                     #endif
                     Spacer()
                     WindowedSmallModuleView(size: .touchable, system: system, position: indexPosition, windowSize: 7)
                     Spacer()
-                    #if (os(tvOS) || os(watchOS))
-                    Button {
-                        // ending the long press forward
-                        if self.isLongPressingForward {
-                            self.isLongPressingForward.toggle()
-                            self.forwardTimer?.invalidate()
-                        } else {
-                            if sliderPosition < Double(system.state.count - 1) {
-                                sliderPosition += 1
-                                indexPosition += 1
-                                proxy.scrollTo(indexPosition)
+                    #if os(tvOS) || os(watchOS)
+                        Button {
+                            // ending the long press forward
+                            if self.isLongPressingForward {
+                                self.isLongPressingForward.toggle()
+                                self.forwardTimer?.invalidate()
+                            } else {
+                                if sliderPosition < Double(system.state.count - 1) {
+                                    sliderPosition += 1
+                                    indexPosition += 1
+                                    proxy.scrollTo(indexPosition)
+                                }
                             }
+                        } label: {
+                            Image(systemName: "chevron.forward.square")
                         }
-                    } label: {
-                        Image(systemName: "chevron.forward.square")
-                    }
                     #else
-                    Button {
-                        // ending the long press forward
-                        if self.isLongPressingForward {
-                            self.isLongPressingForward.toggle()
-                            self.forwardTimer?.invalidate()
-                        } else {
-                            if sliderPosition < Double(system.state.count - 1) {
-                                sliderPosition += 1
-                                indexPosition += 1
-                                proxy.scrollTo(indexPosition)
+                        Button {
+                            // ending the long press forward
+                            if self.isLongPressingForward {
+                                self.isLongPressingForward.toggle()
+                                self.forwardTimer?.invalidate()
+                            } else {
+                                if sliderPosition < Double(system.state.count - 1) {
+                                    sliderPosition += 1
+                                    indexPosition += 1
+                                    proxy.scrollTo(indexPosition)
+                                }
                             }
+                        } label: {
+                            Image(systemName: "chevron.forward.square")
+                            #if os(iOS)
+                                .font(.title)
+                            #endif
                         }
-                    } label: {
-                        Image(systemName: "chevron.forward.square")
-                        #if os(iOS)
-                            .font(.title)
-                        #endif
-                    }
-                    .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
-                        // start the long press forward
-                        self.isLongPressingForward = true
-                        self.isLongPressingReverse = false
-                        self.reverseTimer?.invalidate()
-                        // or fastforward has started to start the timer
-                        self.forwardTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
-                            if sliderPosition < Double(system.state.count - 1) {
-                                sliderPosition += 1
-                                indexPosition += 1
-                                proxy.scrollTo(indexPosition)
-                            }
+                        .simultaneousGesture(LongPressGesture(minimumDuration: 0.2).onEnded { _ in
+                            // start the long press forward
+                            self.isLongPressingForward = true
+                            self.isLongPressingReverse = false
+                            self.reverseTimer?.invalidate()
+                            // or fastforward has started to start the timer
+                            self.forwardTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+                                if sliderPosition < Double(system.state.count - 1) {
+                                    sliderPosition += 1
+                                    indexPosition += 1
+                                    proxy.scrollTo(indexPosition)
+                                }
+                            })
                         })
-                    })
-                    .keyboardShortcut(KeyboardShortcut(.rightArrow))
+                        .keyboardShortcut(KeyboardShortcut(.rightArrow))
                     #endif
                 }
                 if _withDetailView {
