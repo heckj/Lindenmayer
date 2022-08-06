@@ -22,7 +22,7 @@ xcrun docc convert Sources/Lindenmayer/Lindenmayer.docc \
 --analyze \
 --fallback-display-name Lindenmayer \
 --fallback-bundle-identifier com.github.heckj.Lindenmayer \
---fallback-bundle-version 0.1.0 \
+--fallback-bundle-version 0.7.2 \
 --additional-symbol-graph-dir .build/symbol-graphs \
 --experimental-documentation-coverage \
 --level brief
