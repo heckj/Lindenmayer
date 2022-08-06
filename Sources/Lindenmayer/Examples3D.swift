@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Squirrel3
 
 /// A collection of three-dimensional example L-systems.
 ///
@@ -221,7 +220,7 @@ public enum Examples3D {
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static var monopodialTree = LSystem.create(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
-        with: PRNG(seed: 42),
+        with: Xoshiro(seed: 42),
         using: defines
     )
     .rewriteWithParams(directContext: Trunk.self) { trunk, params in
@@ -352,7 +351,7 @@ public enum Examples3D {
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
     public static let sympodialTree = LSystem.create(
         MainBranch(growthDistance: 10, diameter: 1),
-        with: PRNG(seed: 0),
+        with: Xoshiro(seed: 0),
         using: figure2_7A
     ).rewriteWithParams(directContext: MainBranch.self) { node, params in
         //    p1 : A(l,w) : * → !(w)F(l)[&(a1)B(l*r1,w*wr)] /(180)[&(a2 )B(l*r2 ,w*wr )]
@@ -415,7 +414,7 @@ public enum Examples3D {
         }
     }
 
-    public static var randomBush = LSystem.create(Stem2(length: 1), with: PRNG(seed: 42))
+    public static var randomBush = LSystem.create(Stem2(length: 1), with: Xoshiro(seed: 42))
         .rewriteWithRNG(directContext: Stem2.self) { stem, rng -> [Module] in
 
             let upper: Float = 45.0

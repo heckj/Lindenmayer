@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Squirrel3
 
 /// A class that provides reference semantics to access an underlying parameter value type that you provide.
 ///

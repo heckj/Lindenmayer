@@ -1,10 +1,9 @@
 @testable import Lindenmayer
-import Squirrel3
 import XCTest
 
 final class WhiteboxLSystemTests: XCTestCase {
     func testLSystemDefault() throws {
-        let x = RandomContextualLSystem<PRNG>(axiom: [Examples2D.Internode()], state: nil, newStateIndicators: nil, prng: RNGWrapper(PRNG(seed: 0)))
+        let x = RandomContextualLSystem(axiom: [Examples2D.Internode()], state: nil, newStateIndicators: nil, prng: RNGWrapper(Xoshiro(seed: 0)))
         XCTAssertNotNil(x)
         // Verify internal state of LSystem:
         // No rules

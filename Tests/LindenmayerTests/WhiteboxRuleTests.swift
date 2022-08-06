@@ -1,5 +1,4 @@
 @testable import Lindenmayer
-import Squirrel3
 import XCTest
 
 final class WhiteboxRuleTests: XCTestCase {
@@ -16,7 +15,7 @@ final class WhiteboxRuleTests: XCTestCase {
     }
 
     func testRuleProduction() throws {
-        let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self, prng: RNGWrapper(PRNG(seed: 0)), where: nil) { _, _ in
+        let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self, prng: RNGWrapper(Xoshiro(seed: 0)), where: nil) { _, _ in
             [Examples2D.Internode()]
         }
         XCTAssertNotNil(r)

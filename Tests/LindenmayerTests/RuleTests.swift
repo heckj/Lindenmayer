@@ -1,5 +1,4 @@
 @testable import Lindenmayer
-import Squirrel3
 import XCTest
 
 final class RuleTests: XCTestCase {
@@ -11,7 +10,7 @@ final class RuleTests: XCTestCase {
 
     func testRuleDefaults() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
-                                     prng: RNGWrapper(PRNG(seed: 0)),
+                                     prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil) { ctx, _ -> [Module] in
             XCTAssertNotNil(ctx)
 
@@ -24,7 +23,7 @@ final class RuleTests: XCTestCase {
 
     func testRuleBasicMatch() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
-                                     prng: RNGWrapper(PRNG(seed: 0)),
+                                     prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil) { _, _ -> [Module] in
             [self.foo]
         }
@@ -35,7 +34,7 @@ final class RuleTests: XCTestCase {
 
     func testRuleBasicFailMatch() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
-                                     prng: RNGWrapper(PRNG(seed: 0)),
+                                     prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil) { _, _ -> [Module] in
             [self.foo]
         }
@@ -45,7 +44,7 @@ final class RuleTests: XCTestCase {
 
     func testRuleMatchExtraRight() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
-                                     prng: RNGWrapper(PRNG(seed: 0)),
+                                     prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil) { _, _ -> [Module] in
             [self.foo]
         }
@@ -57,7 +56,7 @@ final class RuleTests: XCTestCase {
 
     func testRuleMatchExtraLeft() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
-                                     prng: RNGWrapper(PRNG(seed: 0)),
+                                     prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil) { _, _ -> [Module] in
             [self.foo]
         }
@@ -70,7 +69,7 @@ final class RuleTests: XCTestCase {
 
     func testRuleMatchExtraLeftAndRight() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
-                                     prng: RNGWrapper(PRNG(seed: 0)),
+                                     prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil) { _, _ -> [Module] in
             [self.foo]
         }
