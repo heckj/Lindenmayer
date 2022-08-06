@@ -28,7 +28,6 @@ To get support for using this package, see the [Discussions on Github](https://g
 - ``ParameterizedRandomContextualLSystem``
 - ``LindenmayerSystem``
 - ``ModuleSet``
-- ``RNGWrapper``
 - ``ParametersWrapper``
 
 ### Modules
@@ -85,3 +84,9 @@ To get support for using this package, see the [Discussions on Github](https://g
 
 - ``Examples2D``
 - ``Examples3D``
+
+### Seeded Pseudo-Random Number Generation
+
+- ``RNGWrapper``
+- ``Lindenmayer/SeededRandomNumberGenerator``
+- ``Lindenmayer/Xoshiro``

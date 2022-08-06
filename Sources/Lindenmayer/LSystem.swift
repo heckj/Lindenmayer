@@ -28,13 +28,13 @@ import Foundation
 ///
 /// ### Creating a Contextual L-system with Randomness
 ///
-/// - ``LSystem/create(_:with:)-8xbbx``
-/// - ``LSystem/create(_:with:)-1otrb``
+/// - ``Lindenmayer/LSystem/create(_:with:)-5qbah``
+/// - ``Lindenmayer/LSystem/create(_:with:)-9349q``
 ///
 /// ### Creating a Contextual L-system with Randomness and Parameters
 ///
-/// - ``LSystem/create(_:with:using:)-49uk9``
-/// - ``LSystem/create(_:with:using:)-49uk9``
+/// - ``Lindenmayer/LSystem/create(_:with:using:)-1nce9``
+/// - ``Lindenmayer/LSystem/create(_:with:using:)-2nwqc``
 ///
 public enum LSystem {
     /// Creates a new Lindenmayer system from an initial state.

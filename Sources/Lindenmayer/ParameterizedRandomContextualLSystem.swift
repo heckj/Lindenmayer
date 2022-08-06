@@ -112,7 +112,7 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     ///   - prng: A psuedo-random number generator to use for stochastic rule productions.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     ///
-    /// Convenient initializers for creating contextual L-systems uses ``LSystem``, calling ``LSystem/create(_:with:using:)-30rc3``, or ``LSystem/create(_:with:using:)-49uk9``.
+    /// Convenient initializers for creating contextual L-systems uses ``LSystem``, calling ``Lindenmayer/LSystem/create(_:with:using:)-1nce9``, or ``Lindenmayer/LSystem/create(_:with:using:)-2nwqc``
     public init(axiom: [Module],
                 state: [Module]?,
                 newStateIndicators: [Bool]?,
