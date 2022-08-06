@@ -27,3 +27,19 @@ The rules all now also have additional evaluation criteria enabled through an op
 * Debug view in https://github.com/heckj/Lindenmayer/pull/28
 
 **Full Changelog**: https://github.com/heckj/Lindenmayer/compare/0.7.0...0.7.1
+
+## [0.7.2](https://github.com/heckj/Lindenmayer/releases/tag/0.7.2) (2022-1-31)
+
+* updating 3D rendering by @heckj in https://github.com/heckj/Lindenmayer/pull/30
+* Roll to vertical by @heckj in https://github.com/heckj/Lindenmayer/pull/32
+* Updating documentation for Lindenmayer by @heckj in https://github.com/heckj/Lindenmayer/pull/31
+* final tweaks to resource locations by @heckj in https://github.com/heckj/Lindenmayer/pull/34
+* fixes for updates in dependency modules that are pre-release
+
+**Full Changelog**: https://github.com/heckj/Lindenmayer/compare/0.7.1...0.7.2
+
+## [0.7.3](https://github.com/heckj/Lindenmayer/releases/tag/0.7.3) (2022-806)
+
+* removing Squirrel3 dependency by @heckj in #36, which allows for Lindenmayer to be used within Swift Playgrounds as it's now all pure-swift code (no C-based dependencies)
+
+**Full Changelog**: https://github.com/heckj/Lindenmayer/compare/0.7.2...0.7.3
