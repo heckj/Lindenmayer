@@ -16,20 +16,28 @@
 //    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
 //    IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+/// A pseudo-random number generator that produces random numbers based on an initial seed.
+///
+/// The algorithm for the generation is xoshiro256, based on the [public domain implementation](http://xoshiro.di.unimi.it).
 public struct Xoshiro: SeededRandomNumberGenerator {
+    /// The initial seed for pseuo-random number generation.
     public let seed: UInt64
-
+    
+    /// The current position of the generator.
     public var position: UInt64
 
     public typealias StateType = (UInt64, UInt64, UInt64, UInt64)
     private var state: StateType = (0, 0, 0, 0)
-
+    
+    /// Creates a new pseudo-random number generator from the seed value you provide.
+    /// - Parameter seed: A seed value.
     public init(seed: UInt64) {
         self.seed = seed
         position = 0
         state = (seed, seed, seed, seed)
     }
-
+    
+    /// Returns the next pseudo-random number.
     public mutating func next() -> UInt64 {
         /*  Written in 2016 by David Blackman and Sebastiano Vigna (vigna@acm.org)
 
