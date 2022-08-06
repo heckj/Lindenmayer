@@ -6,7 +6,6 @@
 //
 
 @testable import Lindenmayer
-import Squirrel3
 import XCTest
 
 final class PWrapperTests: XCTestCase {
@@ -16,7 +15,7 @@ final class PWrapperTests: XCTestCase {
         }
         let initialP = P(value: 10)
 
-        let f = LSystem.create(Examples2D.Internode(), with: PRNG(seed: 0), using: initialP)
+        let f = LSystem.create(Examples2D.Internode(), with: Xoshiro(seed: 0), using: initialP)
             .rewriteWithParams(directContext: Examples2D.Internode.self) { m, params in
                 XCTAssertEqual(params.value, 10)
                 return [m]
@@ -32,7 +31,7 @@ final class PWrapperTests: XCTestCase {
         }
         let initialP = P(value: 10)
 
-        let f = LSystem.create(Examples2D.Internode(), with: PRNG(seed: 0), using: initialP)
+        let f = LSystem.create(Examples2D.Internode(), with: Xoshiro(seed: 0), using: initialP)
             .rewriteWithParams(directContext: Examples2D.Internode.self) { m, params in
                 XCTAssertEqual(params.value, 13)
                 return [m]

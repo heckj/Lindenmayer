@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Squirrel3
 
 /// A class that provides probabilistic functions based on the seedable psuedo-random number generator used to create it.
 ///

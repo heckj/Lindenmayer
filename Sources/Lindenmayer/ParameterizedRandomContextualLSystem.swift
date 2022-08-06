@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Squirrel3
 
 /// A parameterized, stochastic Lindenmayer system.
 ///

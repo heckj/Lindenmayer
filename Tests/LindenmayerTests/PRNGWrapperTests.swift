@@ -1,18 +1,17 @@
 @testable import Lindenmayer
-import Squirrel3
 import XCTest
 
 final class PRNGWrapperTests: XCTestCase {
     func testConsistency_HasherPRNG() throws {
         let seed: UInt64 = 235_474_323
         var firstResults: [UInt64] = []
-        var subject1 = PRNG(seed: seed)
+        var subject1 = Xoshiro(seed: seed)
         for _ in 0 ... 10 {
             firstResults.append(subject1.next())
         }
 
         var secondResults: [UInt64] = []
-        var subject2 = PRNG(seed: seed)
+        var subject2 = Xoshiro(seed: seed)
         for _ in 0 ... 10 {
             secondResults.append(subject2.next())
         }
@@ -22,13 +21,13 @@ final class PRNGWrapperTests: XCTestCase {
     func testInconsistency_HasherPRNG() throws {
         let seed: UInt64 = 235_474_323
         var firstResults: [UInt64] = []
-        var subject1 = PRNG(seed: seed)
+        var subject1 = Xoshiro(seed: seed)
         for _ in 0 ... 10 {
             firstResults.append(subject1.next())
         }
 
         var secondResults: [UInt64] = []
-        var subject2 = PRNG(seed: seed + 1)
+        var subject2 = Xoshiro(seed: seed + 1)
         for _ in 0 ... 10 {
             secondResults.append(subject2.next())
         }
@@ -38,14 +37,14 @@ final class PRNGWrapperTests: XCTestCase {
     func testPosition_PRNG() throws {
         let seed: UInt64 = 34634
         var firstResults: [UInt64] = []
-        var subject1 = PRNG(seed: seed)
+        var subject1 = Xoshiro(seed: seed)
         let capturedPosition = subject1.position
         for _ in 0 ... 10 {
             firstResults.append(subject1.next())
         }
 
         var secondResults: [UInt64] = []
-        var subject2 = PRNG(seed: seed)
+        var subject2 = Xoshiro(seed: seed)
         subject2.position = capturedPosition
         for _ in 0 ... 10 {
             secondResults.append(subject2.next())
@@ -66,7 +65,7 @@ final class PRNGWrapperTests: XCTestCase {
         XCTAssertEqual(oneEv.prng._invokeCount, 2)
         // print(oneEv.prng.position)
 
-        let sideTest = RNGWrapper(PRNG(seed: 42))
+        let sideTest = RNGWrapper(Xoshiro(seed: 42))
         _ = sideTest.p()
         _ = sideTest.p()
         XCTAssertEqual(sideTest._invokeCount, 2)
@@ -93,7 +92,7 @@ final class PRNGWrapperTests: XCTestCase {
 
         start.prng.resetRNG(seed: start.prng.seed)
         XCTAssertEqual(oneEv.prng.seed, 42)
-        XCTAssertEqual(oneEv.prng.position, 42)
+        XCTAssertEqual(oneEv.prng.position, 0)
         XCTAssertEqual(oneEv.prng._invokeCount, 0)
     }
 }

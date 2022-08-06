@@ -18,12 +18,6 @@ let package = Package(
         .library(name: "LindenmayerViews", targets: ["LindenmayerViews"]),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-        .package(
-            name: "Squirrel3",
-            url: "https://github.com/heckj/Squirrel3.git", .upToNextMajor(from: "1.1.0")
-        ),
         .package(
             name: "SceneKitDebugTools",
             url: "https://github.com/heckj/SceneKitDebugTools.git", .upToNextMajor(from: "0.1.0")
@@ -32,7 +26,7 @@ let package = Package(
     targets: [
         .target(
             name: "Lindenmayer",
-            dependencies: ["Squirrel3", "SceneKitDebugTools"]
+            dependencies: ["SceneKitDebugTools"]
         ),
         .target(
             name: "LindenmayerViews",
@@ -40,7 +34,7 @@ let package = Package(
         ),
         .testTarget(
             name: "LindenmayerTests",
-            dependencies: ["Lindenmayer", "Squirrel3", "SceneKitDebugTools"]
+            dependencies: ["Lindenmayer", "SceneKitDebugTools"]
         ),
     ]
 )

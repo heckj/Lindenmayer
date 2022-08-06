@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Squirrel3
 
 /// A type that provides convenient initializers for L-systems.
 ///
@@ -60,7 +59,7 @@ public enum LSystem {
         if let prng = prng {
             return RandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, prng: RNGWrapper(prng))
         }
-        return RandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, prng: RNGWrapper(PRNG(seed: 42) as! RNGType))
+        return RandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType))
     }
 
     /// Creates a new Lindenmayer system from an initial state and using the random number generator you provide..
@@ -71,7 +70,7 @@ public enum LSystem {
         if let prng = prng {
             return RandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, prng: RNGWrapper(prng))
         }
-        return RandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, prng: RNGWrapper(PRNG(seed: 42) as! RNGType))
+        return RandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType))
     }
 
     /// Creates a new Lindenmayer system from an initial state, using the random number generator and parameter instance that you provide.
@@ -83,7 +82,7 @@ public enum LSystem {
         if let prng = prng {
             return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(prng), rules: [])
         }
-        return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(PRNG(seed: 42) as! RNGType), rules: [])
+        return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType), rules: [])
     }
 
     /// Creates a new Lindenmayer system from an initial state, using the random number generator and parameter instance that you provide.
@@ -95,6 +94,6 @@ public enum LSystem {
         if let prng = prng {
             return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(prng), rules: [])
         }
-        return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(PRNG(seed: 42) as! RNGType), rules: [])
+        return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType), rules: [])
     }
 }
