@@ -23,6 +23,10 @@ import Foundation
 ///
 /// ## Topics
 ///
+/// ### Creating a DebugModule
+///
+/// - ``Lindenmayer/DebugModule/init(_:at:isNew:)``
+///
 /// ### Inspecting a DebugModule
 ///
 /// - ``DebugModule/new``
@@ -74,7 +78,7 @@ public class DebugModule: Identifiable {
     ///   - m: The module to use to initialize the debug module.
     ///   - at: The location within the state of an L-system.
     ///   - isNew: A Boolean value that indicates the module was created in the last evolution.
-    init(_ m: Module, at: Int, isNew: Bool = false) {
+    public init(_ m: Module, at: Int, isNew: Bool = false) {
         id = at
         module = m
         new = isNew
@@ -103,5 +107,12 @@ public extension LindenmayerSystem {
     func state(at: Int) -> DebugModule {
         precondition(at >= 0 && at < state.count && at < newStateIndicators.count)
         return DebugModule(state[at], at: at, isNew: newStateIndicators[at])
+    }
+
+    /// Returns a list of identifiable debug module for a Lindenmayer system to use in presenting the state through SwiftUI.
+    func identifiableModules() -> [DebugModule] {
+        state.enumerated().map { index, module in
+            DebugModule(module, at: index)
+        }
     }
 }

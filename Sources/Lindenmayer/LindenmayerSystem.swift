@@ -15,24 +15,28 @@ import Foundation
 ///
 /// ### Inspecting L-systems
 ///
-/// - ``LindenmayerSystem/state``
-/// - ``LindenmayerSystem/newStateIndicators``
-/// - ``LindenmayerSystem/rules``
-/// - ``LindenmayerSystem/modules(atIndex:)-1v113``
-/// - ``LindenmayerSystem/modules(atIndex:)-7jg4t``
-/// - ``LindenmayerSystem/state(at:)``
+/// - ``Lindenmayer/LindenmayerSystem/state``
+/// - ``Lindenmayer/LindenmayerSystem/newStateIndicators``
+/// - ``Lindenmayer/LindenmayerSystem/rules``
+/// - ``Lindenmayer/LindenmayerSystem/modules(atIndex:)-1v113``
+/// - ``Lindenmayer/LindenmayerSystem/modules(atIndex:)-7jg4t``
+///
+/// ### Inspecting L-system state
+///
+/// - ``Lindenmayer/LindenmayerSystem/state(at:)``
+/// - ``Lindenmayer/LindenmayerSystem/identifiableModules()``
 ///
 /// ### Evolving L-Systems
 ///
-/// - ``LindenmayerSystem/evolve()-9uqn7``
-/// - ``LindenmayerSystem/evolve()-3md66``
-/// - ``LindenmayerSystem/evolved(iterations:)-3x4ko``
-/// - ``LindenmayerSystem/evolved(iterations:)-679jh``
-/// - ``LindenmayerSystem/updatedLSystem(with:newItemIndicators:)``
+/// - ``Lindenmayer/LindenmayerSystem/evolve()-9uqn7``
+/// - ``Lindenmayer/LindenmayerSystem/evolve()-3md66``
+/// - ``Lindenmayer/LindenmayerSystem/evolved(iterations:)-3x4ko``
+/// - ``Lindenmayer/LindenmayerSystem/evolved(iterations:)-679jh``
+/// - ``Lindenmayer/LindenmayerSystem/updatedLSystem(with:newItemIndicators:)``
 ///
 /// ### Resetting L-systems
 ///
-/// - ``LindenmayerSystem/reset()``
+/// - ``Lindenmayer/LindenmayerSystem/reset()``
 public protocol LindenmayerSystem {
     /// The sequence of modules that represents the current state of the L-system.
     var state: [Module] { get }

@@ -64,8 +64,8 @@ struct ModuleSummaryView_Previews: PreviewProvider {
         let system = Examples3D.monopodialTree.evolved(iterations: 4)
         ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
             HStack(alignment: .top, spacing: 1) {
-                ForEach(0 ..< system.state.count) {
-                    ModuleSummaryView(size: sizeChoice, module: system.state(at: $0))
+                ForEach(system.identifiableModules()) {
+                    ModuleSummaryView(size: sizeChoice, module: $0)
                 }
             }
         }
