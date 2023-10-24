@@ -60,7 +60,7 @@ public extension Modules {
             RenderCommand.TurnRight(angle: angle)
         }
 
-        public init(angle: Angle = .degrees(90)) {
+        public init(angle: Angle = Angle.degrees(90)) {
             self.angle = angle
         }
     }
