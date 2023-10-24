@@ -1,5 +1,5 @@
 //
-//  LSystem3DView.swift
+//  Lsystem3DView.swift
 //
 //
 //  Created by Joseph Heck on 12/18/21.

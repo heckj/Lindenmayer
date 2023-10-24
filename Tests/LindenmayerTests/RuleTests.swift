@@ -11,7 +11,8 @@ final class RuleTests: XCTestCase {
     func testRuleDefaults() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
-                                     where: nil) { ctx, _ -> [Module] in
+                                     where: nil)
+        { ctx, _ -> [Module] in
             XCTAssertNotNil(ctx)
 
             return [ctx]
@@ -24,7 +25,8 @@ final class RuleTests: XCTestCase {
     func testRuleBasicMatch() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
-                                     where: nil) { _, _ -> [Module] in
+                                     where: nil)
+        { _, _ -> [Module] in
             [self.foo]
         }
 
@@ -35,7 +37,8 @@ final class RuleTests: XCTestCase {
     func testRuleBasicFailMatch() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
-                                     where: nil) { _, _ -> [Module] in
+                                     where: nil)
+        { _, _ -> [Module] in
             [self.foo]
         }
         let moduleSet = ModuleSet(directInstance: foo)
@@ -45,7 +48,8 @@ final class RuleTests: XCTestCase {
     func testRuleMatchExtraRight() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
-                                     where: nil) { _, _ -> [Module] in
+                                     where: nil)
+        { _, _ -> [Module] in
             [self.foo]
         }
         let moduleSet = ModuleSet(leftInstance: nil,
@@ -57,7 +61,8 @@ final class RuleTests: XCTestCase {
     func testRuleMatchExtraLeft() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
-                                     where: nil) { _, _ -> [Module] in
+                                     where: nil)
+        { _, _ -> [Module] in
             [self.foo]
         }
         let moduleSet = ModuleSet(leftInstance: Foo(),
@@ -70,7 +75,8 @@ final class RuleTests: XCTestCase {
     func testRuleMatchExtraLeftAndRight() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
-                                     where: nil) { _, _ -> [Module] in
+                                     where: nil)
+        { _, _ -> [Module] in
             [self.foo]
         }
         let moduleSet = ModuleSet(leftInstance: Foo(),

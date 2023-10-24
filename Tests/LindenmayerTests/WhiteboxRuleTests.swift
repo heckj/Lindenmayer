@@ -4,7 +4,8 @@ import XCTest
 final class WhiteboxRuleTests: XCTestCase {
     func testRuleDefaults() throws {
         let r = RewriteRuleDirect(direct: Examples2D.Internode.self,
-                                  where: nil) { ctx in
+                                  where: nil)
+        { ctx in
             [ctx]
         }
         XCTAssertNotNil(r)
