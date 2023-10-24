@@ -9,16 +9,16 @@ import CoreGraphics
 import SwiftUI
 
 struct PathState {
-    var angle: Angle
+    var angle: SimpleAngle
     var position: CGPoint
     var lineWidth: Double
     var lineColor: ColorRepresentation
 
     init() {
-        self.init(Angle(degrees: -90), .zero, 1.0, ColorRepresentation.black)
+        self.init(SimpleAngle(degrees: -90), .zero, 1.0, ColorRepresentation.black)
     }
 
-    init(_ angle: Angle, _ position: CGPoint, _ lineWidth: Double, _ lineColor: ColorRepresentation) {
+    init(_ angle: SimpleAngle, _ position: CGPoint, _ lineWidth: Double, _ lineColor: ColorRepresentation) {
         self.angle = angle
         self.position = position
         self.lineWidth = lineWidth
@@ -270,7 +270,7 @@ public struct GraphicsContextRenderer {
         return PathState(state.angle, state.position, state.lineWidth, lineColor)
     }
 
-    func updatedStateByTurning(_ state: PathState, angle: Angle, direction: TurnDirection)
+    func updatedStateByTurning(_ state: PathState, angle: SimpleAngle, direction: TurnDirection)
         -> PathState
     {
         if direction == .left {

@@ -38,7 +38,7 @@ final class TransformTests: XCTestCase {
 
     func testRollTransformMatchesSceneKit() throws {
         let node = SCNNode()
-        let angle = Angle(degrees: 30)
+        let angle = SimpleAngle(degrees: 30)
         // pitch, yaw, roll
         node.simdEulerAngles = simd_float3(x: 0, y: 0, z: Float(angle.radians))
 
@@ -49,7 +49,7 @@ final class TransformTests: XCTestCase {
 
     func testYawTransformMatchesSceneKit() throws {
         let node = SCNNode()
-        let angle = Angle(degrees: 30)
+        let angle = SimpleAngle(degrees: 30)
         // pitch, yaw, roll
         node.simdEulerAngles = simd_float3(x: 0, y: Float(angle.radians), z: 0)
 
@@ -60,7 +60,7 @@ final class TransformTests: XCTestCase {
 
     func testPitchTransformMatchesSceneKit() throws {
         let node = SCNNode()
-        let angle = Angle(degrees: 30)
+        let angle = SimpleAngle(degrees: 30)
         // pitch, yaw, roll
         node.simdEulerAngles = simd_float3(x: Float(angle.radians), y: 0, z: 0)
 

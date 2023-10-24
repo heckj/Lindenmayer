@@ -29,12 +29,13 @@ import Foundation
 public enum Modules {}
 
 public extension Modules {
+
     // MARK: - Built-in Modules that are effectively wrappers around specific rendering commands
 
     /// A module that informs a renderer to turn left while rendering the L-system.
     struct TurnLeft: Module {
         public let name = RenderCommand.turnLeft.name
-        public let angle: Angle
+        public let angle: SimpleAngle
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.TurnLeft(angle: angle)]
         }
@@ -43,7 +44,7 @@ public extension Modules {
             RenderCommand.TurnLeft(angle: angle)
         }
 
-        public init(angle: Angle = Angle.degrees(90)) {
+        public init(angle: SimpleAngle = .degrees(90)) {
             self.angle = angle
         }
     }
@@ -51,7 +52,7 @@ public extension Modules {
     /// A module that informs a renderer to turn right while rendering the L-system.
     struct TurnRight: Module {
         public let name = RenderCommand.turnRight.name
-        public let angle: Angle
+        public let angle: SimpleAngle
         public var render2D: [TwoDRenderCmd] {
             [RenderCommand.TurnRight(angle: angle)]
         }
@@ -60,7 +61,7 @@ public extension Modules {
             RenderCommand.TurnRight(angle: angle)
         }
 
-        public init(angle: Angle = .degrees(90)) {
+        public init(angle: SimpleAngle = .degrees(90)) {
             self.angle = angle
         }
     }
@@ -131,7 +132,7 @@ public extension Modules {
     /// A module that informs a renderer to change the heading by rolling around the current axis to the left.
     struct RollLeft: Module {
         public let name = RenderCommand.rollLeft.name
-        public let angle: Angle
+        public let angle: SimpleAngle
         public var render2D: [TwoDRenderCmd] {
             []
         }
@@ -140,7 +141,7 @@ public extension Modules {
             RenderCommand.RollLeft(angle: angle)
         }
 
-        public init(angle: Angle = .degrees(90)) {
+        public init(angle: SimpleAngle = .degrees(90)) {
             self.angle = angle
         }
     }
@@ -148,7 +149,7 @@ public extension Modules {
     /// A module that informs a renderer to change the heading by rolling around the current axis to the right.
     struct RollRight: Module {
         public let name = RenderCommand.rollRight.name
-        public let angle: Angle
+        public let angle: SimpleAngle
         public var render2D: [TwoDRenderCmd] {
             []
         }
@@ -157,7 +158,7 @@ public extension Modules {
             RenderCommand.RollRight(angle: angle)
         }
 
-        public init(angle: Angle = .degrees(90)) {
+        public init(angle: SimpleAngle = .degrees(90)) {
             self.angle = angle
         }
     }
@@ -165,7 +166,7 @@ public extension Modules {
     /// A module that informs a renderer to change the heading by pitching up.
     struct PitchUp: Module {
         public let name = RenderCommand.pitchUp.name
-        public let angle: Angle
+        public let angle: SimpleAngle
         public var render2D: [TwoDRenderCmd] {
             []
         }
@@ -174,7 +175,7 @@ public extension Modules {
             RenderCommand.PitchUp(angle: angle)
         }
 
-        public init(angle: Angle = .degrees(30)) {
+        public init(angle: SimpleAngle = .degrees(30)) {
             self.angle = angle
         }
     }
@@ -182,7 +183,7 @@ public extension Modules {
     /// A module that informs a renderer to change the heading by pitching down.
     struct PitchDown: Module {
         public let name = RenderCommand.pitchDown.name
-        public let angle: Angle
+        public let angle: SimpleAngle
         public var render2D: [TwoDRenderCmd] {
             []
         }
@@ -191,7 +192,7 @@ public extension Modules {
             RenderCommand.PitchDown(angle: angle)
         }
 
-        public init(angle: Angle = .degrees(30)) {
+        public init(angle: SimpleAngle = .degrees(30)) {
             self.angle = angle
         }
     }

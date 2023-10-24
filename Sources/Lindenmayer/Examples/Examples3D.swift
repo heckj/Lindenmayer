@@ -236,11 +236,11 @@ public enum Examples3D {
         [
             StaticTrunk(growthDistance: trunk.growthDistance, diameter: trunk.diameter),
             Modules.Branch(),
-            Modules.PitchDown(angle: Angle(degrees: params.branchAngle)),
+            Modules.PitchDown(angle: SimpleAngle(degrees: params.branchAngle)),
             MainBranch(growthDistance: trunk.growthDistance * params.contractionRatioForBranch,
                        diameter: trunk.diameter * params.widthContraction),
             Modules.EndBranch(),
-            Modules.RollLeft(angle: Angle(degrees: params.divergence)),
+            Modules.RollLeft(angle: SimpleAngle(degrees: params.divergence)),
             Trunk(growthDistance: trunk.growthDistance * params.contractionRatioForTrunk,
                   diameter: trunk.diameter * params.widthContraction),
         ]
@@ -252,7 +252,7 @@ public enum Examples3D {
             StaticTrunk(growthDistance: branch.growthDistance, diameter: branch.diameter),
             Modules.Branch(),
 
-            Modules.TurnLeft(angle: Angle(degrees: params.lateralBranchAngle)),
+            Modules.TurnLeft(angle: SimpleAngle(degrees: params.lateralBranchAngle)),
             Modules.RollUpToVertical(),
             SecondaryBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
                             diameter: branch.diameter * params.widthContraction),
@@ -269,7 +269,7 @@ public enum Examples3D {
             StaticTrunk(growthDistance: branch.growthDistance, diameter: branch.diameter),
             Modules.Branch(),
 
-            Modules.TurnRight(angle: Angle(degrees: params.branchAngle)),
+            Modules.TurnRight(angle: SimpleAngle(degrees: params.branchAngle)),
             Modules.RollUpToVertical(),
 
             MainBranch(growthDistance: branch.growthDistance * params.contractionRatioForBranch,
@@ -359,14 +359,14 @@ public enum Examples3D {
             StaticTrunk(growthDistance: node.growthDistance, diameter: node.diameter),
 
             Modules.Branch(),
-            Modules.PitchDown(angle: Angle(degrees: params.a1)),
+            Modules.PitchDown(angle: SimpleAngle(degrees: params.a1)),
             SecondaryBranch(growthDistance: node.growthDistance * params.r1, diameter: node.diameter * params.wr),
             Modules.EndBranch(),
 
-            Modules.RollLeft(angle: Angle(degrees: 180)),
+            Modules.RollLeft(angle: SimpleAngle(degrees: 180)),
 
             Modules.Branch(),
-            Modules.PitchDown(angle: Angle(degrees: params.a2)),
+            Modules.PitchDown(angle: SimpleAngle(degrees: params.a2)),
             SecondaryBranch(growthDistance: node.growthDistance * params.r2, diameter: node.diameter * params.wr),
             Modules.EndBranch(),
         ]
@@ -376,12 +376,12 @@ public enum Examples3D {
         [
             StaticTrunk(growthDistance: node.growthDistance, diameter: node.diameter),
             Modules.Branch(),
-            Modules.TurnRight(angle: Angle(degrees: params.a1)),
+            Modules.TurnRight(angle: SimpleAngle(degrees: params.a1)),
             Modules.RollUpToVertical(),
             SecondaryBranch(growthDistance: node.growthDistance * params.r1, diameter: node.diameter * params.wr),
             Modules.EndBranch(),
             Modules.Branch(),
-            Modules.TurnLeft(angle: Angle(degrees: params.a2)),
+            Modules.TurnLeft(angle: SimpleAngle(degrees: params.a2)),
             Modules.RollUpToVertical(),
             SecondaryBranch(growthDistance: node.growthDistance * params.r2, diameter: node.diameter * params.wr),
             Modules.EndBranch(),
@@ -423,13 +423,13 @@ public enum Examples3D {
             if rng.p(0.5) {
                 return [
                     StaticStem2(length: 2),
-                    Modules.PitchDown(angle: Angle(degrees: Double(rng.randomFloat(in: lower ... upper)))),
+                    Modules.PitchDown(angle: SimpleAngle(degrees: Double(rng.randomFloat(in: lower ... upper)))),
                     Stem2(length: stem.length),
                 ]
             } else {
                 return [
                     StaticStem2(length: 2),
-                    Modules.PitchUp(angle: Angle(degrees: Double(rng.randomFloat(in: lower ... upper)))),
+                    Modules.PitchUp(angle: SimpleAngle(degrees: Double(rng.randomFloat(in: lower ... upper)))),
                     Stem2(length: stem.length),
                 ]
             }

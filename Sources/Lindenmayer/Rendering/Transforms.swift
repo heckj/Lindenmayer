@@ -41,7 +41,7 @@ public extension SceneKitRenderer {
     /// Creates a 3D rotation transform that rotates around the Z axis by the angle that you provide
     /// - Parameter angle: The amount (in radians) to rotate around the Z axis.
     /// - Returns: A Z-axis rotation transform.
-    static func rotationAroundZAxisTransform(angle: Angle) -> simd_float4x4 {
+    static func rotationAroundZAxisTransform(angle: SimpleAngle) -> simd_float4x4 {
         return simd_float4x4(
             SIMD4<Float>(cos(Float(angle.radians)), sin(Float(angle.radians)), 0, 0),
             SIMD4<Float>(-sin(Float(angle.radians)), cos(Float(angle.radians)), 0, 0),
@@ -53,7 +53,7 @@ public extension SceneKitRenderer {
     /// Creates a 3D rotation transform that rotates around the X axis by the angle that you provide
     /// - Parameter angle: The amount (in radians) to rotate around the X axis.
     /// - Returns: A X-axis rotation transform.
-    static func rotationAroundXAxisTransform(angle: Angle) -> simd_float4x4 {
+    static func rotationAroundXAxisTransform(angle: SimpleAngle) -> simd_float4x4 {
         return simd_float4x4(
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, cos(Float(angle.radians)), sin(Float(angle.radians)), 0),
@@ -65,7 +65,7 @@ public extension SceneKitRenderer {
     /// Creates a 3D rotation transform that rotates around the Y axis by the angle that you provide
     /// - Parameter angle: The amount (in radians) to rotate around the Y axis.
     /// - Returns: A Y-axis rotation transform.
-    static func rotationAroundYAxisTransform(angle: Angle) -> simd_float4x4 {
+    static func rotationAroundYAxisTransform(angle: SimpleAngle) -> simd_float4x4 {
         return simd_float4x4(
             SIMD4<Float>(cos(Float(angle.radians)), 0, -sin(Float(angle.radians)), 0),
             SIMD4<Float>(0, 1, 0, 0),

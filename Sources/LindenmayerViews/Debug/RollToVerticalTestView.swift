@@ -92,14 +92,14 @@ public struct RollToVerticalTestView: View {
     public var body: some View {
         VStack {
             HStack {
-                Text("Angle: \(calculated_angle) ( \(Angle(radians: Double(calculated_angle)).degrees)° )")
+                Text("Angle: \(calculated_angle) ( \(SimpleAngle(radians: Double(calculated_angle)).degrees)° )")
                 TextField("roll amount", text: $aString)
                 Button {
                     if let selectedNode = selectedNode {
                         if let angle = Double(aString) {
                             print("before rotation")
                             print("\(pointSphereZ.simdTransform.prettyPrintString())")
-                            let rotationTransform = SceneKitRenderer.rotationAroundYAxisTransform(angle: Angle(radians: angle))
+                            let rotationTransform = SceneKitRenderer.rotationAroundYAxisTransform(angle: SimpleAngle(radians: angle))
                             selectedNode.simdTransform = matrix_multiply(selectedNode.simdTransform, rotationTransform)
                             pointSphere0.simdTransform = matrix_multiply(pointSphere0.simdTransform, rotationTransform)
 
@@ -138,7 +138,7 @@ public struct RollToVerticalTestView: View {
         zLine.simdPosition = simd_float3(0, 0, 0.5)
 //        let zLineNudge = translationTransform(x: 0, y: 0, z: 0.5)
 //        zLine.simdTransform = matrix_multiply(zLine.simdTransform, zLineNudge)
-        let zLineRotation = SceneKitRenderer.rotationAroundXAxisTransform(angle: Angle(degrees: 90))
+        let zLineRotation = SceneKitRenderer.rotationAroundXAxisTransform(angle: SimpleAngle(degrees: 90))
         zLine.simdTransform = matrix_multiply(zLine.simdTransform, zLineRotation)
 //        zLine.simdTransform = matrix_multiply(zLine.simdTransform, RollToVerticalTestView.transform_119)
         scene.rootNode.addChildNode(zLine)

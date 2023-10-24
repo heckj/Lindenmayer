@@ -72,8 +72,8 @@ public enum Examples2D {
     public static var fractalTree = LSystem.create(leaf)
         .rewrite(Leaf.self) { leaf in
             [stem,
-             Modules.Branch(), Modules.TurnLeft(angle: Angle(degrees: 45)), leaf, Modules.EndBranch(),
-             Modules.TurnRight(angle: Angle(degrees: 45)), leaf]
+             Modules.Branch(), Modules.TurnLeft(angle: SimpleAngle(degrees: 45)), leaf, Modules.EndBranch(),
+             Modules.TurnRight(angle: SimpleAngle(degrees: 45)), leaf]
         }
         .rewrite(Stem.self) { stem in
             [stem, stem]
@@ -88,10 +88,10 @@ public enum Examples2D {
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var kochCurve = LSystem.create(Modules.Draw(length: 10))
         .rewrite(Modules.Draw.self) { _ in
-            [Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees: 90)),
-             Modules.Draw(length: 10), Modules.TurnRight(angle: Angle(degrees: 90)),
-             Modules.Draw(length: 10), Modules.TurnRight(angle: Angle(degrees: 90)),
-             Modules.Draw(length: 10), Modules.TurnLeft(angle: Angle(degrees: 90)),
+            [Modules.Draw(length: 10), Modules.TurnLeft(angle: SimpleAngle(degrees: 90)),
+             Modules.Draw(length: 10), Modules.TurnRight(angle: SimpleAngle(degrees: 90)),
+             Modules.Draw(length: 10), Modules.TurnRight(angle: SimpleAngle(degrees: 90)),
+             Modules.Draw(length: 10), Modules.TurnLeft(angle: SimpleAngle(degrees: 90)),
              Modules.Draw(length: 10)]
         }
 
@@ -117,15 +117,15 @@ public enum Examples2D {
     /// The example is a translation of the [Wikipedia example](https://en.wikipedia.org/wiki/L-system#Example_5:_Sierpinski_triangle), rendered at `6` evolutions.
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var sierpinskiTriangle = LSystem.create(
-        [f, Modules.TurnRight(angle: Angle(degrees: 120)),
-         g, Modules.TurnRight(angle: Angle(degrees: 120)),
-         g, Modules.TurnRight(angle: Angle(degrees: 120))]
+        [f, Modules.TurnRight(angle: SimpleAngle(degrees: 120)),
+         g, Modules.TurnRight(angle: SimpleAngle(degrees: 120)),
+         g, Modules.TurnRight(angle: SimpleAngle(degrees: 120))]
     )
     .rewrite(F.self) { _ in
-        [f, Modules.TurnRight(angle: Angle(degrees: 120)),
-         g, Modules.TurnLeft(angle: Angle(degrees: 120)),
-         f, Modules.TurnLeft(angle: Angle(degrees: 120)),
-         g, Modules.TurnRight(angle: Angle(degrees: 120)),
+        [f, Modules.TurnRight(angle: SimpleAngle(degrees: 120)),
+         g, Modules.TurnLeft(angle: SimpleAngle(degrees: 120)),
+         f, Modules.TurnLeft(angle: SimpleAngle(degrees: 120)),
+         g, Modules.TurnRight(angle: SimpleAngle(degrees: 120)),
          f]
     }
     .rewrite(G.self) { _ in
@@ -141,10 +141,10 @@ public enum Examples2D {
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var dragonCurve = LSystem.create(f)
         .rewrite(F.self) { _ in
-            [f, Modules.TurnLeft(angle: Angle(degrees: 90)), g]
+            [f, Modules.TurnLeft(angle: SimpleAngle(degrees: 90)), g]
         }
         .rewrite(G.self) { _ in
-            [f, Modules.TurnRight(angle: Angle(degrees: 90)), g]
+            [f, Modules.TurnRight(angle: SimpleAngle(degrees: 90)), g]
         }
 
     // - MARK: Barnsley fern example
@@ -162,14 +162,14 @@ public enum Examples2D {
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples2D.swift).
     public static var barnsleyFern = LSystem.create(x)
         .rewrite(X.self) { _ in
-            [f, Modules.TurnLeft(angle: Angle(degrees: 25)),
+            [f, Modules.TurnLeft(angle: SimpleAngle(degrees: 25)),
              Modules.Branch(),
              Modules.Branch(), x, Modules.EndBranch(),
-             Modules.TurnRight(angle: Angle(degrees: 25)), x,
+             Modules.TurnRight(angle: SimpleAngle(degrees: 25)), x,
              Modules.EndBranch(),
-             Modules.TurnRight(angle: Angle(degrees: 25)), f,
-             Modules.Branch(), Modules.TurnRight(angle: Angle(degrees: 25)), f, x, Modules.EndBranch(),
-             Modules.TurnLeft(angle: Angle(degrees: 25)), x]
+             Modules.TurnRight(angle: SimpleAngle(degrees: 25)), f,
+             Modules.Branch(), Modules.TurnRight(angle: SimpleAngle(degrees: 25)), f, x, Modules.EndBranch(),
+             Modules.TurnLeft(angle: SimpleAngle(degrees: 25)), x]
         }
         .rewrite(F.self) { _ in
             [f, f]

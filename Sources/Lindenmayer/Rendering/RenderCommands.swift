@@ -319,8 +319,8 @@ public enum RenderCommand {
     public struct TurnLeft: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.leftTurn.rawValue
 
-        public let angle: Angle
-        public init(angle: Angle) {
+        public let angle: SimpleAngle
+        public init(angle: SimpleAngle) {
             self.angle = angle
         }
     }
@@ -340,8 +340,8 @@ public enum RenderCommand {
     public struct TurnRight: TwoDRenderCmd, ThreeDRenderCmd {
         public let name: String = TurtleCodes.rightTurn.rawValue
 
-        public let angle: Angle
-        public init(angle: Angle) {
+        public let angle: SimpleAngle
+        public init(angle: SimpleAngle) {
             self.angle = angle
         }
     }
@@ -417,8 +417,8 @@ public enum RenderCommand {
     /// - ``RenderCommand/PitchUp-swift.struct/angle``
     public struct PitchUp: ThreeDRenderCmd {
         public let name = TurtleCodes.pitchUp.rawValue
-        public let angle: Angle
-        public init(angle: Angle) {
+        public let angle: SimpleAngle
+        public init(angle: SimpleAngle) {
             self.angle = angle
         }
     }
@@ -437,8 +437,8 @@ public enum RenderCommand {
     /// - ``RenderCommand/PitchDown-swift.struct/angle``
     public struct PitchDown: ThreeDRenderCmd {
         public let name = TurtleCodes.pitchDown.rawValue
-        public let angle: Angle
-        public init(angle: Angle) {
+        public let angle: SimpleAngle
+        public init(angle: SimpleAngle) {
             self.angle = angle
         }
     }
@@ -457,8 +457,8 @@ public enum RenderCommand {
     /// - ``RenderCommand/RollRight-swift.struct/angle``
     public struct RollRight: ThreeDRenderCmd {
         public let name = TurtleCodes.rollRight.rawValue
-        public let angle: Angle
-        public init(angle: Angle) {
+        public let angle: SimpleAngle
+        public init(angle: SimpleAngle) {
             self.angle = angle
         }
     }
@@ -477,8 +477,8 @@ public enum RenderCommand {
     /// - ``RenderCommand/RollLeft-swift.struct/angle``
     public struct RollLeft: ThreeDRenderCmd {
         public let name = TurtleCodes.rollLeft.rawValue
-        public let angle: Angle
-        public init(angle: Angle) {
+        public let angle: SimpleAngle
+        public init(angle: SimpleAngle) {
             self.angle = angle
         }
     }
