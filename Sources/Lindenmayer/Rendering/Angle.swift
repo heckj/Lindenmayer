@@ -8,7 +8,6 @@
 import Foundation
 #if canImport(SwiftUI)
     @_exported import SwiftUI
-//    import SwiftUI
     /// A geometric angle whose value you access in either radians or degrees.
     public typealias Angle = SwiftUI.Angle
 #else
