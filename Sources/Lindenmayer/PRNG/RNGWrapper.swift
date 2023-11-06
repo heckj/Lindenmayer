@@ -95,7 +95,7 @@ public final class RNGWrapper<PRNG> where PRNG: SeededRandomNumberGenerator {
         // ensure that the provided probability is between 0.0 and 1.0
         precondition(prob > 0.0 && prob < 1.0)
         let selectedProb = randomFloat(in: 0.0 ... 1.0)
-        return (selectedProb <= prob)
+        return selectedProb <= prob
     }
 
     /// Returns a random float value between 0.0 and 1.0.

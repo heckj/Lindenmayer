@@ -45,7 +45,8 @@ final class WhiteboxParametricRuleTests: XCTestCase {
         let r = RewriteRuleDirectDefinesRNG(directType: ParameterizedExample.self,
                                             parameters: ParametersWrapper(ExampleDefines()),
                                             prng: RNGWrapper(Xoshiro(seed: 0)),
-                                            where: nil) { _, p, _ -> [Module] in
+                                            where: nil)
+        { _, p, _ -> [Module] in
             [ParameterizedExample(p.value + p.value)]
         }
 

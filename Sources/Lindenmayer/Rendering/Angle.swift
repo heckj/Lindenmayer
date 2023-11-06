@@ -1,5 +1,5 @@
 //
-//  Angel.swift
+//  Angle.swift
 //
 //
 //  Created by Joseph Heck on 1/22/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 #if canImport(SwiftUI)
-    import SwiftUI
+    @_exported import SwiftUI
     /// A geometric angle whose value you access in either radians or degrees.
     public typealias Angle = SwiftUI.Angle
 #else
