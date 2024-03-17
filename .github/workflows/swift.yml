@@ -9,16 +9,16 @@ on:
 jobs:
   build:
 
-    runs-on: macos-11
+    runs-on: macos-14
     strategy:
       matrix:
         run-config:
-          - { scheme: 'Lindenmayer-Package', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 8' }
+          - { scheme: 'Lindenmayer-Package', destination: 'platform=iOS Simulator,OS=15.5,name=iPhone 8' }
           # Xcode on Github Actions supports at best up to macOS 11.6.2 currently...
           #          - { scheme: 'Lindenmayer-Package', destination: 'platform=macOS,arch=x86_64' }
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Show Build SDK
       run: xcodebuild -showsdks

@@ -36,7 +36,7 @@ import Foundation
 /// - ``Examples3D/figure2_7C``
 /// - ``Examples3D/figure2_7D``
 ///
-public enum Examples3D {
+public enum Examples3D: Sendable {
     // - MARK: 3D Algae test
 
     struct Cyl: Module {
@@ -64,7 +64,7 @@ public enum Examples3D {
     /// ![A screenshot of a 3D rendering of the algae L-system evolved to display 3 short green segments connected by 2 longer red seegments.](algae_4.png)
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
-    public static var algae3D = LSystem.create(Cyl())
+    public static let algae3D = LSystem.create(Cyl())
         .rewrite(Cyl.self) { _ in
             [Cyl(), S()]
         }
@@ -161,7 +161,7 @@ public enum Examples3D {
     /// A structure that provides parameters for example monopodial trees in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
-    public struct MonopodialDefn: Codable, Equatable {
+    public struct MonopodialDefn: Codable, Equatable, Sendable {
         var contractionRatioForTrunk: Double = 0.9 /* Contraction ratio for the trunk */
         var contractionRatioForBranch: Double = 0.6 /* Contraction ratio for branches */
         var branchAngle: Double = 45 /* Branching angle from the trunk */
@@ -218,7 +218,7 @@ public enum Examples3D {
     /// ![A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.6](rendered_2_6_trees.png)
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
-    public static var monopodialTree = LSystem.create(
+    public static let monopodialTree = LSystem.create(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
         with: Xoshiro(seed: 42),
         using: defines
@@ -298,7 +298,7 @@ public enum Examples3D {
     /// A structure that provides parameters for example sympodial trees in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf).
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
-    public struct SympodialDefn: Codable, Equatable {
+    public struct SympodialDefn: Codable, Equatable, Sendable {
         var r1: Double
         var r2: Double
         var a1: Double
@@ -414,7 +414,7 @@ public enum Examples3D {
         }
     }
 
-    public static var randomBush = LSystem.create(Stem2(length: 1), with: Xoshiro(seed: 42))
+    public static let randomBush = LSystem.create(Stem2(length: 1), with: Xoshiro(seed: 42))
         .rewriteWithRNG(directContext: Stem2.self) { stem, rng -> [Module] in
 
             let upper: Float = 45.0
@@ -435,7 +435,7 @@ public enum Examples3D {
             }
         }
 
-    static var experiment2 = LSystem.create(Stem2(length: 1))
+    static let experiment2 = LSystem.create(Stem2(length: 1))
         .rewrite(Stem2.self, where: { stem in
             stem.length < 5
         }, produces: { stem in

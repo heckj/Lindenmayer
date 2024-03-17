@@ -17,7 +17,7 @@ import Foundation
 /// - ``init(r:g:b:)``
 /// - ``init(red:green:blue:alpha:)``
 ///
-public struct ColorRepresentation: Equatable {
+public struct ColorRepresentation: Equatable, Sendable {
     let red: Double
     let green: Double
     let blue: Double
@@ -93,7 +93,7 @@ public struct ColorRepresentation: Equatable {
 /// - ``cone``
 /// - ``sphere``
 ///
-public enum TurtleCodes: String {
+public enum TurtleCodes: String, Sendable {
     // 2D
     /// The string representation for ``RenderCommand/SetLineWidth-swift.struct``
     case setLineWidth = "!"
@@ -152,7 +152,7 @@ public enum TurtleCodes: String {
 ///
 /// - ``name``
 ///
-public protocol TwoDRenderCmd {
+public protocol TwoDRenderCmd: Sendable {
     /// Use a single character or very short string for the name, as it's used in textual descriptions of the state of an L-system.
     var name: String { get }
 }
@@ -167,7 +167,7 @@ public protocol TwoDRenderCmd {
 ///
 /// - ``name``
 ///
-public protocol ThreeDRenderCmd {
+public protocol ThreeDRenderCmd: Sendable {
     /// Use a single character or very short string for the name, as it's used in textual descriptions of the state of an L-system.
     var name: String { get }
 }
@@ -223,7 +223,7 @@ public protocol ThreeDRenderCmd {
 /// - ``RenderCommand/Sphere-swift.struct``
 /// - ``RenderCommand/sphere-swift.type.property``
 
-public enum RenderCommand {
+public enum RenderCommand: Sendable {
     // MARK: - BUILT-IN 2D & 3D FOCUSED MODULES -
 
     /// A value that indicates the start of a branch.
@@ -583,43 +583,43 @@ public enum RenderCommand {
 
     // 2D ONLY
     /// A value that indicates to set the line width of the renderer to 1.0.
-    public static var setLineWidth = SetLineWidth(width: 1)
+    public static let setLineWidth = SetLineWidth(width: 1)
     /// A value that indicates to set the color representation for the renderer to black.
-    public static var setColor = SetColor(representation: ColorRepresentation(r: 0.0, g: 0.0, b: 0.0))
+    public static let setColor = SetColor(representation: ColorRepresentation(r: 0.0, g: 0.0, b: 0.0))
 
     // 2D and 3D
     /// A value that indicates the renderer should move forward by a length of 1.0.
-    public static var move = Move(length: 1.0)
+    public static let move = Move(length: 1.0)
     /// A value that indicates the renderer should draw a line forward at a length of 1.0.
-    public static var draw = Draw(length: 1.0)
+    public static let draw = Draw(length: 1.0)
 
     /// A value that indicates the renderer should turn left by 90°.
-    public static var turnLeft = TurnLeft(angle: .degrees(90))
+    public static let turnLeft = TurnLeft(angle: .degrees(90))
     /// A value that indicates the renderer should turn right by 90°.
-    public static var turnRight = TurnRight(angle: .degrees(90))
+    public static let turnRight = TurnRight(angle: .degrees(90))
     /// A value that indicates the start of a branch.
-    public static var branch = Branch()
+    public static let branch = Branch()
     /// A value that indicates the end of a branch.
-    public static var endBranch = EndBranch()
+    public static let endBranch = EndBranch()
 
     // 3D ONLY
     /// A value that indicates the renderer should pitch up by 30°.
-    public static var pitchUp = PitchUp(angle: .degrees(30))
+    public static let pitchUp = PitchUp(angle: .degrees(30))
     /// A value that indicates the renderer should pitch down by 30°.
-    public static var pitchDown = PitchDown(angle: .degrees(30))
+    public static let pitchDown = PitchDown(angle: .degrees(30))
 
     /// A value that indicates the renderer should roll right by 90°.
-    public static var rollRight = RollRight(angle: .degrees(90))
+    public static let rollRight = RollRight(angle: .degrees(90))
     /// A value that indicates the renderer should roll left by 90°.
-    public static var rollLeft = RollLeft(angle: .degrees(90))
+    public static let rollLeft = RollLeft(angle: .degrees(90))
 
     /// A value that indicates the state of the renderer should roll around its current heading so that the upward vector is as vertical as possible.
-    public static var rollUpToVertical = RollUpToVertical()
+    public static let rollUpToVertical = RollUpToVertical()
 
     /// A value that indicates the renderer should display a cylinder of length 1.0 and radius 0.1, moving forward by 1.0.
-    public static var cylinder = Cylinder(length: 1, radius: 0.1)
+    public static let cylinder = Cylinder(length: 1, radius: 0.1)
     /// A value that indicates the renderer should display a cone of length 1.0, bottom radius of 0.1, top radius of 0, and moving forward by 1.0.
-    public static var cone = Cone(length: 1, radiusTop: 0, radiusBottom: 0.1)
+    public static let cone = Cone(length: 1, radiusTop: 0, radiusBottom: 0.1)
     /// A value that indicates the renderer should display a sphere of radius 0.1.
-    public static var sphere = Sphere(radius: 0.1)
+    public static let sphere = Sphere(radius: 0.1)
 }

@@ -26,7 +26,7 @@ import Foundation
 /// - ``Modules/RollRight``
 /// - ``Modules/RollUpToVertical``
 ///
-public enum Modules {}
+public enum Modules: Sendable {}
 
 public extension Modules {
     // MARK: - Built-in Modules that are effectively wrappers around specific rendering commands
