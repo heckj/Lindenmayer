@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.8
 
 import PackageDescription
 
@@ -18,19 +18,19 @@ let package = Package(
         .library(name: "LindenmayerViews", targets: ["LindenmayerViews"]),
     ],
     dependencies: [
-        .package(
-            name: "SceneKitDebugTools",
-            url: "https://github.com/heckj/SceneKitDebugTools.git", .upToNextMajor(from: "0.1.0")
-        ),
+        .package(url: "https://github.com/heckj/SceneKitDebugTools.git", from: "0.1.0"),
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0")
     ],
     targets: [
         .target(
             name: "Lindenmayer",
-            dependencies: ["SceneKitDebugTools"]
+            dependencies: ["SceneKitDebugTools"],
+            swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
         ),
         .target(
             name: "LindenmayerViews",
-            dependencies: ["Lindenmayer", "SceneKitDebugTools"]
+            dependencies: ["Lindenmayer", "SceneKitDebugTools"],
+            swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
         ),
         .testTarget(
             name: "LindenmayerTests",
@@ -38,9 +38,3 @@ let package = Package(
         ),
     ]
 )
-// Add the documentation compiler plugin if possible
-#if swift(>=5.6)
-    package.dependencies.append(
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0")
-    )
-#endif
