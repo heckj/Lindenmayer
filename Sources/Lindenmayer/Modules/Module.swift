@@ -26,7 +26,7 @@ import Foundation
 /// - ``Module/render3D-14ry0``
 /// - ``Module/render3D-2t57p``
 ///
-public protocol Module: CustomStringConvertible {
+public protocol Module: CustomStringConvertible, Sendable {
     /// The name of the module.
     ///
     /// Use a single character or very short string for the name, as it's used in textual descriptions of the state of an L-system.

@@ -36,7 +36,7 @@ import Foundation
 /// - ``Lindenmayer/LSystem/create(_:with:using:)-1nce9``
 /// - ``Lindenmayer/LSystem/create(_:with:using:)-2nwqc``
 ///
-public enum LSystem {
+public enum LSystem: Sendable {
     /// Creates a new Lindenmayer system from an initial state.
     /// - Parameters:
     ///   - axiom: An initial module that represents the initial state of the Lindenmayer system..

@@ -37,7 +37,7 @@ import Foundation
 /// ### Resetting L-systems
 ///
 /// - ``Lindenmayer/LindenmayerSystem/reset()``
-public protocol LindenmayerSystem {
+public protocol LindenmayerSystem: Sendable {
     /// The sequence of modules that represents the current state of the L-system.
     var state: [Module] { get }
 
