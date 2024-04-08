@@ -55,4 +55,4 @@ sort all_identifiers.txt \
     | sed -e 's/^/- ``/g' \
     | sed -e 's/$/``/g' > all_symbols.txt
 
-echo "Page will be available at https://swiftviz.github.io/Lindenmayer/documentation/Lindenmayer/"
+echo "Page will be available at https://heckj.github.io/Lindenmayer/documentation/Lindenmayer/"
