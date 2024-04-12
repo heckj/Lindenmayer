@@ -156,8 +156,8 @@ public extension RandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-        where evalClosure: @escaping (LC, DC, RC) -> Bool,
-        produces produceClosure: @escaping (LC, DC, RC, RNGWrapper<PRNG>) -> [Module]
+        where evalClosure: @Sendable @escaping (LC, DC, RC) -> Bool,
+        produces produceClosure: @Sendable @escaping (LC, DC, RC, RNGWrapper<PRNG>) async -> [Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module
     {
@@ -181,7 +181,7 @@ public extension RandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-        produces produceClosure: @escaping (LC, DC, RC, RNGWrapper<PRNG>) -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, RC, RNGWrapper<PRNG>) async -> [Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module
     {
@@ -205,8 +205,8 @@ public extension RandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
-        where evalClosure: @escaping (LC, DC) -> Bool,
-        produces produceClosure: @escaping (LC, DC, RNGWrapper<PRNG>) -> [Module]
+        where evalClosure: @Sendable @escaping (LC, DC) -> Bool,
+        produces produceClosure: @Sendable @escaping (LC, DC, RNGWrapper<PRNG>) async -> [Module]
     ) -> Self
         where LC: Module, DC: Module
     {
@@ -229,7 +229,7 @@ public extension RandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
-        produces produceClosure: @escaping (LC, DC, RNGWrapper<PRNG>) -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, RNGWrapper<PRNG>) async -> [Module]
     ) -> Self
         where LC: Module, DC: Module
     {
@@ -254,8 +254,8 @@ public extension RandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
-        where evalClosure: @escaping (DC, RC) -> Bool,
-        produces produceClosure: @escaping (DC, RC, RNGWrapper<PRNG>) -> [Module]
+        where evalClosure: @Sendable @escaping (DC, RC) -> Bool,
+        produces produceClosure: @Sendable @escaping (DC, RC, RNGWrapper<PRNG>) async -> [Module]
     ) -> Self
         where DC: Module, RC: Module
     {
@@ -278,7 +278,7 @@ public extension RandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
-        produces produceClosure: @escaping (DC, RC, RNGWrapper<PRNG>) -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RC, RNGWrapper<PRNG>) async -> [Module]
     ) -> Self
         where DC: Module, RC: Module
     {
@@ -301,8 +301,8 @@ public extension RandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<DC>(
         directContext: DC.Type,
-        where evalClosure: @escaping (DC) -> Bool,
-        produces produceClosure: @escaping (DC, RNGWrapper<PRNG>) -> [Module]
+        where evalClosure: @Sendable @escaping (DC) -> Bool,
+        produces produceClosure: @Sendable @escaping (DC, RNGWrapper<PRNG>) async -> [Module]
     ) -> Self
         where DC: Module
     {
@@ -324,7 +324,7 @@ public extension RandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<DC>(
         directContext: DC.Type,
-        produces produceClosure: @escaping (DC, RNGWrapper<PRNG>) -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RNGWrapper<PRNG>) async -> [Module]
     ) -> Self
         where DC: Module
     {
@@ -350,8 +350,8 @@ public extension RandomContextualLSystem {
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC>(_ direct: DC.Type,
-                     where evalClosure: @escaping (DC) -> Bool,
-                     produces produceClosure: @escaping (DC) -> [Module]) -> Self where DC: Module
+                     where evalClosure: @Sendable @escaping (DC) -> Bool,
+                     produces produceClosure: @Sendable @escaping (DC) -> [Module]) -> Self where DC: Module
     {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
         var newRuleSet: [Rule] = rules
@@ -365,7 +365,7 @@ public extension RandomContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC>(_ direct: DC.Type,
-                     produces produceClosure: @escaping (DC) -> [Module]) -> Self where DC: Module
+                     produces produceClosure: @Sendable @escaping (DC) -> [Module]) -> Self where DC: Module
     {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
         var newRuleSet: [Rule] = rules
@@ -380,8 +380,8 @@ public extension RandomContextualLSystem {
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
-                         where evalClosure: @escaping (LC, DC) -> Bool,
-                         produces produceClosure: @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
+                         where evalClosure: @Sendable @escaping (LC, DC) -> Bool,
+                         produces produceClosure: @Sendable @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
     {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
@@ -395,7 +395,7 @@ public extension RandomContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
-                         produces produceClosure: @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
+                         produces produceClosure: @Sendable @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
     {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
@@ -410,8 +410,8 @@ public extension RandomContextualLSystem {
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
-                         where evalClosure: @escaping (DC, RC) -> Bool,
-                         produces produceClosure: @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
+                         where evalClosure: @Sendable @escaping (DC, RC) -> Bool,
+                         produces produceClosure: @Sendable @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
     {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
@@ -425,7 +425,7 @@ public extension RandomContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
-                         produces produceClosure: @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
+                         produces produceClosure: @Sendable @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
     {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules
@@ -440,8 +440,8 @@ public extension RandomContextualLSystem {
     ///   - produces: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-                             where evalClosure: @escaping (LC, DC, RC) -> Bool,
-                             produces produceClosure: @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
+                             where evalClosure: @Sendable @escaping (LC, DC, RC) -> Bool,
+                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
     {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
         var newRuleSet: [Rule] = rules
@@ -455,7 +455,7 @@ public extension RandomContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-                             produces produceClosure: @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
+                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
     {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
         var newRuleSet: [Rule] = rules

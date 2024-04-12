@@ -62,7 +62,7 @@ final class PRNGWrapperTests: XCTestCase {
         XCTAssertEqual(seedValue, 42)
         XCTAssertEqual(_invokeCount, 0)
 
-        let oneEv = start.evolve()
+        let oneEv = await start.evolve()
         seedValue = await start.prng.seed
         _invokeCount = await start.prng._invokeCount
         XCTAssertEqual(seedValue, 42)
@@ -78,7 +78,7 @@ final class PRNGWrapperTests: XCTestCase {
         XCTAssertEqual(_invokeCount, 2)
         XCTAssertEqual(sideTestPosition, oneEvPosition)
 
-        let twoEv = oneEv.evolve()
+        let twoEv = await oneEv.evolve()
         // Even though evolve is returning a new LSystem, the underlying reference to the RNG should be the same - so it
         // continues to move forward as new evolutions are invoked.
         _invokeCount = await twoEv.prng._invokeCount
@@ -97,7 +97,7 @@ final class PRNGWrapperTests: XCTestCase {
         XCTAssertEqual(seed, 42)
         XCTAssertEqual(_invokeCount, 0)
 
-        let oneEv = start.evolve()
+        let oneEv = await start.evolve()
 
         seed = await oneEv.prng.seed
         _invokeCount = await oneEv.prng._invokeCount

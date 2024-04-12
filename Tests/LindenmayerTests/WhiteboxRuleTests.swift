@@ -15,7 +15,7 @@ final class WhiteboxRuleTests: XCTestCase {
         XCTAssertEqual(String(describing: type(of: r.matchingType)), "Internode.Type")
     }
 
-    func testRuleProduction() throws {
+    func testRuleProduction() async throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self, prng: RNGWrapper(Xoshiro(seed: 0)), where: nil) { _, _ in
             [Examples2D.Internode()]
         }
@@ -23,7 +23,7 @@ final class WhiteboxRuleTests: XCTestCase {
 
         let set = ModuleSet(directInstance: Examples2D.Internode())
         // Verify produce returns an Internode
-        let newModule = r.produce(set)
+        let newModule = await r.produce(set)
         XCTAssertEqual(newModule.count, 1)
         XCTAssertEqual(newModule[0].description, "I")
     }

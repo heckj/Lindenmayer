@@ -103,7 +103,7 @@ public extension LindenmayerSystem {
     /// The Lindermayer system iterates through the rules provided, applying the first rule that matches the state from the rule to the current state of the system.
     /// When applying the rule, the element that matched is replaced with what the rule returns from ``Rule/produce(_:)``.
     /// - Returns: An updated Lindenmayer system.
-    func evolve() -> Self {
+    func evolve() async -> Self {
         // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
         // TODO(heckj): revisit this with async methods in mind, creating tasks for each iteration
         // in order to run the whole suite of the state in parallel for a new result. Await the whole
@@ -120,7 +120,7 @@ public extension LindenmayerSystem {
             if let foundRule = maybeRule {
                 // If a rule was found, then use it to generate the modules that
                 // replace this element in the sequence.
-                let newModules = foundRule.produce(moduleSet)
+                let newModules = await foundRule.produce(moduleSet)
                 newState.append(contentsOf: newModules)
                 for _ in newModules {
                     newStateIndicatorArray.append(true)
@@ -141,10 +141,10 @@ public extension LindenmayerSystem {
     /// The L-system evolved by a number of iterations you provide.
     /// - Parameter iterations: The number of times to evolve the L-system.
     /// - Returns: The updated L-system from the number of evolutions you provided.
-    func evolved(iterations: Int = 1) -> Self {
+    func evolved(iterations: Int = 1) async -> Self {
         var lsys: Self = self
         for _ in 0 ..< iterations {
-            lsys = lsys.evolve()
+            lsys = await lsys.evolve()
         }
         return lsys
     }

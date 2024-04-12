@@ -12,7 +12,7 @@ import SwiftUI
 /// A view that provides a 3D rendering of the L-system provide, and optionally metrics associated with the L-system.
 public struct Lsystem3DView: View {
     let displayMetrics: Bool
-    let system: LindenmayerSystem
+    @State var system: LindenmayerSystem
     func generateScene() -> SCNScene {
         let x = SceneKitRenderer()
         return x.generateScene(lsystem: system).0
@@ -46,6 +46,9 @@ public struct Lsystem3DView: View {
             //    scnView.showsStatistics = true
             //    scnView.backgroundColor = .white
         }
+        .task {
+            system = await system.evolved(iterations: 4)
+        }
     }
 
     public init(system: LindenmayerSystem, displayMetrics: Bool = false) {
@@ -56,7 +59,7 @@ public struct Lsystem3DView: View {
 
 struct Lsystem3DView_Previews: PreviewProvider {
     static var previews: some View {
-        Lsystem3DView(system: Examples3D.algae3D.evolved(iterations: 4),
+        Lsystem3DView(system: Examples3D.algae3D,
                       displayMetrics: true)
     }
 }

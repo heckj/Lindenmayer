@@ -2,7 +2,7 @@
 import XCTest
 
 final class LSystemTests: XCTestCase {
-    func testLSystemDefault() throws {
+    func testLSystemDefault() async throws {
         let x = RandomContextualLSystem(axiom: [Examples2D.Internode()], state: nil, newStateIndicators: nil, prng: RNGWrapper(Xoshiro(seed: 0)))
         XCTAssertNotNil(x)
 
@@ -16,20 +16,20 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(result[0].render2D[0].name, RenderCommand.Draw(length: 10).name)
         XCTAssertEqual(result[0].render3D.name, RenderCommand.Ignore().name)
 
-        let updated = x.evolve()
+        let updated = await x.evolve()
         XCTAssertEqual(updated.state.count, 1)
         XCTAssertEqual(updated.state.count, updated.newStateIndicators.count)
         let downcast = updated.state[0] as! Examples2D.Internode
         XCTAssertEqual(downcast.description, "I")
     }
 
-    func testAlgaeLSystem_evolve1() throws {
+    func testAlgaeLSystem_evolve1() async throws {
         let algae = Examples2D.algae
         XCTAssertNotNil(algae)
         XCTAssertEqual(algae.state.count, 1)
         XCTAssertEqual(algae.state.map(\.description).joined(), "A")
 
-        let iter1 = algae.evolve() // debugPrint: true
+        let iter1 = await algae.evolve() // debugPrint: true
         XCTAssertEqual(iter1.state.count, 2)
         XCTAssertEqual(iter1.state.count, iter1.newStateIndicators.count)
 
@@ -40,42 +40,42 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(resultSequence, "AB")
     }
 
-    func testAlgaeLSystem_evolve2() throws {
+    func testAlgaeLSystem_evolve2() async throws {
         var resultSequence = ""
         let algae = Examples2D.algae
-        let iter2 = algae.evolve()
+        let iter2 = await algae.evolve()
         resultSequence = iter2.state.map(\.description).joined()
         XCTAssertEqual(resultSequence, "AB")
-        let iter3 = iter2.evolve() // debugPrint: true
+        let iter3 = await iter2.evolve() // debugPrint: true
         resultSequence = iter3.state.map(\.description).joined()
         XCTAssertEqual(resultSequence, "ABA")
         XCTAssertEqual(iter3.state.count, iter3.newStateIndicators.count)
     }
 
-    func testAlgaeLSystem_evolve3() throws {
+    func testAlgaeLSystem_evolve3() async throws {
         var resultSequence = ""
         let algae = Examples2D.algae
-        let evolution = algae.evolved(iterations: 3)
+        let evolution = await algae.evolved(iterations: 3)
         resultSequence = evolution.state.map(\.description).joined()
         XCTAssertEqual(resultSequence, "ABAAB")
-        let evolution2 = evolution.evolve()
+        let evolution2 = await evolution.evolve()
         resultSequence = evolution2.state.map(\.description).joined()
         XCTAssertEqual(resultSequence, "ABAABABA")
         XCTAssertEqual(evolution2.state.count, evolution2.newStateIndicators.count)
     }
 
-    func testFractalTree_evolve2() throws {
+    func testFractalTree_evolve2() async throws {
         let tree = Examples2D.fractalTree
-        let evo1 = tree.evolve()
+        let evo1 = await tree.evolve()
         XCTAssertEqual(evo1.state.map(\.description).joined(), "I[+L]-L")
         XCTAssertEqual(evo1.newStateIndicators, [true, true, true, true, true, true, true])
-        let evo2 = evo1.evolve()
+        let evo2 = await evo1.evolve()
         XCTAssertEqual(evo2.state.map(\.description).joined(), "II[+I[+L]-L]-I[+L]-L")
     }
 
-    func testLSystem_kochCurve() throws {
+    func testLSystem_kochCurve() async throws {
         let tree = Examples2D.kochCurve
-        let evo1 = tree.evolved(iterations: 3)
+        let evo1 = await tree.evolved(iterations: 3)
         XCTAssertEqual(evo1.state.map(\.description).joined(),
                        "F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F")
         print(evo1.newStateIndicators)

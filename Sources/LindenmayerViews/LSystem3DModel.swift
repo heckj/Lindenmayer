@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 import Lindenmayer
-import SceneKit
+@preconcurrency import SceneKit
 import SceneKitDebugTools
 import SwiftUI
 
@@ -34,6 +34,17 @@ public class LSystem3DModel: ObservableObject {
         _transformSequence
     }
 
+    func evolveBy(iterations: Int) async {
+        system = await _baseSystem.evolved(iterations: _iterations)
+        objectWillChange.send()
+        (_scene, _transformSequence) = renderer.generateScene(lsystem: system)
+        let headingIndicator = DebugNodes.headingIndicator()
+        headingIndicator.opacity = 0
+        let bigger = SceneKitRenderer.scalingTransform(x: 2.5, y: 2.5, z: 2.5)
+        headingIndicator.simdTransform = matrix_multiply(headingIndicator.simdTransform, bigger)
+        _scene.rootNode.addChildNode(headingIndicator)
+    }
+
     var _iterations = 1
     public var iterations: Int {
         get {
@@ -42,14 +53,9 @@ public class LSystem3DModel: ObservableObject {
         set {
             precondition(newValue > 0 && newValue < 20)
             _iterations = newValue
-            objectWillChange.send()
-            system = _baseSystem.evolved(iterations: _iterations)
-            (_scene, _transformSequence) = renderer.generateScene(lsystem: system)
-            let headingIndicator = DebugNodes.headingIndicator()
-            headingIndicator.opacity = 0
-            let bigger = SceneKitRenderer.scalingTransform(x: 2.5, y: 2.5, z: 2.5)
-            headingIndicator.simdTransform = matrix_multiply(headingIndicator.simdTransform, bigger)
-            _scene.rootNode.addChildNode(headingIndicator)
+            Task {
+                await self.evolveBy(iterations: _iterations)
+            }
         }
     }
 

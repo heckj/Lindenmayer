@@ -82,7 +82,8 @@ public struct Dynamic2DLSystemViews: View {
                 #endif
             }
             .padding()
-            Lsystem2DView(system: selectedSystem.lsystem.evolved(iterations: Int(evolutions)),
+            Lsystem2DView(system: selectedSystem.lsystem,
+                          iterations: Int(evolutions),
                           displayMetrics: false)
                 .padding()
         }

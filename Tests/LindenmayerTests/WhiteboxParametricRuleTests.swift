@@ -18,7 +18,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
 
     let p = ParameterizedExample()
 
-    func testRuleDefaults() throws {
+    func testRuleDefaults() async throws {
         let r = RewriteRuleDirectDefinesRNG(directType: ParameterizedExample.self, parameters: ExampleDefines(), prng: RNGWrapper(Xoshiro(seed: 0)), where: nil) { _, p, _ -> [Module] in
             [ParameterizedExample(p.value + 1.0)]
         }
@@ -33,7 +33,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
         let differentValueModuleSet = ModuleSet(directInstance: ParameterizedExample(21))
         XCTAssertEqual(r.evaluate(differentValueModuleSet), true)
 
-        let newModules: [Module] = r.produce(moduleSet)
+        let newModules: [Module] = await r.produce(moduleSet)
         XCTAssertEqual(newModules.count, 1)
         let param = newModules[0] as! ParameterizedExample
         // verify that our rule was processed, returning the same module with
@@ -41,7 +41,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
         XCTAssertEqual(param.i, 11)
     }
 
-    func testRuleDefaultsWithSystemParameters() throws {
+    func testRuleDefaultsWithSystemParameters() async throws {
         let r = RewriteRuleDirectDefinesRNG(directType: ParameterizedExample.self,
                                             parameters: ExampleDefines(),
                                             prng: RNGWrapper(Xoshiro(seed: 0)),
@@ -61,7 +61,7 @@ final class WhiteboxParametricRuleTests: XCTestCase {
         XCTAssertEqual(r.evaluate(differentValueModuleSet), true)
 
         let set = ModuleSet(directInstance: ParameterizedExample(10))
-        let newModules: [Module] = r.produce(set)
+        let newModules: [Module] = await r.produce(set)
         XCTAssertEqual(newModules.count, 1)
         let param = newModules[0] as! ParameterizedExample
         // verify that our rule was processed, returning the same module with

@@ -10,7 +10,7 @@ import SwiftUI
 
 /// A view that provides the size of the state of an L-system and a textual representation of that state.
 public struct LSystemMetrics: View {
-    let system: LindenmayerSystem
+    @State var system: LindenmayerSystem
     public var body: some View {
         VStack {
             Text("State size: \(system.state.count)")
@@ -18,6 +18,8 @@ public struct LSystemMetrics: View {
                 .font(.caption)
                 .lineLimit(3)
                 .padding(.horizontal)
+        }.task {
+            system = await system.evolved(iterations: 4)
         }
     }
 
@@ -28,6 +30,6 @@ public struct LSystemMetrics: View {
 
 struct LSystemMetrics_Previews: PreviewProvider {
     static var previews: some View {
-        LSystemMetrics(system: Examples3D.monopodialTree.evolved(iterations: 4))
+        LSystemMetrics(system: Examples3D.monopodialTree)
     }
 }

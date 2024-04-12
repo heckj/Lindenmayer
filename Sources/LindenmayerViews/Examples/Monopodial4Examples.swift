@@ -13,10 +13,10 @@ import SwiftUI
 ///
 /// The set of trees match the examples of figure 2.6 in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf) on page 56.
 public struct Monopodial4Examples: View {
-    let system1: LindenmayerSystem
-    let system2: LindenmayerSystem
-    let system3: LindenmayerSystem
-    let system4: LindenmayerSystem
+    @State var system1: LindenmayerSystem
+    @State var system2: LindenmayerSystem
+    @State var system3: LindenmayerSystem
+    @State var system4: LindenmayerSystem
     let renderer = SceneKitRenderer()
     public var body: some View {
         VStack {
@@ -28,22 +28,23 @@ public struct Monopodial4Examples: View {
                 Lsystem3DView(system: system3)
                 Lsystem3DView(system: system4)
             }
+        }.task {
+            system1 = await system1.evolved(iterations: 10)
+            system2 = await system2.evolved(iterations: 10)
+            system3 = await system3.evolved(iterations: 10)
+            system4 = await system4.evolved(iterations: 10)
         }
     }
 
     public init() {
         system1 = Examples3D.monopodialTree
             .setParameters(params: Examples3D.figure2_6A)
-            .evolved(iterations: 10)
         system2 = Examples3D.monopodialTree
             .setParameters(params: Examples3D.figure2_6B)
-            .evolved(iterations: 10)
         system3 = Examples3D.monopodialTree
             .setParameters(params: Examples3D.figure2_6C)
-            .evolved(iterations: 10)
         system4 = Examples3D.monopodialTree
             .setParameters(params: Examples3D.figure2_6D)
-            .evolved(iterations: 10)
     }
 }
 
