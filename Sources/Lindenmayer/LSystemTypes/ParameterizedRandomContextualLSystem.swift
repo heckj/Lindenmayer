@@ -94,10 +94,10 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
     ///
     /// This array is primarily used for debugging purposes
-    public var newStateIndicators: [Bool]
+    public let newStateIndicators: [Bool]
 
     /// The parameters to provide to rules for evaluation and production.
-    var parameters: ParametersWrapper<PType>
+    let parameters: ParametersWrapper<PType>
     let initialParameters: PType
 
     let prng: RNGWrapper<PRNG>
@@ -132,10 +132,11 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
         if let newStateIndicators = newStateIndicators {
             self.newStateIndicators = newStateIndicators
         } else {
-            self.newStateIndicators = []
+            var stateIndicators: [Bool] = []
             for _ in axiom {
-                self.newStateIndicators.append(true)
+                stateIndicators.append(true)
             }
+            self.newStateIndicators = stateIndicators
         }
         self.parameters = parameters
         self.prng = prng

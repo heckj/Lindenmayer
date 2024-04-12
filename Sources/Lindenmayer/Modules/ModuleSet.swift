@@ -20,9 +20,9 @@ import Foundation
 ///
 public struct ModuleSet {
     /// The module to the left (earlier) in the L-systems's state sequence.
-    var leftInstance: Module?
+    let leftInstance: Module?
     /// The type of the module to the left.
-    var leftInstanceType: Module.Type?
+    let leftInstanceType: Module.Type?
 
     /// The module instance.
     let directInstance: Module
@@ -30,9 +30,9 @@ public struct ModuleSet {
     let directInstanceType: Module.Type
 
     /// The module to the right (later) in the L-system's state sequence.
-    var rightInstance: Module?
+    let rightInstance: Module?
     /// The type of the module to the right.
-    var rightInstanceType: Module.Type?
+    let rightInstanceType: Module.Type?
 
     /// Creates a new module set with a module.
     /// - Parameters:
@@ -41,6 +41,10 @@ public struct ModuleSet {
     public init(directInstance: Module) {
         self.directInstance = directInstance
         directInstanceType = type(of: directInstance)
+        leftInstance = nil
+        leftInstanceType = nil
+        rightInstance = nil
+        rightInstanceType = nil
     }
 
     /// Creates a new module set with a module and its left and right neighbors.
@@ -52,17 +56,23 @@ public struct ModuleSet {
     ///   - rightInstance: The module to the right (later) in the L-system's state sequence.
     ///   - rightInstanceType: The type fo the module to the right.
     public init(leftInstance: Module?, directInstance: Module, rightInstance: Module?) {
-        if let leftInstance = leftInstance {
-            self.leftInstance = leftInstance
-            leftInstanceType = type(of: leftInstance)
+        if let left = leftInstance {
+            self.leftInstance = left
+            leftInstanceType = type(of: left)
+        } else {
+            self.leftInstance = nil
+            leftInstanceType = nil
         }
 
         self.directInstance = directInstance
         directInstanceType = type(of: directInstance)
 
-        if let rightInstance = rightInstance {
-            self.rightInstance = rightInstance
-            rightInstanceType = type(of: rightInstance)
+        if let right = rightInstance {
+            self.rightInstance = right
+            rightInstanceType = type(of: right)
+        } else {
+            self.rightInstance = nil
+            rightInstanceType = nil
         }
     }
 }

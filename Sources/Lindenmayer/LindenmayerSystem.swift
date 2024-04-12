@@ -84,21 +84,18 @@ public extension LindenmayerSystem {
     /// If any modules aren't available, they are `nil`.
     func modules(atIndex: Int) -> ModuleSet {
         let strict = state[atIndex]
-
-        var moduleSet = ModuleSet(directInstance: strict)
-
+        
+        var leftInstance: (any Module)? = nil
         if atIndex - 1 > 0 {
-            let leftInstance = state[atIndex - 1]
-            moduleSet.leftInstance = leftInstance
-            moduleSet.leftInstanceType = type(of: leftInstance)
+            leftInstance = state[atIndex - 1]
         }
 
+        var rightInstance: (any Module)? = nil
         if state.count > atIndex + 1 {
             let rightInstance = state[atIndex + 1]
-            moduleSet.rightInstance = rightInstance
-            moduleSet.rightInstanceType = type(of: rightInstance)
         }
-        return moduleSet
+        
+        return ModuleSet(leftInstance: leftInstance, directInstance: strict, rightInstance: rightInstance)
     }
 
     /// Processes the current state against its rules to provide an updated L-system
