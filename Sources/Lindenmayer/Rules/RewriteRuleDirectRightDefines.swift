@@ -32,13 +32,13 @@ public struct RewriteRuleDirectRightDefines<DC, RC, PType>: Rule where DC: Modul
     let parameters: PType
 
     /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
-    public var parametricEval: ((DC, RC, PType) -> Bool)?
-
+    public let parametricEval: Eval?
+    public typealias Eval = @Sendable (DC, RC, PType) -> Bool
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias combinationMatchProducesList = (DC, RC, PType) -> [Module]
+    public typealias CombinationMatchProducesList = @Sendable (DC, RC, PType) -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
-    public let produceClosure: combinationMatchProducesList
+    public let produceClosure: CombinationMatchProducesList
 
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchingTypes: (DC.Type, RC.Type)
@@ -50,12 +50,13 @@ public struct RewriteRuleDirectRightDefines<DC, RC, PType>: Rule where DC: Modul
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType: DC.Type, rightType: RC.Type,
                 parameters: PType,
-                where _: ((DC, RC, PType) -> Bool)?,
-                produces produceClosure: @escaping combinationMatchProducesList)
+                where eval: Eval?,
+                produces produceClosure: @escaping CombinationMatchProducesList)
     {
         matchingTypes = (directType, rightType)
         self.parameters = parameters
         self.produceClosure = produceClosure
+        parametricEval = eval
     }
 
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.

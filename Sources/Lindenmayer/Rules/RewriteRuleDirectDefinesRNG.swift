@@ -30,8 +30,8 @@ import Foundation
 
 public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Module, PRNG: SeededRandomNumberGenerator, PType: Sendable {
     /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
-    public var parametricEval: ((DC, PType) -> Bool)?
-
+    public let parametricEval: Eval?
+    public typealias Eval = @Sendable (DC, PType) -> Bool
     /// The set of parameters provided by the L-system for rule evaluation and production.
     let parameters: PType
 
@@ -39,10 +39,10 @@ public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Modul
     var prng: RNGWrapper<PRNG>
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias singleMatchProducesList = (DC, PType, RNGWrapper<PRNG>) -> [Module]
+    public typealias SingleMatchProducesList = @Sendable (DC, PType, RNGWrapper<PRNG>) -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
-    public let produceClosure: singleMatchProducesList
+    public let produceClosure: SingleMatchProducesList
 
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchingType: DC.Type
@@ -55,13 +55,14 @@ public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Modul
     public init(directType direct: DC.Type,
                 parameters: PType,
                 prng: RNGWrapper<PRNG>,
-                where _: ((DC, PType) -> Bool)?,
-                produces singleModuleProduce: @escaping singleMatchProducesList)
+                where eval: Eval?,
+                produces singleModuleProduce: @escaping SingleMatchProducesList)
     {
         matchingType = direct
         self.parameters = parameters
         self.prng = prng
         produceClosure = singleModuleProduce
+        parametricEval = eval
     }
 
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
