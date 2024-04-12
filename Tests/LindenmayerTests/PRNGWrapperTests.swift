@@ -53,46 +53,64 @@ final class PRNGWrapperTests: XCTestCase {
         XCTAssertEqual(firstResults, secondResults)
     }
 
-    func testCheckingRNGReferenceType() throws {
+    func testCheckingRNGReferenceType() async throws {
         // requires `@testable import Lindenmayer` to get to the DetailedExamples struct
         let start = Examples3D.randomBush
 
-        XCTAssertEqual(start.prng.seed, 42)
-        XCTAssertEqual(start.prng._invokeCount, 0)
+        var seedValue = await start.prng.seed
+        var _invokeCount = await start.prng._invokeCount
+        XCTAssertEqual(seedValue, 42)
+        XCTAssertEqual(_invokeCount, 0)
 
         let oneEv = start.evolve()
-        XCTAssertEqual(oneEv.prng.seed, 42)
-        XCTAssertEqual(oneEv.prng._invokeCount, 2)
+        seedValue = await start.prng.seed
+        _invokeCount = await start.prng._invokeCount
+        XCTAssertEqual(seedValue, 42)
+        XCTAssertEqual(_invokeCount, 2)
         // print(oneEv.prng.position)
 
         let sideTest = RNGWrapper(Xoshiro(seed: 42))
-        _ = sideTest.p()
-        _ = sideTest.p()
-        XCTAssertEqual(sideTest._invokeCount, 2)
-        XCTAssertEqual(sideTest.position, oneEv.prng.position)
+        _ = await sideTest.p()
+        _ = await sideTest.p()
+        _invokeCount = await sideTest._invokeCount
+        let sideTestPosition = await sideTest.position
+        let oneEvPosition = await sideTest.position
+        XCTAssertEqual(_invokeCount, 2)
+        XCTAssertEqual(sideTestPosition, oneEvPosition)
 
         let twoEv = oneEv.evolve()
         // Even though evolve is returning a new LSystem, the underlying reference to the RNG should be the same - so it
         // continues to move forward as new evolutions are invoked.
-        XCTAssertEqual(twoEv.prng._invokeCount, 4)
-        start.prng.resetRNG(seed: start.prng.seed)
+        _invokeCount = await twoEv.prng._invokeCount
+        XCTAssertEqual(_invokeCount, 4)
+        await start.prng.resetRNG(seed: start.prng.seed)
+        _invokeCount = await start.prng._invokeCount
+        XCTAssertEqual(_invokeCount, 0)
     }
 
-    func testResettingPRNG() throws {
+    func testResettingPRNG() async throws {
         // requires `@testable import Lindenmayer` to get to the DetailedExamples struct
         let start = Examples3D.randomBush
 
-        XCTAssertEqual(start.prng.seed, 42)
-        XCTAssertEqual(start.prng._invokeCount, 0)
+        var seed = await start.prng.seed
+        var _invokeCount = await start.prng._invokeCount
+        XCTAssertEqual(seed, 42)
+        XCTAssertEqual(_invokeCount, 0)
 
         let oneEv = start.evolve()
 
-        XCTAssertEqual(oneEv.prng.seed, 42)
-        XCTAssertEqual(oneEv.prng._invokeCount, 2)
+        seed = await oneEv.prng.seed
+        _invokeCount = await oneEv.prng._invokeCount
 
-        start.prng.resetRNG(seed: start.prng.seed)
-        XCTAssertEqual(oneEv.prng.seed, 42)
-        XCTAssertEqual(oneEv.prng.position, 0)
-        XCTAssertEqual(oneEv.prng._invokeCount, 0)
+        XCTAssertEqual(seed, 42)
+        XCTAssertEqual(_invokeCount, 2)
+
+        await start.prng.resetRNG(seed: start.prng.seed)
+        let position = await oneEv.prng.position
+        seed = await oneEv.prng.seed
+        _invokeCount = await oneEv.prng._invokeCount
+        XCTAssertEqual(seed, 42)
+        XCTAssertEqual(position, 0)
+        XCTAssertEqual(_invokeCount, 0)
     }
 }
