@@ -80,9 +80,9 @@ public enum LSystem: Sendable {
     ///   - parameters: An instance of type you provide that the L-system provides to the rules you create for use as parameters.
     public static func create<PType, RNGType>(_ axiom: Module, with prng: RNGType?, using parameters: PType) -> ParameterizedRandomContextualLSystem<PType, RNGType> {
         if let prng {
-            return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(prng), rules: [])
+            return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: parameters, prng: RNGWrapper(prng), rules: [])
         }
-        return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType), rules: [])
+        return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: parameters, prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType), rules: [])
     }
 
     /// Creates a new Lindenmayer system from an initial state, using the random number generator and parameter instance that you provide.
@@ -92,8 +92,8 @@ public enum LSystem: Sendable {
     ///   - parameters: An instance of type you provide that the L-system provides to the rules you create for use as parameters.
     public static func create<PType, RNGType>(_ axiom: [Module], with prng: RNGType?, using parameters: PType) -> ParameterizedRandomContextualLSystem<PType, RNGType> {
         if let prng {
-            return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(prng), rules: [])
+            return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: parameters, prng: RNGWrapper(prng), rules: [])
         }
-        return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType), rules: [])
+        return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: parameters, prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType), rules: [])
     }
 }

@@ -27,9 +27,9 @@ import Foundation
 /// - ``produceClosure``
 /// - ``combinationMatchProducesList``
 ///
-public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where DC: Module, RC: Module, PRNG: SeededRandomNumberGenerator {
+public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where DC: Module, RC: Module, PRNG: SeededRandomNumberGenerator, PType: Sendable {
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    var parameters: ParametersWrapper<PType>
+    let parameters: PType
 
     /// A psuedo-random number generator to use for stochastic rule productions.
     var prng: RNGWrapper<PRNG>
@@ -52,7 +52,7 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType: DC.Type, rightType: RC.Type,
-                parameters: ParametersWrapper<PType>,
+                parameters: PType,
                 prng: RNGWrapper<PRNG>,
                 where _: ((DC, RC, PType) -> Bool)?,
                 produces produceClosure: @escaping combinationMatchProducesList)
@@ -83,7 +83,7 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
             else {
                 return false
             }
-            return additionalEval(directInstance, rightInstance, parameters.unwrap())
+            return additionalEval(directInstance, rightInstance, parameters)
         }
 
         return true
@@ -98,7 +98,7 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
         else {
             return []
         }
-        return produceClosure(directInstance, rightInstance, parameters.unwrap(), prng)
+        return produceClosure(directInstance, rightInstance, parameters, prng)
     }
 }
 

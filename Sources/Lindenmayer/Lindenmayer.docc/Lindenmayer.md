@@ -28,7 +28,6 @@ To get support for using this package, see the [Discussions on Github](https://g
 - ``ParameterizedRandomContextualLSystem``
 - ``LindenmayerSystem``
 - ``ModuleSet``
-- ``ParametersWrapper``
 
 ### Modules
 

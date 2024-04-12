@@ -85,7 +85,7 @@ import Foundation
 ///
 /// - ``ParameterizedRandomContextualLSystem/reset()``
 ///
-public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSystem where PRNG: SeededRandomNumberGenerator {
+public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSystem where PRNG: SeededRandomNumberGenerator, PType: Sendable {
     let axiom: [Module]
 
     /// The current state of the L-system, expressed as a sequence of elements that conform to Module.
@@ -97,7 +97,7 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     public let newStateIndicators: [Bool]
 
     /// The parameters to provide to rules for evaluation and production.
-    let parameters: ParametersWrapper<PType>
+    let parameters: PType
     let initialParameters: PType
 
     let prng: RNGWrapper<PRNG>
@@ -116,13 +116,13 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     public init(axiom: [Module],
                 state: [Module]?,
                 newStateIndicators: [Bool]?,
-                parameters: ParametersWrapper<PType>,
+                parameters: PType,
                 prng: RNGWrapper<PRNG>,
                 rules: [Rule] = [])
     {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
-        initialParameters = parameters.unwrap()
+        initialParameters = parameters
         self.axiom = axiom
         if let state {
             self.state = state
@@ -155,7 +155,6 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
 
     public func reset() -> Self {
         prng.resetRNG(seed: prng.seed)
-        parameters.update(initialParameters)
         return ParameterizedRandomContextualLSystem<PType, PRNG>(axiom: axiom, state: nil, newStateIndicators: nil, parameters: parameters, prng: prng, rules: rules)
     }
 
@@ -173,8 +172,7 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     /// - Returns: The L-system with the parameters value updated.
     @discardableResult
     public func setParameters(params: PType) -> Self {
-        parameters.update(params)
-        return self
+        Self(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: params, prng: prng, rules: rules)
     }
 
     /// Sets the seed for the pseudo-random number generator and the parameters for the L-system to the value you provide.
@@ -183,9 +181,8 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     ///   - params: The updated value for the parameter type of the L-system.
     /// - Returns: The L-system with the seed value and parameters value updated.
     @discardableResult
-    public func set(seed: UInt64, params: PType) -> Self {
+    public func set(seed: UInt64) -> Self {
         prng.resetRNG(seed: seed)
-        parameters.update(params)
         return self
     }
 }
