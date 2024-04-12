@@ -41,14 +41,14 @@ public enum LSystem: Sendable {
     /// - Parameters:
     ///   - axiom: An initial module that represents the initial state of the Lindenmayer system..
     public static func create(_ axiom: Module) -> ContextualLSystem {
-        return ContextualLSystem([axiom], state: nil, newStateIndicators: nil)
+        ContextualLSystem([axiom], state: nil, newStateIndicators: nil)
     }
 
     /// Creates a new Lindenmayer system from an initial state.
     /// - Parameters:
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     public static func create(_ axiom: [Module]) -> ContextualLSystem {
-        return ContextualLSystem(axiom, state: nil, newStateIndicators: nil)
+        ContextualLSystem(axiom, state: nil, newStateIndicators: nil)
     }
 
     /// Creates a new Lindenmayer system from an initial state and using the random number generator you provide.
@@ -56,7 +56,7 @@ public enum LSystem: Sendable {
     ///   - axiom: An initial module that represents the initial state of the Lindenmayer system..
     ///   - prng: An optional psuedo-random number generator to use for randomness in rule productions.
     public static func create<RNGType>(_ axiom: Module, with prng: RNGType?) -> RandomContextualLSystem<RNGType> {
-        if let prng = prng {
+        if let prng {
             return RandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, prng: RNGWrapper(prng))
         }
         return RandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType))
@@ -67,7 +67,7 @@ public enum LSystem: Sendable {
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - prng: An optional psuedo-random number generator to use for for randomness in rule productions.
     public static func create<RNGType>(_ axiom: [Module], with prng: RNGType?) -> RandomContextualLSystem<RNGType> {
-        if let prng = prng {
+        if let prng {
             return RandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, prng: RNGWrapper(prng))
         }
         return RandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType))
@@ -79,7 +79,7 @@ public enum LSystem: Sendable {
     ///   - prng: An optional psuedo-random number generator to use for for randomness in rule productions.
     ///   - parameters: An instance of type you provide that the L-system provides to the rules you create for use as parameters.
     public static func create<PType, RNGType>(_ axiom: Module, with prng: RNGType?, using parameters: PType) -> ParameterizedRandomContextualLSystem<PType, RNGType> {
-        if let prng = prng {
+        if let prng {
             return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(prng), rules: [])
         }
         return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType), rules: [])
@@ -91,7 +91,7 @@ public enum LSystem: Sendable {
     ///   - prng: An optional psuedo-random number generator to use for for randomness in rule productions.
     ///   - parameters: An instance of type you provide that the L-system provides to the rules you create for use as parameters.
     public static func create<PType, RNGType>(_ axiom: [Module], with prng: RNGType?, using parameters: PType) -> ParameterizedRandomContextualLSystem<PType, RNGType> {
-        if let prng = prng {
+        if let prng {
             return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(prng), rules: [])
         }
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: ParametersWrapper(parameters), prng: RNGWrapper(Xoshiro(seed: 42) as! RNGType), rules: [])

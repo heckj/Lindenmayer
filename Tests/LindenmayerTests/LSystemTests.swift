@@ -27,7 +27,7 @@ final class LSystemTests: XCTestCase {
         let algae = Examples2D.algae
         XCTAssertNotNil(algae)
         XCTAssertEqual(algae.state.count, 1)
-        XCTAssertEqual(algae.state.map { $0.description }.joined(), "A")
+        XCTAssertEqual(algae.state.map(\.description).joined(), "A")
 
         let iter1 = algae.evolve() // debugPrint: true
         XCTAssertEqual(iter1.state.count, 2)
@@ -36,7 +36,7 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(iter1.state[0].description, "A")
         XCTAssertEqual(iter1.state[1].description, "B")
 
-        let resultSequence = iter1.state.map { $0.description }.joined()
+        let resultSequence = iter1.state.map(\.description).joined()
         XCTAssertEqual(resultSequence, "AB")
     }
 
@@ -44,10 +44,10 @@ final class LSystemTests: XCTestCase {
         var resultSequence = ""
         let algae = Examples2D.algae
         let iter2 = algae.evolve()
-        resultSequence = iter2.state.map { $0.description }.joined()
+        resultSequence = iter2.state.map(\.description).joined()
         XCTAssertEqual(resultSequence, "AB")
         let iter3 = iter2.evolve() // debugPrint: true
-        resultSequence = iter3.state.map { $0.description }.joined()
+        resultSequence = iter3.state.map(\.description).joined()
         XCTAssertEqual(resultSequence, "ABA")
         XCTAssertEqual(iter3.state.count, iter3.newStateIndicators.count)
     }
@@ -56,10 +56,10 @@ final class LSystemTests: XCTestCase {
         var resultSequence = ""
         let algae = Examples2D.algae
         let evolution = algae.evolved(iterations: 3)
-        resultSequence = evolution.state.map { $0.description }.joined()
+        resultSequence = evolution.state.map(\.description).joined()
         XCTAssertEqual(resultSequence, "ABAAB")
         let evolution2 = evolution.evolve()
-        resultSequence = evolution2.state.map { $0.description }.joined()
+        resultSequence = evolution2.state.map(\.description).joined()
         XCTAssertEqual(resultSequence, "ABAABABA")
         XCTAssertEqual(evolution2.state.count, evolution2.newStateIndicators.count)
     }
@@ -67,16 +67,16 @@ final class LSystemTests: XCTestCase {
     func testFractalTree_evolve2() throws {
         let tree = Examples2D.fractalTree
         let evo1 = tree.evolve()
-        XCTAssertEqual(evo1.state.map { $0.description }.joined(), "I[+L]-L")
+        XCTAssertEqual(evo1.state.map(\.description).joined(), "I[+L]-L")
         XCTAssertEqual(evo1.newStateIndicators, [true, true, true, true, true, true, true])
         let evo2 = evo1.evolve()
-        XCTAssertEqual(evo2.state.map { $0.description }.joined(), "II[+I[+L]-L]-I[+L]-L")
+        XCTAssertEqual(evo2.state.map(\.description).joined(), "II[+I[+L]-L]-I[+L]-L")
     }
 
     func testLSystem_kochCurve() throws {
         let tree = Examples2D.kochCurve
         let evo1 = tree.evolved(iterations: 3)
-        XCTAssertEqual(evo1.state.map { $0.description }.joined(),
+        XCTAssertEqual(evo1.state.map(\.description).joined(),
                        "F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F")
         print(evo1.newStateIndicators)
     }

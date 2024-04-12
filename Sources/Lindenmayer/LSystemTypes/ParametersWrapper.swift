@@ -34,7 +34,7 @@ public final class ParametersWrapper<PType> {
 
     /// Returns the value type that the parameter wrapper encapsulates.
     public func unwrap() -> PType {
-        return _parameters
+        _parameters
     }
 
     /// Creates a new random number generator wrapper class with the random number generator you provide.

@@ -84,7 +84,7 @@ public extension LindenmayerSystem {
     /// If any modules aren't available, they are `nil`.
     func modules(atIndex: Int) -> ModuleSet {
         let strict = state[atIndex]
-        
+
         var leftInstance: (any Module)? = nil
         if atIndex - 1 > 0 {
             leftInstance = state[atIndex - 1]
@@ -94,7 +94,7 @@ public extension LindenmayerSystem {
         if state.count > atIndex + 1 {
             let rightInstance = state[atIndex + 1]
         }
-        
+
         return ModuleSet(leftInstance: leftInstance, directInstance: strict, rightInstance: rightInstance)
     }
 

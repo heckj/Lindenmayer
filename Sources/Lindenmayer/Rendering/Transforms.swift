@@ -15,7 +15,7 @@ public extension SceneKitRenderer {
     ///   - z: The amount to translate along the Z axis.
     /// - Returns: A translation transform.
     static func translationTransform(x: Float, y: Float, z: Float) -> simd_float4x4 {
-        return simd_float4x4(
+        simd_float4x4(
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, 1, 0, 0),
             SIMD4<Float>(0, 0, 1, 0),
@@ -30,7 +30,7 @@ public extension SceneKitRenderer {
     ///   - z: The amount to scale along the Z axis.
     /// - Returns: A scaling transform.
     static func scalingTransform(x: Float, y: Float, z: Float) -> simd_float4x4 {
-        return simd_float4x4(
+        simd_float4x4(
             SIMD4<Float>(x, 0, 0, 0),
             SIMD4<Float>(0, y, 0, 0),
             SIMD4<Float>(0, 0, z, 0),
@@ -42,7 +42,7 @@ public extension SceneKitRenderer {
     /// - Parameter angle: The amount (in radians) to rotate around the Z axis.
     /// - Returns: A Z-axis rotation transform.
     static func rotationAroundZAxisTransform(angle: Angle) -> simd_float4x4 {
-        return simd_float4x4(
+        simd_float4x4(
             SIMD4<Float>(cos(Float(angle.radians)), sin(Float(angle.radians)), 0, 0),
             SIMD4<Float>(-sin(Float(angle.radians)), cos(Float(angle.radians)), 0, 0),
             SIMD4<Float>(0, 0, 1, 0),
@@ -54,7 +54,7 @@ public extension SceneKitRenderer {
     /// - Parameter angle: The amount (in radians) to rotate around the X axis.
     /// - Returns: A X-axis rotation transform.
     static func rotationAroundXAxisTransform(angle: Angle) -> simd_float4x4 {
-        return simd_float4x4(
+        simd_float4x4(
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, cos(Float(angle.radians)), sin(Float(angle.radians)), 0),
             SIMD4<Float>(0, -sin(Float(angle.radians)), cos(Float(angle.radians)), 0),
@@ -66,7 +66,7 @@ public extension SceneKitRenderer {
     /// - Parameter angle: The amount (in radians) to rotate around the Y axis.
     /// - Returns: A Y-axis rotation transform.
     static func rotationAroundYAxisTransform(angle: Angle) -> simd_float4x4 {
-        return simd_float4x4(
+        simd_float4x4(
             SIMD4<Float>(cos(Float(angle.radians)), 0, -sin(Float(angle.radians)), 0),
             SIMD4<Float>(0, 1, 0, 0),
             SIMD4<Float>(sin(Float(angle.radians)), 0, cos(Float(angle.radians)), 0),

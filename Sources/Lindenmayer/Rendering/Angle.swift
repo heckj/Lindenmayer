@@ -8,6 +8,7 @@
 import Foundation
 #if canImport(SwiftUI)
     @_exported import SwiftUI
+
     /// A geometric angle whose value you access in either radians or degrees.
     public typealias Angle = SwiftUI.Angle
 #else
@@ -38,7 +39,7 @@ import Foundation
 
     /// The value of the angle in degrees.
     @inlinable public var degrees: Double {
-        return radians * 180.0 / .pi
+        radians * 180.0 / .pi
     }
 
     /// Creates a new Angle of zero radians.
@@ -58,11 +59,11 @@ import Foundation
 
     /// Creates a new Angle with the value of radians you provide.
     @inlinable public static func radians(_ radians: Double) -> Angle {
-        return Angle(radians: radians)
+        Angle(radians: radians)
     }
 
     /// Creates a new Angle with the value of degrees you provide.
     @inlinable public static func degrees(_ degrees: Double) -> Angle {
-        return Angle(degrees: degrees)
+        Angle(degrees: degrees)
     }
 }
