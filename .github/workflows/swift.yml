@@ -15,10 +15,10 @@ jobs:
         run-config:
           - { scheme: 'Lindenmayer-Package', destination: 'platform=iOS Simulator,OS=15.5,name=iPhone 8' }
           # Xcode on Github Actions supports at best up to macOS 11.6.2 currently...
-          #          - { scheme: 'Lindenmayer-Package', destination: 'platform=macOS,arch=x86_64' }
+          - { scheme: 'Lindenmayer-Package', destination: 'platform=macOS,arch=x86_64' }
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Show Build SDK
       run: xcodebuild -showsdks
@@ -32,8 +32,8 @@ jobs:
     - name: Show Available Destinations
       run: xcodebuild -scheme '${{ matrix.run-config['scheme'] }}' -showdestinations
 
-    - name: Build
+    - name: Build and Test
       run: xcodebuild clean test -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}' -showBuildTimingSummary
 
-    - name: DocBuild
-      run: xcodebuild docbuild -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}' -derivedDataPath /tmp/docbuild
+    # - name: DocBuild
+    #   run: xcodebuild docbuild -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}' -derivedDataPath /tmp/docbuild
