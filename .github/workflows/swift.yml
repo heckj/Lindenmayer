@@ -20,6 +20,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    # default Xcode for macOS 14 image is v15.0.1
+    - name: Select Xcode 15.3
+      run: sudo xcode-select -s /Applications/Xcode_15.3.app
+
     - name: Show Build SDK
       run: xcodebuild -showsdks
 
