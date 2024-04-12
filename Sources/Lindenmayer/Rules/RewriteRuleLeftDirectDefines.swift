@@ -27,18 +27,18 @@ import Foundation
 /// - ``produceClosure``
 /// - ``combinationMatchProducesList``
 ///
-public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module, DC: Module {
+public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module, DC: Module, PType: Sendable {
     /// The set of parameters provided by the L-system for rule evaluation and production.
     let parameters: PType
 
     /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
-    public var parametricEval: ((LC, DC, PType) -> Bool)?
-
+    public let parametricEval: Eval?
+    public typealias Eval = @Sendable (LC, DC, PType) -> Bool
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias combinationMatchProducesList = (LC, DC, PType) -> [Module]
+    public typealias CombinationMatchProducesList = @Sendable (LC, DC, PType) -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
-    public let produceClosure: combinationMatchProducesList
+    public let produceClosure: CombinationMatchProducesList
 
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchingTypes: (LC.Type, DC.Type)
@@ -50,12 +50,13 @@ public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(leftType: LC.Type, directType: DC.Type,
                 parameters: PType,
-                where _: ((LC, DC, PType) -> Bool)?,
-                produces produceClosure: @escaping combinationMatchProducesList)
+                where eval: Eval?,
+                produces produceClosure: @escaping CombinationMatchProducesList)
     {
         matchingTypes = (leftType, directType)
         self.parameters = parameters
         self.produceClosure = produceClosure
+        parametricEval = eval
     }
 
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.

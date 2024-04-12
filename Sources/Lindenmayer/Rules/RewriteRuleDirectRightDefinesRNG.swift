@@ -35,13 +35,13 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
     var prng: RNGWrapper<PRNG>
 
     /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
-    public var parametricEval: ((DC, RC, PType) -> Bool)?
-
+    public let parametricEval: Eval?
+    public typealias Eval = @Sendable (DC, RC, PType) -> Bool
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias combinationMatchProducesList = (DC, RC, PType, RNGWrapper<PRNG>) -> [Module]
+    public typealias CombinationMatchProducesList = @Sendable (DC, RC, PType, RNGWrapper<PRNG>) -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
-    public let produceClosure: combinationMatchProducesList
+    public let produceClosure: CombinationMatchProducesList
 
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchingTypes: (DC.Type, RC.Type)
@@ -54,13 +54,14 @@ public struct RewriteRuleDirectRightDefinesRNG<DC, RC, PType, PRNG>: Rule where 
     public init(directType: DC.Type, rightType: RC.Type,
                 parameters: PType,
                 prng: RNGWrapper<PRNG>,
-                where _: ((DC, RC, PType) -> Bool)?,
-                produces produceClosure: @escaping combinationMatchProducesList)
+                where eval: Eval?,
+                produces produceClosure: @escaping CombinationMatchProducesList)
     {
         matchingTypes = (directType, rightType)
         self.parameters = parameters
         self.prng = prng
         self.produceClosure = produceClosure
+        parametricEval = eval
     }
 
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
