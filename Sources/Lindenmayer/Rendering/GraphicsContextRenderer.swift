@@ -70,7 +70,7 @@ public struct GraphicsContextRenderer {
     ///   - size: The optional size of the available graphics context. If provided, the function pre-calculates the size of the rendered L-system and adjusts the drawing to fill the space available.
     @available(macOS 12.0, iOS 15.0, *)
     public func draw(_ lsystem: LindenmayerSystem, into context: inout GraphicsContext, ofSize size: CGSize? = nil) {
-        if let size = size {
+        if let size {
             // This is less pretty, because we have to process the whole damn thing to figure out the end-result
             // size prior to running the commands... grrr.
             let boundingBox = calcBoundingRect(system: lsystem)
@@ -228,7 +228,7 @@ public struct GraphicsContextRenderer {
             }
         }
 
-        guard let destinationRect = destinationRect else {
+        guard let destinationRect else {
             return path
         }
 
@@ -263,11 +263,11 @@ public struct GraphicsContextRenderer {
     }
 
     func updatedStateWithLineWidth(_ state: PathState, lineWidth: Double) -> PathState {
-        return PathState(state.angle, state.position, lineWidth, state.lineColor)
+        PathState(state.angle, state.position, lineWidth, state.lineColor)
     }
 
     func updatedStateWithLineColor(_ state: PathState, lineColor: ColorRepresentation) -> PathState {
-        return PathState(state.angle, state.position, state.lineWidth, lineColor)
+        PathState(state.angle, state.position, state.lineWidth, lineColor)
     }
 
     func updatedStateByTurning(_ state: PathState, angle: Angle, direction: TurnDirection)

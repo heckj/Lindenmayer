@@ -90,12 +90,12 @@ public struct ContextualLSystem: LindenmayerSystem {
                 rules: [Rule] = [])
     {
         self.axiom = axiom
-        if let state = state {
+        if let state {
             self.state = state
         } else {
             self.state = axiom
         }
-        if let newStateIndicators = newStateIndicators {
+        if let newStateIndicators {
             self.newStateIndicators = newStateIndicators
         } else {
             var stateIndicators: [Bool] = []
@@ -114,13 +114,13 @@ public struct ContextualLSystem: LindenmayerSystem {
     /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
     public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
-        return ContextualLSystem(axiom, state: state, newStateIndicators: newItemIndicators, rules: rules)
+        ContextualLSystem(axiom, state: state, newStateIndicators: newItemIndicators, rules: rules)
     }
 
     /// Resets the L-system to it's initial state, wiping out an existing state while keeping the rules.
     /// - Returns: A new L-system with it's state reset to the initial state you set when you created the L-system.
     public func reset() -> Self {
-        return ContextualLSystem(axiom, state: nil, newStateIndicators: newStateIndicators, rules: rules)
+        ContextualLSystem(axiom, state: nil, newStateIndicators: newStateIndicators, rules: rules)
     }
 }
 

@@ -107,6 +107,6 @@ public struct RewriteRuleLeftDirectDefinesRNG<LC, DC, PType, PRNG>: Rule where L
 extension RewriteRuleLeftDirectDefinesRNG: CustomStringConvertible {
     /// A description of the rule that details what it matches
     public var description: String {
-        return "Rule(left,direct)(\(String(describing: matchingTypes)) w/ parameters: \(String(describing: parameters)) and rng"
+        "Rule(left,direct)(\(String(describing: matchingTypes)) w/ parameters: \(String(describing: parameters)) and rng"
     }
 }

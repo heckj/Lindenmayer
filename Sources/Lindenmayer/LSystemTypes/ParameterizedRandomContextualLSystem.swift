@@ -124,12 +124,12 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
         // environment that can be evolved based on the rules available.
         initialParameters = parameters.unwrap()
         self.axiom = axiom
-        if let state = state {
+        if let state {
             self.state = state
         } else {
             self.state = axiom
         }
-        if let newStateIndicators = newStateIndicators {
+        if let newStateIndicators {
             self.newStateIndicators = newStateIndicators
         } else {
             var stateIndicators: [Bool] = []
@@ -150,7 +150,7 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
     public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
-        return ParameterizedRandomContextualLSystem<PType, PRNG>(axiom: axiom, state: state, newStateIndicators: newItemIndicators, parameters: parameters, prng: prng, rules: rules)
+        ParameterizedRandomContextualLSystem<PType, PRNG>(axiom: axiom, state: state, newStateIndicators: newItemIndicators, parameters: parameters, prng: prng, rules: rules)
     }
 
     public func reset() -> Self {

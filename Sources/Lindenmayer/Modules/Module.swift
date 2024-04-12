@@ -42,12 +42,12 @@ public protocol Module: CustomStringConvertible, Sendable {
 public extension Module {
     /// The sequence of two-dimensional oriented rendering commands that you use to represent the module.
     var render2D: [TwoDRenderCmd] {
-        return []
+        []
     }
 
     /// The three-dimensional oriented rendering command that you use to represent the module.
     var render3D: ThreeDRenderCmd {
-        return RenderCommand.Ignore()
+        RenderCommand.Ignore()
     }
 }
 

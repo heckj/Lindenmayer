@@ -75,7 +75,7 @@ public struct RollToVerticalTestView: View {
     }
 
     func calculateThings() {
-        if let selectedNode = selectedNode {
+        if let selectedNode {
             // regenerate calculated angle
             let rotation_from_heading = selectedNode.simdTransform.rotationTransform
             let original_heading_up_vector = simd_float3(x: 0, y: 0, z: 1)
@@ -95,7 +95,7 @@ public struct RollToVerticalTestView: View {
                 Text("Angle: \(calculated_angle) ( \(Angle(radians: Double(calculated_angle)).degrees)° )")
                 TextField("roll amount", text: $aString)
                 Button {
-                    if let selectedNode = selectedNode {
+                    if let selectedNode {
                         if let angle = Double(aString) {
                             print("before rotation")
                             print("\(pointSphereZ.simdTransform.prettyPrintString())")

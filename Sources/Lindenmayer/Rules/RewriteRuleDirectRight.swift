@@ -96,6 +96,6 @@ public struct RewriteRuleDirectRight<DC, RC>: Rule where DC: Module, RC: Module 
 extension RewriteRuleDirectRight: CustomStringConvertible {
     /// A description of the rule that details what it matches
     public var description: String {
-        return "Rule(direct,right)(\(String(describing: matchingTypes))"
+        "Rule(direct,right)(\(String(describing: matchingTypes))"
     }
 }
