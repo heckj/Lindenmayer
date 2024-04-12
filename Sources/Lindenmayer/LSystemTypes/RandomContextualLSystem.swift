@@ -78,10 +78,10 @@ public struct RandomContextualLSystem<PRNG>: LindenmayerSystem where PRNG: Seede
     /// This array is primarily used for debugging purposes
     public var newStateIndicators: [Bool]
 
-    var prng: RNGWrapper<PRNG>
+    let prng: RNGWrapper<PRNG>
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
-    public var rules: [Rule]
+    public let rules: [Rule]
 
     /// Creates a new Lindenmayer system from an initial state sequence and rules you provide.
     /// - Parameters:

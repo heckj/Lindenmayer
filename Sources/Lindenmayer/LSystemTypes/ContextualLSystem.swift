@@ -63,10 +63,10 @@ public struct ContextualLSystem: LindenmayerSystem {
     /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
     ///
     /// This array is primarily used for debugging purposes
-    public var newStateIndicators: [Bool]
+    public let newStateIndicators: [Bool]
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
-    public var rules: [Rule]
+    public let rules: [Rule]
 
     /// Creates a new Lindenmayer system from an initial state sequence and rules you provide.
     /// - Parameters:
@@ -98,10 +98,11 @@ public struct ContextualLSystem: LindenmayerSystem {
         if let newStateIndicators = newStateIndicators {
             self.newStateIndicators = newStateIndicators
         } else {
-            self.newStateIndicators = []
+            var stateIndicators: [Bool] = []
             for _ in axiom {
-                self.newStateIndicators.append(true)
+                stateIndicators.append(true)
             }
+            self.newStateIndicators = stateIndicators
         }
         self.rules = rules
     }
