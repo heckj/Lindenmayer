@@ -29,7 +29,7 @@ import Foundation
 ///
 public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module, DC: Module {
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    var parameters: ParametersWrapper<PType>
+    let parameters: PType
 
     /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
     public var parametricEval: ((LC, DC, PType) -> Bool)?
@@ -49,7 +49,7 @@ public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(leftType: LC.Type, directType: DC.Type,
-                parameters: ParametersWrapper<PType>,
+                parameters: PType,
                 where _: ((LC, DC, PType) -> Bool)?,
                 produces produceClosure: @escaping combinationMatchProducesList)
     {
@@ -79,7 +79,7 @@ public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module
             else {
                 return false
             }
-            return additionalEval(leftInstance, directInstance, parameters.unwrap())
+            return additionalEval(leftInstance, directInstance, parameters)
         }
 
         return true
@@ -95,7 +95,7 @@ public struct RewriteRuleLeftDirectDefines<LC, DC, PType>: Rule where LC: Module
         else {
             return []
         }
-        return produceClosure(leftInstance, directInstance, parameters.unwrap())
+        return produceClosure(leftInstance, directInstance, parameters)
     }
 }
 

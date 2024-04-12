@@ -28,12 +28,12 @@ import Foundation
 /// - ``singleMatchProducesList``
 ///
 
-public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
+public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module, PType: Sendable {
     /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
     public var parametricEval: ((DC, PType) -> Bool)?
 
     /// The set of parameters provided by the L-system for rule evaluation and production.
-    var parameters: ParametersWrapper<PType>
+    let parameters: PType
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
     public typealias singleMatchProducesList = (DC, PType) -> [Module]
@@ -50,7 +50,7 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
     ///   - prng: An optional psuedo-random number generator to use for stochastic rule productions.
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType direct: DC.Type,
-                parameters: ParametersWrapper<PType>,
+                parameters: PType,
                 where _: ((DC, PType) -> Bool)?,
                 produces singleModuleProduce: @escaping singleMatchProducesList)
     {
@@ -75,7 +75,7 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
             guard let directInstance = matchSet.directInstance as? DC else {
                 return false
             }
-            return additionalEval(directInstance, parameters.unwrap())
+            return additionalEval(directInstance, parameters)
         }
 
         return true
@@ -88,7 +88,7 @@ public struct RewriteRuleDirectDefines<DC, PType>: Rule where DC: Module {
         guard let directInstance = matchSet.directInstance as? DC else {
             return []
         }
-        return produceClosure(directInstance, parameters.unwrap())
+        return produceClosure(directInstance, parameters)
     }
 }
 
