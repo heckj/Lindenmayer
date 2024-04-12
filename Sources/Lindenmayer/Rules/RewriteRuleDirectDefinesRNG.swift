@@ -39,7 +39,7 @@ public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Modul
     var prng: RNGWrapper<PRNG>
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias SingleMatchProducesList = @Sendable (DC, PType, RNGWrapper<PRNG>) -> [Module]
+    public typealias SingleMatchProducesList = @Sendable (DC, PType, RNGWrapper<PRNG>) async -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: SingleMatchProducesList
@@ -91,11 +91,11 @@ public struct RewriteRuleDirectDefinesRNG<DC, PType, PRNG>: Rule where DC: Modul
     /// Invokes the rule's produce closure with the modules provided.
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
-    public func produce(_ matchSet: ModuleSet) -> [Module] {
+    public func produce(_ matchSet: ModuleSet) async -> [Module] {
         guard let directInstance = matchSet.directInstance as? DC else {
             return []
         }
-        return produceClosure(directInstance, parameters, prng)
+        return await produceClosure(directInstance, parameters, prng)
     }
 }
 

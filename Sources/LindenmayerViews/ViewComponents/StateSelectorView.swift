@@ -11,7 +11,7 @@ import SwiftUI
 /// A view that provides a visual representation of the states of an L-system and allows the person viewing it to select an index position from that L-system's state.
 @available(macOS 12.0, iOS 15.0, *)
 public struct StateSelectorView: View {
-    let system: LindenmayerSystem
+    @State var system: LindenmayerSystem
     let _withDetailView: Bool
     // state for the related views that show stuff
     @Binding var indexPosition: Int
@@ -189,7 +189,12 @@ public struct StateSelectorView: View {
 @available(macOS 12.0, iOS 15.0, *)
 struct StateSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        StateSelectorView(system: Examples3D.monopodialTree.evolved(iterations: 4), position: .constant(13))
-        StateSelectorView(system: Examples3D.monopodialTree.evolved(iterations: 4), position: .constant(13), withDetailView: true)
+        @State var system = Examples3D.monopodialTree
+        Group {
+            StateSelectorView(system: system, position: .constant(13))
+            StateSelectorView(system: system, position: .constant(13), withDetailView: true)
+        }.task {
+            system = await system.evolved(iterations: 4)
+        }
     }
 }

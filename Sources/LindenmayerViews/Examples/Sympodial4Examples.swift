@@ -13,10 +13,10 @@ import SwiftUI
 ///
 /// The set of trees match the example in figure 2.7 of [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf) on page 59.
 public struct Sympodial4Examples: View {
-    let system1: LindenmayerSystem
-    let system2: LindenmayerSystem
-    let system3: LindenmayerSystem
-    let system4: LindenmayerSystem
+    @State var system1: LindenmayerSystem
+    @State var system2: LindenmayerSystem
+    @State var system3: LindenmayerSystem
+    @State var system4: LindenmayerSystem
     let renderer = SceneKitRenderer()
     public var body: some View {
         VStack {
@@ -28,22 +28,23 @@ public struct Sympodial4Examples: View {
                 Lsystem3DView(system: system3)
                 Lsystem3DView(system: system4)
             }
+        }.task {
+            system1 = await system1.evolved(iterations: 10)
+            system2 = await system2.evolved(iterations: 10)
+            system3 = await system3.evolved(iterations: 10)
+            system4 = await system4.evolved(iterations: 10)
         }
     }
 
     public init() {
         system1 = Examples3D.sympodialTree
             .setParameters(params: Examples3D.figure2_7A)
-            .evolved(iterations: 10)
         system2 = Examples3D.sympodialTree
             .setParameters(params: Examples3D.figure2_7B)
-            .evolved(iterations: 10)
         system3 = Examples3D.sympodialTree
             .setParameters(params: Examples3D.figure2_7C)
-            .evolved(iterations: 10)
         system4 = Examples3D.sympodialTree
             .setParameters(params: Examples3D.figure2_7D)
-            .evolved(iterations: 10)
     }
 }
 

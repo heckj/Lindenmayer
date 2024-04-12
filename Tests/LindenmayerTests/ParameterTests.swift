@@ -9,7 +9,7 @@
 import XCTest
 
 final class ParameterTests: XCTestCase {
-    func testInitalParameter() throws {
+    func testInitalParameter() async throws {
         struct P: Equatable {
             let value: Int
         }
@@ -20,7 +20,7 @@ final class ParameterTests: XCTestCase {
                 XCTAssertEqual(params.value, 10)
                 return [m]
             }
-        let next = f.evolve()
+        let next = await f.evolve()
         XCTAssertEqual(f.parameters.value, 10)
         XCTAssertNotNil(next)
     }

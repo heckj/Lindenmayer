@@ -10,8 +10,8 @@ import Lindenmayer
 import XCTest
 
 final class SnippetsForDocs: XCTestCase {
-    func testDebugModuleSnippets() {
-        let system = Examples2D.barnsleyFern.evolved(iterations: 4)
+    func testDebugModuleSnippets() async {
+        let system = await Examples2D.barnsleyFern.evolved(iterations: 4)
         let debugModuleInstance = system.state(at: 14)
         print("ID: \(debugModuleInstance.id), name: \(debugModuleInstance.module.name)")
 

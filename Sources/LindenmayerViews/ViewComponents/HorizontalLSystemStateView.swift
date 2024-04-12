@@ -31,9 +31,14 @@ public struct HorizontalLSystemStateView: View {
 @available(macOS 12.0, iOS 15.0, *)
 struct HorizontalLSystemStateView_Previews: PreviewProvider {
     static var previews: some View {
-        let system = Examples3D.monopodialTree.evolved(iterations: 4)
-        ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
-            HorizontalLSystemStateView(size: sizeChoice, system: system)
+        @State var system = Examples3D.monopodialTree
+        Group {
+            ForEach(SummarySizes.allCases, id: \.self) { sizeChoice in
+                HorizontalLSystemStateView(size: sizeChoice, system: system)
+            }
+        }
+        .task {
+            system = await system.evolved(iterations: 4)
         }
     }
 }

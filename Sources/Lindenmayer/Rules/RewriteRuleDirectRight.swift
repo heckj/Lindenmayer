@@ -29,13 +29,13 @@ import Foundation
 ///
 public struct RewriteRuleDirectRight<DC, RC>: Rule where DC: Module, RC: Module {
     /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
-    public var parametricEval: ((DC, RC) -> Bool)?
+    public var parametricEval: (@Sendable (DC, RC) -> Bool)?
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias rightMatchProducesList = (DC, RC) -> [Module]
+    public typealias RightMatchProducesList = @Sendable (DC, RC) -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
-    public let produceClosure: rightMatchProducesList
+    public let produceClosure: RightMatchProducesList
 
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchingTypes: (DC.Type, RC.Type)
@@ -47,7 +47,7 @@ public struct RewriteRuleDirectRight<DC, RC>: Rule where DC: Module, RC: Module 
     ///   - singleModuleProduce: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(directType: DC.Type, rightType: RC.Type,
                 where _: ((DC, RC) -> Bool)?,
-                produces produceClosure: @escaping rightMatchProducesList)
+                produces produceClosure: @escaping RightMatchProducesList)
     {
         matchingTypes = (directType, rightType)
         self.produceClosure = produceClosure

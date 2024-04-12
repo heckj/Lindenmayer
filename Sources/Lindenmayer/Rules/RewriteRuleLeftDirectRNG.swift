@@ -32,13 +32,13 @@ public struct RewriteRuleLeftDirectRNG<LC, DC, PRNG>: Rule where LC: Module, DC:
     var prng: RNGWrapper<PRNG>
 
     /// An optional closure that provides the module to which it is being compared that returns whether the rule should be applied.
-    public var parametricEval: ((LC, DC) -> Bool)?
+    public var parametricEval: (@Sendable (LC, DC) -> Bool)?
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias combinationMatchProducesList = (LC, DC, RNGWrapper<PRNG>) -> [Module]
+    public typealias CombinationMatchProducesList = @Sendable (LC, DC, RNGWrapper<PRNG>) async -> [Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
-    public let produceClosure: combinationMatchProducesList
+    public let produceClosure: CombinationMatchProducesList
 
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchingTypes: (LC.Type, DC.Type)
@@ -51,7 +51,7 @@ public struct RewriteRuleLeftDirectRNG<LC, DC, PRNG>: Rule where LC: Module, DC:
     public init(leftType: LC.Type, directType: DC.Type,
                 prng: RNGWrapper<PRNG>,
                 where _: ((LC, DC) -> Bool)?,
-                produces produceClosure: @escaping combinationMatchProducesList)
+                produces produceClosure: @escaping CombinationMatchProducesList)
     {
         matchingTypes = (leftType, directType)
         self.prng = prng
@@ -88,13 +88,13 @@ public struct RewriteRuleLeftDirectRNG<LC, DC, PRNG>: Rule where LC: Module, DC:
     /// Invokes the rule's produce closure with the modules provided.
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
-    public func produce(_ matchSet: ModuleSet) -> [Module] {
+    public func produce(_ matchSet: ModuleSet) async -> [Module] {
         guard let leftInstance = matchSet.leftInstance as? LC,
               let directInstance = matchSet.directInstance as? DC
         else {
             return []
         }
-        return produceClosure(leftInstance, directInstance, prng)
+        return await produceClosure(leftInstance, directInstance, prng)
     }
 }
 
