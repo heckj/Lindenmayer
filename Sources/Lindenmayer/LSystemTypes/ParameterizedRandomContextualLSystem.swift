@@ -153,8 +153,8 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
         ParameterizedRandomContextualLSystem<PType, PRNG>(axiom: axiom, state: state, newStateIndicators: newItemIndicators, parameters: parameters, prng: prng, rules: rules)
     }
 
-    public func reset() -> Self {
-        prng.resetRNG(seed: prng.seed)
+    public func reset() async -> Self {
+        await prng.resetRNG(seed: prng.seed)
         return ParameterizedRandomContextualLSystem<PType, PRNG>(axiom: axiom, state: nil, newStateIndicators: nil, parameters: parameters, prng: prng, rules: rules)
     }
 
@@ -162,8 +162,8 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     /// - Parameter seed: The seed value to set within the pseudo-random generator.
     /// - Returns: The L-system with the seed value updated.
     @discardableResult
-    public func setSeed(seed: UInt64) -> Self {
-        prng.resetRNG(seed: seed)
+    public func setSeed(seed: UInt64) async -> Self {
+        await prng.resetRNG(seed: seed)
         return self
     }
 
@@ -181,8 +181,8 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     ///   - params: The updated value for the parameter type of the L-system.
     /// - Returns: The L-system with the seed value and parameters value updated.
     @discardableResult
-    public func set(seed: UInt64) -> Self {
-        prng.resetRNG(seed: seed)
+    public func set(seed: UInt64) async -> Self {
+        await prng.resetRNG(seed: seed)
         return self
     }
 }

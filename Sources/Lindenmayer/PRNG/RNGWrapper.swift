@@ -24,7 +24,7 @@ import Foundation
 ///
 /// - ``RNGWrapper/resetRNG(seed:)``
 ///
-public final class RNGWrapper<PRNG> where PRNG: SeededRandomNumberGenerator {
+public actor RNGWrapper<PRNG> where PRNG: SeededRandomNumberGenerator {
     private var _prng: PRNG
     #if DEBUG
         var _invokeCount: UInt64 = 0
@@ -48,8 +48,12 @@ public final class RNGWrapper<PRNG> where PRNG: SeededRandomNumberGenerator {
 
     /// Creates a new random number generator wrapper class with the random number generator you provide.
     /// - Parameter prng: A random number generator.
-    public init(_ prng: PRNG) {
-        _prng = prng
+    public init(_ prng: PRNG, seed: UInt64? = nil) {
+        if let seedValue = seed {
+            _prng = PRNG(seed: seedValue)
+        } else {
+            _prng = prng
+        }
     }
 
     /// Returns a random float value within the range you provide.

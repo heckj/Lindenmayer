@@ -52,13 +52,13 @@ public protocol LindenmayerSystem: Sendable {
     /// The L-system evolved by a number of iterations you provide.
     /// - Parameter iterations: The number of times to evolve the L-system.
     /// - Returns: The updated L-system from the number of evolutions you provided.
-    func evolved(iterations: Int) -> Self
+    func evolved(iterations: Int) async -> Self
 
     /// Returns a new L-system after processing the current state against the rules to generate a new state sequence.
-    func evolve() -> Self
+    func evolve() async -> Self
 
     /// Returns a new L-system reset to its original state.
-    func reset() -> Self
+    func reset() async -> Self
 
     /// Returns a set of modules around the index location you provide.
     /// - Parameter atIndex: The index location of the state of the current L-system.
@@ -92,7 +92,7 @@ public extension LindenmayerSystem {
 
         var rightInstance: (any Module)? = nil
         if state.count > atIndex + 1 {
-            let rightInstance = state[atIndex + 1]
+            rightInstance = state[atIndex + 1]
         }
 
         return ModuleSet(leftInstance: leftInstance, directInstance: strict, rightInstance: rightInstance)
