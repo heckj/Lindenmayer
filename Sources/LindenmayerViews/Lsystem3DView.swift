@@ -10,6 +10,7 @@ import SceneKit
 import SwiftUI
 
 /// A view that provides a 3D rendering of the L-system provide, and optionally metrics associated with the L-system.
+@MainActor
 public struct Lsystem3DView: View {
     let displayMetrics: Bool
     @State var system: LindenmayerSystem

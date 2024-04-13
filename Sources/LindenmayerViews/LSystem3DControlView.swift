@@ -15,6 +15,7 @@ import SwiftUI
 /// The controls within the view allow you to select the number of iterations for the L-system.
 /// Within the resulting L-system's state, you can select each state of the L-system, which points the 3D camera at that node and highlights it.
 /// The view is intended to provide a visualization with sufficient detail about the state and its representation for debugging how an L-system is represented in 3D.
+@MainActor
 public struct LSystem3DControlView: View {
     var model: LSystem3DModel
     @State private var iterations = 1

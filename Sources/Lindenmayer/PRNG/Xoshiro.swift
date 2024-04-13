@@ -19,7 +19,7 @@
 /// A pseudo-random number generator that produces random numbers based on an initial seed.
 ///
 /// The algorithm for the generation is xoshiro256, based on the [public domain implementation](http://xoshiro.di.unimi.it).
-public struct Xoshiro: SeededRandomNumberGenerator {
+public struct Xoshiro: SeededRandomNumberGenerator, Sendable {
     /// The initial seed for pseuo-random number generation.
     public let seed: UInt64
 

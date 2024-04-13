@@ -5,10 +5,10 @@
 //  Created by Joseph Heck on 1/8/22.
 //
 
-import Combine
+@preconcurrency import Combine
 import Foundation
 import Lindenmayer
-@preconcurrency import SceneKit
+import SceneKit
 import SceneKitDebugTools
 import SwiftUI
 
@@ -16,6 +16,7 @@ import SwiftUI
 ///
 /// The module manages the number of evolutions of an L-system, and provides updated 3D SceneKit scenes as you change the number of evolutions.
 /// The model emits `ObservableObject` change notifications when the number of iterations is changed.
+@MainActor
 public class LSystem3DModel: ObservableObject {
     @Published public var system: LindenmayerSystem
     let renderer = SceneKitRenderer()
@@ -24,7 +25,7 @@ public class LSystem3DModel: ObservableObject {
     var _scene: SCNScene
     var _transformSequence: [matrix_float4x4]
 
-    public var objectWillChange = Combine.ObservableObjectPublisher()
+    public let objectWillChange: ObservableObjectPublisher
 
     public var scene: SCNScene {
         _scene
@@ -63,6 +64,7 @@ public class LSystem3DModel: ObservableObject {
     /// - Parameter system: The L-System to expose and control with the model.
     public init(system: LindenmayerSystem) {
         self.system = system
+        objectWillChange = ObservableObjectPublisher()
         (_scene, _transformSequence) = renderer.generateScene(lsystem: _baseSystem)
         let headingIndicator = DebugNodes.headingIndicator()
         _scene.rootNode.addChildNode(headingIndicator)
@@ -71,6 +73,7 @@ public class LSystem3DModel: ObservableObject {
     /// Creates a default L-System model using the sympodial tree example.
     public init() {
         system = _baseSystem
+        objectWillChange = ObservableObjectPublisher()
         (_scene, _transformSequence) = renderer.generateScene(lsystem: _baseSystem)
         let headingIndicator = DebugNodes.headingIndicator()
         _scene.rootNode.addChildNode(headingIndicator)
