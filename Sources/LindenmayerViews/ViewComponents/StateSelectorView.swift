@@ -6,10 +6,11 @@
 //
 
 import Lindenmayer
-import SwiftUI
+@preconcurrency import SwiftUI
 
 /// A view that provides a visual representation of the states of an L-system and allows the person viewing it to select an index position from that L-system's state.
 @available(macOS 12.0, iOS 15.0, *)
+@MainActor
 public struct StateSelectorView: View {
     @State var system: LindenmayerSystem
     let _withDetailView: Bool
@@ -108,10 +109,14 @@ public struct StateSelectorView: View {
                             forwardTimer?.invalidate()
                             // or fastforward has started to start the timer
                             reverseTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
-                                if sliderPosition >= 1.0 {
-                                    sliderPosition -= 1
-                                    indexPosition -= 1
-                                    proxy.scrollTo(indexPosition)
+                                Task {
+                                    await MainActor.run {
+                                        if sliderPosition >= 1.0 {
+                                            sliderPosition -= 1
+                                            indexPosition -= 1
+                                            proxy.scrollTo(indexPosition)
+                                        }
+                                    }
                                 }
                             })
                         })
@@ -162,10 +167,14 @@ public struct StateSelectorView: View {
                             reverseTimer?.invalidate()
                             // or fastforward has started to start the timer
                             forwardTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
-                                if sliderPosition < Double(system.state.count - 1) {
-                                    sliderPosition += 1
-                                    indexPosition += 1
-                                    proxy.scrollTo(indexPosition)
+                                Task {
+                                    await MainActor.run {
+                                        if sliderPosition < Double(system.state.count - 1) {
+                                            sliderPosition += 1
+                                            indexPosition += 1
+                                            proxy.scrollTo(indexPosition)
+                                        }
+                                    }
                                 }
                             })
                         })
