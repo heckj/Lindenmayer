@@ -218,7 +218,9 @@ public enum Examples3D: Sendable {
     /// ![A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.6](rendered_2_6_trees.png)
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
-    public static let monopodialTree = LSystem.create(
+    ///
+
+    public static let monopodialTree: ParameterizedRandomContextualLSystem<MonopodialDefn, Xoshiro> = LSystem.create(
         [Trunk(growthDistance: defines.trunklength, diameter: defines.trunkdiameter)],
         with: Xoshiro(seed: 42),
         using: defines
@@ -349,7 +351,7 @@ public enum Examples3D: Sendable {
     /// ![A screenshot showing four rendered trees that correspond to the parameters as described in The Algorithmic Beauty of Plants for figure 2.7](rendered_2_7_trees.png)
     ///
     /// The example source for this L-system is [available on GitHub](https://github.com/heckj/Lindenmayer/blob/main/Sources/Lindenmayer/Examples3D.swift).
-    public static let sympodialTree = LSystem.create(
+    public static let sympodialTree: ParameterizedRandomContextualLSystem<SympodialDefn, Xoshiro> = LSystem.create(
         MainBranch(growthDistance: 10, diameter: 1),
         with: Xoshiro(seed: 0),
         using: figure2_7A

@@ -11,7 +11,7 @@ import Foundation
 /// The protocol includes an adjustable position property that represents the current location within the space of random numbers that the random number generates.
 /// The seed value is preserved and unchanged, allowing the seeded random number generator to be interrogated and replicated.
 /// When applied to a pseudo-random number generator, with a given seed and position, the next random number should be  completely deterministic.
-public protocol SeededRandomNumberGenerator: RandomNumberGenerator {
+public protocol SeededRandomNumberGenerator: RandomNumberGenerator, Sendable {
     /// The seed for the random number generator.
     var seed: UInt64 { get }
 

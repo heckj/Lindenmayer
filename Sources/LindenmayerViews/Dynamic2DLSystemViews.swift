@@ -10,6 +10,7 @@ import SwiftUI
 
 /// A view that allows you to choose from a collection of the built-in 2D L-systems and display the 2D representation of the L-system at the number of iterations that you select in the view.
 @available(macOS 12.0, iOS 15.0, *)
+@MainActor
 public struct Dynamic2DLSystemViews: View {
     enum TwoDExamples: String, CaseIterable, Identifiable {
         case algae

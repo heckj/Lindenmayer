@@ -10,6 +10,7 @@ import SwiftUI
 
 /// A view that provides a 2D rendering of the L-system provide, and optionally metrics associated with the L-system.
 @available(macOS 12.0, iOS 15.0, *)
+@MainActor
 public struct Lsystem2DView: View {
     let iterations: Int
     let displayMetrics: Bool
