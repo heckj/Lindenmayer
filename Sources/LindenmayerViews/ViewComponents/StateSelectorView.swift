@@ -5,8 +5,9 @@
 //  Created by Joseph Heck on 1/10/22.
 //
 
+import Combine
 import Lindenmayer
-@preconcurrency import SwiftUI
+import SwiftUI
 
 /// A view that provides a visual representation of the states of an L-system and allows the person viewing it to select an index position from that L-system's state.
 @available(macOS 12.0, iOS 15.0, *)
@@ -25,6 +26,8 @@ public struct StateSelectorView: View {
     @State private var isLongPressingForward: Bool = false
     @State private var forwardTimer: Timer?
 
+    let indexJumpPublisher: PassthroughSubject<Int, Never> = PassthroughSubject()
+
     public var body: some View {
         VStack {
             ScrollViewReader { proxy in
@@ -37,6 +40,7 @@ public struct StateSelectorView: View {
                             if indexPosition < system.state.count - 1 {
                                 indexPosition += 1
                                 proxy.scrollTo(indexPosition)
+                                indexJumpPublisher.send(indexPosition)
                             }
                         } label: {
                             Image(systemName: "plus.square")
@@ -44,7 +48,7 @@ public struct StateSelectorView: View {
                         Button {
                             if indexPosition > 1 {
                                 indexPosition -= 1
-                                proxy.scrollTo(indexPosition)
+                                indexJumpPublisher.send(indexPosition)
                             }
                         } label: {
                             Image(systemName: "minus.square")
@@ -58,7 +62,7 @@ public struct StateSelectorView: View {
                                step: 1,
                                onEditingChanged: { _ in
                                    indexPosition = Int(sliderPosition)
-                                   proxy.scrollTo(indexPosition)
+                                   indexJumpPublisher.send(indexPosition)
                                })
                                .onChange(of: indexPosition) { newValue in
                                    sliderPosition = Double(newValue)
@@ -77,7 +81,6 @@ public struct StateSelectorView: View {
                                 if sliderPosition >= 1.0 {
                                     sliderPosition -= 1
                                     indexPosition -= 1
-                                    proxy.scrollTo(indexPosition)
                                 }
                             }
                         } label: {
@@ -93,7 +96,7 @@ public struct StateSelectorView: View {
                                 if sliderPosition >= 1.0 {
                                     sliderPosition -= 1
                                     indexPosition -= 1
-                                    proxy.scrollTo(indexPosition)
+                                    indexJumpPublisher.send(indexPosition)
                                 }
                             }
                         } label: {
@@ -114,7 +117,7 @@ public struct StateSelectorView: View {
                                         if sliderPosition >= 1.0 {
                                             sliderPosition -= 1
                                             indexPosition -= 1
-                                            proxy.scrollTo(indexPosition)
+                                            indexJumpPublisher.send(indexPosition)
                                         }
                                     }
                                 }
@@ -135,7 +138,7 @@ public struct StateSelectorView: View {
                                 if sliderPosition < Double(system.state.count - 1) {
                                     sliderPosition += 1
                                     indexPosition += 1
-                                    proxy.scrollTo(indexPosition)
+                                    indexJumpPublisher.send(indexPosition)
                                 }
                             }
                         } label: {
@@ -151,7 +154,7 @@ public struct StateSelectorView: View {
                                 if sliderPosition < Double(system.state.count - 1) {
                                     sliderPosition += 1
                                     indexPosition += 1
-                                    proxy.scrollTo(indexPosition)
+                                    indexJumpPublisher.send(indexPosition)
                                 }
                             }
                         } label: {
@@ -172,7 +175,7 @@ public struct StateSelectorView: View {
                                         if sliderPosition < Double(system.state.count - 1) {
                                             sliderPosition += 1
                                             indexPosition += 1
-                                            proxy.scrollTo(indexPosition)
+                                            indexJumpPublisher.send(indexPosition)
                                         }
                                     }
                                 }
@@ -181,10 +184,13 @@ public struct StateSelectorView: View {
                         .keyboardShortcut(KeyboardShortcut(.rightArrow))
                     #endif
                 }
+                .onReceive(indexJumpPublisher) { indexPosition in
+                    proxy.scrollTo(indexPosition)
+                }
                 if _withDetailView {
                     ModuleDetailView(module: system.state(at: indexPosition))
                 }
-            }
+            } // proxy
         }
     }
 

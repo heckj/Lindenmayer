@@ -10,6 +10,7 @@ import simd
 import XCTest
 
 final class TransformTests: XCTestCase {
+    @MainActor
     func testTranslationTransformMatchesSceneKit() throws {
         let node = SCNNode()
         let x = 1.5
@@ -23,6 +24,7 @@ final class TransformTests: XCTestCase {
         XCTAssertEqual(transform, node.simdTransform)
     }
 
+    @MainActor
     func testScalingTransformMatchesSceneKit() throws {
         let node = SCNNode()
         let x = 1.5
@@ -36,6 +38,7 @@ final class TransformTests: XCTestCase {
         XCTAssertEqual(transform, node.simdTransform)
     }
 
+    @MainActor
     func testRollTransformMatchesSceneKit() throws {
         let node = SCNNode()
         let angle = Angle(degrees: 30)
@@ -47,6 +50,7 @@ final class TransformTests: XCTestCase {
         XCTAssertEqual(transform, node.simdTransform)
     }
 
+    @MainActor
     func testYawTransformMatchesSceneKit() throws {
         let node = SCNNode()
         let angle = Angle(degrees: 30)
@@ -58,6 +62,7 @@ final class TransformTests: XCTestCase {
         XCTAssertEqual(transform, node.simdTransform)
     }
 
+    @MainActor
     func testPitchTransformMatchesSceneKit() throws {
         let node = SCNNode()
         let angle = Angle(degrees: 30)

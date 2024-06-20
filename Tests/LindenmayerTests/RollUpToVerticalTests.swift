@@ -22,8 +22,9 @@ final class RollUpToVerticalTests: XCTestCase {
         simd_float4(4.4409075, 13.833499, 8.220964, 1.0)
     )
 
-    static var renderer = SceneKitRenderer()
+    static let renderer = SceneKitRenderer()
 
+    @MainActor
     func testMatchingEulerAngles() throws {
         let node = SCNNode()
         node.simdTransform = RollUpToVerticalTests.transform_119
@@ -32,6 +33,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(node.simdEulerAngles.z, -3.031, accuracy: 0.001) // roll
     }
 
+    @MainActor
     func testApplyingAffineTransformsToA3DPoint() throws {
         let pt = simd_float4(0, 0, 1, 1) // x=0, y=0, z=1
         let result = matrix_multiply(RollUpToVerticalTests.transform_119, pt)
@@ -55,6 +57,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(result3.z, result.z - RollUpToVerticalTests.transform_119.columns.3.z, accuracy: 0.001)
     }
 
+    @MainActor
     func testApplyingKnownTransformsToA3DPoint() throws {
         let pt = simd_float3(0, 0, 1) // x=0, y=0, z=1
         let rotate_90_around_Y = SceneKitRenderer.rotationAroundYAxisTransform(angle: Angle(degrees: 90)).rotationTransform
@@ -86,6 +89,7 @@ final class RollUpToVerticalTests: XCTestCase {
         // print(matrix_identity_float4x4.prettyPrintString())
     }
 
+    @MainActor
     func testHeadingVectorRotating45degToRight() throws {
         // This rotation is a "right turn" from the starting position, straight up. We rotation 45° around
         // the Z axis - negative rotation to make it to the right.
@@ -102,6 +106,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(heading_vector.z, 0, accuracy: 0.0001)
     }
 
+    @MainActor
     func testHeadingVectorRotating45degToLeft() throws {
         // This rotation is a "right turn" from the starting position, straight up.
         // We rotate 45° around the Z axis - negative rotation to make it to the right.
@@ -117,6 +122,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(heading_vector.z, 0, accuracy: 0.0001)
     }
 
+    @MainActor
     func testHeadingVectorRotating45degPitchDown() throws {
         // This rotation is a "pitch up" from the starting position, straight up.
         // We rotate 45° around the X axis - negative rotation to make it pitch 'down'.
@@ -128,6 +134,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(heading_vector.z, -0.7071067, accuracy: 0.0001)
     }
 
+    @MainActor
     func testHeadingVectorRotating45degPitchUp() throws {
         // This rotation is a "pitch down" from the starting position, straight up.
         // We rotate 45° around the X axis - positive rotation to make it to pitch 'up'.
@@ -138,6 +145,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(heading_vector.z, 0.7071067, accuracy: 0.0001)
     }
 
+    @MainActor
     func testHeadingVectorRotating45degYaw() throws {
         // This rotation is a "pitch down" from the starting position, straight up.
         // We rotate 45° around the X axis - positive rotation to make it to pitch 'up'.
@@ -148,6 +156,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(heading_vector.z, 0, accuracy: 0.0001)
     }
 
+    @MainActor
     func testUpVectorAfterRotation() throws {
         let original_up_vector = simd_float3(x: 0, y: 0, z: 1)
         // roll to the right
@@ -160,6 +169,7 @@ final class RollUpToVerticalTests: XCTestCase {
 
     // MARK: - testing rotation angle calculations
 
+    @MainActor
     func testRotatingIdentityMatrix() throws {
         // Identity state vector indicates we've not moved from start, so the forward vector is +Y and the
         // up vector is +Z. No amount of rotation will do us any good, since the plane we're rotating on (the X-Z plane)
@@ -169,6 +179,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(0, rotation_on_XZ_plane)
     }
 
+    @MainActor
     func testRotating45degToRightMatrix() throws {
         // This rotation is a "right turn" from the starting position, straight up. We rotation 45° around
         // the Z axis - negative rotation to make it to the right.
@@ -180,6 +191,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(Float.pi / 2, rotation_on_plane, accuracy: 0.0001)
     }
 
+    @MainActor
     func testRotating45degToLeftMatrix() throws {
         // This rotation is a "right turn" from the starting position, straight up. We rotation 45° around
         // the Z axis - negative rotation to make it to the right.
@@ -191,6 +203,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(-Float.pi / 2, rotation_on_plane, accuracy: 0.0001)
     }
 
+    @MainActor
     func testRotating45degPitchUpMatrix() throws {
         // This rotation is a "pitch up" from the starting position, straight up. We rotate 45° around
         // the X axis - negative rotation to make it pitch 'up'.
@@ -202,6 +215,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(Float.pi, rotation_on_plane, accuracy: 0.0001)
     }
 
+    @MainActor
     func testRotating45degPitchDownMatrix() throws {
         // This rotation is a "pitch down" from the starting position, straight up. We rotate 45° around
         // the X axis - positive rotation to make it to pitch 'down'.
@@ -213,6 +227,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(0, rotation_on_plane, accuracy: 0.0001)
     }
 
+    @MainActor
     func testRotating90degPitchUpMatrix() throws {
         // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
         // with the "up" vector now rotated to point pretty much straight in the -Y direction.
@@ -223,6 +238,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(Float.pi, abs(rotation_on_plane), accuracy: 0.0001)
     }
 
+    @MainActor
     func testRotating90degPitchDownMatrix() throws {
         // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
         // with the "up" vector now rotated to point pretty much straight in the -Y direction.
@@ -232,6 +248,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(0, rotation_on_plane, accuracy: 0.0001)
     }
 
+    @MainActor
     func testRotating90degToRight() throws {
         // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
         // with the "up" vector now rotated to point pretty much straight in the -Y direction.
@@ -241,6 +258,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(Float.pi / 2, rotation_on_plane, accuracy: 0.0001)
     }
 
+    @MainActor
     func testRotating90degToLeft() throws {
         // Since we start facing straight up, pitching up another 90° results in us facing the +z direction
         // with the "up" vector now rotated to point pretty much straight in the -Y direction.
@@ -250,6 +268,7 @@ final class RollUpToVerticalTests: XCTestCase {
         XCTAssertEqual(-Float.pi / 2, rotation_on_plane, accuracy: 0.0001)
     }
 
+    @MainActor
     func rotationToVerticalTestCodeOriginal(_ full_transform: simd_float4x4) throws -> Float {
         // NOTE(heckj): Leaving this here - but the implementation doesn't pass the tests
         // because it's not returning the correct "rotation angle" (positive/negative).

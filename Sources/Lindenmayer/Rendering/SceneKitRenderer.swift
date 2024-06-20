@@ -11,6 +11,7 @@ import SceneKit
 import SceneKitDebugTools
 import simd
 
+@MainActor
 struct GrowthState {
     var transform: simd_float4x4
     var nodeRef: SCNNode
@@ -78,9 +79,10 @@ extension ColorRepresentation {
 /// - ``rotationAroundZAxisTransform(angle:)``
 ///
 
+@MainActor
 public struct SceneKitRenderer {
     /// Creates a new SceneKit rendering engine for L-systems.
-    public init() {}
+    public nonisolated init() {}
 
     func rotateAroundHeadingToVertical(_ full_transform: simd_float4x4) -> Float {
         // The interpretation of this symbol is a tricky beast. From pg 41 of
@@ -250,6 +252,7 @@ public struct SceneKitRenderer {
 //                    print("Added cylinder (r=\(cmd.radius)) by \(cmd.length) at \(String(describing: node.simdTransform))")
                     //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
+
             case TurtleCodes.cone.rawValue:
                 if let cmd = cmd as? RenderCommand.Cone {
                     let node = SCNNode(geometry: SCNCone(topRadius: cmd.radiusTop, bottomRadius: cmd.radiusBottom, height: cmd.length))
@@ -272,6 +275,7 @@ public struct SceneKitRenderer {
 //                    print("Added cone (tr=\(cmd.radiusTop), br=\(cmd.radiusBottom) by \(cmd.length) at \(String(describing: node.simdTransform))")
                     //                print("Moving +y by \(cmd.length) -> \(String(describing: currentState.transform))")
                 }
+
             case TurtleCodes.sphere.rawValue:
                 if let cmd = cmd as? RenderCommand.Sphere {
                     let node = SCNNode(geometry: SCNSphere(radius: cmd.radius))
@@ -288,6 +292,7 @@ public struct SceneKitRenderer {
 //                    print("Added sphere (r=\(cmd.radius)) at \(String(describing: node.simdTransform))")
                     //                print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")
                 }
+
             default: // ignore
                 break
             } // switch cmd.name

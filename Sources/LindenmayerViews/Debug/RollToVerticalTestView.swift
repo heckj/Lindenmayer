@@ -11,6 +11,7 @@ import SceneKitDebugTools
 import simd
 import SwiftUI
 
+@MainActor
 public struct RollToVerticalTestView: View {
     let scene: SCNScene
     let pointSphere0: SCNNode
