@@ -24,17 +24,17 @@ public struct Dynamic2DLSystemViews: View {
         public var lsystem: LindenmayerSystem {
             switch self {
             case .algae:
-                return Examples2D.algae
+                Examples2D.algae
             case .sierpinskiTriangle:
-                return Examples2D.sierpinskiTriangle
+                Examples2D.sierpinskiTriangle
             case .kochCurve:
-                return Examples2D.kochCurve
+                Examples2D.kochCurve
             case .dragonCurve:
-                return Examples2D.dragonCurve
+                Examples2D.dragonCurve
             case .fractalTree:
-                return Examples2D.fractalTree
+                Examples2D.fractalTree
             case .barnsleyFern:
-                return Examples2D.barnsleyFern
+                Examples2D.barnsleyFern
             }
         }
     }

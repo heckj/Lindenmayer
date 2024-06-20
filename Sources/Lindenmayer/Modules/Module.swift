@@ -56,11 +56,10 @@ public extension Module {
 public extension Module {
     /// A string representation of the module.
     var description: String {
-        let resovledName: String
-        if name != "" {
-            resovledName = name
+        let resovledName: String = if name != "" {
+            name
         } else {
-            resovledName = String(describing: type(of: self))
+            String(describing: type(of: self))
         }
         return resovledName
     }
