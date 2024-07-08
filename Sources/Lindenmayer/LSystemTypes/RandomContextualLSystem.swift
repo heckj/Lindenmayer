@@ -54,10 +54,6 @@ import Foundation
 /// - ``RandomContextualLSystem/rewriteWithRNG(directContext:rightContext:where:produces:)``
 /// - ``RandomContextualLSystem/rewriteWithRNG(leftContext:directContext:rightContext:where:produces:)``
 ///
-/// ### Updating the L-system
-///
-/// - ``RandomContextualLSystem/setSeed(seed:)``
-///
 /// ### Evolving the L-system
 ///
 /// - ``RandomContextualLSystem/evolve()``
@@ -129,17 +125,8 @@ public struct RandomContextualLSystem<PRNG>: LindenmayerSystem where PRNG: Seede
     /// Resets the L-system to it's initial state, wiping out an existing state while keeping the rules.
     /// - Returns: A new L-system with it's state reset to the initial state you set when you created the L-system.
     public func reset() async -> Self {
-        await prng.resetRNG(seed: prng.seed)
+        await prng.resetRNG()
         return RandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, prng: prng, rules: rules)
-    }
-
-    /// Sets the seed for the pseudo-random number generator to the value you provide.
-    /// - Parameter seed: The seed value to set within the pseudo-random generator.
-    /// - Returns: The L-system with the seed value updated.
-    @discardableResult
-    public func setSeed(seed: UInt64) async -> Self {
-        await prng.resetRNG(seed: seed)
-        return self
     }
 }
 

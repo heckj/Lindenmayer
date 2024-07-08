@@ -5,7 +5,7 @@
 //  Created by Joseph Heck on 1/8/22.
 //
 
-@preconcurrency import Combine
+import Combine
 import Foundation
 import Lindenmayer
 import SceneKit
@@ -17,7 +17,7 @@ import SwiftUI
 /// The module manages the number of evolutions of an L-system, and provides updated 3D SceneKit scenes as you change the number of evolutions.
 /// The model emits `ObservableObject` change notifications when the number of iterations is changed.
 @MainActor
-public class LSystem3DModel: ObservableObject {
+public class LSystem3DModel: @preconcurrency ObservableObject {
     @Published public var system: LindenmayerSystem
     let renderer = SceneKitRenderer()
     let _baseSystem = Examples3D.sympodialTree
@@ -36,7 +36,8 @@ public class LSystem3DModel: ObservableObject {
     }
 
     func evolveBy(iterations: Int) async {
-        system = await _baseSystem.evolved(iterations: _iterations)
+        system = await _baseSystem.evolved(iterations: iterations)
+        _iterations = iterations
         objectWillChange.send()
         (_scene, _transformSequence) = renderer.generateScene(lsystem: system)
         let headingIndicator = DebugNodes.headingIndicator()

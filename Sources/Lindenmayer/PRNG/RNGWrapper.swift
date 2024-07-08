@@ -39,8 +39,9 @@ public actor RNGWrapper<PRNG>: Sendable where PRNG: SeededRandomNumberGenerator 
         _prng.position
     }
 
-    public func resetRNG(seed: UInt64) {
-        _prng = PRNG(seed: seed)
+    public func resetRNG() {
+        let originalSeed = _prng.seed
+        _prng = PRNG(seed: originalSeed)
         #if DEBUG
             _invokeCount = 0
         #endif

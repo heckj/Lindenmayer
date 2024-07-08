@@ -422,14 +422,14 @@ public enum Examples3D: Sendable {
             let upper: Float = 45.0
             let lower: Float = 15.0
 
-            if await rng.p(0.5) {
-                return await [
+            if rng.p(0.5) {
+                return [
                     StaticStem2(length: 2),
                     Modules.PitchDown(angle: Angle(degrees: Double(rng.randomFloat(in: lower ... upper)))),
                     Stem2(length: stem.length),
                 ]
             } else {
-                return await [
+                return [
                     StaticStem2(length: 2),
                     Modules.PitchUp(angle: Angle(degrees: Double(rng.randomFloat(in: lower ... upper)))),
                     Stem2(length: stem.length),
