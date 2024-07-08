@@ -5,19 +5,18 @@
 //  Created by Joseph Heck on 1/8/22.
 //
 
-import Combine
+@preconcurrency import Combine
 import Foundation
 import Lindenmayer
 import SceneKit
 import SceneKitDebugTools
 import SwiftUI
-
 /// A class that provides an observable model around a base L-system.
 ///
 /// The module manages the number of evolutions of an L-system, and provides updated 3D SceneKit scenes as you change the number of evolutions.
 /// The model emits `ObservableObject` change notifications when the number of iterations is changed.
 @MainActor
-public class LSystem3DModel: @preconcurrency ObservableObject {
+public class LSystem3DModel: ObservableObject {
     @Published public var system: LindenmayerSystem
     let renderer = SceneKitRenderer()
     let _baseSystem = Examples3D.sympodialTree
@@ -25,7 +24,7 @@ public class LSystem3DModel: @preconcurrency ObservableObject {
     var _scene: SCNScene
     var _transformSequence: [matrix_float4x4]
 
-    public let objectWillChange: ObservableObjectPublisher
+    nonisolated public let objectWillChange: ObservableObjectPublisher
 
     public var scene: SCNScene {
         _scene
