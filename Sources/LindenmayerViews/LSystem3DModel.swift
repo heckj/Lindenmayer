@@ -11,7 +11,6 @@ import Lindenmayer
 import SceneKit
 import SceneKitDebugTools
 import SwiftUI
-
 /// A class that provides an observable model around a base L-system.
 ///
 /// The module manages the number of evolutions of an L-system, and provides updated 3D SceneKit scenes as you change the number of evolutions.
@@ -25,7 +24,7 @@ public class LSystem3DModel: ObservableObject {
     var _scene: SCNScene
     var _transformSequence: [matrix_float4x4]
 
-    public let objectWillChange: ObservableObjectPublisher
+    nonisolated public let objectWillChange: ObservableObjectPublisher
 
     public var scene: SCNScene {
         _scene
@@ -36,7 +35,8 @@ public class LSystem3DModel: ObservableObject {
     }
 
     func evolveBy(iterations: Int) async {
-        system = await _baseSystem.evolved(iterations: _iterations)
+        system = await _baseSystem.evolved(iterations: iterations)
+        _iterations = iterations
         objectWillChange.send()
         (_scene, _transformSequence) = renderer.generateScene(lsystem: system)
         let headingIndicator = DebugNodes.headingIndicator()

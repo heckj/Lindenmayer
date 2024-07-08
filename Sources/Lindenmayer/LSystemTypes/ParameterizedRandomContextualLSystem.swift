@@ -72,7 +72,6 @@ import Foundation
 ///
 /// ### Updating the L-system
 ///
-/// - ``ParameterizedRandomContextualLSystem/setSeed(seed:)``
 /// - ``ParameterizedRandomContextualLSystem/setParameters(params:)``
 /// - ``ParameterizedRandomContextualLSystem/set(seed:params:)``
 ///
@@ -154,18 +153,18 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     }
 
     public func reset() async -> Self {
-        await prng.resetRNG(seed: prng.seed)
+        await prng.resetRNG()
         return ParameterizedRandomContextualLSystem<PType, PRNG>(axiom: axiom, state: nil, newStateIndicators: nil, parameters: parameters, prng: prng, rules: rules)
     }
 
-    /// Sets the seed for the pseudo-random number generator to the value you provide.
-    /// - Parameter seed: The seed value to set within the pseudo-random generator.
-    /// - Returns: The L-system with the seed value updated.
-    @discardableResult
-    public func setSeed(seed: UInt64) async -> Self {
-        await prng.resetRNG(seed: seed)
-        return self
-    }
+//    /// Sets the seed for the pseudo-random number generator to the value you provide.
+//    /// - Parameter seed: The seed value to set within the pseudo-random generator.
+//    /// - Returns: The L-system with the seed value updated.
+//    @discardableResult
+//    public func setSeed(seed: UInt64) async -> Self {
+//        await prng.resetRNG(seed: seed)
+//        return self
+//    }
 
     /// Sets the parameters for the L-system to the value you provide.
     /// - Parameter params: The updated value for the parameter type of the L-system.
@@ -173,17 +172,6 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     @discardableResult
     public func setParameters(params: PType) -> Self {
         Self(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: params, prng: prng, rules: rules)
-    }
-
-    /// Sets the seed for the pseudo-random number generator and the parameters for the L-system to the value you provide.
-    /// - Parameters:
-    ///   - seed: The seed value to set within the pseudo-random generator.
-    ///   - params: The updated value for the parameter type of the L-system.
-    /// - Returns: The L-system with the seed value and parameters value updated.
-    @discardableResult
-    public func set(seed: UInt64) async -> Self {
-        await prng.resetRNG(seed: seed)
-        return self
     }
 }
 

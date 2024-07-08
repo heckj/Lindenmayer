@@ -83,7 +83,7 @@ final class PRNGWrapperTests: XCTestCase {
         // continues to move forward as new evolutions are invoked.
         _invokeCount = await twoEv.prng._invokeCount
         XCTAssertEqual(_invokeCount, 4)
-        await start.prng.resetRNG(seed: start.prng.seed)
+        await start.prng.resetRNG()
         _invokeCount = await start.prng._invokeCount
         XCTAssertEqual(_invokeCount, 0)
     }
@@ -105,7 +105,7 @@ final class PRNGWrapperTests: XCTestCase {
         XCTAssertEqual(seed, 42)
         XCTAssertEqual(_invokeCount, 2)
 
-        await start.prng.resetRNG(seed: start.prng.seed)
+        await start.prng.resetRNG()
         let position = await oneEv.prng.position
         seed = await oneEv.prng.seed
         _invokeCount = await oneEv.prng._invokeCount
