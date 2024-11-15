@@ -15,7 +15,7 @@ final class RollUpToVerticalTests: XCTestCase {
     // NOTE(heckj): When transcribing a 4x4 matrix, the initializer uses
     // 'COLUMNS', not rows - so create simd_float4x4 matrices by vertical columns:
     // top to bottom, left to right.
-    static var transform_119 = simd_float4x4(
+    static let transform_119 = simd_float4x4(
         simd_float4(-1.1513867, -0.12829041, 2.2153668, 0.0),
         simd_float4(2.173691, 0.43699712, 1.155033, 0.0),
         simd_float4(-0.44651538, 2.458165, -0.08971556, 0.0),

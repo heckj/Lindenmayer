@@ -39,7 +39,7 @@ import Foundation
 /// - ``Lindenmayer/LindenmayerSystem/reset()``
 public protocol LindenmayerSystem: Sendable {
     /// The sequence of modules that represents the current state of the L-system.
-    var state: [Module] { get }
+    var state: [any Module] { get }
 
     /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
     ///
@@ -47,7 +47,7 @@ public protocol LindenmayerSystem: Sendable {
     var newStateIndicators: [Bool] { get }
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
-    var rules: [Rule] { get }
+    var rules: [any Rule] { get }
 
     /// The L-system evolved by a number of iterations you provide.
     /// - Parameter iterations: The number of times to evolve the L-system.
@@ -72,7 +72,7 @@ public protocol LindenmayerSystem: Sendable {
     ///
     /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
-    func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self
+    func updatedLSystem(with state: [any Module], newItemIndicators: [Bool]) -> Self
 }
 
 // MARK: - default implementations
@@ -108,7 +108,7 @@ public extension LindenmayerSystem {
         // TODO(heckj): revisit this with async methods in mind, creating tasks for each iteration
         // in order to run the whole suite of the state in parallel for a new result. Await the whole
         // kit for a final resolution.
-        var newState: [Module] = []
+        var newState: [any Module] = []
         var newStateIndicatorArray: [Bool] = []
         var newStateIndexLocation = 0
         for index in 0 ..< state.count {
@@ -116,7 +116,7 @@ public extension LindenmayerSystem {
             // Iterate through the rules, finding the first rule to match
             // based on calling 'evaluate' on each of the rules in sequence.
 
-            let maybeRule: Rule? = rules.first(where: { $0.evaluate(moduleSet) })
+            let maybeRule: (any Rule)? = rules.first(where: { $0.evaluate(moduleSet) })
             if let foundRule = maybeRule {
                 // If a rule was found, then use it to generate the modules that
                 // replace this element in the sequence.

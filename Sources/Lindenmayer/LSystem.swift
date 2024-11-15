@@ -40,14 +40,14 @@ public enum LSystem: Sendable {
     /// Creates a new Lindenmayer system from an initial state.
     /// - Parameters:
     ///   - axiom: An initial module that represents the initial state of the Lindenmayer system..
-    public static func create(_ axiom: Module) -> ContextualLSystem {
+    public static func create(_ axiom: some Module) -> ContextualLSystem {
         ContextualLSystem([axiom], state: nil, newStateIndicators: nil)
     }
 
     /// Creates a new Lindenmayer system from an initial state.
     /// - Parameters:
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
-    public static func create(_ axiom: [Module]) -> ContextualLSystem {
+    public static func create(_ axiom: [any Module]) -> ContextualLSystem {
         ContextualLSystem(axiom, state: nil, newStateIndicators: nil)
     }
 
@@ -55,7 +55,7 @@ public enum LSystem: Sendable {
     /// - Parameters:
     ///   - axiom: An initial module that represents the initial state of the Lindenmayer system..
     ///   - prng: An optional psuedo-random number generator to use for randomness in rule productions.
-    public static func create<RNGType: Sendable>(_ axiom: Module, with prng: RNGType?) -> RandomContextualLSystem<RNGType> {
+    public static func create<RNGType: Sendable>(_ axiom: some Module, with prng: RNGType?) -> RandomContextualLSystem<RNGType> {
         if let prng {
             return RandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, prng: RNGWrapper(prng))
         }
@@ -66,7 +66,7 @@ public enum LSystem: Sendable {
     /// - Parameters:
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - prng: An optional psuedo-random number generator to use for for randomness in rule productions.
-    public static func create<RNGType: Sendable>(_ axiom: [Module], with prng: RNGType?) -> RandomContextualLSystem<RNGType> {
+    public static func create<RNGType: Sendable>(_ axiom: [any Module], with prng: RNGType?) -> RandomContextualLSystem<RNGType> {
         if let prng {
             return RandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, prng: RNGWrapper(prng))
         }
@@ -78,7 +78,7 @@ public enum LSystem: Sendable {
     ///   - axiom: An initial module that represents the initial state of the Lindenmayer system.
     ///   - prng: An optional psuedo-random number generator to use for for randomness in rule productions.
     ///   - parameters: An instance of type you provide that the L-system provides to the rules you create for use as parameters.
-    public static func create<PType: Sendable, RNGType: Sendable>(_ axiom: Module, with prng: RNGType?, using parameters: PType) -> ParameterizedRandomContextualLSystem<PType, RNGType> {
+    public static func create<PType: Sendable, RNGType: Sendable>(_ axiom: some Module, with prng: RNGType?, using parameters: PType) -> ParameterizedRandomContextualLSystem<PType, RNGType> {
         if let prng {
             return ParameterizedRandomContextualLSystem(axiom: [axiom], state: nil, newStateIndicators: nil, parameters: parameters, prng: RNGWrapper(prng), rules: [])
         }
@@ -90,7 +90,7 @@ public enum LSystem: Sendable {
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - prng: An optional psuedo-random number generator to use for for randomness in rule productions.
     ///   - parameters: An instance of type you provide that the L-system provides to the rules you create for use as parameters.
-    public static func create<PType: Sendable, RNGType: Sendable>(_ axiom: [Module], with prng: RNGType?, using parameters: PType) -> ParameterizedRandomContextualLSystem<PType, RNGType> {
+    public static func create<PType: Sendable, RNGType: Sendable>(_ axiom: [any Module], with prng: RNGType?, using parameters: PType) -> ParameterizedRandomContextualLSystem<PType, RNGType> {
         if let prng {
             return ParameterizedRandomContextualLSystem(axiom: axiom, state: nil, newStateIndicators: nil, parameters: parameters, prng: RNGWrapper(prng), rules: [])
         }

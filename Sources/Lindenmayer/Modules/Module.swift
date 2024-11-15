@@ -32,21 +32,21 @@ public protocol Module: CustomStringConvertible, Sendable {
     /// Use a single character or very short string for the name, as it's used in textual descriptions of the state of an L-system.
     var name: String { get }
     /// Returns a sequence of render commands to display the content in 2-dimensionals.
-    var render2D: [TwoDRenderCmd] { get }
+    var render2D: [any TwoDRenderCmd] { get }
     /// Returns a sequence of render commands to display the content in 3-dimensionals.
-    var render3D: ThreeDRenderCmd { get }
+    var render3D: any ThreeDRenderCmd { get }
 }
 
 // MARK: - Default Implementations of computed properties for 2D and 3D rendering commands of a module.
 
 public extension Module {
     /// The sequence of two-dimensional oriented rendering commands that you use to represent the module.
-    var render2D: [TwoDRenderCmd] {
+    var render2D: [any TwoDRenderCmd] {
         []
     }
 
     /// The three-dimensional oriented rendering command that you use to represent the module.
-    var render3D: ThreeDRenderCmd {
+    var render3D: any ThreeDRenderCmd {
         RenderCommand.Ignore()
     }
 }

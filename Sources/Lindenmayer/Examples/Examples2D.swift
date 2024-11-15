@@ -15,7 +15,7 @@ public enum Examples2D {
     struct Internode: Module {
         // This is the kind of thing that I want external developers using the library to be able to create to represent elements within their L-system.
         public var name = "I"
-        public var render2D: [TwoDRenderCmd] = [RenderCommand.Draw(length: 10)] // draws a line 10 units long
+        public var render2D: [any TwoDRenderCmd] = [RenderCommand.Draw(length: 10)] // draws a line 10 units long
         public init() {}
     }
 
@@ -48,7 +48,7 @@ public enum Examples2D {
     struct Leaf: Module {
         static let green = ColorRepresentation(r: 0.3, g: 0.56, b: 0.0)
         public var name = "L"
-        public var render2D: [TwoDRenderCmd] = [
+        public var render2D: [any TwoDRenderCmd] = [
             RenderCommand.SetLineWidth(width: 3),
             RenderCommand.SetColor(representation: green),
             RenderCommand.Draw(length: 5),
@@ -59,7 +59,7 @@ public enum Examples2D {
 
     struct Stem: Module {
         public var name = "I"
-        public var render2D: [TwoDRenderCmd] = [RenderCommand.Draw(length: 5)] // would be neat to make this green...
+        public var render2D: [any TwoDRenderCmd] = [RenderCommand.Draw(length: 5)] // would be neat to make this green...
     }
 
     static let stem = Stem()
@@ -99,14 +99,14 @@ public enum Examples2D {
 
     struct F: Module {
         public var name = "F"
-        public var render2D: [TwoDRenderCmd] = [RenderCommand.Draw(length: 10)]
+        public var render2D: [any TwoDRenderCmd] = [RenderCommand.Draw(length: 10)]
     }
 
     static let f = F()
 
     struct G: Module {
         public var name = "G"
-        public var render2D: [TwoDRenderCmd] = [RenderCommand.Draw(length: 10)]
+        public var render2D: [any TwoDRenderCmd] = [RenderCommand.Draw(length: 10)]
     }
 
     static let g = G()

@@ -85,10 +85,10 @@ import Foundation
 /// - ``ParameterizedRandomContextualLSystem/reset()``
 ///
 public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSystem where PRNG: SeededRandomNumberGenerator, PType: Sendable {
-    let axiom: [Module]
+    let axiom: [any Module]
 
     /// The current state of the L-system, expressed as a sequence of elements that conform to Module.
-    public let state: [Module]
+    public let state: [any Module]
 
     /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
     ///
@@ -102,7 +102,7 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     let prng: RNGWrapper<PRNG>
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
-    public let rules: [Rule]
+    public let rules: [any Rule]
 
     /// Creates a new Lindenmayer system from an initial state sequence and rules you provide.
     /// - Parameters:
@@ -112,12 +112,12 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     ///
     /// Convenient initializers for creating contextual L-systems uses ``LSystem``, calling ``Lindenmayer/LSystem/create(_:with:using:)-1nce9``, or ``Lindenmayer/LSystem/create(_:with:using:)-2nwqc``
-    public init(axiom: [Module],
-                state: [Module]?,
+    public init(axiom: [any Module],
+                state: [any Module]?,
                 newStateIndicators: [Bool]?,
                 parameters: PType,
                 prng: RNGWrapper<PRNG>,
-                rules: [Rule] = [])
+                rules: [any Rule] = [])
     {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
@@ -148,7 +148,7 @@ public struct ParameterizedRandomContextualLSystem<PType, PRNG>: LindenmayerSyst
     ///
     /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
-    public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
+    public func updatedLSystem(with state: [any Module], newItemIndicators: [Bool]) -> Self {
         ParameterizedRandomContextualLSystem<PType, PRNG>(axiom: axiom, state: state, newStateIndicators: newItemIndicators, parameters: parameters, prng: prng, rules: rules)
     }
 
@@ -189,7 +189,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithAll<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
         where evalClosure: @Sendable @escaping (LC, DC, RC, PType) -> Bool,
-        produces produceClosure: @Sendable @escaping (LC, DC, RC, PType, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, RC, PType, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module
     {
@@ -200,7 +200,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -214,7 +214,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithAll<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-        produces produceClosure: @Sendable @escaping (LC, DC, RC, PType, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, RC, PType, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module
     {
@@ -225,7 +225,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -240,7 +240,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithAll<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
         where evalClosure: @Sendable @escaping (LC, DC, PType) -> Bool,
-        produces produceClosure: @Sendable @escaping (LC, DC, PType, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, PType, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module
     {
@@ -251,7 +251,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -264,7 +264,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithAll<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
-        produces produceClosure: @Sendable @escaping (LC, DC, PType, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, PType, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module
     {
@@ -275,7 +275,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -290,7 +290,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithAll<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
         where evalClosure: @Sendable @escaping (DC, RC, PType) -> Bool,
-        produces produceClosure: @Sendable @escaping (DC, RC, PType, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RC, PType, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where DC: Module, RC: Module
     {
@@ -301,7 +301,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -314,7 +314,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithAll<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
-        produces produceClosure: @Sendable @escaping (DC, RC, PType, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RC, PType, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where DC: Module, RC: Module
     {
@@ -325,7 +325,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -339,7 +339,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithAll<DC>(
         directContext: DC.Type,
         where evalClosure: @Sendable @escaping (DC, PType) -> Bool,
-        produces produceClosure: @Sendable @escaping (DC, PType, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, PType, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where DC: Module
     {
@@ -350,7 +350,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -362,7 +362,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithAll<DC>(
         directContext: DC.Type,
-        produces produceClosure: @Sendable @escaping (DC, PType, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, PType, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where DC: Module
     {
@@ -373,7 +373,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -393,7 +393,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithParams<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
         where evalClosure: @Sendable @escaping (LC, DC, RC, PType) -> Bool,
-        produces produceClosure: @Sendable @escaping (LC, DC, RC, PType) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, RC, PType) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module
     {
@@ -403,7 +403,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -417,7 +417,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithParams<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-        produces produceClosure: @Sendable @escaping (LC, DC, RC, PType) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, RC, PType) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module
     {
@@ -427,7 +427,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -442,7 +442,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithParams<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
         where evalClosure: @Sendable @escaping (LC, DC, PType) -> Bool,
-        produces produceClosure: @Sendable @escaping (LC, DC, PType) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, PType) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module
     {
@@ -452,7 +452,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -465,7 +465,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithParams<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
-        produces produceClosure: @Sendable @escaping (LC, DC, PType) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, PType) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module
     {
@@ -475,7 +475,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -490,7 +490,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithParams<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
         where evalClosure: @Sendable @escaping (DC, RC, PType) -> Bool,
-        produces produceClosure: @Sendable @escaping (DC, RC, PType) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RC, PType) async -> [any Module]
     ) -> Self
         where DC: Module, RC: Module
     {
@@ -500,7 +500,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -513,7 +513,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithParams<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
-        produces produceClosure: @Sendable @escaping (DC, RC, PType) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RC, PType) async -> [any Module]
     ) -> Self
         where DC: Module, RC: Module
     {
@@ -523,7 +523,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -537,7 +537,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithParams<DC>(
         directContext: DC.Type,
         where evalClosure: @Sendable @escaping (DC, PType) -> Bool,
-        produces produceClosure: @Sendable @escaping (DC, PType) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, PType) async -> [any Module]
     ) -> Self
         where DC: Module
     {
@@ -547,7 +547,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -559,7 +559,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithParams<DC>(
         directContext: DC.Type,
-        produces produceClosure: @Sendable @escaping (DC, PType) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, PType) async -> [any Module]
     ) -> Self
         where DC: Module
     {
@@ -569,7 +569,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -589,7 +589,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithRNG<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
         where evalClosure: @Sendable @escaping (LC, DC, RC) -> Bool,
-        produces produceClosure: @Sendable @escaping (LC, DC, RC, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, RC, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module
     {
@@ -599,7 +599,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -613,7 +613,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<LC, DC, RC>(
         leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-        produces produceClosure: @Sendable @escaping (LC, DC, RC, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, RC, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module, RC: Module
     {
@@ -623,7 +623,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -638,8 +638,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithRNG<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
         where evalClosure: @Sendable @escaping (LC, DC) -> Bool,
-        produces produceClosure: @Sendable @escaping (LC, DC, RNGWrapper<PRNG>) async -> [Module]
-    ) -> Self
+        produces produceClosure: @Sendable @escaping (LC, DC, RNGWrapper<PRNG>) async -> [any Module]) -> Self
         where LC: Module, DC: Module
     {
         let rule = RewriteRuleLeftDirectRNG(
@@ -648,7 +647,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -661,7 +660,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<LC, DC>(
         leftContext: LC.Type, directContext: DC.Type,
-        produces produceClosure: @Sendable @escaping (LC, DC, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (LC, DC, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where LC: Module, DC: Module
     {
@@ -671,7 +670,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -687,7 +686,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithRNG<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
         where evalClosure: @Sendable @escaping (DC, RC) -> Bool,
-        produces produceClosure: @Sendable @escaping (DC, RC, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RC, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where DC: Module, RC: Module
     {
@@ -697,7 +696,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -710,7 +709,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<DC, RC>(
         directContext: DC.Type, rightContext: RC.Type,
-        produces produceClosure: @Sendable @escaping (DC, RC, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RC, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where DC: Module, RC: Module
     {
@@ -720,7 +719,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -734,7 +733,7 @@ public extension ParameterizedRandomContextualLSystem {
     func rewriteWithRNG<DC>(
         directContext: DC.Type,
         where evalClosure: @Sendable @escaping (DC) -> Bool,
-        produces produceClosure: @Sendable @escaping (DC, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where DC: Module
     {
@@ -744,7 +743,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: evalClosure,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -756,7 +755,7 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewriteWithRNG<DC>(
         directContext: DC.Type,
-        produces produceClosure: @Sendable @escaping (DC, RNGWrapper<PRNG>) async -> [Module]
+        produces produceClosure: @Sendable @escaping (DC, RNGWrapper<PRNG>) async -> [any Module]
     ) -> Self
         where DC: Module
     {
@@ -766,7 +765,7 @@ public extension ParameterizedRandomContextualLSystem {
             where: nil,
             produces: produceClosure
         )
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [rule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -781,10 +780,10 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC>(_ direct: DC.Type,
                      where evalClosure: @Sendable @escaping (DC) -> Bool,
-                     produces produceClosure: @Sendable @escaping (DC) -> [Module]) -> Self where DC: Module
+                     produces produceClosure: @Sendable @escaping (DC) -> [any Module]) -> Self where DC: Module
     {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -795,10 +794,10 @@ public extension ParameterizedRandomContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC>(_ direct: DC.Type,
-                     produces produceClosure: @Sendable @escaping (DC) -> [Module]) -> Self where DC: Module
+                     produces produceClosure: @Sendable @escaping (DC) -> [any Module]) -> Self where DC: Module
     {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -811,10 +810,10 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
                          where evalClosure: @Sendable @escaping (LC, DC) -> Bool,
-                         produces produceClosure: @Sendable @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
+                         produces produceClosure: @Sendable @escaping (LC, DC) -> [any Module]) -> Self where LC: Module, DC: Module
     {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -825,10 +824,10 @@ public extension ParameterizedRandomContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
-                         produces produceClosure: @Sendable @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
+                         produces produceClosure: @Sendable @escaping (LC, DC) -> [any Module]) -> Self where LC: Module, DC: Module
     {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: nil, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -841,10 +840,10 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
                          where evalClosure: @Sendable @escaping (DC, RC) -> Bool,
-                         produces produceClosure: @Sendable @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
+                         produces produceClosure: @Sendable @escaping (DC, RC) -> [any Module]) -> Self where DC: Module, RC: Module
     {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -855,10 +854,10 @@ public extension ParameterizedRandomContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
-                         produces produceClosure: @Sendable @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
+                         produces produceClosure: @Sendable @escaping (DC, RC) -> [any Module]) -> Self where DC: Module, RC: Module
     {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -871,10 +870,10 @@ public extension ParameterizedRandomContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
                              where evalClosure: @Sendable @escaping (LC, DC, RC) -> Bool,
-                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
+                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [any Module]) -> Self where LC: Module, DC: Module, RC: Module
     {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }
@@ -885,10 +884,10 @@ public extension ParameterizedRandomContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
+                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [any Module]) -> Self where LC: Module, DC: Module, RC: Module
     {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ParameterizedRandomContextualLSystem(axiom: axiom, state: state, newStateIndicators: newStateIndicators, parameters: parameters, prng: prng, rules: newRuleSet)
     }

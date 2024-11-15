@@ -35,7 +35,7 @@ public struct RewriteRuleLeftDirectRightDefines<LC, DC, RC, PType>: Rule where L
     public let parametricEval: Eval?
     public typealias Eval = @Sendable (LC, DC, RC, PType) -> Bool
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias CombinationMatchProducesList = @Sendable (LC, DC, RC, PType) async -> [Module]
+    public typealias CombinationMatchProducesList = @Sendable (LC, DC, RC, PType) async -> [any Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: CombinationMatchProducesList
@@ -90,7 +90,7 @@ public struct RewriteRuleLeftDirectRightDefines<LC, DC, RC, PType>: Rule where L
     /// Invokes the rule's produce closure with the modules provided.
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
-    public func produce(_ matchSet: ModuleSet) async -> [Module] {
+    public func produce(_ matchSet: ModuleSet) async -> [any Module] {
         guard let leftInstance = matchSet.leftInstance as? LC,
               let directInstance = matchSet.directInstance as? DC,
               let rightInstance = matchSet.rightInstance as? RC

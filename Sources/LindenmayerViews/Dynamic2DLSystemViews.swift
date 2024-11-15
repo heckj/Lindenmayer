@@ -5,7 +5,7 @@
 //  Created by Joseph Heck on 12/15/21.
 //
 
-import Lindenmayer
+public import Lindenmayer
 import SwiftUI
 
 /// A view that allows you to choose from a collection of the built-in 2D L-systems and display the 2D representation of the L-system at the number of iterations that you select in the view.
@@ -21,7 +21,7 @@ public struct Dynamic2DLSystemViews: View {
         case barnsleyFern
         public var id: String { rawValue }
         /// The example seed L-system
-        public var lsystem: LindenmayerSystem {
+        public var lsystem: any LindenmayerSystem {
             switch self {
             case .algae:
                 Examples2D.algae

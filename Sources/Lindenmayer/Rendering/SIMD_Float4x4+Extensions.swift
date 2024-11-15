@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import simd
+public import simd
 
 public extension simd_float4x4 {
     /// Returns a multi-line string that represents the simd4x4 matrix for easier visual reading.

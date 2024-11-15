@@ -5,7 +5,7 @@
 //
 
 import Foundation
-import simd
+public import simd
 
 public extension SceneKitRenderer {
     /// Creates a 3D translation transform that scales by the values you provide.

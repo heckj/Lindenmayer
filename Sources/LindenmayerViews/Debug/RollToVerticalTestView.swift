@@ -9,7 +9,7 @@ import Lindenmayer
 import SceneKit
 import SceneKitDebugTools
 import simd
-import SwiftUI
+public import SwiftUI
 
 @MainActor
 public struct RollToVerticalTestView: View {

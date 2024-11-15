@@ -4,7 +4,7 @@
 //
 //  Created by Joseph Heck on 1/10/22.
 //
-import Lindenmayer
+public import Lindenmayer
 import SwiftUI
 
 /// A view that represents a summary view of a single debug module from an L-system at the size you choose.

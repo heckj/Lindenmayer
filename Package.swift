@@ -2,6 +2,13 @@
 
 import PackageDescription
 
+var globalSwiftSettings: [PackageDescription.SwiftSetting] = [
+    .enableExperimentalFeature("StrictConcurrency"),
+    .enableUpcomingFeature("ExistentialAny"),
+    .enableExperimentalFeature("AccessLevelOnImport"),
+    .enableUpcomingFeature("InternalImportsByDefault"),
+]
+
 let package = Package(
     name: "Lindenmayer",
     platforms: [
@@ -19,22 +26,23 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/heckj/SceneKitDebugTools.git", from: "0.1.0"),
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
+        .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.0.0"),
     ],
     targets: [
         .target(
             name: "Lindenmayer",
             dependencies: ["SceneKitDebugTools"],
-            swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
+            swiftSettings: globalSwiftSettings
         ),
         .target(
             name: "LindenmayerViews",
             dependencies: ["Lindenmayer", "SceneKitDebugTools"],
-            swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
+            swiftSettings: globalSwiftSettings
         ),
         .testTarget(
             name: "LindenmayerTests",
             dependencies: ["Lindenmayer", "SceneKitDebugTools"]
         ),
-    ]
+    ],
+    swiftLanguageVersions: [.version("6"), .v5]
 )

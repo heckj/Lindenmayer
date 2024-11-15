@@ -35,7 +35,7 @@ public struct RewriteRuleDirectRightRNG<DC, RC, PRNG>: Rule where DC: Module, RC
     public var parametricEval: (@Sendable (DC, RC) -> Bool)?
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias CombinationMatchProducesList = @Sendable (DC, RC, RNGWrapper<PRNG>) async -> [Module]
+    public typealias CombinationMatchProducesList = @Sendable (DC, RC, RNGWrapper<PRNG>) async -> [any Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: CombinationMatchProducesList
@@ -88,7 +88,7 @@ public struct RewriteRuleDirectRightRNG<DC, RC, PRNG>: Rule where DC: Module, RC
     /// Invokes the rule's produce closure with the modules provided.
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
-    public func produce(_ matchSet: ModuleSet) async -> [Module] {
+    public func produce(_ matchSet: ModuleSet) async -> [any Module] {
         guard let directInstance = matchSet.directInstance as? DC,
               let rightInstance = matchSet.rightInstance as? RC
         else {

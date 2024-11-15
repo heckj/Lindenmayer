@@ -7,16 +7,16 @@
 
 import Lindenmayer
 import SceneKit
-import SwiftUI
+public import SwiftUI
 
 /// A view that presents the 4 SceneKit scenes that include example trees with a sympodial structure built in to Lindenmayer.
 ///
 /// The set of trees match the example in figure 2.7 of [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf) on page 59.
 public struct Sympodial4Examples: View {
-    @State var system1: LindenmayerSystem
-    @State var system2: LindenmayerSystem
-    @State var system3: LindenmayerSystem
-    @State var system4: LindenmayerSystem
+    @State var system1: any LindenmayerSystem
+    @State var system2: any LindenmayerSystem
+    @State var system3: any LindenmayerSystem
+    @State var system4: any LindenmayerSystem
     let renderer = SceneKitRenderer()
     public var body: some View {
         VStack {

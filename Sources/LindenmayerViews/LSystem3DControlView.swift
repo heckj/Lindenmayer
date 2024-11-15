@@ -5,7 +5,7 @@
 //  Created by Joseph Heck on 1/8/22.
 //
 
-import Lindenmayer
+public import Lindenmayer
 import SceneKit
 import SceneKitDebugTools
 import SwiftUI

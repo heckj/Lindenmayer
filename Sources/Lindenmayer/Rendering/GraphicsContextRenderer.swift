@@ -6,7 +6,7 @@
 //
 
 import CoreGraphics
-import SwiftUI
+public import SwiftUI
 
 struct PathState {
     var angle: Angle
@@ -69,7 +69,7 @@ public struct GraphicsContextRenderer {
     ///   - context: The SwiftUI graphics context into which to draw.
     ///   - size: The optional size of the available graphics context. If provided, the function pre-calculates the size of the rendered L-system and adjusts the drawing to fill the space available.
     @available(macOS 12.0, iOS 15.0, *)
-    public func draw(_ lsystem: LindenmayerSystem, into context: inout GraphicsContext, ofSize size: CGSize? = nil) {
+    public func draw(_ lsystem: any LindenmayerSystem, into context: inout GraphicsContext, ofSize size: CGSize? = nil) {
         if let size {
             // This is less pretty, because we have to process the whole damn thing to figure out the end-result
             // size prior to running the commands... grrr.
@@ -138,7 +138,7 @@ public struct GraphicsContextRenderer {
     /// Returns a Core Graphics rectangle after processing the L-System you provide to identify the boundaries of the 2D rendering.
     /// - Parameter system: The L-System to process.
     /// - Returns: The CGRect that represents the boundaries of the draw commands.
-    public func calcBoundingRect(system: LindenmayerSystem) -> CGRect {
+    public func calcBoundingRect(system: any LindenmayerSystem) -> CGRect {
         var stateStack: [PathState] = []
         var currentState = PathState()
         var minY: Double = 0
@@ -189,7 +189,7 @@ public struct GraphicsContextRenderer {
     ///   - modules: The modules that make up the state of an ``LindenmayerSystem``.
     ///   - destinationRect: An optional rectangle that, if provided, the path will be scaled into.
     /// - Returns: The path that draws the 2D representation of the provided ``LindenmayerSystem`` modules.
-    func path(modules: [Module], forRect destinationRect: CGRect? = nil) -> CGPath {
+    func path(modules: [any Module], forRect destinationRect: CGRect? = nil) -> CGPath {
         let path = CGMutablePath()
         path.move(to: CGPoint(x: 0, y: 0))
 
