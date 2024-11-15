@@ -32,7 +32,7 @@ public struct RewriteRuleLeftDirect<LC, DC>: Rule where LC: Module, DC: Module {
     public var parametricEval: (@Sendable (LC, DC) -> Bool)?
 
     /// The signature of the produce closure that provides a module and expects a sequence of modules.
-    public typealias LeftMatchProducesList = @Sendable (LC, DC) -> [Module]
+    public typealias LeftMatchProducesList = @Sendable (LC, DC) -> [any Module]
 
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produceClosure: LeftMatchProducesList
@@ -84,7 +84,7 @@ public struct RewriteRuleLeftDirect<LC, DC>: Rule where LC: Module, DC: Module {
     /// Invokes the rule's produce closure with the modules provided.
     /// - Parameter matchSet: The module instances to pass to the produce closure.
     /// - Returns: A sequence of modules that the produce closure returns.
-    public func produce(_ matchSet: ModuleSet) -> [Module] {
+    public func produce(_ matchSet: ModuleSet) -> [any Module] {
         guard let directInstance = matchSet.directInstance as? DC,
               let leftInstance = matchSet.leftInstance as? LC
         else {

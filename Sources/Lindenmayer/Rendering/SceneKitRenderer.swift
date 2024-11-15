@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-import SceneKit
+public import SceneKit
 import SceneKitDebugTools
 import simd
 
@@ -129,7 +129,7 @@ public struct SceneKitRenderer {
 
     /// Returns a new SceneKit scene by rendering the states of the L-system you provide into a 3D model.
     /// - Parameter lsystem: The L-System to be displayed.
-    public func generateScene(lsystem: LindenmayerSystem) -> SCNScene {
+    public func generateScene(lsystem: any LindenmayerSystem) -> SCNScene {
         generateScene(lsystem: lsystem).0
     }
 
@@ -138,7 +138,7 @@ public struct SceneKitRenderer {
     ///
     /// This method is intended to be used for visualizing the state elements.
     /// The sequence of transforms is generated from the updates to the rotations and translations that occur during the rendering process.
-    public func generateScene(lsystem: LindenmayerSystem) -> (SCNScene, [matrix_float4x4]) {
+    public func generateScene(lsystem: any LindenmayerSystem) -> (SCNScene, [matrix_float4x4]) {
         let scene = SCNScene()
         // create and add a camera to the scene
         let cameraNode = SCNNode()

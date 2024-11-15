@@ -5,14 +5,14 @@
 //  Created by Joseph Heck on 1/11/22.
 //
 
-import Lindenmayer
+public import Lindenmayer
 import SwiftUI
 
 /// A view that displays a horizontal collection of summary of the modules of an Lsystem at the size choice you provide.
 @available(macOS 12.0, iOS 15.0, *)
 public struct HorizontalLSystemStateView: View {
     let size: SummarySizes
-    let system: LindenmayerSystem
+    let system: any LindenmayerSystem
     public var body: some View {
         HStack(alignment: .top, spacing: 1) {
             ForEach(0 ..< system.state.count, id: \.self) {
@@ -22,7 +22,7 @@ public struct HorizontalLSystemStateView: View {
         }
     }
 
-    public init(size: SummarySizes, system: LindenmayerSystem) {
+    public init(size: SummarySizes, system: any LindenmayerSystem) {
         self.size = size
         self.system = system
     }

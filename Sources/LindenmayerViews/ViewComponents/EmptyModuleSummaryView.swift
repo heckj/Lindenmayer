@@ -5,7 +5,7 @@
 //  Created by Joseph Heck on 1/13/22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// An empty view that takes up the same space as a module summary view.
 public struct EmptyModuleSummaryView: View {

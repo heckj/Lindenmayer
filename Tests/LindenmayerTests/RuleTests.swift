@@ -6,8 +6,6 @@ final class RuleTests: XCTestCase {
         var name: String = "foo"
     }
 
-    let foo = Foo()
-
     func testRuleDefaults() throws {
         let r = RewriteRuleDirectRNG(directType: Examples2D.Internode.self,
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
@@ -18,7 +16,7 @@ final class RuleTests: XCTestCase {
             return [ctx]
         }
         XCTAssertNotNil(r)
-        let moduleSet = ModuleSet(directInstance: foo)
+        let moduleSet = ModuleSet(directInstance: Foo())
         XCTAssertEqual(r.evaluate(moduleSet), false)
     }
 
@@ -27,7 +25,7 @@ final class RuleTests: XCTestCase {
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil)
         { _, _ -> [Module] in
-            [self.foo]
+            [Foo()]
         }
 
         let moduleSet = ModuleSet(directInstance: Examples2D.Internode())
@@ -39,9 +37,9 @@ final class RuleTests: XCTestCase {
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil)
         { _, _ -> [Module] in
-            [self.foo]
+            [Foo()]
         }
-        let moduleSet = ModuleSet(directInstance: foo)
+        let moduleSet = ModuleSet(directInstance: Foo())
         XCTAssertEqual(r.evaluate(moduleSet), false)
     }
 
@@ -50,7 +48,7 @@ final class RuleTests: XCTestCase {
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil)
         { _, _ -> [Module] in
-            [self.foo]
+            [Foo()]
         }
         let moduleSet = ModuleSet(leftInstance: nil,
                                   directInstance: Examples2D.Internode(),
@@ -63,7 +61,7 @@ final class RuleTests: XCTestCase {
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil)
         { _, _ -> [Module] in
-            [self.foo]
+            [Foo()]
         }
         let moduleSet = ModuleSet(leftInstance: Foo(),
                                   directInstance: Examples2D.Internode(),
@@ -77,7 +75,7 @@ final class RuleTests: XCTestCase {
                                      prng: RNGWrapper(Xoshiro(seed: 0)),
                                      where: nil)
         { _, _ -> [Module] in
-            [self.foo]
+            [Foo()]
         }
         let moduleSet = ModuleSet(leftInstance: Foo(),
                                   directInstance: Examples2D.Internode(),

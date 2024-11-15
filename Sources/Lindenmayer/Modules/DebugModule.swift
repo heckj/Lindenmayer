@@ -40,7 +40,7 @@ import Foundation
 ///
 public class DebugModule: Identifiable {
     /// The abstract, underlying module instance with which you initialized the wrapper.
-    public let module: Module
+    public let module: any Module
     /// A Boolean value that indicates whether the module was newly added in the last evolution of the L-System.
     public let new: Bool
     /// The location of the module within an L-system's state.
@@ -78,7 +78,7 @@ public class DebugModule: Identifiable {
     ///   - m: The module to use to initialize the debug module.
     ///   - at: The location within the state of an L-system.
     ///   - isNew: A Boolean value that indicates the module was created in the last evolution.
-    public init(_ m: Module, at: Int, isNew: Bool = false) {
+    public init(_ m: any Module, at: Int, isNew: Bool = false) {
         id = at
         module = m
         new = isNew

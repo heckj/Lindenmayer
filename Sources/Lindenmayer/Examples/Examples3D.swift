@@ -41,7 +41,7 @@ public enum Examples3D: Sendable {
 
     struct Cyl: Module {
         public var name = "C"
-        public var render3D: ThreeDRenderCmd = RenderCommand.Cylinder(
+        public var render3D: any ThreeDRenderCmd = RenderCommand.Cylinder(
             length: 10,
             radius: 1,
             color: ColorRepresentation(red: 1.0, green: 0.1, blue: 0.1, alpha: 1.0)
@@ -50,7 +50,7 @@ public enum Examples3D: Sendable {
 
     struct S: Module {
         public var name = "S"
-        public var render3D: ThreeDRenderCmd = RenderCommand.Cylinder(
+        public var render3D: any ThreeDRenderCmd = RenderCommand.Cylinder(
             length: 5,
             radius: 2,
             color: ColorRepresentation(red: 0.1, green: 1.0, blue: 0.1, alpha: 1.0)
@@ -146,7 +146,7 @@ public enum Examples3D: Sendable {
 
     struct StaticTrunk: Module {
         public var name = "A°"
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.Cylinder(
                 length: growthDistance,
                 radius: diameter / 2,
@@ -395,7 +395,7 @@ public enum Examples3D: Sendable {
     struct Stem2: Module {
         public var name = "i"
         let length: Double // start at 10
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.Cylinder(
                 length: length,
                 radius: length / 10,
@@ -407,7 +407,7 @@ public enum Examples3D: Sendable {
     struct StaticStem2: Module {
         public var name = "I"
         let length: Double // start at 10
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.Cylinder(
                 length: length,
                 radius: length / 10,
@@ -417,19 +417,19 @@ public enum Examples3D: Sendable {
     }
 
     public static let randomBush = LSystem.create(Stem2(length: 1), with: Xoshiro(seed: 42))
-        .rewriteWithRNG(directContext: Stem2.self) { stem, rng async -> [Module] in
+        .rewriteWithRNG(directContext: Stem2.self) { stem, rng async -> [any Module] in
 
             let upper: Float = 45.0
             let lower: Float = 15.0
 
-            if await rng.p(0.5) {
-                return await [
+            if rng.p(0.5) {
+                return [
                     StaticStem2(length: 2),
                     Modules.PitchDown(angle: Angle(degrees: Double(rng.randomFloat(in: lower ... upper)))),
                     Stem2(length: stem.length),
                 ]
             } else {
-                return await [
+                return [
                     StaticStem2(length: 2),
                     Modules.PitchUp(angle: Angle(degrees: Double(rng.randomFloat(in: lower ... upper)))),
                     Stem2(length: stem.length),

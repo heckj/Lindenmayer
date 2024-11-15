@@ -73,7 +73,7 @@ public actor RNGWrapper<PRNG>: Sendable where PRNG: SeededRandomNumberGenerator 
 
     /// Returns a single module randomly selected from the list you provide.
     /// - Parameter from: The sequence of modules to choose from.
-    func select(_ from: [Module]) -> Module {
+    func select(_ from: [any Module]) -> any Module {
         #if DEBUG
             _invokeCount += 1
         #endif

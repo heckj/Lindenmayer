@@ -5,10 +5,10 @@
 //  Created by Joseph Heck on 1/8/22.
 //
 
-@preconcurrency import Combine
+@preconcurrency public import Combine
 import Foundation
-import Lindenmayer
-import SceneKit
+public import Lindenmayer
+public import SceneKit
 import SceneKitDebugTools
 import SwiftUI
 /// A class that provides an observable model around a base L-system.
@@ -17,7 +17,7 @@ import SwiftUI
 /// The model emits `ObservableObject` change notifications when the number of iterations is changed.
 @MainActor
 public class LSystem3DModel: ObservableObject {
-    @Published public var system: LindenmayerSystem
+    @Published public var system: any LindenmayerSystem
     let renderer = SceneKitRenderer()
     let _baseSystem = Examples3D.sympodialTree
 
@@ -62,7 +62,7 @@ public class LSystem3DModel: ObservableObject {
 
     /// Creates a new L-System model with the L-System you provide.
     /// - Parameter system: The L-System to expose and control with the model.
-    public init(system: LindenmayerSystem) {
+    public init(system: any LindenmayerSystem) {
         self.system = system
         objectWillChange = ObservableObjectPublisher()
         (_scene, _transformSequence) = renderer.generateScene(lsystem: _baseSystem)

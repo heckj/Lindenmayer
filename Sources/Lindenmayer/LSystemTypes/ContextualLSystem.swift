@@ -55,10 +55,10 @@ import Foundation
 ///
 /// - ``ContextualLSystem/reset()``
 public struct ContextualLSystem: LindenmayerSystem {
-    let axiom: [Module]
+    let axiom: [any Module]
 
     /// The sequence of modules that represents the current state of the L-system.
-    public let state: [Module]
+    public let state: [any Module]
 
     /// An array of Boolean values that indicate if the state in the L-system was newly created in the evolution.
     ///
@@ -66,7 +66,7 @@ public struct ContextualLSystem: LindenmayerSystem {
     public let newStateIndicators: [Bool]
 
     /// The sequence of rules that the L-system uses to process and evolve its state.
-    public let rules: [Rule]
+    public let rules: [any Rule]
 
     /// Creates a new Lindenmayer system from an initial state sequence and rules you provide.
     /// - Parameters:
@@ -84,10 +84,10 @@ public struct ContextualLSystem: LindenmayerSystem {
     ///
     /// let algae = Lsystem.create(A())
     /// ```
-    public init(_ axiom: [Module],
-                state: [Module]?,
+    public init(_ axiom: [any Module],
+                state: [any Module]?,
                 newStateIndicators: [Bool]?,
-                rules: [Rule] = [])
+                rules: [any Rule] = [])
     {
         self.axiom = axiom
         if let state {
@@ -113,7 +113,7 @@ public struct ContextualLSystem: LindenmayerSystem {
     ///
     /// This function is called from the common ``LindenmayerSystem`` protocol's default implementation to generate an updated
     /// L-system with a set of new modules.
-    public func updatedLSystem(with state: [Module], newItemIndicators: [Bool]) -> Self {
+    public func updatedLSystem(with state: [any Module], newItemIndicators: [Bool]) -> Self {
         ContextualLSystem(axiom, state: state, newStateIndicators: newItemIndicators, rules: rules)
     }
 
@@ -133,10 +133,10 @@ public extension ContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC>(_ direct: DC.Type,
                      where evalClosure: @Sendable @escaping (DC) -> Bool,
-                     produces produceClosure: @Sendable @escaping (DC) -> [Module]) -> Self where DC: Module
+                     produces produceClosure: @Sendable @escaping (DC) -> [any Module]) -> Self where DC: Module
     {
         let newRule = RewriteRuleDirect(direct: direct, where: evalClosure, produce: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
@@ -147,10 +147,10 @@ public extension ContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC>(_ direct: DC.Type,
-                     produces produceClosure: @Sendable @escaping (DC) -> [Module]) -> Self where DC: Module
+                     produces produceClosure: @Sendable @escaping (DC) -> [any Module]) -> Self where DC: Module
     {
         let newRule = RewriteRuleDirect(direct: direct, where: nil, produce: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
@@ -163,10 +163,10 @@ public extension ContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
                          where evalClosure: @Sendable @escaping (LC, DC) -> Bool,
-                         produces produceClosure: @Sendable @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
+                         produces produceClosure: @Sendable @escaping (LC, DC) -> [any Module]) -> Self where LC: Module, DC: Module
     {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: evalClosure, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
@@ -177,10 +177,10 @@ public extension ContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC>(leftContext: LC.Type, directContext: DC.Type,
-                         produces produceClosure: @Sendable @escaping (LC, DC) -> [Module]) -> Self where LC: Module, DC: Module
+                         produces produceClosure: @Sendable @escaping (LC, DC) -> [any Module]) -> Self where LC: Module, DC: Module
     {
         let newRule = RewriteRuleLeftDirect(leftType: leftContext, directType: directContext, where: nil, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
@@ -193,10 +193,10 @@ public extension ContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
                          where evalClosure: @Sendable @escaping (DC, RC) -> Bool,
-                         produces produceClosure: @Sendable @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
+                         produces produceClosure: @Sendable @escaping (DC, RC) -> [any Module]) -> Self where DC: Module, RC: Module
     {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
@@ -207,10 +207,10 @@ public extension ContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<DC, RC>(directContext: DC.Type, rightContext: RC.Type,
-                         produces produceClosure: @Sendable @escaping (DC, RC) -> [Module]) -> Self where DC: Module, RC: Module
+                         produces produceClosure: @Sendable @escaping (DC, RC) -> [any Module]) -> Self where DC: Module, RC: Module
     {
         let newRule = RewriteRuleDirectRight(directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
@@ -223,10 +223,10 @@ public extension ContextualLSystem {
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
                              where evalClosure: @Sendable @escaping (LC, DC, RC) -> Bool,
-                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
+                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [any Module]) -> Self where LC: Module, DC: Module, RC: Module
     {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: evalClosure, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }
@@ -237,10 +237,10 @@ public extension ContextualLSystem {
     ///   - produce: A closure that you provide that returns a list of modules to replace the matching module.
     /// - Returns: A new L-System with the additional rule added.
     func rewrite<LC, DC, RC>(leftContext: LC.Type, directContext: DC.Type, rightContext: RC.Type,
-                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [Module]) -> Self where LC: Module, DC: Module, RC: Module
+                             produces produceClosure: @Sendable @escaping (LC, DC, RC) -> [any Module]) -> Self where LC: Module, DC: Module, RC: Module
     {
         let newRule = RewriteRuleLeftDirectRight(leftType: leftContext, directType: directContext, rightType: rightContext, where: nil, produces: produceClosure)
-        var newRuleSet: [Rule] = rules
+        var newRuleSet: [any Rule] = rules
         newRuleSet.append(contentsOf: [newRule])
         return ContextualLSystem(axiom, state: state, newStateIndicators: newStateIndicators, rules: newRuleSet)
     }

@@ -5,7 +5,7 @@
 //  Created by Joseph Heck on 1/10/22.
 //
 
-import Lindenmayer
+public import Lindenmayer
 import SwiftUI
 
 /// A view that displays a window of a set of modules at the index location and window size that you choose for the L-system you provide.
@@ -14,7 +14,7 @@ import SwiftUI
 @available(macOS 12.0, iOS 15.0, *)
 public struct WindowedSmallModuleView: View {
     let size: SummarySizes
-    @State var system: LindenmayerSystem
+    @State var system: any LindenmayerSystem
     let position: Int
     let windowSize: Int
 
@@ -99,7 +99,7 @@ public struct WindowedSmallModuleView: View {
         }
     }
 
-    public init(size: SummarySizes, system: LindenmayerSystem, position: Int, windowSize: Int = 9) {
+    public init(size: SummarySizes, system: any LindenmayerSystem, position: Int, windowSize: Int = 9) {
         self.size = size
         self.system = system
         self.position = position

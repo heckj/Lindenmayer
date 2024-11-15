@@ -5,7 +5,7 @@
 //  Created by Joseph Heck on 12/12/21.
 //
 
-import Lindenmayer
+public import Lindenmayer
 import SwiftUI
 
 /// A view that provides a 2D rendering of the L-system provide, and optionally metrics associated with the L-system.
@@ -14,7 +14,7 @@ import SwiftUI
 public struct Lsystem2DView: View {
     let iterations: Int
     let displayMetrics: Bool
-    @State var system: LindenmayerSystem
+    @State var system: any LindenmayerSystem
     let renderer = GraphicsContextRenderer()
     public var body: some View {
         VStack {
@@ -29,7 +29,7 @@ public struct Lsystem2DView: View {
         }
     }
 
-    public init(system: LindenmayerSystem, iterations: Int, displayMetrics: Bool = false) {
+    public init(system: any LindenmayerSystem, iterations: Int, displayMetrics: Bool = false) {
         self.system = system
         self.iterations = iterations
         self.displayMetrics = displayMetrics

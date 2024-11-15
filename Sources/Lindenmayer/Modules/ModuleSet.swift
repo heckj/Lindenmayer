@@ -20,25 +20,25 @@ import Foundation
 ///
 public struct ModuleSet {
     /// The module to the left (earlier) in the L-systems's state sequence.
-    let leftInstance: Module?
+    let leftInstance: (any Module)?
     /// The type of the module to the left.
-    let leftInstanceType: Module.Type?
+    let leftInstanceType: (any Module.Type)?
 
     /// The module instance.
-    let directInstance: Module
+    let directInstance: any Module
     /// The type of the module instance.
-    let directInstanceType: Module.Type
+    let directInstanceType: any Module.Type
 
     /// The module to the right (later) in the L-system's state sequence.
-    let rightInstance: Module?
+    let rightInstance: (any Module)?
     /// The type of the module to the right.
-    let rightInstanceType: Module.Type?
+    let rightInstanceType: (any Module.Type)?
 
     /// Creates a new module set with a module.
     /// - Parameters:
     ///   - directInstance: The module instance.
     ///   - directInstanceType: The type of the module.
-    public init(directInstance: Module) {
+    public init(directInstance: some Module) {
         self.directInstance = directInstance
         directInstanceType = type(of: directInstance)
         leftInstance = nil
@@ -55,7 +55,7 @@ public struct ModuleSet {
     ///   - directInstanceType: The type of the module.
     ///   - rightInstance: The module to the right (later) in the L-system's state sequence.
     ///   - rightInstanceType: The type fo the module to the right.
-    public init(leftInstance: Module?, directInstance: Module, rightInstance: Module?) {
+    public init(leftInstance: (any Module)?, directInstance: any Module, rightInstance: (any Module)?) {
         if let left = leftInstance {
             self.leftInstance = left
             leftInstanceType = type(of: left)

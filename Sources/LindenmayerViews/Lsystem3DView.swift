@@ -5,7 +5,7 @@
 //  Created by Joseph Heck on 12/18/21.
 //
 
-import Lindenmayer
+public import Lindenmayer
 import SceneKit
 import SwiftUI
 
@@ -13,7 +13,7 @@ import SwiftUI
 @MainActor
 public struct Lsystem3DView: View {
     let displayMetrics: Bool
-    @State var system: LindenmayerSystem
+    @State var system: any LindenmayerSystem
     func generateScene() -> SCNScene {
         let x = SceneKitRenderer()
         return x.generateScene(lsystem: system).0
@@ -52,7 +52,7 @@ public struct Lsystem3DView: View {
         }
     }
 
-    public init(system: LindenmayerSystem, displayMetrics: Bool = false) {
+    public init(system: any LindenmayerSystem, displayMetrics: Bool = false) {
         self.displayMetrics = displayMetrics
         self.system = system
     }

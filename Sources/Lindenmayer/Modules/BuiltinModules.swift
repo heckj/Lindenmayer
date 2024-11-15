@@ -35,11 +35,11 @@ public extension Modules {
     struct TurnLeft: Module {
         public let name = RenderCommand.turnLeft.name
         public let angle: Angle
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             [RenderCommand.TurnLeft(angle: angle)]
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.TurnLeft(angle: angle)
         }
 
@@ -52,11 +52,11 @@ public extension Modules {
     struct TurnRight: Module {
         public let name = RenderCommand.turnRight.name
         public let angle: Angle
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             [RenderCommand.TurnRight(angle: angle)]
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.TurnRight(angle: angle)
         }
 
@@ -69,11 +69,11 @@ public extension Modules {
     struct Draw: Module {
         public let name = RenderCommand.draw.name
         public let length: Double
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             [RenderCommand.Draw(length: length)]
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.Draw(length: length)
         }
 
@@ -86,11 +86,11 @@ public extension Modules {
     struct Move: Module {
         public let name = RenderCommand.move.name
         public let length: Double
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             [RenderCommand.Move(length: length)]
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.Move(length: length)
         }
 
@@ -102,11 +102,11 @@ public extension Modules {
     /// A module that informs a renderer that the L-system representation should branch.
     struct Branch: Module {
         public let name = RenderCommand.branch.name
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             [RenderCommand.Branch()]
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.Branch()
         }
 
@@ -117,11 +117,11 @@ public extension Modules {
     struct EndBranch: Module {
         public let name = RenderCommand.endBranch.name
 
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             [RenderCommand.EndBranch()]
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.EndBranch()
         }
 
@@ -132,11 +132,11 @@ public extension Modules {
     struct RollLeft: Module {
         public let name = RenderCommand.rollLeft.name
         public let angle: Angle
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             []
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.RollLeft(angle: angle)
         }
 
@@ -149,11 +149,11 @@ public extension Modules {
     struct RollRight: Module {
         public let name = RenderCommand.rollRight.name
         public let angle: Angle
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             []
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.RollRight(angle: angle)
         }
 
@@ -166,11 +166,11 @@ public extension Modules {
     struct PitchUp: Module {
         public let name = RenderCommand.pitchUp.name
         public let angle: Angle
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             []
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.PitchUp(angle: angle)
         }
 
@@ -183,11 +183,11 @@ public extension Modules {
     struct PitchDown: Module {
         public let name = RenderCommand.pitchDown.name
         public let angle: Angle
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             []
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.PitchDown(angle: angle)
         }
 
@@ -199,11 +199,11 @@ public extension Modules {
     /// A module that informs the renderer to roll around its current heading so that the upward vector is as vertical as possible.
     struct RollUpToVertical: Module {
         public let name = RenderCommand.rollUpToVertical.name
-        public var render2D: [TwoDRenderCmd] {
+        public var render2D: [any TwoDRenderCmd] {
             []
         }
 
-        public var render3D: ThreeDRenderCmd {
+        public var render3D: any ThreeDRenderCmd {
             RenderCommand.rollUpToVertical
         }
 
