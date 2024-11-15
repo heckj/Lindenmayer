@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         run-config:
-          - { scheme: 'Lindenmayer-Package', destination: 'platform=iOS Simulator,OS=15.5,name=iPhone 8' }
+          - { scheme: 'Lindenmayer-Package', destination: 'platform=iOS Simulator,OS=18.1,name=iPhone 16' }
           - { scheme: 'Lindenmayer-Package', destination: 'platform=macOS' }
 
     steps:
