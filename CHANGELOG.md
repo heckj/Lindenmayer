@@ -43,3 +43,11 @@ The rules all now also have additional evaluation criteria enabled through an op
 * removing Squirrel3 dependency by @heckj in #36, which allows for Lindenmayer to be used within Swift Playgrounds as it's now all pure-swift code (no C-based dependencies)
 
 **Full Changelog**: https://github.com/heckj/Lindenmayer/compare/0.7.2...0.7.3
+
+## [0.8.0](https://github.com/heckj/Lindenmayer/releases/tag/0.8.0) (2024-04-18)
+
+Swift6 compatibility/strict concurrency update
+
+When I originally created this package, async/await wasn't yet available. In supporting strict concurrency and the upcoming Swift 6 release, I've updated the Swift language support to require at least Swift 5.8, and changed the API to utilize async/await on the modules that produce results, with either a custom definition file for the Lindenmayer system, or leveraging the stochastic (random choices) features available in some of the Lindenmayer systems.
+
+**Full Changelog**: https://github.com/heckj/Lindenmayer/compare/0.7.3...0.8.0
