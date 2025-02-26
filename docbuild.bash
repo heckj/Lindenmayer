@@ -37,7 +37,7 @@ export DOCC_JSON_PRETTYPRINT=YES
      --allow-writing-to-directory ./docs \
      generate-documentation \
      --fallback-bundle-identifier com.github.heckj.Lindenmayer \
-     --fallback-bundle-version 0.7.2 \
+     --fallback-bundle-version 0.7.3 \
      --target Lindenmayer \
      --target LindenmayerViews \
      --output-path ./docs \
