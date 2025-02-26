@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/heckj/Lindenmayer/actions/workflows/swift.yml/badge.svg)](https://github.com/heckj/Lindenmayer/actions/workflows/swift.yml)
 [![Platforms](https://img.shields.io/badge/platforms-iOS%20|%20Mac%20-lightgray.svg)]()
-[![Swift 5.5](https://img.shields.io/badge/swift-5.5-red.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift 5.8](https://img.shields.io/badge/swift-5.8-red.svg?style=flat)](https://developer.apple.com/swift)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
 [![Twitter](https://img.shields.io/badge/twitter-@heckj-blue.svg)](http://twitter.com/heckj)
 
